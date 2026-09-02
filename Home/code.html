@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pastelería 1000 Sabores - 50 Años de Tradición</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#ffe2da",
+                        "on-secondary-fixed-variant": "#663a43",
+                        "chocolate-deep": "#8B4513",
+                        "outline-variant": "#dac2b6",
+                        "secondary-fixed": "#ffd9df",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#ffe9e3",
+                        "crema-pastel": "#FFF5E1",
+                        "on-tertiary-container": "#d8cfbc",
+                        "surface-container-low": "#fff1ed",
+                        "error": "#ba1a1a",
+                        "marron-text": "#5D4037",
+                        "on-primary-fixed": "#321200",
+                        "surface-container-highest": "#ffdbd0",
+                        "on-tertiary-fixed": "#1f1b0f",
+                        "primary-fixed": "#ffdbc9",
+                        "secondary": "#81515a",
+                        "background": "#fff8f6",
+                        "smoke-grey": "#B0BEC5",
+                        "on-surface-variant": "#54433a",
+                        "surface-bright": "#fff8f6",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#f4b6c1",
+                        "tertiary-fixed": "#ebe2ce",
+                        "tertiary": "#464133",
+                        "surface": "#fff8f6",
+                        "on-tertiary-fixed-variant": "#4c4638",
+                        "on-primary-fixed-variant": "#753401",
+                        "on-secondary": "#ffffff",
+                        "rosa-suave": "#FFC0CB",
+                        "inverse-surface": "#442a22",
+                        "secondary-container": "#fdbec9",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb68c",
+                        "primary": "#6c2f00",
+                        "outline": "#877369",
+                        "on-background": "#2c160e",
+                        "primary-fixed-dim": "#ffb68c",
+                        "tertiary-container": "#5e5849",
+                        "on-secondary-fixed": "#330f19",
+                        "on-secondary-container": "#7a4a54",
+                        "surface-variant": "#ffdbd0",
+                        "primary-container": "#8b4513",
+                        "on-primary-container": "#ffc29f",
+                        "surface-tint": "#934b19",
+                        "inverse-on-surface": "#ffede8",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#2c160e",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#cfc6b3",
+                        "surface-dim": "#fbd1c4"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "margin-desktop": "48px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "margin-mobile": "16px"
+                    },
+                    fontFamily: {
+                        "label-md": ["Source Sans 3"],
+                        "headline-sm": ["Pacifico"],
+                        "display-lg-mobile": ["Pacifico"],
+                        "headline-md": ["Pacifico"],
+                        "label-sm": ["Source Sans 3"],
+                        "body-md": ["Source Sans 3"],
+                        "title-lg": ["Source Sans 3"],
+                        "body-lg": ["Source Sans 3"],
+                        "display-lg": ["Pacifico"]
+                    },
+                    fontSize: {
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.5px", fontWeight: "600" }],
+                        "headline-sm": ["24px", { lineHeight: "1.4", fontWeight: "400" }],
+                        "display-lg-mobile": ["36px", { lineHeight: "1.2", fontWeight: "400" }],
+                        "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "1px", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "title-lg": ["20px", { lineHeight: "28px", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "1.2", fontWeight: "400" }]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body { background-color: theme('colors.crema-pastel'); }
+        .ambient-shadow-lvl1 { box-shadow: 0 4px 16px rgba(139,69,19,0.08); }
+        .ambient-shadow-lvl2 { box-shadow: 0 16px 32px rgba(139,69,19,0.12); }
+        .inner-border-cream { border: 1px solid rgba(218, 194, 182, 0.4); }
+    </style>
+</head>
+<body class="font-body-md text-marron-text antialiased">
+<!-- TopNavBar -->
+<header class="bg-crema-pastel dark:bg-surface shadow-[0_4px_16px_rgba(139,69,19,0.08)] sticky top-0 z-50 w-full">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<!-- Brand -->
+<a class="font-display-lg text-display-lg text-chocolate-deep dark:text-primary-fixed md:font-display-lg font-display-lg-mobile md:text-display-lg text-display-lg-mobile" href="#">
+                Pastelería 1000 Sabores
+            </a>
+<!-- Navigation -->
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="text-chocolate-deep font-bold border-b-2 border-chocolate-deep pb-1 font-label-md text-label-md hover:bg-rosa-suave/20 transition-all duration-300 px-3 py-1 rounded" href="#">Home</a>
+<a class="text-marron-text hover:text-chocolate-deep transition-colors font-label-md text-label-md hover:bg-rosa-suave/20 transition-all duration-300 px-3 py-1 rounded" href="#">Catálogo</a>
+<a class="text-marron-text hover:text-chocolate-deep transition-colors font-label-md text-label-md hover:bg-rosa-suave/20 transition-all duration-300 px-3 py-1 rounded" href="#">Blog</a>
+<a class="text-marron-text hover:text-chocolate-deep transition-colors font-label-md text-label-md hover:bg-rosa-suave/20 transition-all duration-300 px-3 py-1 rounded" href="#">Quiénes Somos</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4 text-chocolate-deep dark:text-primary-fixed-dim">
+<button aria-label="Profile" class="hover:bg-rosa-suave/20 transition-all duration-300 p-2 rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button aria-label="Cart" class="hover:bg-rosa-suave/20 transition-all duration-300 p-2 rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative w-full min-h-[80vh] flex items-center justify-center px-margin-mobile md:px-margin-desktop py-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="bg-cover bg-center w-full h-full opacity-30 mix-blend-multiply" data-alt="A beautifully lit, artisanal chocolate and cream cake sitting on a rustic wooden table in a warm, softly lit bakery environment. Flour dust dances in a beam of sunlight. The mood is nostalgic, comforting, and deeply rooted in tradition. Colors are rich browns, creamy whites, and warm golden tones, embodying a modern-tactile aesthetic." style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBQwbA0SrFlPHZan4RPERjxprjAepQvp0TykmAxtj1O2RNWzTa7Uk-NSL-MWwmi25Yu-jA8YItlGNI_ghmWxDeiQrRDZKofZAS2sNlPzD1B_G--ap8JOVr-U21NGD9KdyteIXjjGUVtGetfFInjQdYAXjq68fSvjEPgCBUHAQVtqr1ngSSibpxk_rrHnro30ZWYmaDENos05XZ8P4vqoGZsMppWzn10hClT3gn6snGIdJAjWE2byepZ&quot;);"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-crema-pastel/80 via-crema-pastel/50 to-crema-pastel"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto text-center flex flex-col items-center gap-8">
+<div class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-rosa-suave/30 text-marron-text rounded-full font-label-md text-label-md backdrop-blur-sm inner-border-cream">
+<span class="material-symbols-outlined text-chocolate-deep text-sm">stars</span>
+                    1974 - 2024: Medio Siglo de Dulzura
+                </div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-chocolate-deep max-w-3xl leading-tight">
+                    50 Años Horneando Memorias Inolvidables
+                </h1>
+<p class="font-body-lg text-body-lg text-marron-text max-w-2xl">
+                    Desde nuestro pequeño horno de barro en 1974 hasta el Récord Guinness de 1995 por el pastel más grande del mundo. Una tradición familiar que sigue endulzando tu vida.
+                </p>
+<div class="flex flex-wrap justify-center gap-4 mt-4">
+<a class="bg-chocolate-deep text-on-primary px-8 py-3 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-all ambient-shadow-lvl1 active:scale-95 hover:shadow-lg" href="#catalogo">
+                        Ver Catálogo
+                    </a>
+</div>
+</div>
+</section>
+<!-- Featured Bento Grid -->
+<section class="w-full px-margin-mobile md:px-margin-desktop py-20 max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Nuestra Misión -->
+<div class="md:col-span-8 bg-surface rounded-xl p-8 ambient-shadow-lvl1 inner-border-cream flex flex-col md:flex-row gap-8 items-center hover:-translate-y-1 transition-transform duration-300">
+<div class="w-full md:w-1/2 aspect-square md:aspect-auto md:h-full rounded-lg overflow-hidden shrink-0">
+<img class="object-cover w-full h-full" data-alt="Close-up of a baker's flour-dusted hands gently kneading soft dough on a wooden surface. Warm, natural lighting highlighting the textures. The aesthetic is artisanal, tactile, and comforting, with earthy tones and soft minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsQggYlYnf7i5i_Y0YSIf_HSqOtHd9xR0yoVT5FEOYIKVGGXviZBDudNcBx56VBF34sAN3ODToAgf4PKpnyxsLHzxkpo17o47lbLVpkfbpqJsfodZdBFz0EFtgAaPpv6Ome7KeAAWZ2bwhizwAMCTNsHGd3SgF7OzNZ9lmoLm_9dYWm1Eo0ENCWTriZzQvaVLYkbff4spbPxS-C-Gx-U4MJ4c2zi81uoDmXZ_mzZ6mdAR6KJ_Pxrm0">
+</div>
+<div class="flex flex-col gap-4">
+<h2 class="font-headline-md text-headline-md text-chocolate-deep">Nuestra Misión</h2>
+<p class="font-body-md text-body-md text-marron-text">Ofrecer una experiencia dulce y memorable a nuestros clientes, proporcionando tortas y productos
+de repostería de alta calidad para todas las ocasiones, mientras celebramos nuestras raíces
+históricas y fomentamos la creatividad en la repostería.</p>
+</div>
+</div>
+<!-- Origen de Recetas (Hand-drawn feel) -->
+<div class="md:col-span-4 bg-surface-container-high rounded-xl p-8 ambient-shadow-lvl1 inner-border-cream flex flex-col gap-4 justify-center relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10 text-[120px]">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-chocolate-deep relative z-10">Visión</h3>
+<p class="font-body-md text-body-md text-marron-text italic relative z-10">
+                        Convertirnos en la tienda online líder de productos de repostería en Chile, conocida por nuestra
+innovación, calidad y el impacto positivo en la comunidad, especialmente en la formación de nuevos
+talentos en gastronomía.
+                    </p>
+</div>
+<!-- Impacto Comunitario -->
+<div class="md:col-span-6 bg-surface rounded-xl p-8 ambient-shadow-lvl1 inner-border-cream flex flex-col gap-6">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-12 h-12 rounded-full bg-rosa-suave/50 flex items-center justify-center text-chocolate-deep">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-chocolate-deep">Apoyo a Estudiantes Duoc UC</h2>
+</div>
+<p class="font-body-md text-body-md text-marron-text flex-grow">
+                        Creemos en el futuro de la gastronomía chilena. Por eso, abrimos nuestras puertas a los estudiantes de Duoc UC, brindándoles un espacio para practicar, aprender y perfeccionar el arte de la pastelería tradicional con nuestros maestros panaderos.
+                    </p>
+</div>
+<!-- Promociones -->
+<div class="md:col-span-6 bg-surface rounded-xl p-8 ambient-shadow-lvl1 inner-border-cream flex flex-col gap-6">
+<h2 class="font-headline-sm text-headline-sm text-chocolate-deep flex items-center gap-2">
+<span class="material-symbols-outlined text-rosa-suave">celebration</span>
+                        Especiales de Aniversario
+                    </h2>
+<ul class="flex flex-col gap-4">
+<li class="flex items-start gap-3 bg-surface-container-low p-4 rounded-lg inner-border-cream">
+<span class="material-symbols-outlined text-chocolate-deep mt-0.5">favorite</span>
+<div>
+<strong class="font-label-md text-label-md text-chocolate-deep block">50% Dcto. Mayores de 50</strong>
+<span class="font-body-md text-body-md text-marron-text text-sm">Para quienes han crecido con nosotros.</span>
+</div>
+</li>
+<li class="flex items-start gap-3 bg-surface-container-low p-4 rounded-lg inner-border-cream">
+<span class="material-symbols-outlined text-chocolate-deep mt-0.5">local_offer</span>
+<div>
+<strong class="font-label-md text-label-md text-chocolate-deep block">10% Dcto. General</strong>
+<span class="font-body-md text-body-md text-marron-text text-sm">Usa el código <code class="bg-crema-pastel px-1 py-0.5 rounded text-chocolate-deep">FELICES50</code></span>
+</div>
+</li>
+<li class="flex items-start gap-3 bg-rosa-suave/20 p-4 rounded-lg border border-rosa-suave/50">
+<span class="material-symbols-outlined text-chocolate-deep mt-0.5">cake</span>
+<div>
+<strong class="font-label-md text-label-md text-chocolate-deep block">¡Pastel Gratis!</strong>
+<span class="font-body-md text-body-md text-marron-text text-sm">Para estudiantes de Duoc UC al presentar credencial.</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-chocolate-deep dark:bg-primary-container w-full rounded-t-xl mt-20">
+<div class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-start gap-gutter max-w-container-max mx-auto">
+<div class="flex flex-col gap-4 max-w-sm">
+<span class="font-display-lg text-display-lg text-crema-pastel">
+                    Pastelería 1000 Sabores
+                </span>
+<p class="text-crema-pastel/80 font-body-md text-body-md">
+                    © 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024). Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.
+                </p>
+</div>
+<nav class="flex flex-col gap-3">
+<a class="text-crema-pastel/80 hover:text-crema-pastel hover:underline transition-all opacity-90 hover:opacity-100 font-label-sm text-label-sm" href="#">Sobre Nosotros</a>
+<a class="text-crema-pastel/80 hover:text-crema-pastel hover:underline transition-all opacity-90 hover:opacity-100 font-label-sm text-label-sm" href="#">Contacto</a>
+<a class="text-crema-pastel/80 hover:text-crema-pastel hover:underline transition-all opacity-90 hover:opacity-100 font-label-sm text-label-sm" href="#">Términos</a>
+<a class="text-crema-pastel/80 hover:text-crema-pastel hover:underline transition-all opacity-90 hover:opacity-100 font-label-sm text-label-sm" href="#">Preguntas Frecuentes</a>
+</nav>
+</div>
+</footer>
+
+
+</body></html>
