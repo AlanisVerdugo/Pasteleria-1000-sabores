@@ -1,5 +1,15 @@
 
-
+.navbar {
+    background-color: #FDF3DC;
+    padding: 15px;
+}
+.navbar-brand {
+    font-family: 'Caveat', cursive;
+    color: #7B4B2A;
+}
+.nav-link {
+    color: #7B4B2A;
+}
 
 
 

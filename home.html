@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Pastelería 1000 Sabores - </title> 
+    <title>Home - Pastelería 1000 Sabores</title> 
 
     <!-- Bootstrap CSS (visual), conectar - direccion - hoja estilos - hash - sin datos -->
     <link
@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="css/estilos.css">      
   </head>
 
-  <!-- header -->
   <body>
+    <!-- header -->
     <header>
-      <nav class="navbar navbar-expand-lg" style="background-color:#FDF3DC;">
+      <nav class="navbar navbar-expand-lg">
         <div class="container-fluid px-4">
-          <a class="navbar-brand fs-2" href="home.html" style="font-family:'Caveat',cursive; color:#7B4B2A;">
+          <a class="navbar-brand fs-2" href="home.html">
             Pastelería 1000 Sabores
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -41,8 +41,10 @@
               <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
               <li class="nav-item"><a class="nav-link" href="quienes_somos.html">Quiénes Somos</a></li>
             </ul>
+            <!-- algunos son solo el nombre -->
+             
             <div class="d-flex gap-3">
-              <a href="login.html"><i class="bi bi-person"></i></a>
+              <a href="registro.html"><i class="bi bi-person"></i></a>
               <a href="carrito.html"><i class="bi bi-cart"></i></a>
             </div>
           </div>
@@ -55,17 +57,17 @@
       <!-- HERO -->
       <section class="text-center py-5" id="hero">
         <div class="container">
-          <span class="badge rounded-pill mb-3" style="background:#F7D6D0; color:#7B4B2A;">
+          <span class="badge rounded-pill mb-3 fondo-rosa">
             1974 - 2024: Medio Siglo de Dulzura
           </span>
-          <h1 style="font-family:'Caveat',cursive; color:#7B4B2A;">
+          <h1 class="titulo-hero">
             50 Años Horneando Memorias Inolvidables
           </h1>
-          <p class="lead mx-auto" style="max-width:700px;">
+          <p class="lead mx-auto texto-hero">
             Desde nuestro pequeño horno de barro en 1974 hasta el Récord Guinness de 1995
             por el pastel más grande del mundo. Una tradición familiar que sigue endulzando tu vida.
           </p>
-          <a href="catalogo.html" class="btn btn-lg mt-3" style="background-color:#7B4B2A; color:white;">
+          <a href="catalogo.html" class="btn btn-lg mt-3 btn-cafe">
             Ver Catálogo
           </a>
         </div>
@@ -75,19 +77,19 @@
       <section class="container py-5">
         <div class="row g-4">
           <div class="col-lg-6">
-            <div class="row g-0 align-items-center rounded-4 overflow-hidden" style="background:#FCEEE8;">
+            <div class="row g-0 align-items-center rounded-4 overflow-hidden fondo-crema">
               <div class="col-5">
-                <img src="img/amasando.jpg" class="w-100 h-100" style="object-fit:cover;" alt="Pastelero amasando">
+                <img src="img/amasando.jpg" class="w-100 h-100 imagen-amasando" alt="Pastelero amasando">
               </div>
               <div class="col-7 p-4">
-                <h3 style="font-family:'Caveat',cursive; color:#7B4B2A;">Nuestra Misión</h3>
+                <h3 class="subtitulo-seccion">Nuestra Misión</h3>
                 <p>Ofrecer una experiencia dulce y memorable a nuestros clientes, proporcionando tortas y productos de repostería de alta calidad para todas las ocasiones, mientras celebramos nuestras raíces históricas y fomentamos la creatividad en la repostería.</p>
               </div>
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="p-4 rounded-4 h-100" style="background:#F7D6D0;">
-              <h3 style="font-family:'Caveat',cursive; color:#7B4B2A;">Visión</h3>
+            <div class="p-4 rounded-4 h-100 fondo-rosa">
+              <h3 class="subtitulo-seccion">Visión</h3>
               <p class="fst-italic">Convertirnos en la tienda online líder de productos de repostería en Chile, conocida por nuestra innovación, calidad y el impacto positivo en la comunidad, especialmente en la formación de nuevos talentos en gastronomía.</p>
             </div>
           </div>
@@ -98,18 +100,18 @@
       <section class="container pb-5">
         <div class="row g-4">
           <div class="col-lg-6">
-            <div class="p-4 rounded-4 h-100" style="background:#FCEEE8;">
-              <h4 style="color:#7B4B2A;">🎓 Apoyo a Estudiantes Duoc UC</h4>
+            <div class="p-4 rounded-4 h-100 fondo-crema">
+              <h4 class="subtitulo secundario">🎓 Apoyo a Estudiantes Duoc UC</h4>
               <p>Creemos en el futuro de la gastronomía chilena. Por eso, abrimos nuestras puertas a los estudiantes de Duoc UC, brindándoles un espacio para practicar, aprender y perfeccionar el arte de la pastelería tradicional con nuestros maestros panaderos.</p>
             </div>
           </div>
           <div class="col-lg-6">
-            <div class="p-4 rounded-4 h-100" style="background:#FCEEE8;">
-              <h4 style="color:#7B4B2A;">🎉 Especiales de Aniversario</h4>
+            <div class="p-4 rounded-4 h-100 fondo-crema">
+              <h4 class="subtitulo secundario">🎉 Especiales de Aniversario</h4>
               <ul class="list-unstyled">
-                <li class="p-2 mb-2 rounded-3" style="background:#f0c9c2;"><strong>50% Dcto. Mayores de 50</strong><br>Para quienes han crecido con nosotros.</li>
-                <li class="p-2 mb-2 rounded-3" style="background:#F7D6D0;"><strong>10% Dcto. General</strong><br>Usa el código FELICES50</li>
-                <li class="p-2 rounded-3" style="background:#F7D6D0;"><strong>¡Pastel Gratis!</strong><br>Para estudiantes de Duoc UC al presentar credencial.</li>
+                <li class="p-2 mb-2 rounded-3 fondo-rosa"><strong>50% Dcto. Mayores de 50</strong><br>Para quienes han crecido con nosotros.</li>
+                <li class="p-2 mb-2 rounded-3 fondo-rosa"><strong>10% Dcto. General</strong><br>Usa el código FELICES50</li>
+                <li class="p-2 rounded-3 fondo-rosa"><strong>¡Pastel Gratis!</strong><br>Para estudiantes de Duoc UC al presentar credencial.</li>
               </ul>
             </div>  
           </div>
@@ -118,10 +120,10 @@
     </main>
 
     <!-- footer -->
-    <footer class="text-white py-5" style="background-color:#5C3A21;">
+    <footer class="text-white py-5">
       <div class="container d-flex flex-wrap justify-content-between">
         <div>
-          <h3 style="font-family:'Caveat',cursive;">Pastelería 1000 Sabores</h3>
+          <h3 class="footer-brand">Pastelería 1000 Sabores</h3>
           <p class="mb-0">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024).<br>
           Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
         </div>
@@ -142,7 +144,8 @@
       crossorigin="anonymous"
     ></script>
   </body>
-xgcffh
+</html>
+
 
 
 

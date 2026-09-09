@@ -1,7 +1,39 @@
 
+.fondo-rosa {
+    background-color: #F7D6D0;
+    color: #7B4B2A;
+}
 
+.fondo-crema {
+    background-color: #FCEEE8;
+}
 
+.titulo-hero {
+    font-family: 'Caveat', cursive;
+    color: #7B4B2A;
+}
 
+.texto-hero {
+    max-width: 700px;
+}
+
+.subtitulo-seccion {
+    font-family: 'Caveat', cursive;
+    color: #7B4B2A;
+}
+
+.subtitulo-secundario {
+    color: #7B4B2A;
+}
+
+.btn-cafe {
+    background-color: #7B4B2A;
+    color: white;
+}
+
+.imagen-amasando {
+    object-fit: cover;
+}
 
 
 
