@@ -1,29 +1,11 @@
 
+footer {
+    background-color: #5C3A21;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.footer-brand {
+    font-family: 'Caveat', cursive;
+}
 
 .footer-link {
     color: white;
