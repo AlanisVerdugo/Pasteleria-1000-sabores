@@ -3,13 +3,187 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Pastelería 1000 Sabores - </title> 
+    <title>Home - Pastelería 1000 Sabores</title> 
+
+    <!-- Bootstrap CSS (visual), conectar - direccion - hoja estilos - hash - sin datos -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Font para el logo cursivo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- libreria iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS propio, SIEMPRE después de Bootstrap para poder sobreescribirlo -->
     <link rel="stylesheet" href="css/estilos.css">      
   </head>
+
   <body>
-    cxb xcb
+    <!-- header -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="home.html">Pastelería 1000 Sabores</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+              <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+              <li class="nav-item"><a class="nav-link" href="quienes_somos.html">Quiénes Somos</a></li>
+            </ul>
+            <!-- algunos son solo el nombre -->
+             
+            <div class="d-flex gap-3 align-items-center">
+              <a href="registro.html" class="icono-header"><i class="bi bi-person"></i></a>
+              <a href="carrito.html" class="icono-header"><i class="bi bi-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- main -->
+     <main>
+      <!-- HERO: sección grande de bienvenida con imagen de fondo -->
+      <section class="hero-section text-center" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <!-- Badge/etiqueta redondeada de arriba -->
+          <span class="badge-especial">
+            <i class="bi bi-stars"></i>1974 - 2024: Medio Siglo de Dulzura
+          </span>
+          <h1 class="hero-titulo">50 Años Horneando Memorias Inolvidables</h1>
+          <p class="hero-texto mx-auto">
+            Desde nuestro pequeño horno de barro en 1974 hasta el Récord Guinness de 1995
+            por el pastel más grande del mundo. Una tradición familiar que sigue endulzando tu vida.
+          </p>
+          <a href="catalogo.html" class="btn-cafe">Ver Catálogo</a>
+        </div>
+      </section>
+
+      <!-- MISION / VISION: grilla tipo "bento", 8 columnas + 4 columnas -->
+      <section class="container seccion-superior">
+        <div class="row g-4">
+          <!--  Misión: tarjeta grande con imagen a un lado -->
+          <div class="col-lg-8">
+            <div class="tarjeta-mision d-flex flex-column flex-md-row align-items-center gap-4 h-100">
+              <div class="mision-img-wrap">
+                <img src="img/amasando.jpg" alt="Pastelero amasando" class="mision-img">
+              </div>
+              <div>
+                <h2 class="titulo-tarjeta">Nuestra Misión</h2>
+                <p class="texto-tarjeta">
+                  Ofrecer una experiencia dulce y memorable a nuestros clientes, proporcionando tortas y
+                  productos de repostería de alta calidad para todas las ocasiones, mientras celebramos 
+                  nuestras raíces históricas y fomentamos la creatividad en la repostería.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Visión: tarjeta pequeña, con ícono decorativo de fondo -->
+          <div class="col-lg-4">
+            <div class="tarjeta-vision h-100 position-relative overflow-hidden">
+              <i class="bi bi journal-bookmark icono-decorativo"></i>
+              <h3 class="titulo-tarjeta-sm">Visión</h3>
+              <p class="texto-tarjeta fst-italic">
+                Convertirnos en la tienda online líder de productos de repostería en Chile, conocida por
+                nuestra innovación, calidad y el impacto positivo en la comunidad, especialmente en la 
+                formación de nuevos talentos en gastronomía.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- APOYO ESTUDIANTES / ESPECIALES: 2 tarjetas iguales, 6 columnas cada una -->
+      <section class="container seccion-inferior">
+        <div class="row g-4">
+          <!-- Apoyo a Estudiantes Duoc UC-->
+          <div class="col-lg-6">
+            <div class="tarjeta-vision h-100 position-relative overflow-hidden">
+              <div class="d-flex align-items-center gap-3">
+                <div class="icono-circulo"><i class="bi bi-mortarboard"></i></div>
+                <h2 class="titulo-tarjeta-sm mb-0">Apoyo a Estudiantes Duoc UC</h2>
+              </div>
+              <p class="texto-tarjeta">
+                Creemos en el futuro de la gastronomía chilena. Por eso, abrimos nuestras puertas a los
+                estudiantes de Duoc UC, brindándoles un espacio para practicar, aprender y perfeccionar 
+                el arte de la pastelería tradicional con nuestros maestros panaderos.
+              </p>
+            </div>
+          </div>
+          <!--  Especiales de Aniversario -->
+          <div class="col-lg-6">
+            <div class="tarjeta-normal h-100">
+              <h2 class="titulo-tarjeta-sm d-flex align-items-center gap-2">
+                <i class="bi bi-gift icono-rosa"></i> Especiales de Aniversario
+              </h2>
+              <ul class="listas-especiales list-unstyled">
+                <li class="item-especial">
+                  <i class="bi bi-heart-fill"></i>
+                  <div>
+                    <strong>50% Dcto. Mayores de 50</strong>
+                    <span>Para quienes han crecido con nosotros.</span>
+                  </div>
+                </li>
+                <li class="item-especial">
+                  <i class="bi bi-tag-fill"></i>
+                  <div>
+                    <strong>10% Dcto. General</strong>
+                    <span>Usa el código <code class="codigo-descuento">FELICES50</code></span>
+                  </div>
+                </li>
+                <li class="item-especial item-especial-destacado">
+                  <i class="bi bi-cake2-fill"></i>
+                  <div>
+                    <strong>¡Pastel Gratis!</strong>
+                    <span>Para estudiantes de Duoc UC al presentar credencial.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>  
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- footer -->
+    <footer>
+      <div class="container footer-inner d-flex flex-wrap justify-content-between align-items-start">
+        <div class="footer-marca">
+          <h3 class="footer-brand">Pastelería 1000 Sabores</h3>
+          <p class="footer-texto">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024).<br>
+          Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
+        </div>
+        <ul class="list-unstyled footer-nav">
+          <li><a href="#" class="footer-link">Sobre Nosotros</a></li>
+          <li><a href="#" class="footer-link">Contacto</a></li>
+          <li><a href="#" class="footer-link">Términos</a></li>
+          <li><a href="#" class="footer-link">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+    </footer>
+    
+
+    <!-- Bootstrap JS al final del body (comportamiento objetos) - sensación de rapidez -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
   </body>
-xgcffh
+</html>
+
 
 
 
