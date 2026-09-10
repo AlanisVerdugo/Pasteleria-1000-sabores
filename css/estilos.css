@@ -1,12 +1,15 @@
+@import url(cabecera.css);
+@import url(menu.css);
+@import url(pie.css);
+@import url(registro.css)
+
 
 /* fondo de la pagina */
 body {
     background-color: #FFF5E1;
     font-family: 'Source Sans 3', sans-serif;
 }
-@import url(cabecera.css);
-@import url(pie.css);
-@import url(home.css);
+
 
 * {
     margin: 0;
