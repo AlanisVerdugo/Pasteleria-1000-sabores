@@ -1,4 +1,5 @@
 
+/* FOOTER - contenedor general */
 footer {
     background-color: #8B4513;
     border-top-left-radius: 12px;
@@ -7,27 +8,36 @@ footer {
     padding: 48px 0;
 }
 
+/* Limita el ancho del contenido interno, para que no se estire a las orillas en pantallas anchas */
 .footer-inner {
     max-width: 1200px;
 }
+
+/*  BLOQUE IZQUIERDO: logo + copyright */
 .footer-marca {
     max-width: 350px;
 }
+
 .footer-brand {
     font-family: 'Pacifico', cursive;
     color: #FFF5E1;
     margin-bottom: 12px;
 }
+
 .footer-texto {
     color: rgba(255, 245, 225, 0.8);
     margin-bottom: 0;
 }
+
+/* BLOQUE DERECHO: lista de links */
 .footer-nav li {
     margin-bottom: 12px;
 }
+
 .footer-nav li:last-child {
     margin-bottom: 0;
-}
+} /* le quita el espacio de más al último link, para que no quede desalineado abajo */
+
 .footer-link {
     color: rgba(255, 245, 225, 0.8);
     text-decoration: none;
@@ -36,6 +46,7 @@ footer {
     letter-spacing: 1px;
     transition: color 0.3s ease;
 }
+
 .footer-link:hover {
     color: #FFF5E1;
     text-decoration: underline;
