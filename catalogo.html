@@ -1,0 +1,427 @@
+
+<!-- Estructura basica HTML5 -->
+<!doctype html>
+<!-- Indica que el contnido está en español -->
+<html lang="es">
+  <!-- Cosas que el navegador necesita para mostrar la página, bootstrap -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Viewport para asegurar que la página se muestre correctamente en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título de la página en la pestaña del navegador -->
+    <title>Catálogo - Pastelería 1000 Sabores</title>
+
+    <!-- Link que da acceso a todas las clases de Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <!-- link para la fuente Pacifico y Source Sans 3, la cursiva -->
+      <!-- Le avisa al navegador con anticipacion que se va a conectar a fonts.googleapis.com, asi ahorra tiempo cuando llegue el link de abajo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importa las 2 fuentes que se usan: Pacifico (para títulos cursivos) y Source Sans 3 en 3 pesos distintos (400 normal, 600 semi-negrita, 700 negrita) para el texto del body -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- link para los iconos de Bootstrap, carrito, persona, lupa -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- link para los estilos personalizados en CSS local, el de nosotros -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <!-- link para los estilos específicos del catálogo -->
+     <!-- Va al final para poner primero los bootstrap y luego el nuestro -->
+    <link rel="stylesheet" href="css/catalogo.css">
+    <!-- EXPORTACION DE CABECERA Y PIE -->
+    <link rel="stylesheet" href="css/cabecera.css">
+    <link rel="stylesheet" href="css/pie.css">
+  <!-- Cierre del head, lo demas es visible -->
+  </head>
+
+
+  <body>
+
+    <!-- CABECERA -->
+    <header>
+      <!-- navbar-expand-lg: se expande en pantallas ≥992px, se colapsa en hamburguesa antes de eso -->
+      <nav class="navbar navbar-expand-lg">
+        <!-- "container" en vez de "container-fluid px-4". "container" tiene un ancho máximo y se centra, así el navbar queda alineado con el resto del contenido de la página en vez de ir de borde a borde -->
+        <div class="container">
+          <!-- el tamaño (2.8rem), la fuente Pacifico y el color café están definidos en cabecera.css, en la regla .navbar-brand -->
+          <a class="navbar-brand" href="home.html">Pastelería 1000 Sabores</a>
+          <!-- El botón hamburguesa -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Bootstrap maneja el espaciado por defecto -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- "mb-2 mb-lg-0": margen abajo SOLO en pantallas chicas (para separar del botón hamburguesa cuando el menú está colapsado), que desaparece (mb-lg-0) en pantallas grandes donde ya no hace falta -->
+            <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+              <!-- "active" va en Catálogo, no en Home -->
+              <li class="nav-item"><a class="nav-link active" href="catalogo.html">Catálogo</a></li>
+              <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+              <li class="nav-item"><a class="nav-link" href="quienes_somos.html">Quiénes Somos</a></li>
+            </ul>
+            <!-- "align-items-center" para que los 2 iconos queden centrados verticalmente entre sí -->
+            <div class="d-flex gap-3 align-items-center">
+              <!-- el href apunta a "registro.html" y se agregó la clase "icono-header". bi bi: icono de persona-->
+              <a href="registro.html" class="icono-header"><i class="bi bi-person"></i></a>
+              <a href="carrito.html" class="icono-header"><i class="bi bi-cart"></i></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN-->
+    <main>
+      <!-- Contenido unico de esta pagina, diferente al header o footer -->
+       <!-- section: bloque tematico dentro de main, es "la zona de titulo + buscador" -->
+      <!-- contaniner: a diferencia del container-fluid de navbar que ocupaba el 100% del ancho, este si tiene margenes -->
+      <section class="container py-5">
+
+        <!-- Aqui pondremos el titulo a la izq y el buscador a la derecha en la misma fila -->
+        <!-- d-flex: para crear una fila flexible. flex-wrap: para que se ajuste solo si yo quiero ajustar la pagina -->
+        <!-- justify-content-between: para que el titulo y el buscador se coloquen al inicio y final de la fila -->
+        <!-- align-items-start: para que los elementos se alineen por su borde superior -->
+        <!-- mb-4: margin bottom 4 -->
+        <div class="d-flex flex-wrap justify-content-between align-items-start mb-4">
+          <div>
+            <!-- H1: tTITULO PRINCIPAL DE LA PAGINA -->
+            <h1 style="font-family:'Caveat',cursive; color:#7B4B2A;">Nuestro Catálogo</h1>
+            <p class="text-muted">Descubre la tradición en cada bocado.</p>
+          </div>
+          <!-- BUSCADOR -->
+           <!-- input-group es de bootstrap para pegar un icono a un campo de texto. style: tamaño del buscador -->
+          <div class="input-group" style="max-width:350px;">
+            <!-- input: bootstrap le da el borde y padding de la cajita. bg: fondo blanco. bi bi: dibuja la lupita -->
+            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+            <!-- input text: campo de texto estandar. form: estilo bootstrap. placeholder: texto gris que desaparece cuando el usuario escribe -->
+            <input type="text" class="form-control" placeholder="Buscar productos...">
+          </div>
+        </div>
+
+        <!-- FILTROS Y GRILLA DE PRODUCTOS -->
+         <!-- row: fila de bootstrap (abre la fila de 12 columnas), bootstrap --> 
+        <div class="row">
+          <!-- Columna izquierda: panel de filtros -->
+          <!-- aside es que se ubica a un lado del contenido principal -->
+          <aside class="col-lg-3 mb-4">
+            <!-- Farjeta blanca que envuelve todo el panel de filtros. p-4: padding de 4 -->
+            <div class="bg-white rounded-4 p-4 shadow-sm">
+              <!-- Fila que pone el titulo "Filtros" a la izquierda y "Limpiar" a la derecha, separados al máximo -->
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <!-- Titulo del panel. mb-0 le quita el margen inferior que trae un <h5> por defecto -->
+                <h5 class="mb-0" style="color:#7B4B2A;">Filtros</h5>
+                <!-- Link limpiar -->
+                <a href="#" class="small text-muted text-decoration-none">
+                  <!-- Icono de x de bootstrap -->
+                  <i class="bi bi-x-lg"></i> Limpiar
+                </a>
+              </div>
+
+              <!-- Etiqueta pequeña en mayúsculas que anuncia la sección "CATEGORIAS" -->
+              <p class="text-uppercase small text-muted mb-2">Categorías</p>
+
+              <!-- Contenedor del par checkbox+texto; mb-2 separa cada fila de la siguiente -->
+              <div class="form-check mb-2">
+                <!-- El checkbox real. El id es lo que lo conecta con su <label> de abajo -->
+                <input class="form-check-input" type="checkbox" id="catTortasCuadradas">
+                <!-- El texto clickeable; "for" debe ser IGUAL al "id" del input de arriba, así hacer clic en el texto también marca el checkbox -->
+                <label class="form-check-label" for="catTortasCuadradas">Tortas Cuadradas</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="catCirculares">
+                <label class="form-check-label" for="catCirculares">Circulares</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="catPostres">
+                <label class="form-check-label" for="catPostres">Postres Individuales</label>
+              </div>
+              <div class="form-check mb-2">
+                <!-- checked es para que aparezca marcado por defecto -->
+                <input class="form-check-input" type="checkbox" id="catSinAzucar" checked>
+                <label class="form-check-label" for="catSinAzucar">Sin Azúcar</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="catVegana" checked>
+                <label class="form-check-label" for="catVegana">Vegana</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="catSinGluten">
+                <label class="form-check-label" for="catSinGluten">Sin Gluten</label>
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="catEspeciales">
+                <label class="form-check-label" for="catEspeciales">Especiales</label>
+              </div>
+
+              <!-- Etiqueta pequeña en mayúsculas que anuncia la sección "FORMA" -->
+              <p class="text-uppercase small text-muted mb-2">Forma</p>
+
+              <!-- Fila con los dos botones de forma, con espacio (gap) entre ellos -->
+              <div class="d-flex gap-2 mb-3">
+                <!-- Boton outline (sin relleno) tamaño chico, forma de píldora -->
+                <button class="btn btn-outline-secondary btn-sm rounded-pill">Cuadrada</button>
+                <!-- Mismo estilo de boton -->
+                <button class="btn btn-outline-secondary btn-sm rounded-pill">Circular</button>
+              </div>
+
+              <!-- Etiqueta de la sección "TAMAÑO (PERSONAS)" -->
+              <p class="text-uppercase small text-muted mb-2">Tamaño (Personas)</p>
+              <!-- Checkbox de tamaño, mismo patrón que los de categorías -->
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="tam1">
+                <label class="form-check-label" for="tam1">1 Persona</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="tam15">
+                <label class="form-check-label" for="tam15">15 Personas</label>
+              </div>
+              <!-- Último de la lista, sin mb-2 porque no necesita separación de nada más abajo -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="tam20">
+                <label class="form-check-label" for="tam20">20 Personas</label>
+              </div>
+            <!-- cierre de la caja blanca del panel -->
+            </div>
+          </aside>
+
+
+          <!-- Columna derecha: grilla de productos -->
+          <div class="col-lg-9">
+            <!-- Barra "Mostrando X productos / Ordenar por": misma fila blanca con padding y sombra que el panel de filtros -->
+            <div class="d-flex justify-content-between align-items-center bg-white rounded-4 p-3 mb-4 shadow-sm">
+
+              <!-- Texto fijo con el número de productos en negrita -->
+              <span>Mostrando <strong>5</strong> productos</span>
+
+              <!-- Agrupa el texto "Ordenar por:" y el desplegable en una fila -->
+              <div class="d-flex align-items-center gap-2">
+                <!-- Texto gris secundario -->
+                <span class="text-muted small">Ordenar por:</span>
+                <!-- Menú desplegable; form-select-sm = versión chica; border-0 = sin borde, se ve "flotando" -->
+                <select class="form-select form-select-sm border-0" style="color:#7B4B2A; font-weight:600;">
+                  <!-- Primera opción, la que se muestra por defecto -->
+                  <option>Recomendados</option>
+                  <!-- Otra opción posible del desplegable -->
+                  <option>Precio: menor a mayor</option>
+                  <!-- Otra opción posible -->
+                  <option>Precio: mayor a menor</option>
+                </select>
+              </div>
+            <!-- Cierra la barra de "Mostrando X productos" -->
+            </div>
+            
+
+            <!-- GRILLA DE CARDS: 1 columna en mobile, 2 en tablet (md), 3 en pantallas extra grandes (xl); g-4 = espacio entre cards -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+              <!-- Columna de Bootstrap: "col" reparte el ancho disponible según row-cols-1/md-2/xl-3 definido en el row -->
+              <div class="col">
+                <!-- card: componente de Bootstrap para tarjetas. producto-card: nuestras reglas personalizadas (bordes, sombra, hover). h-100: fuerza que todas las tarjetas midan lo mismo de alto aunque el texto varíe -->
+                <div class="card producto-card h-100">
+
+                  <!-- Contenedor de la imagen. producto-imagen-wrap: la clase que definimos con position:relative, necesaria para que la etiqueta flote encima -->
+                  <div class="producto-imagen-wrap">
+                    <!-- La foto del producto. card-img-top: clase de Bootstrap para que ocupe todo el ancho arriba de la tarjeta. alt: texto alternativo por accesibilidad -->
+                    <img src="img/Torta cuadrada de chocolate.jpg" class="card-img-top" alt="Torta Cuadrada de Chocolate">
+                    <!-- La etiqueta flotante. badge-producto: forma y posición. badge-tradicional: el color específico para esta categoría -->
+                    <span class="badge-producto badge-tradicional">Tradicional</span>
+                  </div>
+
+                  <!-- card-body: clase de Bootstrap para el área de texto de la tarjeta. d-flex flex-column: para poder empujar precio/botón hacia abajo con mt-auto -->
+                  <div class="card-body d-flex flex-column">
+
+                    <!-- Nombre del producto. producto-titulo: nuestra clase para el color café y negrita -->
+                    <h3 class="producto-titulo">Torta Cuadrada de Chocolate</h3>
+
+                    <!-- Detalle del producto (personas + descripción corta). producto-detalle: texto gris chico -->
+                    <p class="producto-detalle">20 Personas &bull; Bizcocho húmedo</p>
+
+                    <!-- mt-auto empuja este bloque hasta el fondo de la tarjeta (por el flex-column de arriba). d-flex justify-content-between: precio a la izq, botón a la derecha -->
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <!-- Precio del producto. producto-precio: nuestra clase para tamaño grande y negrita -->
+                      <span class="producto-precio">$45.000</span>
+                      <!-- Botón circular del carrito. btn-carrito: nuestra clase. El ícono viene de Bootstrap Icons (bi bi-cart-fill) -->
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+
+                    <!-- Fila inferior: comentarios a la izq, compartir a la derecha. producto-footer: solo para separar el margen de los íconos -->
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <!-- Ícono de comentario (bi-chat) + número de comentarios -->
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 12</span>
+                      <!-- Link de compartir con su ícono (bi-share) -->
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+
+                  </div>
+                  <!-- Cierra card-body -->
+                </div>
+                <!-- Cierra card producto-card -->
+              </div>
+              <!-- Cierra col -->
+
+              <!-- mismo proceso con las otras tarjetas o cards -->
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Torta circular manjar.jpg" class="card-img-top" alt="Torta Circular de Manjar">
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Torta Circular de Manjar</h3>
+                    <p class="producto-detalle">15 Personas &bull; Clásica chilena</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$42.000</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 8</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Tiramisu clasico.jpg" class="card-img-top" alt="Tiramisú Clásico">
+                    <!-- indica la etiqueta, la torta de manjar no tiene esta linea -->
+                    <span class="badge-producto badge-individual">Individual</span>
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Tiramisú Clásico</h3>
+                    <p class="producto-detalle">1 Persona &bull; Postre</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$5.500</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 24</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Torta sin azucar de naranja.jpg" class="card-img-top" alt="Torta Sin Azúcar de Naranja">
+                    <span class="badge-producto badge-sinazucar"><i class="bi bi-shield-check"></i> Sin Azúcar</span>
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Torta Sin Azúcar de Naranja</h3>
+                    <p class="producto-detalle">15 Personas &bull; Endulzada con Alulosa</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$48.000</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 5</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Empanada de manzana.jpg" class="card-img-top" alt="Empanada de Manzana">
+                    <span class="badge-producto badge-vegana"><i class="bi bi-flower1"></i> Vegana</span>
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Empanada de Manzana</h3>
+                    <p class="producto-detalle">1 Persona &bull; Masa integral</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$3.000</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 42</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+            <!-- PAGINACION -->
+            <!-- nav: etiqueta semántica para bloques de navegación (como la paginación). aria-label ayuda a lectores de pantalla -->
+            <nav aria-label="Paginación de productos" class="mt-5">
+              <!-- pagination: clase de Bootstrap que da la base del estilo. justify-content-center: centra los botones. paginacion-custom: nuestra clase para los colores de marca -->
+              <ul class="pagination justify-content-center paginacion-custom">
+
+                <!-- Botón "anterior" (‹). disabled: como estamos en la página 1, no hay página anterior -->
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" aria-label="Anterior">
+                    <i class="bi bi-chevron-left"></i>
+                  </a>
+                </li>
+
+                <!-- Página 1: active la marca como la página actual (fondo café sólido) -->
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="#">1</a>
+                </li>
+
+                <!-- Página 2 -->
+                <li class="page-item">
+                  <a class="page-link" href="#">2</a>
+                </li>
+
+                <!-- Página 3 -->
+                <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+                </li>
+
+                <!-- Botón "siguiente" (›) -->
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Siguiente">
+                    <i class="bi bi-chevron-right"></i>
+                  </a>
+                </li>
+
+              </ul>
+            </nav>
+          
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+      <!-- container: centra el contenido con márgenes. footer-inner: clase propia definida en pie.css. d-flex flex-wrap: pone marca y links en fila, y los baja de línea si no caben. justify-content-between: marca a la izq, links a la derecha. py-4: padding arriba y abajo -->
+      <div class="container footer-inner d-flex flex-wrap justify-content-between py-4">
+        <!-- Bloque izquierdo: nombre de la marca + copyright. mb-4 en mobile, sin margen (mb-md-0) en pantallas medianas o más grandes -->
+        <div class="footer-marca mb-4 mb-md-0">
+          <!-- Nombre de la pastelería con la tipografía cursiva Pacifico (definida en footer-brand, dentro de pie.css) -->
+          <h3 class="footer-brand">Pastelería 1000 Sabores</h3>
+          <!-- Texto de copyright, color café clarito semi-transparente (definido en footer-texto) -->
+          <p class="footer-texto">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024). Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
+        </div>
+        <!-- Bloque derecho: lista de links. list-unstyled le quita la viñeta a la lista. text-md-end alinea el texto a la derecha desde pantallas medianas hacia arriba -->
+        <ul class="footer-nav list-unstyled text-md-end">
+          <!-- Cada li es un link individual del footer -->
+          <li><a href="#" class="footer-link">SOBRE NOSOTROS</a></li>
+          <!-- Link a la página de contacto -->
+          <li><a href="#" class="footer-link">CONTACTO</a></li>
+          <!-- Link a términos y condiciones -->
+          <li><a href="#" class="footer-link">TÉRMINOS</a></li>
+          <!-- Link a preguntas frecuentes -->
+          <li><a href="#" class="footer-link">PREGUNTAS FRECUENTES</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Script de Bootstrap: sin esto, el botón hamburguesa del menú no funciona en celular -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+
+  </body>
+</html>

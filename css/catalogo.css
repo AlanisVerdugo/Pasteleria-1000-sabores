@@ -1,0 +1,219 @@
+
+
+/* Selecciona el contenedor de la imagen de cada tarjeta */
+.producto-imagen-wrap {
+    /* position: relative para poder poner la etiqueta flotando ENCIMA de la imagen */
+    position: relative;
+    /* overflow: hidden para que la imagen no se salga de las esquinas redondeadas de la tarjeta */
+    overflow: hidden;
+}
+
+/* Selecciona la tarjeta completa del producto (pisa el estilo por defecto de .card de Bootstrap) */
+.producto-card {
+    /* border: none quita el borde gris que trae Bootstrap por defecto */
+    border: none;
+    /* border-radius redondea las 4 esquinas de la tarjeta */
+    border-radius: 16px;
+    /* overflow: hidden para que la imagen respete las esquinas redondeadas */
+    overflow: hidden;
+    /* box-shadow agrega una sombra suave para que la tarjeta se despegue del fondo */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    /* transition hace que el movimiento y la sombra del :hover se vean suaves y no abruptos */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Selecciona la tarjeta SOLO cuando el mouse está encima */
+.producto-card:hover {
+    /* translateY con valor negativo sube la tarjeta unos pixeles, dando efecto de "levantarse" */
+    transform: translateY(-4px);
+    /* sombra más grande y oscura para reforzar el efecto de que la tarjeta "flota" */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
+}
+
+/* Selecciona la imagen de producto DENTRO de una tarjeta con clase producto-card */
+.producto-card .card-img-top {
+    /* height fija la misma altura para todas las fotos, aunque las originales sean de tamaños distintos */
+    height: 200px;
+    /* object-fit: cover recorta la imagen para que llene el espacio sin deformarse */
+    object-fit: cover;
+}
+
+/* ===== ETIQUETA DE CATEGORÍA (flotando sobre la imagen) ===== */
+
+/* Selecciona la etiqueta genérica, sin importar su color */
+.badge-producto {
+    /* position: absolute la saca del flujo normal para poder ubicarla en un punto exacto encima de la imagen */
+    position: absolute;
+    /* top la separa 12px del borde superior de producto-imagen-wrap */
+    top: 12px;
+    /* left la separa 12px del borde izquierdo */
+    left: 12px;
+    /* padding le da espacio interno arriba/abajo y a los lados */
+    padding: 6px 14px;
+    /* border-radius muy alto para que quede en forma de píldora */
+    border-radius: 50px;
+    /* font-size chico, típico de una etiqueta */
+    font-size: 12px;
+    /* font-weight en negrita para que resalte sobre la foto */
+    font-weight: 600;
+}
+
+/* Variante de color para la etiqueta "Tradicional" */
+.badge-tradicional {
+    /* background-color: rosado suave */
+    background-color: #FADCE0;
+    /* color: texto en un rojo/vino oscuro para que contraste */
+    color: #B23A55;
+}
+
+/* Variante de color para la etiqueta "Individual" */
+.badge-individual {
+    /* mismo tono rosado que Tradicional */
+    background-color: #FADCE0;
+    /* mismo texto vino oscuro */
+    color: #B23A55;
+}
+
+/* Variante de color para la etiqueta "Sin Azúcar" */
+.badge-sinazucar {
+    /* background-color: amarillo/durazno suave */
+    background-color: #FCE9D6;
+    /* color: texto café/naranjo oscuro */
+    color: #B5651D;
+}
+
+/* Variante de color para la etiqueta "Vegana" */
+.badge-vegana {
+    /* background-color: verde suave */
+    background-color: #DCEEDB;
+    /* color: texto verde oscuro */
+    color: #3E7A4D;
+}
+
+/* ===== TEXTO DENTRO DE LA TARJETA ===== */
+
+/* Selecciona el título del producto (ej: "Torta Cuadrada de Chocolate") */
+.producto-titulo {
+    /* font-size un poco más grande que el texto normal */
+    font-size: 1.1rem;
+    /* font-weight en negrita para que sea lo primero que se lee */
+    font-weight: 700;
+    /* color: café oscuro, el mismo tono de marca que usa el header */
+    color: #5D4037;
+    /* margin-bottom separa un poco del texto de detalle que viene abajo */
+    margin-bottom: 4px;
+}
+
+/* Selecciona el texto de detalle (ej: "20 Personas • Bizcocho húmedo") */
+.producto-detalle {
+    /* font-size más chico, es información secundaria */
+    font-size: 0.85rem;
+    /* color gris, para que no compita visualmente con el título */
+    color: #8d8d8d;
+    /* margin-bottom separa del precio/botón que viene abajo */
+    margin-bottom: 12px;
+}
+
+/* Selecciona el precio del producto (ej: "$45.000") */
+.producto-precio {
+    /* font-size grande, el precio debe notarse fácil */
+    font-size: 1.2rem;
+    /* font-weight en negrita */
+    font-weight: 700;
+    /* color: café muy oscuro, casi negro */
+    color: #3B2418;
+}
+
+/* ===== BOTÓN REDONDO DEL CARRITO ===== */
+
+/* Selecciona el botón de "agregar al carrito" de cada tarjeta */
+.btn-carrito {
+    /* background-color: café, el color principal de la marca */
+    background-color: #8B4513;
+    /* color: blanco para el ícono del carrito */
+    color: #fff;
+    /* border: none quita el borde por defecto de los botones */
+    border: none;
+    /* width y height iguales para que el border-radius de 50% forme un círculo perfecto */
+    width: 40px;
+    height: 40px;
+    /* border-radius: 50% lo convierte en círculo */
+    border-radius: 50%;
+    /* display: flex + align-items + justify-content centran el ícono dentro del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* transition suaviza el cambio de color cuando pasa el mouse */
+    transition: background-color 0.2s ease;
+}
+
+/* Selecciona el botón del carrito SOLO cuando el mouse está encima */
+.btn-carrito:hover {
+    /* un café más oscuro para dar feedback visual al usuario */
+    background-color: #6b3410;
+}
+
+/* Selecciona los íconos dentro de la fila de comentarios/compartir, al pie de la tarjeta */
+.producto-footer i {
+    /* margin-right separa el ícono del número o texto que va al lado */
+    margin-right: 4px;
+}
+
+
+
+/* ------------ PAGINACIÓN ------------ */
+
+/* Selecciona cada botón de la paginación (números y flechas) */
+.paginacion-custom .page-link {
+    /* color: café, para que combine con el resto de la marca */
+    color: #8B4513;
+    /* border: none quita el borde cuadrado gris que trae Bootstrap por defecto */
+    border: none;
+    /* margin separa un poco cada botón del siguiente, ya que sin borde quedarían pegados */
+    margin: 0 4px;
+    /* width y height iguales, para que el border-radius de 50% forme un círculo perfecto */
+    width: 40px;
+    height: 40px;
+    /* border-radius: 50% convierte el botón cuadrado en círculo */
+    border-radius: 50%;
+    /* display flex + align-items + justify-content centran el número/ícono dentro del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight en negrita para que el número se note más */
+    font-weight: 600;
+    /* transition suaviza el cambio de color al pasar el mouse */
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+
+    
+}
+
+/* Para eliminar el fondo blanco de los botones de flecha*/
+/* Selecciona SOLO los botones de flecha: el primer y el último <li> de la lista de paginación, eso es first-child y last-child*/
+.paginacion-custom .page-item:first-child .page-link,
+.paginacion-custom .page-item:last-child .page-link {
+    /* transparent hace que se vea el mismo color de fondo que tiene detrás (el crema de la página) */
+    background-color: transparent;
+}
+
+
+/* Selecciona el botón SOLO cuando el mouse pasa por encima (y no está activo ni deshabilitado) */
+.paginacion-custom .page-item:not(.active):not(.disabled) .page-link:hover {
+    /* un fondo rosado suave, mismo tono que usamos en los íconos del header */
+    background-color: rgba(255, 192, 203, 0.3);
+}
+
+/* Selecciona el botón de la página ACTUAL (ej: el "1") */
+.paginacion-custom .page-item.active .page-link {
+    /* fondo café sólido, el color principal de marca */
+    background-color: #8B4513;
+    /* texto blanco para que contraste con el fondo café */
+    color: #fff;
+}
+
+/* Selecciona los botones deshabilitados (ej: la flecha "anterior" en la página 1) */
+.paginacion-custom .page-item.disabled .page-link {
+    /* color gris clarito, para indicar visualmente que no se puede usar */
+    color: #c9beb6;
+}
