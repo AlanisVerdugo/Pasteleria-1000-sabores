@@ -2,3 +2,44 @@
 @import url(menu.css);
 @import url(pie.css);
 @import url(registro.css)
+
+
+/* fondo de la pagina */
+body {
+    background-color: #FFF5E1;
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans 3', Arial, sans-serif;
+    background-color: #FFF5E1;
+    color: #5D4037;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
