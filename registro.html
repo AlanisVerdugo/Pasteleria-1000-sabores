@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro - Pastelería</title>
+    <!-- Importar fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Importar iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Enlace a tu CSS -->
+    <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+
+    <!-- Decoraciones de fondo (fontawesome.com)-->
+    <i class="fa-solid fa-bread-slice bg-decor bg-top-left"></i>
+    <i class="fa-solid fa-cake-candles bg-decor bg-bottom-right"></i>
+
+    <header class="header-container">
+        <h1>Únete a la familia</h1>
+        <p>Crea tu cuenta para acceder a beneficios exclusivos, celebrar nuestra historia y disfrutar de los mejores sabores artesanales.</p>
+    </header>
+
+    <main class="card">
+        <!-- Panel de Beneficios -->
+        <section class="benefits-panel">
+            <h2>Beneficios Exclusivos</h2>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-heart"></i></div>
+                <div class="benefit-text">
+                    <h3>50 Años de Tradición</h3>
+                    <p>Mayores de 50 años: 50% de descuento automático en compras seleccionadas.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-tag"></i></div>
+                <div class="benefit-text">
+                    <h3>Código Especial</h3>
+                    <p>Usa el código <span class="highlight-text">FELICES50</span> para un 10% de descuento de por vida.</p>
+                </div>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="benefit-text">
+                    <h3>Comunidad Duoc UC</h3>
+                    <p>Estudiantes Duoc: ¡Tortas gratis en tu cumpleaños! (Usa tu correo institucional).</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Panel del Formulario -->
+        <section class="form-panel">
+            <!-- Evento onsubmit llamando a la función JS -->
+            <form action="" method="POST" onsubmit="return envioFormulario()">
+                <div class="form-grid">
+                    
+                    <div class="input-group">
+                        <label>Nombre Completo</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user"></i>
+                            <input type="text" id="txtNombre" placeholder="Juan Pérez" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Correo Electrónico</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" id="txtCorreo" placeholder="freddy@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Fecha de Nacimiento (Para descuento +50)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="date" id="txtFecha" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Correo Institucional (Opcional - Estudiantes Duoc)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <input type="email" id="txtCorreoDuoc" placeholder="alumno@duocuc.cl">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="txtPass" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Código de Descuento (Opcional)</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-tag"></i>
+                            <input type="text" id="txtCodigo" placeholder="EJE: FELICES50">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="chkTerminos" required>
+                    <label for="chkTerminos">Acepto los Términos y Condiciones y la Política de Privacidad.</label>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Registrarse <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="login-link">
+                    ¿Ya tienes una cuenta? <a href="login.html">Inicia Sesión</a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <!-- Enlace a tu JavaScript -->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
