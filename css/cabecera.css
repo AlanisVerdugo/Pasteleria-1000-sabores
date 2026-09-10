@@ -1,14 +1,52 @@
 
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
 .navbar {
-    background-color: #FDF3DC;
-    padding: 15px;
+    background-color: #FFF5E1;
+    padding: 1px 0;
 }
 .navbar-brand {
-    font-family: 'Caveat', cursive;
-    color: #7B4B2A;
+    font-family: 'Pacifico', cursive;
+    font-size: 2.8rem;
+    color: #8B4513;
+}
+.navbar-brand:hover {
+    color: #b09184;
+}
+.nav-underline {
+    --bs-nav-underline-gap: 30px;
+    --bs-nav-underlinw-border-width: 2px;
+    --bs-nav-underline-link-active-color: #8B4513;
 }
 .nav-link {
-    color: #7B4B2A;
+    color: #5D4037;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.nav-link:hover {
+    color: #8B4513;
+}
+.navbar-nav .nav-link.active {
+    color: #8B4513;
+}
+.icono-header{
+    color: #8B4513;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+.icono-header:hover {
+    background-color: rgba(255, 192, 203, 0.3);
+   
 }
 
 

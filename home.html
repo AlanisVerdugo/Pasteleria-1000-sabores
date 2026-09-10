@@ -14,7 +14,9 @@
     />
 
     <!-- Google Font para el logo cursivo -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- libreria iconos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -27,15 +29,13 @@
     <!-- header -->
     <header>
       <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid px-4">
-          <a class="navbar-brand fs-2" href="home.html">
-            Pastelería 1000 Sabores
-          </a>
+        <div class="container">
+          <a class="navbar-brand" href="home.html">Pastelería 1000 Sabores</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <ul class="navbar-nav nav-underline mx-auto">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
               <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
@@ -43,9 +43,9 @@
             </ul>
             <!-- algunos son solo el nombre -->
              
-            <div class="d-flex gap-3">
-              <a href="registro.html"><i class="bi bi-person"></i></a>
-              <a href="carrito.html"><i class="bi bi-cart"></i></a>
+            <div class="d-flex gap-3 align-items-center">
+              <a href="registro.html" class="icono-header"><i class="bi bi-person"></i></a>
+              <a href="carrito.html" class="icono-header"><i class="bi bi-cart"></i></a>
             </div>
           </div>
         </div>
@@ -120,14 +120,14 @@
     </main>
 
     <!-- footer -->
-    <footer class="text-white py-5">
-      <div class="container d-flex flex-wrap justify-content-between">
-        <div>
+    <footer>
+      <div class="container footer-inner d-flex flex-wrap justify-content-between align-items-start">
+        <div class="footer-marca">
           <h3 class="footer-brand">Pastelería 1000 Sabores</h3>
-          <p class="mb-0">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024).<br>
+          <p class="footer-texto">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024).<br>
           Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
         </div>
-        <ul class="list-unstyled text-end">
+        <ul class="list-unstyled footer-nav">
           <li><a href="#" class="footer-link">Sobre Nosotros</a></li>
           <li><a href="#" class="footer-link">Contacto</a></li>
           <li><a href="#" class="footer-link">Términos</a></li>

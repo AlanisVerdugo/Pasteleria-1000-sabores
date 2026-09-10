@@ -1,17 +1,43 @@
 
 footer {
-    background-color: #5C3A21;
+    background-color: #8B4513;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-top: 80px;
+    padding: 48px 0;
 }
 
+.footer-inner {
+    max-width: 1200px;
+}
+.footer-marca {
+    max-width: 350px;
+}
 .footer-brand {
-    font-family: 'Caveat', cursive;
+    font-family: 'Pacifico', cursive;
+    color: #FFF5E1;
+    margin-bottom: 12px;
 }
-
+.footer-texto {
+    color: rgba(255, 245, 225, 0.8);
+    margin-bottom: 0;
+}
+.footer-nav li {
+    margin-bottom: 12px;
+}
+.footer-nav li:last-child {
+    margin-bottom: 0;
+}
 .footer-link {
-    color: white;
+    color: rgba(255, 245, 225, 0.8);
     text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
 }
 .footer-link:hover {
+    color: #FFF5E1;
     text-decoration: underline;
 }
 
