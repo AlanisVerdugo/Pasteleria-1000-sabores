@@ -1,43 +1,242 @@
 
-.fondo-rosa {
-    background-color: #F7D6D0;
-    color: #7B4B2A;
+/* ===== HERO: sección grande de bienvenida ===== */
+.hero-section {
+    position: relative;       /* encima de la imagen */
+    min-height: 70vh;         /* ocupa al menos el 70% del alto de la pantalla */
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    overflow: hidden;
+    background-image: url('../img/pasteleria-fondo.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.fondo-crema {
-    background-color: #FCEEE8;
+/* Capa semi-transparente color crema sobre la imagen, para que el texto se lea bien */
+.hero-overlay {
+    position: absolute;
+    inset: 0;                 /* equivale a top:0; right:0; bottom:0; left:0; */
+    background: linear-gradient(to bottom, rgba(255,245,225,0.85), rgba(255,245,225,0.6));
+    z-index: 0;                /* debajo del contenido */
 }
 
-.titulo-hero {
-    font-family: 'Caveat', cursive;
-    color: #7B4B2A;
+/* El contenido (texto/botón) va POR ENCIMA del overlay */
+.hero-content {
+    position: relative;
+    z-index: 2;         /* subido de 1 a 2, para que gane con más margen */
+    max-width: 900px;
 }
 
-.texto-hero {
+/* Badge/etiqueta redondeada de arriba ("1974 - 2024...") */
+.badge-especial {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 192, 203, 0.3);  /* rosa suave translúcido */
+    color: #5D4037;
+    padding: 8px 16px;
+    border-radius: 50px;      /* forma de píldora */
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+.badge-especial i {
+    color: #8B4513;  
+} /* el ícono va en café, distinto al texto */
+
+.hero-titulo {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 2.5rem;    /* en celular */
+    margin-bottom: 20px;
+}
+/* En pantallas medianas o más grandes, el título crece */
+@media (min-width: 768px) {
+    .hero-titulo {
+        font-size: 3rem;
+    }
+}
+
+.hero-texto {
+    font-size: 1.1rem;
+    color: #5D4037;
     max-width: 700px;
+    margin-bottom: 24px;
 }
 
-.subtitulo-seccion {
-    font-family: 'Caveat', cursive;
-    color: #7B4B2A;
-}
-
-.subtitulo-secundario {
-    color: #7B4B2A;
-}
-
+/* Botón café "Ver Catálogo" */
 .btn-cafe {
-    background-color: #7B4B2A;
-    color: white;
+    display: inline-block;
+    background-color: #8B4513;
+    color: #FFFFFF;
+    padding: 12px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-cafe:hover {
+    background-color: #753401;  /* un poco más oscuro al pasar el mouse */
+    color: #FFFFFF;
+}
+.btn-cafe:active {
+    transform: scale(0.95);  /* efecto de "click" al presionar */
 }
 
-.imagen-amasando {
-    object-fit: cover;
+/* Espacio ANTES de la primera fila de tarjetas y un poco DESPUÉS (hacia la siguiente sección) */
+.seccion-superior {
+    padding-top: 60px;
+    padding-bottom: 20px;
 }
 
+/* Poco espacio ANTES (viene de la sección de arriba) y espacio normal DESPUÉS */
+.seccion-inferior {
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
 
+/*  TARJETA MISIÓN (grande, con imagen)  */
+.tarjeta-mision {
+    background-color: #FFF8F6;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(139, 69, 19, 0.08);
+}
+.mision-img-wrap {
+    flex-shrink: 0;           /* evita que la imagen se achique si el texto es muy largo */
+    width: 100%;
+    max-width: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.mision-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;        /* recorta la imagen sin deformarla */
+}
 
+/*  TARJETA VISIÓN (pequeña, con ícono decorativo)  */
+.tarjeta-vision {
+    background-color: #FFE2DA;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(139, 69, 19, 0.08);
+}
+/* Ícono grande y semi-transparente en la esquina, solo decorativo */
+.icono-decorativo {
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    font-size: 100px;
+    color: #8B4513;
+    opacity: 0.1;
+}
 
+/* ===== TÍTULOS DE LAS TARJETAS ===== */
+.titulo-tarjeta {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+}
+.titulo-tarjeta-sm {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+.texto-tarjeta {
+    color: #5D4037;
+    margin-bottom: 0;
+}
 
+/* ===== TARJETA NORMAL (Apoyo Estudiantes / Especiales) ===== */
+.tarjeta-normal {
+    background-color: #FFF8F6;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 16px rgba(139, 69, 19, 0.08);
+}
+
+/* Círculo rosado con ícono "gorro de graduación" */
+.icono-circulo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: rgb(248, 248, 248);
+    color: #8B4513;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+/* Ícono rosado al lado del título "Especiales de Aniversario" */
+.icono-rosa {
+    color: #FFC0CB;
+}
+
+/* ===== LISTA DE ESPECIALES ===== */
+.lista-especiales {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+.item-especial {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background-color: #FFF1ED;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 8px;
+    padding: 16px;
+}
+.item-especial i {
+    color: #8B4513;
+    margin-top: 2px;
+}
+.item-especial strong {
+    display: block;
+    color: #8B4513;
+    font-size: 14px;
+}
+.item-especial span {
+    color: #5D4037;
+    font-size: 14px;
+}
+/* El tercer item ("¡Pastel Gratis!") se destaca con un fondo distinto */
+.item-especial-destacado {
+    background-color: rgba(255, 192, 203, 0.2);
+    border: 5px solid rgba(255, 192, 203, 0.5);
+}
+
+/* Código de descuento "FELICES50" con fondo tipo etiqueta */
+.codigo-descuento {
+    background-color: #FFF5E1;
+    color: #ca8113;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Agregados */
+.tarjeta-mision,
+.tarjeta-vision,
+.tarjeta-normal {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-mision:hover,
+.tarjeta-vision:hover,
+.tarjeta-normal:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(139, 69, 19, 0.15);
+}
+/* lista de selectores separados por coma */
 
 
