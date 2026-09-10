@@ -18,8 +18,12 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-    <!-- link para la fuente Caveat, la cursiva -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <!-- link para la fuente Pacifico y Source Sans 3, la cursiva -->
+      <!-- Le avisa al navegador con anticipacion que se va a conectar a fonts.googleapis.com, asi ahorra tiempo cuando llegue el link de abajo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importa las 2 fuentes que se usan: Pacifico (para títulos cursivos) y Source Sans 3 en 3 pesos distintos (400 normal, 600 semi-negrita, 700 negrita) para el texto del body -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- link para los iconos de Bootstrap, carrito, persona, lupa -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- link para los estilos personalizados en CSS local, el de nosotros -->
@@ -35,38 +39,32 @@
 
     <!-- CABECERA -->
     <header>
-      <!-- navbar: de bootstrap, navbar-expand-lg: se expande en pantallas grandes, color de fondo -->
-      <nav class="navbar navbar-expand-lg" style="background-color:#FDF3DC;">
-        <!-- div: caja generica, se usan y agrupan elementos o estilos/layout -->
-         <!-- container fluid: clase de Bootstrap para un contenedor que se expande al 100% del ancho -->
-          <!-- px-4: padding horizontal de 4 unidades, se aleja 4 unidades de la izquierda y derecha -->
-        <div class="container-fluid px-4">
-          <!-- navbar-brand: clase de Bootstrap estilo logo, href: enlace que lleva a home -->
-          <a class="navbar-brand fs-2" href="home.html" style="font-family:'Caveat',cursive; color:#7B4B2A;">
-            Pastelería 1000 Sabores
-          </a>
-          <!-- Botón de toggling para dispositivos móviles tipo hamburguesa para que no colapse -->
+      <!-- navbar-expand-lg: se expande en pantallas ≥992px, se colapsa en hamburguesa antes de eso -->
+      <nav class="navbar navbar-expand-lg">
+        <!-- "container" en vez de "container-fluid px-4". "container" tiene un ancho máximo y se centra, así el navbar queda alineado con el resto del contenido de la página en vez de ir de borde a borde -->
+        <div class="container">
+          <!-- el tamaño (2.8rem), la fuente Pacifico y el color café están definidos en cabecera.css, en la regla .navbar-brand -->
+          <a class="navbar-brand" href="home.html">Pastelería 1000 Sabores</a>
+          <!-- El botón hamburguesa -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <!-- Icono de 3 rayitas -->
             <span class="navbar-toggler-icon"></span>
           </button>
-          <!-- Menú de navegación de bootstrap -->
-          <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <!-- ul: lista no ordenada de elementos de navegacion -->
-            <ul class="navbar-nav nav-underline mx-auto">
-              <!-- li: list item. nav: los acomoda horizontalmente -->
+
+          <!-- Bootstrap maneja el espaciado por defecto -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- "mb-2 mb-lg-0": margen abajo SOLO en pantallas chicas (para separar del botón hamburguesa cuando el menú está colapsado), que desaparece (mb-lg-0) en pantallas grandes donde ya no hace falta -->
+            <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-              <!-- Pone lel subrayado y color distinto a catalogo, es bootstrap -->
-               <!-- nav-link en el a: le da el estilo de "link de navegacion (color, hover, padding)" -->
+              <!-- "active" va en Catálogo, no en Home -->
               <li class="nav-item"><a class="nav-link active" href="catalogo.html">Catálogo</a></li>
               <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
               <li class="nav-item"><a class="nav-link" href="quienes_somos.html">Quiénes Somos</a></li>
             </ul>
-            <!-- Se acomodan en fila, el gap es el espacio -->
-            <div class="d-flex gap-3">
-              <!-- Enlaces para login y carrito, con iconos de Bootstrap -->
-              <a href="login.html"><i class="bi bi-person"></i></a>
-              <a href="carrito.html"><i class="bi bi-cart"></i></a>
+            <!-- "align-items-center" para que los 2 iconos queden centrados verticalmente entre sí -->
+            <div class="d-flex gap-3 align-items-center">
+              <!-- el href apunta a "registro.html" y se agregó la clase "icono-header". bi bi: icono de persona-->
+              <a href="registro.html" class="icono-header"><i class="bi bi-person"></i></a>
+              <a href="carrito.html" class="icono-header"><i class="bi bi-cart"></i></a>
             </div>
           </div>
         </div>
