@@ -1,0 +1,76 @@
+
+/* HEADER "PEGAJOSO" */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50; 
+}
+
+/* NAVBAR - contenedor general */
+.navbar {
+    background-color: #FFF5E1;
+    padding: 1px 0;
+}
+
+/* LOGO  */
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.8rem;
+    color: #8B4513;
+}
+
+.navbar-brand:hover {
+    color: #b09184;
+}
+/* nav-underline es una clase de Bootstrap; acá solo le cambiamos sus valores por defecto */
+.nav-underline {
+    --bs-nav-underline-gap: 30px;
+    --bs-nav-underlinw-border-width: 2px;
+    --bs-nav-underline-link-active-color: #8B4513;
+}
+/* LINKS DEL MENÚ */
+.nav-link {
+    color: #5D4037;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+    color: #8B4513;
+}
+/* pisar el color "casi negro" que Bootstrap pone por defecto al link activo */
+.navbar-nav .nav-link.active {
+    color: #8B4513;
+}
+/* ÍCONOS DE USUARIO Y CARRITO */
+.icono-header{
+    color: #8B4513;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.icono-header:hover {
+    background-color: rgba(255, 192, 203, 0.3);
+} /* rosa suave semi-transparente*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
