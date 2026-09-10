@@ -346,12 +346,48 @@
                   </div>
                 </div>
               </div>
-
-
-
-
-
             </div>
+
+            
+            <!-- PAGINACION -->
+            <!-- nav: etiqueta semántica para bloques de navegación (como la paginación). aria-label ayuda a lectores de pantalla -->
+            <nav aria-label="Paginación de productos" class="mt-5">
+              <!-- pagination: clase de Bootstrap que da la base del estilo. justify-content-center: centra los botones. paginacion-custom: nuestra clase para los colores de marca -->
+              <ul class="pagination justify-content-center paginacion-custom">
+
+                <!-- Botón "anterior" (‹). disabled: como estamos en la página 1, no hay página anterior -->
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" aria-label="Anterior">
+                    <i class="bi bi-chevron-left"></i>
+                  </a>
+                </li>
+
+                <!-- Página 1: active la marca como la página actual (fondo café sólido) -->
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link" href="#">1</a>
+                </li>
+
+                <!-- Página 2 -->
+                <li class="page-item">
+                  <a class="page-link" href="#">2</a>
+                </li>
+
+                <!-- Página 3 -->
+                <li class="page-item">
+                  <a class="page-link" href="#">3</a>
+                </li>
+
+                <!-- Botón "siguiente" (›) -->
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Siguiente">
+                    <i class="bi bi-chevron-right"></i>
+                  </a>
+                </li>
+
+              </ul>
+            </nav>
+          
+
           </div>
         </div>
       </section>

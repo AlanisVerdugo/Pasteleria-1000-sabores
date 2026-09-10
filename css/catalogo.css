@@ -158,3 +158,62 @@
     /* margin-right separa el ícono del número o texto que va al lado */
     margin-right: 4px;
 }
+
+
+
+/* ------------ PAGINACIÓN ------------ */
+
+/* Selecciona cada botón de la paginación (números y flechas) */
+.paginacion-custom .page-link {
+    /* color: café, para que combine con el resto de la marca */
+    color: #8B4513;
+    /* border: none quita el borde cuadrado gris que trae Bootstrap por defecto */
+    border: none;
+    /* margin separa un poco cada botón del siguiente, ya que sin borde quedarían pegados */
+    margin: 0 4px;
+    /* width y height iguales, para que el border-radius de 50% forme un círculo perfecto */
+    width: 40px;
+    height: 40px;
+    /* border-radius: 50% convierte el botón cuadrado en círculo */
+    border-radius: 50%;
+    /* display flex + align-items + justify-content centran el número/ícono dentro del círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight en negrita para que el número se note más */
+    font-weight: 600;
+    /* transition suaviza el cambio de color al pasar el mouse */
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+
+    
+}
+
+/* Para eliminar el fondo blanco de los botones de flecha*/
+/* Selecciona SOLO los botones de flecha: el primer y el último <li> de la lista de paginación, eso es first-child y last-child*/
+.paginacion-custom .page-item:first-child .page-link,
+.paginacion-custom .page-item:last-child .page-link {
+    /* transparent hace que se vea el mismo color de fondo que tiene detrás (el crema de la página) */
+    background-color: transparent;
+}
+
+
+/* Selecciona el botón SOLO cuando el mouse pasa por encima (y no está activo ni deshabilitado) */
+.paginacion-custom .page-item:not(.active):not(.disabled) .page-link:hover {
+    /* un fondo rosado suave, mismo tono que usamos en los íconos del header */
+    background-color: rgba(255, 192, 203, 0.3);
+}
+
+/* Selecciona el botón de la página ACTUAL (ej: el "1") */
+.paginacion-custom .page-item.active .page-link {
+    /* fondo café sólido, el color principal de marca */
+    background-color: #8B4513;
+    /* texto blanco para que contraste con el fondo café */
+    color: #fff;
+}
+
+/* Selecciona los botones deshabilitados (ej: la flecha "anterior" en la página 1) */
+.paginacion-custom .page-item.disabled .page-link {
+    /* color gris clarito, para indicar visualmente que no se puede usar */
+    color: #c9beb6;
+}
