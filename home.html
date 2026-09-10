@@ -54,64 +54,102 @@
 
     <!-- main -->
      <main>
-      <!-- HERO -->
-      <section class="text-center py-5" id="hero">
-        <div class="container">
-          <span class="badge rounded-pill mb-3 fondo-rosa">
-            1974 - 2024: Medio Siglo de Dulzura
+      <!-- HERO: sección grande de bienvenida con imagen de fondo -->
+      <section class="hero-section text-center" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <!-- Badge/etiqueta redondeada de arriba -->
+          <span class="badge-especial">
+            <i class="bi bi-stars"></i>1974 - 2024: Medio Siglo de Dulzura
           </span>
-          <h1 class="titulo-hero">
-            50 Años Horneando Memorias Inolvidables
-          </h1>
-          <p class="lead mx-auto texto-hero">
+          <h1 class="hero-titulo">50 Años Horneando Memorias Inolvidables</h1>
+          <p class="hero-texto mx-auto">
             Desde nuestro pequeño horno de barro en 1974 hasta el Récord Guinness de 1995
             por el pastel más grande del mundo. Una tradición familiar que sigue endulzando tu vida.
           </p>
-          <a href="catalogo.html" class="btn btn-lg mt-3 btn-cafe">
-            Ver Catálogo
-          </a>
+          <a href="catalogo.html" class="btn-cafe">Ver Catálogo</a>
         </div>
       </section>
 
-      <!-- MISION / VISION -->
-      <section class="container py-5">
+      <!-- MISION / VISION: grilla tipo "bento", 8 columnas + 4 columnas -->
+      <section class="container seccion-superior">
         <div class="row g-4">
-          <div class="col-lg-6">
-            <div class="row g-0 align-items-center rounded-4 overflow-hidden fondo-crema">
-              <div class="col-5">
-                <img src="img/amasando.jpg" class="w-100 h-100 imagen-amasando" alt="Pastelero amasando">
+          <!--  Misión: tarjeta grande con imagen a un lado -->
+          <div class="col-lg-8">
+            <div class="tarjeta-mision d-flex flex-column flex-md-row align-items-center gap-4 h-100">
+              <div class="mision-img-wrap">
+                <img src="img/amasando.jpg" alt="Pastelero amasando" class="mision-img">
               </div>
-              <div class="col-7 p-4">
-                <h3 class="subtitulo-seccion">Nuestra Misión</h3>
-                <p>Ofrecer una experiencia dulce y memorable a nuestros clientes, proporcionando tortas y productos de repostería de alta calidad para todas las ocasiones, mientras celebramos nuestras raíces históricas y fomentamos la creatividad en la repostería.</p>
+              <div>
+                <h2 class="titulo-tarjeta">Nuestra Misión</h2>
+                <p class="texto-tarjeta">
+                  Ofrecer una experiencia dulce y memorable a nuestros clientes, proporcionando tortas y
+                  productos de repostería de alta calidad para todas las ocasiones, mientras celebramos 
+                  nuestras raíces históricas y fomentamos la creatividad en la repostería.
+                </p>
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="p-4 rounded-4 h-100 fondo-rosa">
-              <h3 class="subtitulo-seccion">Visión</h3>
-              <p class="fst-italic">Convertirnos en la tienda online líder de productos de repostería en Chile, conocida por nuestra innovación, calidad y el impacto positivo en la comunidad, especialmente en la formación de nuevos talentos en gastronomía.</p>
+          <!-- Visión: tarjeta pequeña, con ícono decorativo de fondo -->
+          <div class="col-lg-4">
+            <div class="tarjeta-vision h-100 position-relative overflow-hidden">
+              <i class="bi bi journal-bookmark icono-decorativo"></i>
+              <h3 class="titulo-tarjeta-sm">Visión</h3>
+              <p class="texto-tarjeta fst-italic">
+                Convertirnos en la tienda online líder de productos de repostería en Chile, conocida por
+                nuestra innovación, calidad y el impacto positivo en la comunidad, especialmente en la 
+                formación de nuevos talentos en gastronomía.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- APOYO ESTUDIANTES / ESPECIALES -->
-      <section class="container pb-5">
+      <!-- APOYO ESTUDIANTES / ESPECIALES: 2 tarjetas iguales, 6 columnas cada una -->
+      <section class="container seccion-inferior">
         <div class="row g-4">
+          <!-- Apoyo a Estudiantes Duoc UC-->
           <div class="col-lg-6">
-            <div class="p-4 rounded-4 h-100 fondo-crema">
-              <h4 class="subtitulo secundario">🎓 Apoyo a Estudiantes Duoc UC</h4>
-              <p>Creemos en el futuro de la gastronomía chilena. Por eso, abrimos nuestras puertas a los estudiantes de Duoc UC, brindándoles un espacio para practicar, aprender y perfeccionar el arte de la pastelería tradicional con nuestros maestros panaderos.</p>
+            <div class="tarjeta-vision h-100 position-relative overflow-hidden">
+              <div class="d-flex align-items-center gap-3">
+                <div class="icono-circulo"><i class="bi bi-mortarboard"></i></div>
+                <h2 class="titulo-tarjeta-sm mb-0">Apoyo a Estudiantes Duoc UC</h2>
+              </div>
+              <p class="texto-tarjeta">
+                Creemos en el futuro de la gastronomía chilena. Por eso, abrimos nuestras puertas a los
+                estudiantes de Duoc UC, brindándoles un espacio para practicar, aprender y perfeccionar 
+                el arte de la pastelería tradicional con nuestros maestros panaderos.
+              </p>
             </div>
           </div>
+          <!--  Especiales de Aniversario -->
           <div class="col-lg-6">
-            <div class="p-4 rounded-4 h-100 fondo-crema">
-              <h4 class="subtitulo secundario">🎉 Especiales de Aniversario</h4>
-              <ul class="list-unstyled">
-                <li class="p-2 mb-2 rounded-3 fondo-rosa"><strong>50% Dcto. Mayores de 50</strong><br>Para quienes han crecido con nosotros.</li>
-                <li class="p-2 mb-2 rounded-3 fondo-rosa"><strong>10% Dcto. General</strong><br>Usa el código FELICES50</li>
-                <li class="p-2 rounded-3 fondo-rosa"><strong>¡Pastel Gratis!</strong><br>Para estudiantes de Duoc UC al presentar credencial.</li>
+            <div class="tarjeta-normal h-100">
+              <h2 class="titulo-tarjeta-sm d-flex align-items-center gap-2">
+                <i class="bi bi-gift icono-rosa"></i> Especiales de Aniversario
+              </h2>
+              <ul class="listas-especiales list-unstyled">
+                <li class="item-especial">
+                  <i class="bi bi-heart-fill"></i>
+                  <div>
+                    <strong>50% Dcto. Mayores de 50</strong>
+                    <span>Para quienes han crecido con nosotros.</span>
+                  </div>
+                </li>
+                <li class="item-especial">
+                  <i class="bi bi-tag-fill"></i>
+                  <div>
+                    <strong>10% Dcto. General</strong>
+                    <span>Usa el código <code class="codigo-descuento">FELICES50</code></span>
+                  </div>
+                </li>
+                <li class="item-especial item-especial-destacado">
+                  <i class="bi bi-cake2-fill"></i>
+                  <div>
+                    <strong>¡Pastel Gratis!</strong>
+                    <span>Para estudiantes de Duoc UC al presentar credencial.</span>
+                  </div>
+                </li>
               </ul>
             </div>  
           </div>
