@@ -4,3 +4,39 @@ body {
     background-color: #FFF5E1;
     font-family: 'Source Sans 3', sans-serif;
 }
+@import url(cabecera.css);
+@import url(pie.css);
+@import url(home.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans 3', Arial, sans-serif;
+    background-color: #FFF5E1;
+    color: #5D4037;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
