@@ -185,6 +185,7 @@
             </div>
           </aside>
 
+
           <!-- Columna derecha: grilla de productos -->
           <div class="col-lg-9">
             <!-- Barra "Mostrando X productos / Ordenar por": misma fila blanca con padding y sombra que el panel de filtros -->
@@ -210,12 +211,178 @@
             <!-- Cierra la barra de "Mostrando X productos" -->
             </div>
             
-            <!-- Grilla de cards: 1 columna en mobile, 2 en tablet (md), 3 en pantallas extra grandes (xl); g-4 = espacio entre cards -->
+
+            <!-- GRILLA DE CARDS: 1 columna en mobile, 2 en tablet (md), 3 en pantallas extra grandes (xl); g-4 = espacio entre cards -->
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-              <!-- Aquí van las cards de productos: Paso 5 -->
+              <!-- Columna de Bootstrap: "col" reparte el ancho disponible según row-cols-1/md-2/xl-3 definido en el row -->
+              <div class="col">
+                <!-- card: componente de Bootstrap para tarjetas. producto-card: nuestras reglas personalizadas (bordes, sombra, hover). h-100: fuerza que todas las tarjetas midan lo mismo de alto aunque el texto varíe -->
+                <div class="card producto-card h-100">
+
+                  <!-- Contenedor de la imagen. producto-imagen-wrap: la clase que definimos con position:relative, necesaria para que la etiqueta flote encima -->
+                  <div class="producto-imagen-wrap">
+                    <!-- La foto del producto. card-img-top: clase de Bootstrap para que ocupe todo el ancho arriba de la tarjeta. alt: texto alternativo por accesibilidad -->
+                    <img src="img/Torta cuadrada de chocolate.jpg" class="card-img-top" alt="Torta Cuadrada de Chocolate">
+                    <!-- La etiqueta flotante. badge-producto: forma y posición. badge-tradicional: el color específico para esta categoría -->
+                    <span class="badge-producto badge-tradicional">Tradicional</span>
+                  </div>
+
+                  <!-- card-body: clase de Bootstrap para el área de texto de la tarjeta. d-flex flex-column: para poder empujar precio/botón hacia abajo con mt-auto -->
+                  <div class="card-body d-flex flex-column">
+
+                    <!-- Nombre del producto. producto-titulo: nuestra clase para el color café y negrita -->
+                    <h3 class="producto-titulo">Torta Cuadrada de Chocolate</h3>
+
+                    <!-- Detalle del producto (personas + descripción corta). producto-detalle: texto gris chico -->
+                    <p class="producto-detalle">20 Personas &bull; Bizcocho húmedo</p>
+
+                    <!-- mt-auto empuja este bloque hasta el fondo de la tarjeta (por el flex-column de arriba). d-flex justify-content-between: precio a la izq, botón a la derecha -->
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <!-- Precio del producto. producto-precio: nuestra clase para tamaño grande y negrita -->
+                      <span class="producto-precio">$45.000</span>
+                      <!-- Botón circular del carrito. btn-carrito: nuestra clase. El ícono viene de Bootstrap Icons (bi bi-cart-fill) -->
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+
+                    <!-- Fila inferior: comentarios a la izq, compartir a la derecha. producto-footer: solo para separar el margen de los íconos -->
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <!-- Ícono de comentario (bi-chat) + número de comentarios -->
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 12</span>
+                      <!-- Link de compartir con su ícono (bi-share) -->
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+
+                  </div>
+                  <!-- Cierra card-body -->
+                </div>
+                <!-- Cierra card producto-card -->
+              </div>
+              <!-- Cierra col -->
+
+              <!-- mismo proceso con las otras tarjetas o cards -->
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Torta circular manjar.jpg" class="card-img-top" alt="Torta Circular de Manjar">
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Torta Circular de Manjar</h3>
+                    <p class="producto-detalle">15 Personas &bull; Clásica chilena</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$42.000</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 8</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Tiramisu clasico.jpg" class="card-img-top" alt="Tiramisú Clásico">
+                    <!-- indica la etiqueta, la torta de manjar no tiene esta linea -->
+                    <span class="badge-producto badge-individual">Individual</span>
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Tiramisú Clásico</h3>
+                    <p class="producto-detalle">1 Persona &bull; Postre</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$5.500</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 24</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Torta sin azucar de naranja.jpg" class="card-img-top" alt="Torta Sin Azúcar de Naranja">
+                    <span class="badge-producto badge-sinazucar"><i class="bi bi-shield-check"></i> Sin Azúcar</span>
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Torta Sin Azúcar de Naranja</h3>
+                    <p class="producto-detalle">15 Personas &bull; Endulzada con Alulosa</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$48.000</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 5</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="card producto-card h-100">
+                  <div class="producto-imagen-wrap">
+                    <img src="img/Empanada de manzana.jpg" class="card-img-top" alt="Empanada de Manzana">
+                    <span class="badge-producto badge-vegana"><i class="bi bi-flower1"></i> Vegana</span>
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h3 class="producto-titulo">Empanada de Manzana</h3>
+                    <p class="producto-detalle">1 Persona &bull; Masa integral</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                      <span class="producto-precio">$3.000</span>
+                      <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
+                      <span class="text-muted small"><i class="bi bi-chat"></i> 42</span>
+                      <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
             </div>
           </div>
         </div>
+      </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+      <!-- container: centra el contenido con márgenes. footer-inner: clase propia definida en pie.css. d-flex flex-wrap: pone marca y links en fila, y los baja de línea si no caben. justify-content-between: marca a la izq, links a la derecha. py-4: padding arriba y abajo -->
+      <div class="container footer-inner d-flex flex-wrap justify-content-between py-4">
+        <!-- Bloque izquierdo: nombre de la marca + copyright. mb-4 en mobile, sin margen (mb-md-0) en pantallas medianas o más grandes -->
+        <div class="footer-marca mb-4 mb-md-0">
+          <!-- Nombre de la pastelería con la tipografía cursiva Pacifico (definida en footer-brand, dentro de pie.css) -->
+          <h3 class="footer-brand">Pastelería 1000 Sabores</h3>
+          <!-- Texto de copyright, color café clarito semi-transparente (definido en footer-texto) -->
+          <p class="footer-texto">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024). Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
+        </div>
+        <!-- Bloque derecho: lista de links. list-unstyled le quita la viñeta a la lista. text-md-end alinea el texto a la derecha desde pantallas medianas hacia arriba -->
+        <ul class="footer-nav list-unstyled text-md-end">
+          <!-- Cada li es un link individual del footer -->
+          <li><a href="#" class="footer-link">SOBRE NOSOTROS</a></li>
+          <!-- Link a la página de contacto -->
+          <li><a href="#" class="footer-link">CONTACTO</a></li>
+          <!-- Link a términos y condiciones -->
+          <li><a href="#" class="footer-link">TÉRMINOS</a></li>
+          <!-- Link a preguntas frecuentes -->
+          <li><a href="#" class="footer-link">PREGUNTAS FRECUENTES</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Script de Bootstrap: sin esto, el botón hamburguesa del menú no funciona en celular -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
 
   </body>
 </html>
