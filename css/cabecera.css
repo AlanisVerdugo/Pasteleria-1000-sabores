@@ -4,6 +4,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 50; 
+    /* sombra sutil para que separe el header del body en catalogo */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 /* NAVBAR - contenedor general */
