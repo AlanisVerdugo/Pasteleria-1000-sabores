@@ -1,8 +1,9 @@
-@import url(cabecera.css);
+
 @import url(pie.css);
 @import url(registro.css);
 @import url(catalogo.css);
 @import url(home.css);
+@import url(cabecera.css);
 
 
 /* fondo de la pagina */
@@ -17,6 +18,7 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
 
 body {
     font-family: 'Source Sans 3', Arial, sans-serif;

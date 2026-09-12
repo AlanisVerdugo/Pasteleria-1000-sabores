@@ -1,6 +1,6 @@
 
 /* HEADER "PEGAJOSO" */
-header {
+.header-navbar {
     position: sticky;
     top: 0;
     z-index: 50; 
@@ -27,7 +27,7 @@ header {
 /* nav-underline es una clase de Bootstrap; acá solo le cambiamos sus valores por defecto */
 .nav-underline {
     --bs-nav-underline-gap: 30px;
-    --bs-nav-underlinw-border-width: 2px;
+    --bs-nav-underline-border-width: 2px;
     --bs-nav-underline-link-active-color: #8B4513;
 }
 /* LINKS DEL MENÚ */
