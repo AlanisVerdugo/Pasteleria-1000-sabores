@@ -19,7 +19,7 @@
     --icon-red: #a84f4f;
 }
 
-body {
+body.pagina-registro {
     background-color: var(--bg-color);
     font-family: 'quicksand', sans-serif;
     color: var(--text-primary);
@@ -77,8 +77,8 @@ body {
 }
 
 /**/
-/* Tarjeta Principal */
-.card {
+/* Tarjeta Principal — scoped para no pisar .card de Bootstrap en otras páginas */
+.pagina-registro .card {
     display: flex;
     background: var(--panel-right-bg);
     border-radius: 12px;
@@ -156,12 +156,12 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.input-group {
+.pagina-registro .input-group {
     display: flex;
     flex-direction: column;
 }
 
-.input-group label {
+.pagina-registro .input-group label {
     font-size: 0.9rem;
     margin-bottom: 0.6rem;
     color: var(--text-secondary);
@@ -269,7 +269,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Responsividad */
 @media (max-width: 850px) {
-    .card {
+    .pagina-registro .card {
         flex-direction: column;
     }
     .benefits-panel, .form-panel {
