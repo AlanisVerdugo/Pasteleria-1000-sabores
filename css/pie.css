@@ -1,9 +1,8 @@
 
 /* FOOTER - contenedor general */
 footer {
+    width: 100%;
     background-color: #8B4513;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
     margin-top: 80px;
     padding: 48px 0;
 }

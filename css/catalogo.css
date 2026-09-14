@@ -1,4 +1,17 @@
 
+/* Barra de búsqueda del catálogo: fila lupa + campo */
+.catalogo-buscador {
+    max-width: 350px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    overflow: visible;
+}
+
+.catalogo-buscador .input-group-text,
+.catalogo-buscador .form-control {
+    min-height: 42px;
+}
 
 /* Selecciona el contenedor de la imagen de cada tarjeta */
 .producto-imagen-wrap {
