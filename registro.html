@@ -4,32 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro - Pastelería</title>
-    <!-- Importar fuentes -->
+    <!-- Importar fuentes google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <!-- Importar iconos de FontAwesome -->
+    <!-- Importar iconos de FontAwesome (.com) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Enlace a tu CSS -->
     <link rel="stylesheet" href="css/estilos.css" />
 </head>
 <body class="pagina-registro">
 
-    <!-- Decoraciones de fondo (fontawesome.com)-->
-    <i class="fa-solid fa-bread-slice bg-decor bg-top-left"></i>
-    <i class="fa-solid fa-cake-candles bg-decor bg-bottom-right"></i>
 
+    <!-- flecha para regresar-->
+    <a href="home.html" class="btn-back">
+        <i class="fa-solid fa-arrow-left"></i> Regresar
+    </a>
+
+    <!-- Decoraciones de fondo (fontawesome.com)-->
+    <i class="fa-solid fa-bread-slice bg-decor bg-top-left"></i> <!-- icono de pan -->
+    <i class="fa-solid fa-cake-candles bg-decor bg-bottom-right"></i> <!-- icono de torta -->
+
+    <!-- Contenedor semántico <header> para el título principal y la descripción de la página -->
     <header class="header-container">
         <h1>Únete a la familia</h1>
         <p>Crea tu cuenta para acceder a beneficios exclusivos, celebrar nuestra historia y disfrutar de los mejores sabores artesanales.</p>
     </header>
 
     <main class="card">
+
+
         <!-- Panel de Beneficios -->
         <section class="benefits-panel">
             <h2>Beneficios Exclusivos</h2>
             
             <div class="benefit-item">
-                <div class="benefit-icon"><i class="fa-solid fa-heart"></i></div>
+                <div class="benefit-icon"><i class="fa-solid fa-heart"></i></div>  <!-- icono de corazón -->
                 <div class="benefit-text">
                     <h3>50 Años de Tradición</h3>
                     <p>Mayores de 50 años: 50% de descuento automático en compras seleccionadas.</p>
@@ -37,15 +46,16 @@
             </div>
 
             <div class="benefit-item">
-                <div class="benefit-icon"><i class="fa-solid fa-tag"></i></div>
+                <div class="benefit-icon"><i class="fa-solid fa-tag"></i></div> <!-- icono de etiqueta -->
                 <div class="benefit-text">
                     <h3>Código Especial</h3>
+                    <!-- <span> permite darle estilo (ej. negrita o color) a una palabra específica dentro de un párrafo -->
                     <p>Usa el código <span class="highlight-text">FELICES50</span> para un 10% de descuento de por vida.</p>
                 </div>
             </div>
 
             <div class="benefit-item">
-                <div class="benefit-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="benefit-icon"><i class="fa-solid fa-graduation-cap"></i></div> <!-- icono de birrete -->
                 <div class="benefit-text">
                     <h3>Comunidad Duoc UC</h3>
                     <p>Estudiantes Duoc: ¡Tortas gratis en tu cumpleaños! (Usa tu correo institucional).</p>
@@ -55,15 +65,17 @@
         
         <!-- Panel del Formulario -->
         <section class="form-panel">
-            <!-- Evento onsubmit llamando a la función JS -->
+            <!-- onsubmit="return envioFormulario()" ejecuta la validación en JavaScript antes de enviar los datos -->
             <form action="" method="POST" onsubmit="return envioFormulario()">
-                <div class="form-grid">
+                <!-- Contenedor Grid para organizar los inputs en 2 columnas (lado a lado) -->
+                <div class="form-grid"> 
                     
                     <div class="input-group">
                         <label>Nombre Completo</label>
                         <div class="input-wrapper">
                             <i class="fa-regular fa-user"></i>
-                            <input type="text" id="txtNombre" placeholder="Juan Pérez" required>
+                            <!-- required: Obliga al usuario a llenar este campo -->
+                            <input type="text" id="txtNombre" placeholder="Freddy Campos" required>
                         </div>
                     </div>
 
@@ -71,6 +83,7 @@
                         <label>Correo Electrónico</label>
                         <div class="input-wrapper">
                             <i class="fa-regular fa-envelope"></i>
+                            <!-- type="email": El navegador verifica que tenga formato con '@' -->
                             <input type="email" id="txtCorreo" placeholder="freddy@ejemplo.com" required>
                         </div>
                     </div>
@@ -79,6 +92,7 @@
                         <label>Fecha de Nacimiento (Para descuento +50)</label>
                         <div class="input-wrapper">
                             <i class="fa-regular fa-calendar"></i>
+                            <!-- type="date": Despliega el calendario automático del navegador -->
                             <input type="date" id="txtFecha" required>
                         </div>
                     </div>
@@ -87,6 +101,7 @@
                         <label>Correo Institucional (Opcional - Estudiantes Duoc)</label>
                         <div class="input-wrapper">
                             <i class="fa-solid fa-graduation-cap"></i>
+                            <!-- No tiene la etiqueta 'required' porque es un dato opcional -->
                             <input type="email" id="txtCorreoDuoc" placeholder="alumno@duocuc.cl">
                         </div>
                     </div>
@@ -95,6 +110,7 @@
                         <label>Contraseña</label>
                         <div class="input-wrapper">
                             <i class="fa-solid fa-lock"></i>
+                            <!-- type="password": Oculta los caracteres que el usuario escribe (puntos) -->
                             <input type="password" id="txtPass" placeholder="••••••••" required>
                         </div>
                     </div>
@@ -109,13 +125,19 @@
 
                 </div>
 
+
+
+
+
                 <div class="checkbox-group">
                     <input type="checkbox" id="chkTerminos" required>
+                    <!-- El 'for' debe ser igual al 'id' del checkbox para que al hacer clic en la letra se marque el cuadrito -->
                     <label for="chkTerminos">Acepto los Términos y Condiciones y la Política de Privacidad.</label>
                 </div>
 
+                <!-- Botón de Envío -->
                 <button type="submit" class="btn-submit">
-                    Registrarse <i class="fa-solid fa-arrow-right"></i>
+                    Registrarse <i class="fa-solid fa-arrow-right"></i> <!-- icono de flechita apuntando a la derecha -->
                 </button>
 
                 <div class="login-link">

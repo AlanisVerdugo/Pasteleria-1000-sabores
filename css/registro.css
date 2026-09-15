@@ -1,9 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/*gama de colores página en general*/
 :root {
     --bg-color: #fdf5eb;
     --text-primary: #5c4331;
@@ -20,78 +15,105 @@
 }
 
 body.pagina-registro {
-    background-color: var(--bg-color);
-    font-family: 'quicksand', sans-serif;
+    background-color: var(--bg-color); 
+    font-family: 'quicksand', sans-serif; /*tipografía principal*/
     color: var(--text-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem 1rem;
+    padding: 3rem 1rem; /* Da un margen interno (arriba/abajo y lados) */
     min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
+    position: relative; /* Necesario para posicionar los íconos de fondo */
+    overflow-x: hidden; /* Evita que aparezca una barra de desplazamiento horizontal */
 }
 
 /* Iconos de fondo decorativos */
 .bg-decor {
-    position: absolute;
-    opacity: 0.15;
-    z-index: -1;
+    position: absolute; /* Los saca del flujo normal para dejarlos libres en el fondo */
+    opacity: 0.15; /* Los hace más opacos*/
+    z-index: -1; /* Los envía al fondo de la página */
     color: var(--title-color);
 }
 /*pancito*/
 .bg-top-left {
-    top: 40px;
+    top: 60px;
     left: 50px;
-    font-size: 100px;
+    font-size: 150px; /*tamaño*/
     transform: rotate(15deg);
 }
 /*pastel*/
 .bg-bottom-right {
     bottom: 40px;
     right: 50px;
-    font-size: 100px;
+    font-size: 150px; /*tamaño*/
     transform: rotate(-15deg);
+}
+
+/*boton para regresar a home*/
+.btn-back {
+    position: absolute;
+    top: 30px; /* Distancia desde arriba */
+    left: 40px; /* Distancia desde la izquierda */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la flecha y la palabra regresar */
+    color: var(--title-color);
+    text-decoration: none; /* quita la línea de subrayado al enlace */
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    z-index: 10; /* Asegura que esté por encima de los íconos decorativos */
+    transition: color 0.3s, transform 0.3s; /* Animación suave */
+}
+
+/* Efecto al pasar el mouse por encima */
+.btn-back:hover {
+    color: var(--btn-hover);      /* Se oscurece un poco */
+    transform: translateX(-5px);  /* Pequeño salto hacia la izquierda para invitar a hacer clic */
 }
 
 /* Cabecera */
 .header-container {
     text-align: center;
-    max-width: 650px;
-    margin-bottom: 2.5rem;
+    max-width: 750px;
+    margin-bottom: 2.5rem; /* Separación entre el texto y el panel de abajo */
 }
 
 .header-container h1 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 0.8rem;
+    font-size: 2.2 rem; /*cambia el tamaño de "únete a la familia*/
+    font-weight: 400; /*cambia el grosor de "únete a la familia*/
+    margin-bottom: 0.8rem; /* Separación con el párrafo inferior */
     color: var(--title-color);
     font-family: 'Pacifico', cursive;
 }
 
 .header-container p {
-    font-size: 0.95rem;
+    font-size: 1.15rem; /*cambia el texto debajo del titulo*/
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.6; /* Altura o separación entre líneas de texto */
     font-weight: 500;
 }
 
 /**/
 /* Tarjeta Principal — scoped para no pisar .card de Bootstrap en otras páginas */
 .pagina-registro .card {
-    display: flex;
+    display: flex; /* Coloca el panel izquierdo y derecho uno al lado del otro */
     background: var(--panel-right-bg);
-    border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(138, 72, 28, 0.08);
-    overflow: hidden;
+    border-radius: 12px; /* Redondea las esquinas*/
+    box-shadow: 0 15px 35px rgba(138, 72, 28, 0.08); /* Aplica la sombra suave */
+    overflow: hidden; /* Evita que los fondos de adentro se salgan de las esquinas redondeadas */
     max-width: 950px;
     width: 100%;
+    transform: scale(1.2); /* cambia el tamaño del cuadro con todo dentro */
+    transform-origin: top center;
+    margin-top: 1rem;
+    margin-bottom: 6rem;
 }
 
 /* Panel Izquierdo (Beneficios) */
 .benefits-panel {
     background-color: var(--panel-left-bg);
-    padding: 3rem 2.5rem;
+    padding: 3rem 2.5rem; /* espaciado interno (arriba/abajo y los lados) */
     width: 35%;
 }
 
@@ -99,9 +121,10 @@ body.pagina-registro {
     color: var(--title-color);
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* espacio debajo del título "Beneficios Exclusivos" */
 }
 
+/* Cada bloque individual de beneficio */
 .benefit-item {
     display: flex;
     margin-bottom: 1.8rem;
@@ -111,12 +134,12 @@ body.pagina-registro {
 .benefit-icon {
     background-color: var(--icon-bg);
     color: var(--icon-red);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    border-radius: 50%; /* lo hace redondo */
+    width: 32px; /* Ancho del círculo */
+    height: 32px; /* Alto del círculo */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; /* centra el icono*/
+    justify-content: center; /* centra el icono*/
     margin-right: 1rem;
     flex-shrink: 0;
     font-size: 0.85rem;
@@ -137,84 +160,94 @@ body.pagina-registro {
     font-weight: 500;
 }
 
+/* Texto destacado (ej. código FELICES50) */
 .highlight-text {
     color: var(--title-color);
-    font-weight: 700;
+    font-weight: 700; /* Texto en negrita */
 }
 
 /* Panel Derecho (Formulario) */
 .form-panel {
-    padding: 3rem 3.5rem;
+    padding: 3rem;
     width: 65%;
     background-color: var(--panel-right-bg);
 }
 
+/* Contenedor que agrupa los inputs de dos en dos */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: 1.5rem; /* Espacio de separación entre las cajas de texto */
+    margin-bottom: 1.5rem; /* Separación inferior antes del checkbox de términos */
 }
 
 .pagina-registro .input-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Pone el label arriba del input */
 }
 
+/* Etiquetas (Labels) de cada campo */
 .pagina-registro .input-group label {
     font-size: 0.9rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.6rem; /* Espacio entre el texto y la caja para escribir */
     color: var(--text-secondary);
     font-weight: 500;
 }
 
+/* Envoltura que contiene el ícono y la caja de texto */
 .input-wrapper {
-    position: relative;
+    position: relative; /* Permite colocar el ícono flotando encima del input */
     display: flex;
     align-items: center;
 }
 
+/* Los íconos dentro de las cajas de texto */
 .input-wrapper i {
-    position: absolute;
-    left: 14px;
+    position: absolute; 
+    left: 14px; /* Distancia desde la izquierda de la caja */
     color: var(--icon-color);
     font-size: 1rem;
 }
 
+/* Las cajas de texto */
 .input-wrapper input {
     width: 100%;
-    padding: 12px 12px 12px 40px;
+    padding: 12px 12px 12px 40px; /* el 40px da espacio para que el ícono no tape el texto */
     border: 1px solid var(--input-border);
-    border-radius: 8px;
+    border-radius: 8px; /* Bordes suavizados */
     font-size: 0.95rem;
     font-family: 'Quicksand', sans-serif;
     color: var(--text-primary);
-    outline: none;
-    transition: border-color 0.3s;
+    outline: none; /* Quita el borde azul por defecto del navegador */
+    transition: border-color 0.3s; /* Animación suave al hacer clic en el borde */
 }
 
+/* Estilo cuando el usuario hace clic dentro de la caja de texto */
 .input-wrapper input:focus {
     border-color: var(--btn-color);
 }
 
+/* Texto de ayuda dentro de las cajas */
 .input-wrapper input::placeholder {
     color: #b5a59a;
 }
 
+/* oculta/modifica el ícono por defecto del calendario en inputs type date */
 input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     opacity: 0.6;
 }
 
+/* Sección de términos y condiciones */
 .checkbox-group {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; /* Espacio antes del botón de registro */
     margin-top: 1rem;
 }
 
 .checkbox-group input[type="checkbox"] {
-    margin-right: 12px;
+    margin-right: 12px; /* Separación del cuadro con el texto */
     width: 16px;
     height: 16px;
     accent-color: var(--btn-color);
@@ -227,28 +260,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 500;
 }
 
+/* Botón de Enviar Formulario */
 .btn-submit {
     width: 100%;
     padding: 14px;
     background-color: var(--btn-color);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 8px; /* Esquinas redondeadas del botón */
     font-size: 1.05rem;
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;
-    cursor: pointer;
+    cursor: pointer; /* Muestra la manito al pasar por encima */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    transition: background-color 0.3s;
+    gap: 10px; /* Espacio entre la palabra "Registrarse" y la flecha */
+    transition: background-color 0.3s; /* Transición suave al hacer hover */
 }
 
+/* Efecto hover del botón */
 .btn-submit:hover {
-    background-color: var(--btn-hover);
+    background-color: var(--btn-hover); /* Se oscurece al pasar el mouse */
 }
 
+/* Enlace inferior de "¿Ya tienes una cuenta?" */
 .login-link {
     text-align: center;
     margin-top: 2rem;
@@ -259,22 +295,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .login-link a {
     color: var(--title-color);
-    text-decoration: none;
+    text-decoration: none; /* Le quita la línea inferior por defecto al enlace */
     font-weight: 600;
 }
 
 .login-link a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Le agrega la línea cuando se pasa el mouse */
 }
 
 /* Responsividad */
 @media (max-width: 850px) {
     .pagina-registro .card {
-        flex-direction: column;
+        flex-direction: column; /* Apila los paneles uno debajo de otro en vez de al lado */
     }
     .benefits-panel, .form-panel {
         width: 100%;
-        padding: 2rem;
+        padding: 3rem;
     }
     .form-grid {
         grid-template-columns: 1fr;
