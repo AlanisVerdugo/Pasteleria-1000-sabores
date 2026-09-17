@@ -1,0 +1,164 @@
+
+/* ===== ESPACIADO GENERAL DE SECCIÓN ===== */
+.qs-seccion {
+    padding: 50px 0;
+}
+
+/* ===== ENCABEZADOS DE SECCIÓN (eyebrow + título + subtítulo) ===== */
+.qs-encabezado {
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.qs-eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #81515A;  /* mismo tono "secondary" de la referencia */
+    margin-bottom: 8px;
+}
+
+.qs-titulo-seccion {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.qs-subtitulo {
+    color: #5D4037;
+    max-width: 500px;
+}
+
+/* ===== TARJETAS DE VALORES (4 columnas) ===== */
+.qs-valor-card {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.qs-valor-icono {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #8B4513;
+    margin-bottom: 16px;
+}
+
+/* Variantes de color de fondo para cada ícono */
+.qs-icono-crema { background-color: #FFF5E1; }
+.qs-icono-rosa { background-color: rgba(255, 192, 203, 0.5); }
+.qs-icono-durazno { background-color: #FFDBC9; }
+.qs-icono-tierra { background-color: #EBE2CE; }
+
+.qs-valor-titulo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #8B4513;
+    margin-bottom: 8px;
+}
+
+.qs-valor-texto {
+    color: #5D4037;
+    font-size: 0.9rem;
+    flex-grow: 1;
+}
+
+.qs-valor-tag {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #81515A;
+    margin-top: 8px;
+}
+
+/* ===== TARJETAS DE MISIÓN/VISIÓN (formato "propósito") ===== */
+.qs-proposito-card {
+    background-color: #FFFFFF;
+    padding: 40px;
+    box-shadow: 0 4px 16px rgba(139, 69, 19, 0.08);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+.qs-proposito-card:hover {
+    box-shadow: 0 12px 28px rgba(139, 69, 19, 0.15);
+}
+
+.qs-proposito-icono {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #8B4513;
+    margin-bottom: 16px;
+}
+
+.qs-proposito-footer {
+    padding-top: 20px;
+    color: #8B4513;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===== BANNER ALIANZA DUOC UC ===== */
+.qs-alianza {
+    background-color: #FFF1ED;
+    border-top: 1px solid rgba(218, 194, 182, 0.4);
+    border-bottom: 1px solid rgba(218, 194, 182, 0.4);
+    padding: 40px 0;
+}
+
+.qs-alianza-icono {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background-color: #FFF5E1;
+    color: #8B4513;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+.qs-alianza-titulo {
+    color: #8B4513;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.qs-alianza-texto {
+    color: #5D4037;
+    max-width: 500px;
+}
+
+.qs-alianza-badge {
+    flex-shrink: 0;
+    background-color: #FFFFFF;
+    color: #8B4513;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.06);
+}
