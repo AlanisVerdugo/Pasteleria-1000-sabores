@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Pastelería 1000 Sabores</title>
+
+    <!-- Bootstrap CSS (visual), conectar - direccion - hoja estilos - hash - sin datos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+    <!-- Google Font para el logo cursivo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Source+Sans+3:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- libreria iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS propio, SIEMPRE después de Bootstrap para poder sobreescribirlo -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/pedidos.css">
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header-navbar">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="home.html">Pastelería 1000 Sabores
+                    <img src="img/logo-pasteleria-1000-sabores.png" alt="Logo pasteleria 1000 sabores" class="logo-header">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="quienes_somos.html">Quiénes Somos</a></li>
+                    </ul>
+                    <!-- algunos son solo el nombre -->
+
+                    <div class="d-flex gap-3 align-items-center">
+                        <a href="registro.html" class="icono-header"><i class="bi bi-person"></i></a>
+                        <a href="carrito.html" class="icono-header"><i class="bi bi-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container ped-seccion">
+            <!-- ENCABEZADO -->
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+                <div>
+                    <span class="ped-badge-vivo">
+                        <i class="bi bi-cookie"></i> Taller Pastelero en Vivo
+                    </span>
+                    <h1 class="ped-titulo">Seguimiento de Mis Pedidos</h1>
+                    <p class="ped-subtitulo mb-0">Revisa el avance de tus órdenes y el estado del horneado en tiempo
+                        real.</p>
+                </div>
+            </div>
+
+            <!-- BUSCADOR Y FILTROS -->
+            <div class="row g-3 mb-4">
+                <div class="col-lg-7">
+                    <div class="ped-buscador">
+                        <i class="bi bi-search"></i>
+                        <input type="text" id="buscadorPedidos" placeholder="Buscar por código (ej: #ORD-5012) o producto...">
+                    </div>
+                </div>
+                <div class="col-lg-5 d-flex gap-2 flex-wrap" id="filtrosPedidos">
+                    <button class="ped-filtro ped-filtro-activo" type="button" data-filtro="todos">Todos (3)</button>
+                    <button class="ped-filtro" type="button" data-filtro="horno">En Horno</button>
+                    <button class="ped-filtro" type="button" data-filtro="ruta">En Ruta</button>
+                    <button class="ped-filtro" type="button" data-filtro="entregado">Entregados</button>
+                </div>
+            </div>
+
+            <!-- PEDIDO 1: En Preparación -->
+            <article class="ped-card mb-4" data-codigo="#ORD-5012" data-estado="horno">
+                <div class="ped-card-header">
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <span class="ped-codigo">#ORD-5012</span>
+                        <span class="text-muted">•</span>
+                        <span class="ped-fecha">24 de Octubre, 2024</span>
+                        <span class="ped-canal">Web Oficial</span>
+                    </div>
+                    <span class="ped-estado ped-estado-horno">
+                        <i class="bi bi-fire"></i> En Horno (En Preparación)
+                    </span>
+                </div>
+                <div class="ped-card-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-7">
+                            <div class="ped-item">
+                                <img src="img/Torta cuadrada de chocolate.jpg" alt="Torta Cuadrada de Chocolate" class="ped-item-img">
+                                <div>
+                                    <h3 class="ped-item-titulo">Torta Cuadrada de Chocolate</h3>
+                                    <p class="ped-item-detalle mb-0">1x Tamaño familiar (20 personas) • Trufa y manjar
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="ped-item">
+                                <img src="img/Tiramisu clasico.jpg" alt="Tiramisú Clásico de la Nonna" class="ped-item-img">
+                                <div>
+                                    <h3 class="ped-item-titulo">Tiramisú Clásico de la Nonna</h3>
+                                    <p class="ped-item-detalle mb-0">2x Porciones individuales con café de grano</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="ped-resumen">
+                                <div class="d-flex justify-content-between">
+                                    <span class="ped-label">Envío a Domicilio:</span>
+                                    <span class="ped-valor">Las Condes</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="ped-label">Total:</span>
+                                    <span class="ped-total">$56.000 CLP</span>
+                                </div>
+                                <div class="d-flex gap-2 pt-2">
+                                    <button class="ped-btn-secundario flex-fill" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#detalle5012">
+                                        <i class="bi bi-eye"></i> Ver Detalle
+                                    </button>
+                                    <a href="boletas.html" class="ped-btn-terciario">
+                                        <i class="bi bi-receipt"></i> Boleta
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse mt-3" id="detalle5012">
+                        <div class="ped-detalle-extra">
+                            <strong>Dirección:</strong> Av. Las Condes 11245, Dpto 402 &bull; <strong>Taller:</strong>
+                            Vitacura (Horno 3)
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PEDIDO 2: En Ruta -->
+            <article class="ped-card mb-4" data-codigo="#ORD-4981" data-estado="ruta">
+                <div class="ped-card-header">
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <span class="ped-codigo">#ORD-4981</span>
+                        <span class="text-muted">•</span>
+                        <span class="ped-fecha">22 de Octubre, 2024</span>
+                        <span class="ped-canal">App Móvil</span>
+                    </div>
+                    <span class="ped-estado ped-estado-ruta">
+                        <i class="bi bi-scooter"></i> Enviado / En Despacho
+                    </span>
+                </div>
+                <div class="ped-card-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-7">
+                            <div class="ped-item">
+                                <img src="img/Torta circular manjar.jpg" alt="Torta Circular de Manjar Casero" class="ped-item-img">
+                                <div>
+                                    <h3 class="ped-item-titulo">Torta Circular de Manjar Casero</h3>
+                                    <p class="ped-item-detalle mb-1">1x Tamaño mediano (15 personas) • Bizcocho de nuez
+                                        y hojarasca</p>
+                                    <span class="ped-tracking"><i class="bi bi-geo-alt"></i> Repartidor Juan Carlos en
+                                        trayecto (a 12 mins de tu puerta)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="ped-resumen">
+                                <div class="d-flex justify-content-between">
+                                    <span class="ped-label">Método:</span>
+                                    <span class="ped-valor"><i class="bi bi-lightning-charge"></i> Despacho Express
+                                        Climatizado</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="ped-label">Total Pagado:</span>
+                                    <span class="ped-total">$42.000 CLP</span>
+                                </div>
+                                <button class="ped-btn-primario w-100" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#modalRastreo">
+                                    <i class="bi bi-geo-alt-fill"></i> Rastrear Despacho
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PEDIDO 3: Entregado -->
+            <article class="ped-card" data-codigo="#ORD-4730" data-estado="entregado">
+                <div class="ped-card-header">
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <span class="ped-codigo">#ORD-4730</span>
+                        <span class="text-muted">•</span>
+                        <span class="ped-fecha">15 de Octubre, 2024</span>
+                        <span class="ped-canal">Mostrador</span>
+                    </div>
+                    <span class="ped-estado ped-estado-entregado">
+                        <i class="bi bi-patch-check-fill"></i> Entregado Satisfactoriamente
+                    </span>
+                </div>
+                <div class="ped-card-body">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-7">
+                            <div class="ped-item">
+                                <img src="img/Torta sin azucar de naranja.jpg" alt="Torta Sin Azúcar de Naranja Glaseada" class="ped-item-img">
+                                <div>
+                                    <h3 class="ped-item-titulo">Torta Sin Azúcar de Naranja Glaseada</h3>
+                                    <p class="ped-item-detalle mb-0">1x Formato mediano (15 personas) • Endulzada con
+                                        Tagatosa</p>
+                                </div>
+                            </div>
+                            <div class="ped-item">
+                                <img src="img/Empanada de manzana.jpg" alt="Empanada Dulce de Manzana y Canela" class="ped-item-img">
+                                <div>
+                                    <h3 class="ped-item-titulo">Empanada Dulce de Manzana y Canela</h3>
+                                    <p class="ped-item-detalle mb-0">4x Unidades horneadas de masa fina hojaldrada</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="ped-resumen">
+                                <div class="d-flex justify-content-between">
+                                    <span class="ped-label">Modalidad:</span>
+                                    <span class="ped-valor"><i class="bi bi-shop"></i> Retiro en Local Duoc UC</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="ped-label">Total:</span>
+                                    <span class="ped-total">$60.000 CLP</span>
+                                </div>
+                                <a href="catalogo.html" class="ped-btn-secundario w-100 text-center">
+                                    <i class="bi bi-arrow-repeat"></i> Repetir Pedido
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <p class="ped-sin-resultados d-none" id="mensajeSinResultados">
+            No se encontraron pedidos que coincidan con tu búsqueda.
+            </p>
+        </div>
+
+        <!-- MODAL de rastreo (usa el Bootstrap ya incluido, sin JS propio) -->
+        <div class="modal fade" id="modalRastreo" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="bi bi-compass"></i> Rastreo en Vivo #ORD-4981</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ped-mapa-placeholder">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span>Repartidor en movimiento por Av. Apoquindo</span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <span class="ped-label">Conductor:</span>
+                            <span class="ped-valor">Juan Carlos P. (Moto refrigerada #4)</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="ped-label">Tiempo estimado de arribo:</span>
+                            <span class="ped-total">12 - 15 minutos</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="ped-btn-primario w-100" data-bs-dismiss="modal">Entendido, estaré
+                            atento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="container footer-inner d-flex flex-wrap justify-content-between align-items-start">
+            <div class="footer-marca">
+                <h3 class="footer-brand">Pastelería 1000 Sabores</h3>
+                <p class="footer-texto">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024).<br>
+                    Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
+            </div>
+            <ul class="list-unstyled footer-nav">
+                <li><a href="#" class="footer-link">Sobre Nosotros</a></li>
+                <li><a href="#" class="footer-link">Contacto</a></li>
+                <li><a href="#" class="footer-link">Términos</a></li>
+                <li><a href="#" class="footer-link">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS al final del body (comportamiento objetos) - sensación de rapidez -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- script js -->
+    <script src="js/pedidos.js"></script>
+</body>
+
+</html>

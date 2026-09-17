@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Enlace a tu CSS -->
     <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/registro.css">
 </head>
 <body class="pagina-registro">
 
@@ -66,7 +67,7 @@
         <!-- Panel del Formulario -->
         <section class="form-panel">
             <!-- onsubmit="return envioFormulario()" ejecuta la validación en JavaScript antes de enviar los datos -->
-            <form action="" method="POST" onsubmit="return envioFormulario()">
+            <form action="" method="POST" onsubmit="return envioFormulario()" novalidate> <!-- noValidate: Desactiva la validación automática del navegador -->
                 <!-- Contenedor Grid para organizar los inputs en 2 columnas (lado a lado) -->
                 <div class="form-grid"> 
                     
@@ -77,6 +78,7 @@
                             <!-- required: Obliga al usuario a llenar este campo -->
                             <input type="text" id="txtNombre" placeholder="Freddy Campos" required>
                         </div>
+                        <span class="error-mensaje" id="errNombre"></span>
                     </div>
 
                     <div class="input-group">
@@ -86,6 +88,7 @@
                             <!-- type="email": El navegador verifica que tenga formato con '@' -->
                             <input type="email" id="txtCorreo" placeholder="freddy@ejemplo.com" required>
                         </div>
+                        <span class="error-mensaje" id="errCorreo"></span>
                     </div>
 
                     <div class="input-group">
@@ -95,6 +98,7 @@
                             <!-- type="date": Despliega el calendario automático del navegador -->
                             <input type="date" id="txtFecha" required>
                         </div>
+                        <span class="error-mensaje" id="errFecha"></span>
                     </div>
 
                     <div class="input-group">
@@ -104,6 +108,7 @@
                             <!-- No tiene la etiqueta 'required' porque es un dato opcional -->
                             <input type="email" id="txtCorreoDuoc" placeholder="alumno@duocuc.cl">
                         </div>
+                        <span class="error-mensaje" id="errCorreoDuoc"></span>
                     </div>
 
                     <div class="input-group">
@@ -113,6 +118,16 @@
                             <!-- type="password": Oculta los caracteres que el usuario escribe (puntos) -->
                             <input type="password" id="txtPass" placeholder="••••••••" required>
                         </div>
+                        <span class="error-mensaje" id="errPass"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Confirmar Contraseña</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="txtPassConfirm" placeholder="••••••••" required>
+                        </div>
+                        <span class="error-mensaje" id="errPassConfirm"></span>
                     </div>
 
                     <div class="input-group">
@@ -121,6 +136,7 @@
                             <i class="fa-solid fa-tag"></i>
                             <input type="text" id="txtCodigo" placeholder="EJE: FELICES50">
                         </div>
+                        <span class="error-mensaje" id="errCodigo"></span>
                     </div>
 
                 </div>
@@ -134,6 +150,7 @@
                     <!-- El 'for' debe ser igual al 'id' del checkbox para que al hacer clic en la letra se marque el cuadrito -->
                     <label for="chkTerminos">Acepto los Términos y Condiciones y la Política de Privacidad.</label>
                 </div>
+                <span class="error-mensaje" id="errTerminos"></span>
 
                 <!-- Botón de Envío -->
                 <button type="submit" class="btn-submit">
@@ -148,6 +165,6 @@
     </main>
 
     <!-- Enlace a tu JavaScript -->
-    <script src="js/scripts.js"></script>
+    <script src="js/registro.js"></script>
 </body>
 </html>

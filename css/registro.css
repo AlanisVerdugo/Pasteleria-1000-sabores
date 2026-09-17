@@ -242,7 +242,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .checkbox-group {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem; /* Espacio antes del botón de registro */
     margin-top: 1rem;
 }
 
@@ -258,6 +257,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 0.9rem;
     color: var(--text-primary);
     font-weight: 500;
+}
+
+/* Ajusta la separación del mensaje de error del checkbox */
+#errTerminos {
+    margin-bottom: 2rem; 
 }
 
 /* Botón de Enviar Formulario */
@@ -302,6 +306,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .login-link a:hover {
     text-decoration: underline; /* Le agrega la línea cuando se pasa el mouse */
 }
+
+/* Mensajes de error debajo de cada campo */    
+.error-mensaje {
+    display: block;
+    color: #c0392b;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 1rem;
+}
+
+
 
 /* Responsividad */
 @media (max-width: 850px) {

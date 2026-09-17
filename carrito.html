@@ -1,0 +1,238 @@
+ 
+<!-- Estructura basica HTML5 -->
+<!doctype html>
+<!-- Indica que el contnido está en español -->
+<html lang="es">
+  <!-- Cosas que el navegador necesita para mostrar la página, bootstrap -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Viewport para asegurar que la página se muestre correctamente en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título de la página en la pestaña del navegador -->
+    <title>Mi Carrito - Pastelería 1000 Sabores</title>
+ 
+    <!-- Link que da acceso a todas las clases de Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <!-- link para la fuente Pacifico y Source Sans 3, la cursiva -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- link para los iconos de Bootstrap, carrito, persona, lupa -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- link para los estilos personalizados en CSS local: estilos.css ya importa cabecera.css, pie.css y catalogo.css, así que con este único link ya tenemos todo el estilo de marca -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <!-- CSS propio de ESTA página: solo lo que es exclusivo del carrito -->
+    <link rel="stylesheet" href="css/carrito.css">
+  </head>
+ 
+ 
+  <body>
+ 
+    <!-- CABECERA: copiada tal cual de catalogo.html, mismo HTML exacto en todas las páginas -->
+    <header class="header-navbar">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="home.html">Pastelería 1000 Sabores
+            <img src="img/logo-pasteleria-1000-sabores.png" alt="Logo pasteleria 1000 sabores" class="logo-header">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+ 
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+              <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+              <li class="nav-item"><a class="nav-link" href="quienes_somos.html">Quiénes Somos</a></li>
+            </ul>
+            <div class="d-flex gap-3 align-items-center">
+              <a href="registro.html" class="icono-header"><i class="bi bi-person"></i></a>
+              <!-- "active" en el carrito porque es la página en la que estamos ahora -->
+              <a href="carrito.html" class="icono-header position-relative">
+                <i class="bi bi-cart"></i>
+                <!-- Numerito rojo con la cantidad de artículos: lo actualiza js/carrito.js -->
+                <span class="badge-carrito" id="badgeCarrito">3</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+ 
+    <!-- MAIN -->
+    <main>
+      <section class="container py-5">
+ 
+        <!-- Encabezado de la página: título a la izq, "seguir comprando" a la derecha -->
+        <div class="d-flex flex-wrap justify-content-between align-items-start mb-2">
+          <div>
+            <h1 style="font-family:'Caveat',cursive; color:#7B4B2A;">Mi Carrito</h1>
+            <p class="text-muted">Revisa tus delicias seleccionadas antes de continuar</p>
+          </div>
+          <a href="catalogo.html" class="link-seguir-comprando">
+            <i class="bi bi-arrow-left"></i> Seguir comprando
+          </a>
+        </div>
+ 
+        <hr class="my-4">
+ 
+        <div class="row g-4">
+ 
+          <!-- ===== COLUMNA IZQUIERDA: lista de productos en el carrito ===== -->
+          <div class="col-lg-8">
+ 
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="titulo-seccion-carrito mb-0">
+                Productos en tu canasta <span class="text-muted fw-normal">(<span id="cantidadArticulos">3</span> artículos)</span>
+              </h2>
+              <a href="#" class="link-vaciar" id="btnVaciarCarrito">
+                <i class="bi bi-trash"></i> Vaciar
+              </a>
+            </div>
+ 
+            <!-- Lista de items: cada uno reutiliza la clase producto-card de catalogo.css, pero en formato FILA (producto-card-fila la reacomoda) -->
+            <div id="listaCarrito" class="d-flex flex-column gap-3">
+ 
+              <!-- Item 1 -->
+              <div class="card producto-card producto-card-fila" data-precio="45000" data-cantidad="1">
+                <div class="d-flex align-items-center gap-3 p-3">
+                  <img src="img/Torta cuadrada de chocolate.jpg" alt="Torta Cuadrada de Chocolate" class="producto-carrito-img">
+                  <div class="flex-grow-1">
+                    <h3 class="producto-titulo mb-1">Torta Cuadrada de Chocolate</h3>
+                    <p class="producto-detalle mb-1">Ganache 60% cacao y trufas</p>
+                    <span class="producto-precio">$45.000</span>
+                  </div>
+                  <div class="cantidad-stepper">
+                    <button type="button" class="btn-cantidad btn-restar"><i class="bi bi-dash"></i></button>
+                    <span class="cantidad-valor">1</span>
+                    <button type="button" class="btn-cantidad btn-sumar"><i class="bi bi-plus"></i></button>
+                  </div>
+                  <button type="button" class="btn-eliminar-item" aria-label="Eliminar producto">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+ 
+              <!-- Item 2 -->
+              <div class="card producto-card producto-card-fila" data-precio="42000" data-cantidad="1">
+                <div class="d-flex align-items-center gap-3 p-3">
+                  <img src="img/Torta circular manjar.jpg" alt="Torta Circular de Manjar" class="producto-carrito-img">
+                  <div class="flex-grow-1">
+                    <h3 class="producto-titulo mb-1">Torta Circular de Manjar</h3>
+                    <p class="producto-detalle mb-1">Hojarasca crocante y manjar de campo</p>
+                    <span class="producto-precio">$42.000</span>
+                  </div>
+                  <div class="cantidad-stepper">
+                    <button type="button" class="btn-cantidad btn-restar"><i class="bi bi-dash"></i></button>
+                    <span class="cantidad-valor">1</span>
+                    <button type="button" class="btn-cantidad btn-sumar"><i class="bi bi-plus"></i></button>
+                  </div>
+                  <button type="button" class="btn-eliminar-item" aria-label="Eliminar producto">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+ 
+              <!-- Item 3 -->
+              <div class="card producto-card producto-card-fila" data-precio="5500" data-cantidad="2">
+                <div class="d-flex align-items-center gap-3 p-3">
+                  <img src="img/Tiramisu clasico.jpg" alt="Tiramisú Clásico Individual" class="producto-carrito-img">
+                  <div class="flex-grow-1">
+                    <h3 class="producto-titulo mb-1">Tiramisú Clásico Individual</h3>
+                    <p class="producto-detalle mb-1">2 unidades ($5.500 c/u)</p>
+                    <span class="producto-precio">$11.000</span>
+                  </div>
+                  <div class="cantidad-stepper">
+                    <button type="button" class="btn-cantidad btn-restar"><i class="bi bi-dash"></i></button>
+                    <span class="cantidad-valor">2</span>
+                    <button type="button" class="btn-cantidad btn-sumar"><i class="bi bi-plus"></i></button>
+                  </div>
+                  <button type="button" class="btn-eliminar-item" aria-label="Eliminar producto">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+ 
+            </div>
+ 
+            <!-- Mensaje que aparece solo cuando el carrito queda vacío -->
+            <p id="mensajeCarritoVacio" class="text-center text-muted mt-4 d-none">Tu carrito está vacío. <a href="catalogo.html">Ir al catálogo</a></p>
+ 
+          </div>
+ 
+          <!-- ===== COLUMNA DERECHA: resumen de totales ===== -->
+          <div class="col-lg-4">
+            <div class="panel-resumen">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="titulo-resumen mb-0">Resumen</h2>
+                <i class="bi bi-receipt fs-4"></i>
+              </div>
+ 
+              <div class="d-flex justify-content-between resumen-linea">
+                <span>Subtotal productos</span>
+                <span id="subtotalTexto">$98.000</span>
+              </div>
+              <div class="d-flex justify-content-between resumen-linea resumen-descuento">
+                <span>Descuento aplicado</span>
+                <span id="descuentoTexto">-$9.800</span>
+              </div>
+              <div class="d-flex justify-content-between resumen-linea">
+                <span>Despacho</span>
+                <span id="despachoTexto">$3.500</span>
+              </div>
+ 
+              <hr>
+ 
+              <div class="d-flex justify-content-between align-items-center resumen-total">
+                <div>
+                  <span class="d-block">TOTAL A PAGAR</span>
+                  <span class="resumen-iva">IVA incluido</span>
+                </div>
+                <span class="resumen-total-monto" id="totalTexto">$91.700</span>
+              </div>
+ 
+              <button type="button" class="btn-confirmar-pedido" id="btnConfirmarPedido">
+                Confirmar Pedido <i class="bi bi-arrow-right"></i>
+              </button>
+ 
+              <p class="texto-seguridad"><i class="bi bi-lock-fill"></i> Compra 100% segura y encriptada</p>
+            </div>
+          </div>
+ 
+        </div>
+      </section>
+    </main>
+ 
+    <!-- PIE DE PÁGINA: copiado tal cual de catalogo.html -->
+    <footer>
+      <div class="container footer-inner d-flex flex-wrap justify-content-between py-4">
+        <div class="footer-marca mb-4 mb-md-0">
+          <h3 class="footer-brand">Pastelería 1000 Sabores</h3>
+          <p class="footer-texto">© 2024 Pastelería 1000 Sabores - 50 Años de Tradición (1974-2024). Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
+        </div>
+        <ul class="footer-nav list-unstyled text-md-end">
+          <li><a href="#" class="footer-link">SOBRE NOSOTROS</a></li>
+          <li><a href="#" class="footer-link">CONTACTO</a></li>
+          <li><a href="#" class="footer-link">TÉRMINOS</a></li>
+          <li><a href="#" class="footer-link">PREGUNTAS FRECUENTES</a></li>
+        </ul>
+      </div>
+    </footer>
+ 
+    <!-- Script de Bootstrap: sin esto, el botón hamburguesa del menú no funciona en celular -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+ 
+    <!-- JS propio del carrito: sumar/restar, eliminar, recalcular totales -->
+    <script src="js/carrito.js"></script>
+ 
+  </body>
+</html>
+ 

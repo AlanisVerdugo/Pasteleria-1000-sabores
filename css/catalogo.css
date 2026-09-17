@@ -230,3 +230,31 @@
     /* color gris clarito, para indicar visualmente que no se puede usar */
     color: #c9beb6;
 }
+
+.producto-imagen-wrap,
+.producto-titulo-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.btn-forma.active {
+    background-color: #8B4513;
+    color: #fff;
+    border-color: #8B4513;
+}
+
+/* Evita que "Ordenar por:" y el select se corten en 2 líneas */
+.catalogo-ordenar {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+}
+
+.catalogo-ordenar span {
+    white-space: nowrap;
+}
+
+.catalogo-ordenar .form-select {
+    width: auto;
+    flex-shrink: 0;
+}
