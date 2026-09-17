@@ -69,7 +69,17 @@
     background-color: rgba(255, 192, 203, 0.3);
 } /* rosa suave semi-transparente*/
 
+/* menu dropdown */
+.dropdown-item-texto {
+    padding: 8px 16px;
+    color: #5D4037;
+    font-size: 0.85rem;
+}
 
+.dropdown-item-texto strong {
+    display: block;
+    color: #8B4513;
+}
 
 
 
