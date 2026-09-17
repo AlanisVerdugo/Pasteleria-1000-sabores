@@ -154,6 +154,7 @@
     justify-content: center;
     color: #8B4513;
     font-size: 1.3rem;
+    object-fit: cover;
 }
 
 .ped-item-titulo {
