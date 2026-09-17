@@ -69,19 +69,19 @@
                 <div class="col-lg-7">
                     <div class="ped-buscador">
                         <i class="bi bi-search"></i>
-                        <input type="text" placeholder="Buscar por código (ej: #ORD-5012) o producto..." disabled>
+                        <input type="text" id="buscadorPedidos" placeholder="Buscar por código (ej: #ORD-5012) o producto...">
                     </div>
                 </div>
-                <div class="col-lg-5 d-flex gap-2 flex-wrap">
-                    <button class="ped-filtro ped-filtro-activo" type="button">Todos (3)</button>
-                    <button class="ped-filtro" type="button">En Horno</button>
-                    <button class="ped-filtro" type="button">En Ruta</button>
-                    <button class="ped-filtro" type="button">Entregados</button>
+                <div class="col-lg-5 d-flex gap-2 flex-wrap" id="filtrosPedidos">
+                    <button class="ped-filtro ped-filtro-activo" type="button" data-filtro="todos">Todos (3)</button>
+                    <button class="ped-filtro" type="button" data-filtro="horno">En Horno</button>
+                    <button class="ped-filtro" type="button" data-filtro="ruta">En Ruta</button>
+                    <button class="ped-filtro" type="button" data-filtro="entregado">Entregados</button>
                 </div>
             </div>
 
             <!-- PEDIDO 1: En Preparación -->
-            <article class="ped-card mb-4">
+            <article class="ped-card mb-4" data-codigo="#ORD-5012" data-estado="horno">
                 <div class="ped-card-header">
                     <div class="d-flex align-items-center gap-2 flex-wrap">
                         <span class="ped-codigo">#ORD-5012</span>
@@ -144,7 +144,7 @@
             </article>
 
             <!-- PEDIDO 2: En Ruta -->
-            <article class="ped-card mb-4">
+            <article class="ped-card mb-4" data-codigo="#ORD-4981" data-estado="ruta">
                 <div class="ped-card-header">
                     <div class="d-flex align-items-center gap-2 flex-wrap">
                         <span class="ped-codigo">#ORD-4981</span>
@@ -192,7 +192,7 @@
             </article>
 
             <!-- PEDIDO 3: Entregado -->
-            <article class="ped-card">
+            <article class="ped-card" data-codigo="#ORD-4730" data-estado="entregado">
                 <div class="ped-card-header">
                     <div class="d-flex align-items-center gap-2 flex-wrap">
                         <span class="ped-codigo">#ORD-4730</span>
@@ -241,6 +241,9 @@
                     </div>
                 </div>
             </article>
+            <p class="ped-sin-resultados d-none" id="mensajeSinResultados">
+            No se encontraron pedidos que coincidan con tu búsqueda.
+            </p>
         </div>
 
         <!-- MODAL de rastreo (usa el Bootstrap ya incluido, sin JS propio) -->
@@ -296,6 +299,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <!-- script js -->
+    <script src="js/pedidos.js"></script>
 </body>
 
 </html>
