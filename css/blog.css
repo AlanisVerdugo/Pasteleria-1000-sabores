@@ -1,0 +1,169 @@
+:root {
+    --bg-crema: #fdf3e5; /*color fondo*/
+    --cafe-oscuro: #5C3A21; /*letras en cafe oscuro*/    
+    --cafe-claro: #8B5A33; /*etiqueta apartados*/ 
+    --texto-gris: #555555;       
+    --naranja-meta: #B86B1D; /*fecha*/
+    --blanco-tarjeta: #FFFFFF;   
+    --fuente-titulos: 'Pacifico', cursive; 
+    --fuente-textos: 'Quicksand', sans-serif; 
+}
+
+/* CONTENEDOR DE BLOG */
+.blog-main-container {
+    font-family: var(--fuente-textos); 
+    background-color: var(--bg-crema); 
+    padding: 4rem 0; /* '4rem' de margen interior arriba y abajo, '0' a los lados */
+    min-height: 80vh; 
+}
+
+/* TITULOS PRINCIPALES */
+.blog-intro {
+    margin-bottom: 3rem; /* Espacio de separación de parrafo con la sección de filtros de abajo */
+}
+
+.blog-intro h1 {
+    font-family: var(--fuente-titulos); /* Aplica la fuente Pacifico al título principal */
+    color: var(--cafe-oscuro);
+    font-size: 3.5rem;
+    font-weight: 400; /* Grosor de la letra normal */
+    margin-bottom: 1rem;
+}
+
+.blog-intro p {
+    color: var(--texto-gris);
+    font-size: 1.1rem;
+    line-height: 1.5; /* Altura de línea para mejorar la legibilidad del texto */
+}
+
+/* BOTONES DE FILTRO*/
+.blog-filters {
+    display: flex; /* Activa Flexbox para poner los botones en fila */
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 1rem; /* Crea un espacio uniforme entre cada botón */
+    margin-bottom: 3rem;
+    flex-wrap: wrap; /* Permite que los botones pasen a la línea de abajo si la pantalla es muy pequeña */
+}
+
+.filter-btn {
+    background-color: transparent; /* Fondo transparente por defecto */
+    color: var(--cafe-oscuro);
+    border: 2px solid transparent; 
+    font-family: var(--fuente-textos);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer; /* Cambia el cursor a "manito" al pasar por encima */
+    padding: 0.5rem 1.5rem; /* Espacio interno del botón (arriba/abajo - izquierda/derecha) */
+    border-radius: 20px; /* Redondea los bordes del botón */
+    
+    /* 'transition' hace que los cambios de color o fondo (al pasar el mouse) sean suaves y tarden 0.3 segundos */
+    transition: all 0.3s ease; 
+}
+
+/* Clase para el botón que está seleccionado */
+.filter-btn.active {
+    background-color: var(--cafe-claro);
+    color: #FFFFFF;
+}
+
+/* Estilo que se aplica cuando pasas el mouse por encima de un botón que NO está activo */
+.filter-btn:hover:not(.active) {
+    background-color: rgba(139, 90, 51, 0.1); /* Agrega un fondo café muy transparente */
+}
+
+/* GRILLA DE TARJETAS*/
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 2rem; /* Espacio entre cada tarjeta */
+}
+
+/* DISEÑO INDIVIDUAL DE LA TARJETA */
+.blog-card {
+    background-color: var(--blanco-tarjeta);
+    border-radius: 15px;
+    overflow: hidden; /* Esconde cualquier cosa que se salga de los bordes redondeados */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); /* Agrega una sombra suave debajo de la tarjeta */
+    transition: transform 0.3s ease; /* Prepara la tarjeta para una animación suave al moverla */
+}
+
+/* Al pasar el mouse por encima, la tarjeta se mueve 5 pixeles hacia arriba (eje Y) */
+.blog-card:hover {
+    transform: translateY(-5px); /*aca sube un poco*/
+}
+
+/* CONTENEDOR DE LA IMAGEN */
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 220px; /* Fija la altura del contenedor de la imagen */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+
+/* CONTENEDOR DE TEXTOS */
+.card-content {
+    padding: 1.5rem; /* Da aire alrededor del texto de la tarjeta */
+}
+
+/* META INFO (Categoría y Fecha) */
+.card-meta {
+    color: var(--naranja-meta);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase; /* Pasa todo el texto a mayúsculas automáticamente */
+    letter-spacing: 0.5px; /* Separa un poquito las letras para darle estilo */
+}
+
+/*los titulos de las tarjetas*/
+.card-title {
+    color: var(--cafe-oscuro);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+/*texto de las tarjetas*/
+.card-excerpt {
+    color: var(--texto-gris);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* autor y botón leer*/
+.card-footer {
+    display: flex; /* Para poner al autor y al enlace en la misma línea */
+    justify-content: space-between; /* Empuja el autor a la izquierda y el enlace a la derecha */
+    align-items: center; /* Los centra verticalmente */
+    border-top: 1px solid #EEEEEE; /* Agrega una pequeña línea gris separadora arriba */
+    padding-top: 1rem; /* Da espacio entre la línea gris y el texto */
+}
+
+/*texto de autor*/
+.card-author {
+    color: #888888;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/*texto leer*/
+.card-link {
+    color: var(--cafe-oscuro);
+    text-decoration: none; /* Quita el subrayado feo de los enlaces por defecto */
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: color 0.2s; /* El cambio de color del enlace tomará 0.2 segundos */
+}
+
+/* Cambia el color del enlace al pasar el mouse */
+.card-link:hover {
+    color: var(--naranja-meta);
+}

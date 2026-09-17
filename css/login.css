@@ -1,0 +1,328 @@
+/*gama de colores página en general*/
+:root {
+    --bg-color: #FEF7F2; /* Fondo de toda la pantalla (crema) */
+    --card-bg: #FFFFFF; /* Fondo de la tarjeta principal (blanco) */
+    --text-main: #4A3C31; /* Color del texto de los párrafos (gris oscuro/café) */
+    --primary-brown: #8B4513; /* Color principal (café rojizo de los títulos y botones) */
+    --primary-brown-hover: #6e360e; /* Color del botón al pasar el mouse */
+    --input-bg: #FFF2F2; /* Fondo de las cajas de texto (rosado muy clarito) */
+    --pink-badge: #FFD6DC; /* Fondo de las etiquetas superiores (rosado) */
+    --benefit-bg: #FFF8EA; /* Fondo de la tarjeta inferior (amarillo pastel) */
+    --font-text: 'Quicksand', sans-serif;
+    --font-title: 'Pacifico', cursive;
+    --btn-back: var(--primary-brown);
+}
+
+/* reseteo que limpia los márgenes que el navegador trae por defecto*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*Evita que el padding haga más anchos los elementos*/
+}
+
+
+/* estilos de fondo y centrado */
+body.login-page {
+    font-family: var(--font-text);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    
+    /* Flexbox para centrar todo el contenido vertical y horizontalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa al menos el 100% del alto de la pantalla */
+    padding: 2rem 1rem;
+}
+
+/* Envoltura para mantener todos los bloques apilados al centro */
+.login-wrapper {
+    width: 100%;
+    max-width: 480px; /* Limita el ancho para que no se estire en pantallas de PC */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Separación entre el badge, la tarjeta principal y la inferior */
+}
+
+/* Etiquetas pie de pagina*/
+/* Estilos compartidos para la etiqueta superior y la pequeña de 50 años */
+.top-badge, .badge-50 {
+    background-color: var(--pink-badge);
+    color: var(--primary-brown);
+    padding: 0.5rem 1rem;
+    border-radius: 20px; /* Bordes totalmente redondeados */
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre el ícono y el texto */
+}
+
+.footer-text {
+    font-size: 0.85rem;
+    color: #9AA0A6;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/*boton para regresar a registro*/
+.btn-back {
+    position: absolute;
+    top: 30px; /* Distancia desde arriba */
+    left: 40px; /* Distancia desde la izquierda */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre la flecha y la palabra regresar */
+    color: var(--primary-brown); /*color del "regresar"*/
+    text-decoration: none; /* quita la línea de subrayado al enlace */
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    transition: color 0.3s, transform 0.3s; /* Animación suave */
+}
+
+/* Efecto al pasar el mouse por encima */
+.btn-back:hover {
+    color: var(--btn-hover); /* Se oscurece un poco */
+    transform: translateX(-5px); /* Pequeño salto hacia la izquierda para invitar a hacer clic */
+}
+
+/* tarjeta principal (La blanca) */
+.login-card {
+    background: var(--card-bg);
+    width: 100%;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.05); /* Sombra difusa y suave */
+    position: relative; /* Necesario para poder poner la decoración de fondo */
+}
+
+/* El círculo decorativo abstracto en la esquina superior derecha de la tarjeta blanca */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: var(--benefit-bg);
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+/* Asegura que el texto quede por encima del círculo decorativo */
+.card-header, form {
+    position: relative;
+    z-index: 1; 
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.card-header h1 {
+    font-family: var(--font-title);
+    color: var(--primary-brown);
+    font-size: 2rem;
+    font-weight: 500; /* Hace el trazo de la letra más delgado (puedes probar 400 si lo quieres aún más fino) */
+    margin-bottom: 0.5rem;
+}
+
+/* Cajas de texto */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Alinea el "Correo" a la izquierda */
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.label-hint {
+    font-size: 0.8rem;
+    color: #9AA0A6;
+}
+
+/* Contenedor relativo para poder meter los íconos (absolutos) dentro del input */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/*carta, candado y ojo*/
+.input-wrapper i {
+    position: absolute;
+    color: #8C7C73;
+}
+
+.input-wrapper .icon-left {
+    left: 1rem; /* Posiciona el ícono de carta/candado */
+}
+
+.input-wrapper .icon-right {
+    right: 1rem; /* Posiciona el ícono del ojo */
+}
+
+/* Estilos de la caja donde escribe el usuario */
+.input-wrapper input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 2.8rem; 
+    background-color: var(--input-bg);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-family: var(--font-text);
+    font-size: 0.95rem;
+}
+
+/* Efecto cuando haces clic en la caja de texto (Focus) */
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--pink-badge); /* Borde rosado */
+}
+
+/* checkbox recordarme */
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Cambia el cuadro por defecto del navegador */
+.checkbox-container input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: var(--input-bg);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Cuando el usuario hace click se pone un ticket usando FontAwesome */
+.checkbox-container input[type="checkbox"]:checked::after {
+    content: '\f00c'; /* Código del ícono de Check */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 12px;
+    color: var(--primary-brown);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el ticket perfectamente */
+}
+
+.forgot-link {
+    font-size: 0.9rem;
+    color: var(--primary-brown);
+    font-weight: 700;
+    text-decoration: none; /* Quita la línea debajo del link */
+}
+
+/* boton principal de iniciar sesion*/
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-brown);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-text);
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: background-color 0.3s; /* Hace que el cambio de color al pasar el mouse sea suave */
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-brown-hover); /* Oscurece el botón al pasar el mouse */
+}
+
+.register-link {
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: var(--primary-brown);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline; /* Le agrega la línea cuando se pasa el mouse */
+}
+
+/* tarjeta de beneficios (la amarilla inferior) */
+.benefits-card {
+    background-color: var(--benefit-bg);
+    width: 100%;
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem; /* Separa el cuadrito del regalo del texto */
+    align-items: flex-start; /* Alinea los elementos arriba */
+}
+
+.benefit-icon {
+    background-color: var(--pink-badge);
+    color: var(--primary-brown);
+    width: 100px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.benefit-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.benefit-header h3 {
+    color: var(--primary-brown);
+    font-size: 1.1rem;
+}
+
+/* Modifica el cuadro del regalo */
+.regalo-box {
+    background-color: #FFD6DC;
+    /*color:*/
+}
+
+/* Modifica cuadro de Tradición & Sabor Chileno */
+.badge-tradicion {
+    background-color: #FFD6DC;
+}
+
+/* Modifica cuadro de 50 Años */
+.badge-anios {
+    background-color: #FFD6DC;
+}
+
+.error-mensaje {
+    display: block;
+    color: #c0392b;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 1rem;
+}
