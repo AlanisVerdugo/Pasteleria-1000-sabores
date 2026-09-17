@@ -39,7 +39,7 @@
             </header>
 
             <!-- Formulario de ingreso -->
-            <form action="#" method="POST">
+            <form id="formLogin" onsubmit="return iniciarSesion()" novalidate>
                 
                 <!-- Correo Electrónico -->
                 <div class="input-group">
@@ -51,6 +51,7 @@
                         <i class="fa-regular fa-envelope icon-left"></i>
                         <input type="email" id="email" placeholder="freddy@ejemplo.com" required>
                     </div>
+                    <span class="error-mensaje" id="errEmail"></span>
                 </div>
 
                 <!-- Contraseña -->
@@ -61,8 +62,9 @@
                         <i class="fa-solid fa-lock icon-left"></i>
                         <input type="password" id="password" placeholder="••••••••" required>
                         <!-- Ojo a la derecha (para el script de mostrar/ocultar clave) -->
-                    <i class="fa-regular fa-eye icon-right" style="cursor: pointer;"></i>
+                        <i class="fa-regular fa-eye icon-right" id="togglePassword" style="cursor: pointer;"></i>
                     </div>
+                    <span class="error-mensaje" id="errPassword"></span>
                 </div>
 
                 <!-- Recordarme y Link de Olvidé contraseña -->
@@ -75,6 +77,7 @@
                     <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
                 </div>
 
+                <span class="error-mensaje text-center d-block" id="errLogin"></span>
                 <!-- boton principal -->
                 <button type="submit" class="btn-primary">
                     Iniciar Sesión <i class="fa-solid fa-arrow-right"></i>
@@ -111,5 +114,6 @@
 
     </div>
 
+    <script src="js/login.js"></script>
 </body>
 </html>
