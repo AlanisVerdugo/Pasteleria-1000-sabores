@@ -1,0 +1,175 @@
+/* =========================================================
+   DETALLE-PRODUCTO.CSS
+   Estilos EXCLUSIVOS de la página de detalle de producto.
+   Header, footer, body y colores de marca ya vienen de
+   estilos.css (que importa cabecera.css, pie.css y catalogo.css).
+   ========================================================= */
+ 
+/* ===== Breadcrumb (Inicio > Tortas Artesanales > ...) ===== */
+.breadcrumb-detalle {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #8d8d8d;
+    padding: 0;
+}
+ 
+.breadcrumb-detalle li::after {
+    content: ">";
+    margin-left: 8px;
+    color: #8d8d8d;
+}
+ 
+.breadcrumb-detalle li:last-child::after {
+    content: "";
+}
+ 
+.breadcrumb-detalle a {
+    color: #8d8d8d;
+    text-decoration: none;
+}
+ 
+.breadcrumb-detalle .activo {
+    color: #7B4B2A;
+    font-weight: 600;
+}
+ 
+/* Reutiliza .badge-producto y .badge-tradicional de catalogo.css como base;
+   acá solo pisamos la posición, porque en catalogo.css viene position:absolute
+   pensado para ir ENCIMA de una foto, y acá va suelta en la fila de arriba */
+.badge-edicion {
+    position: static;
+}
+ 
+/* ===== Foto grande del producto ===== */
+.foto-producto-detalle {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    max-height: 500px;
+}
+ 
+/* ===== Textos principales ===== */
+.eyebrow-detalle {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #8d8d8d;
+    margin-bottom: 4px;
+}
+ 
+.titulo-detalle {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+ 
+.precio-detalle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #5D4037;
+    margin-bottom: 16px;
+}
+ 
+.precio-moneda {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #8d8d8d;
+}
+ 
+.descripcion-detalle {
+    color: #8d8d8d;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+ 
+.label-tamano {
+    font-weight: 700;
+    color: #5D4037;
+}
+ 
+.tamano-elegido {
+    color: #8d8d8d;
+    font-size: 0.9rem;
+}
+ 
+/* ===== Botones de tamaño (15 / 20 / 30 personas) ===== */
+.opcion-tamano {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    border-radius: 12px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+ 
+.opcion-tamano-personas {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #5D4037;
+}
+ 
+.opcion-tamano-precio {
+    font-size: 0.85rem;
+    color: #8d8d8d;
+}
+ 
+.opcion-tamano.activa {
+    background-color: #8B4513;
+    border-color: #8B4513;
+}
+ 
+.opcion-tamano.activa .opcion-tamano-personas,
+.opcion-tamano.activa .opcion-tamano-precio {
+    color: #fff;
+}
+ 
+/* ===== Selector de cantidad (- 1 +) ===== */
+.cantidad-stepper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #FFF5E1;
+    border-radius: 50px;
+    padding: 10px 18px;
+}
+ 
+.btn-cantidad {
+    background: none;
+    border: none;
+    color: #8B4513;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+ 
+.cantidad-valor {
+    font-weight: 700;
+    min-width: 16px;
+    text-align: center;
+    color: #5D4037;
+}
+ 
+/* ===== Botón "Añadir al Carrito" ===== */
+/* .btn-carrito ya trae el color café y el hover desde catalogo.css,
+   pero ahí está pensado como círculo de 40x40 para las tarjetas del catálogo.
+   Acá lo pisamos para que sea un botón ancho con texto. */
+.btn-anadir-carrito {
+    width: auto;
+    height: auto;
+    border-radius: 50px;
+    padding: 14px 24px;
+    font-weight: 700;
+    gap: 8px;
+}
+ 
+.info-extra-detalle {
+    font-size: 0.85rem;
+    color: #8d8d8d;
+}
+ 
