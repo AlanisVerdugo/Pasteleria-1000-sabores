@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <!-- Asegura que la página se vea bien en celulares-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Pastelería 1000 Sabores</title>
+    
+    <!-- Importación de las tipografías desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- Importación de FontAwesome para los íconos (candados, correos, etc.) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Conexión a tu archivo de estilos específico para esta vista -->
+    <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="login-page">
+
+        <!-- flecha para regresar-->
+    <a href="registro.html" class="btn-back">
+        <i class="fa-solid fa-arrow-left"></i> Regresar
+    </a>
+
+    <div class="login-wrapper">
+        
+        <div class="top-badge badge-tradicion">
+            <i class="fa-solid fa-cake-candles"></i> TRADICIÓN & SABOR CHILENO
+        </div>
+
+        <!-- TARJETA BLANCA PRINCIPAL: Contiene título y formulario -->
+        <main class="login-card">
+            
+            <!-- Cabecera de la tarjeta -->
+            <header class="card-header">
+                <h1>Iniciar Sesión</h1>
+                <p>Bienvenido nuevamente a <strong>Pastelería 1000 Sabores</strong>. Disfruta de la dulzura tradicional y tus beneficios exclusivos.</p>
+            </header>
+
+            <!-- Formulario de ingreso -->
+            <form action="#" method="POST">
+                
+                <!-- Correo Electrónico -->
+                <div class="input-group">
+                    <div class="label-row">
+                        <label for="email">Correo Electrónico</label>
+                    </div>
+                    <!-- Envoltura para poder posicionar el ícono de la carta dentro de la caja de texto -->
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope icon-left"></i>
+                        <input type="email" id="email" placeholder="freddy@ejemplo.com" required>
+                    </div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <div class="input-wrapper">
+                        <!-- Candado a la izquierda -->
+                        <i class="fa-solid fa-lock icon-left"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <!-- Ojo a la derecha (para el script de mostrar/ocultar clave) -->
+                    <i class="fa-regular fa-eye icon-right" style="cursor: pointer;"></i>
+                    </div>
+                </div>
+
+                <!-- Recordarme y Link de Olvidé contraseña -->
+                <div class="options-row">
+                    <div class="checkbox-container">
+                        <!-- Checkbox personalizado -->
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Recordarme</label>
+                    </div>
+                    <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                </div>
+
+                <!-- boton principal -->
+                <button type="submit" class="btn-primary">
+                    Iniciar Sesión <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <!-- link al registro-->
+                <div class="register-link">
+                    ¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a>
+                </div>
+            </form>
+        </main>
+
+        <!-- tarjeta amarilla inferior Muestra los beneficios -->
+        <div class="benefits-card">
+            <!-- Cuadrado rosado con el ícono de regalo -->
+            <div class="benefit-icon regalo-box">
+                <i class="fa-solid fa-gift"></i>
+            </div>
+            <!-- Contenedor del texto del beneficio -->
+            <div class="benefit-content">
+                <div class="benefit-header">
+                    <h3>Beneficios Activos</h3>
+                    <!-- Etiqueta de "50 AÑOS" -->
+                    <span class="badge-50 badge-anios">50 AÑOS</span>
+                </div>
+                <p>Recuerda: <strong>50% de descuento</strong> para adultos mayores de 50 años y convenios especiales para la comunidad <strong>Duoc UC</strong> con tu correo institucional.</p>
+            </div>
+        </div>
+
+        <!-- TEXTO DEL PIE DE PÁGINA -->
+        <footer class="footer-text">
+            <i class="fa-solid fa-bread-slice"></i> RECETAS ARTESANALES DESDE 1974
+        </footer>
+
+    </div>
+
+</body>
+</html>
