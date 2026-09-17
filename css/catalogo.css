@@ -230,3 +230,10 @@
     /* color gris clarito, para indicar visualmente que no se puede usar */
     color: #c9beb6;
 }
+
+.producto-imagen-wrap,
+.producto-titulo-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
