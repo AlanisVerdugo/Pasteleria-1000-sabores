@@ -318,3 +318,11 @@ body.login-page {
 .badge-anios {
     background-color: #FFD6DC;
 }
+
+.error-mensaje {
+    display: block;
+    color: #c0392b;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 1rem;
+}
