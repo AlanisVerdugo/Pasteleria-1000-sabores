@@ -1,0 +1,281 @@
+
+
+.bol-seccion {
+    padding: 40px 0;
+}
+
+.bol-wrapper {
+    max-width: 840px;
+    margin: 0 auto;
+}
+
+/* ===== BARRA DE ACCIONES ===== */
+.bol-check {
+    color: #81515A;
+    font-size: 1.3rem;
+}
+
+.bol-titulo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2c160e;
+}
+
+.bol-folio {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #81515A;
+    font-weight: 600;
+}
+
+.bol-btn-outline {
+    background-color: #FFFFFF;
+    border: 1px solid #EBE2CE;
+    color: #5D4037;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bol-btn-primario {
+    background-color: #8B4513;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+/* ===== DOCUMENTO ===== */
+.bol-doc {
+    background-color: #FFFFFF;
+    border: 1px solid #EBE2CE;
+    border-radius: 12px;
+    padding: 40px;
+}
+
+.bol-doc-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #EBE2CE;
+    margin-bottom: 24px;
+}
+
+.bol-marca {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 1.8rem;
+    display: block;
+}
+
+.bol-eslogan {
+    color: #5D4037;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.bol-direccion {
+    color: #8d8d8d;
+    font-size: 0.8rem;
+}
+
+.bol-rut-box {
+    border: 1px solid rgba(139, 69, 19, 0.3);
+    border-radius: 8px;
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 210px;
+    background-color: #FFF8F6;
+}
+
+.bol-rut {
+    color: #8B4513;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.bol-tipo-doc {
+    color: #2c160e;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.bol-folio-grande {
+    color: #8B4513;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.bol-sii {
+    font-size: 10px;
+    color: #8d8d8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ===== DATOS RECEPTOR / COMPRA ===== */
+.bol-datos {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #EBE2CE;
+    margin-bottom: 24px;
+}
+
+.bol-label-seccion {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #877369;
+    margin-bottom: 10px;
+}
+
+.bol-dato-fuerte {
+    color: #2c160e;
+    font-weight: 600;
+}
+
+.bol-dato {
+    color: #5D4037;
+    font-size: 0.9rem;
+}
+
+.bol-dato-chico {
+    color: #8d8d8d;
+    font-size: 0.8rem;
+}
+
+.bol-mono {
+    font-family: monospace;
+    color: #2c160e;
+    font-weight: 600;
+}
+
+.bol-mono-chico {
+    font-family: monospace;
+    color: #877369;
+    font-size: 0.75rem;
+}
+
+.bol-tag {
+    display: inline-block;
+    background-color: rgba(255, 192, 203, 0.5);
+    color: #7a4a54;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+/* ===== TABLA ===== */
+.bol-tabla-wrap {
+    margin-bottom: 20px;
+}
+
+.bol-tabla thead th {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    color: #877369;
+    border-bottom: 1px solid #EBE2CE;
+    padding-bottom: 8px;
+}
+
+.bol-tabla tbody td {
+    padding: 14px 8px;
+    border-bottom: 1px solid #FFF1ED;
+    vertical-align: top;
+}
+
+/* ===== TOTALES ===== */
+.bol-totales {
+    width: 100%;
+    max-width: 300px;
+    border-top: 1px solid #EBE2CE;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bol-descuento {
+    color: #81515A;
+}
+
+.bol-total-final {
+    border-top: 1px solid #EBE2CE;
+    padding-top: 10px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #8B4513;
+}
+
+/* ===== TIMBRE ELECTRÓNICO ===== */
+.bol-timbre {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #EBE2CE;
+    font-size: 0.8rem;
+}
+
+.bol-codigo-barra {
+    font-family: monospace;
+    font-size: 11px;
+    color: #877369;
+    background-color: #FFF8F6;
+    border: 1px solid #EBE2CE;
+    border-radius: 6px;
+    padding: 6px 12px;
+    align-self: center;
+}
+
+.bol-despedida {
+    text-align: center;
+    color: #8d8d8d;
+    font-size: 0.8rem;
+    margin: 20px 0 0;
+}
+
+/* ===== IMPRESIÓN: oculta header/footer/botones al imprimir ===== */
+@media print {
+    header, footer, .bol-seccion .d-flex.justify-content-between {
+        display: none !important;
+    }
+    .bol-doc {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
