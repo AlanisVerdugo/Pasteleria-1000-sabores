@@ -1,0 +1,176 @@
+/* =========================================================
+   CARRITO.CSS
+   Estilos EXCLUSIVOS de la página del carrito.
+   El header, footer, body, .producto-card, colores de marca,
+   etc. YA vienen de estilos.css (que importa cabecera.css,
+   pie.css y catalogo.css) — acá solo agregamos lo que le falta
+   a esta página en particular.
+   ========================================================= */
+ 
+/* ===== Numerito rojo sobre el ícono del carrito en el header ===== */
+/* Nota para el equipo: si más adelante el carrito se usa en TODAS
+   las páginas (no solo acá), esta regla debería moverse a cabecera.css
+   para no repetirla en cada CSS de página. */
+   
+.badge-carrito {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #B23A55;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+/* ===== Link "Seguir comprando" ===== */
+.link-seguir-comprando {
+    color: #8B4513;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+ 
+.link-seguir-comprando:hover {
+    text-decoration: underline;
+}
+ 
+.titulo-seccion-carrito {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #5D4037;
+}
+ 
+.link-vaciar {
+    color: #B23A55;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+ 
+/* ===== Variante de .producto-card en formato FILA en vez de grilla ===== */
+/* .producto-card ya trae border-radius, sombra y hover desde catalogo.css;
+   acá solo pisamos lo necesario para que se vea como fila horizontal */
+.producto-card-fila {
+    width: 100%;
+}
+ 
+.producto-carrito-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+ 
+/* ===== Selector de cantidad (- 1 +) ===== */
+.cantidad-stepper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #FFF5E1;
+    border-radius: 50px;
+    padding: 4px 10px;
+    flex-shrink: 0;
+}
+ 
+.btn-cantidad {
+    background: none;
+    border: none;
+    color: #8B4513;
+    font-size: 1rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+ 
+.cantidad-valor {
+    min-width: 16px;
+    text-align: center;
+    font-weight: 700;
+    color: #5D4037;
+}
+ 
+.btn-eliminar-item {
+    background: none;
+    border: none;
+    color: #B23A55;
+    font-size: 1.1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+ 
+/* ===== Panel de Resumen (columna derecha) ===== */
+.panel-resumen {
+    background-color: #FADCE0;
+    border-radius: 16px;
+    padding: 28px;
+    position: sticky;
+    top: 90px;
+}
+ 
+.titulo-resumen {
+    font-family: 'Pacifico', cursive;
+    color: #7B4B2A;
+    font-size: 1.4rem;
+}
+ 
+.resumen-linea {
+    font-size: 0.95rem;
+    color: #5D4037;
+    padding: 6px 0;
+}
+ 
+.resumen-descuento span:last-child {
+    color: #B23A55;
+    font-weight: 600;
+}
+ 
+.resumen-total {
+    font-size: 0.95rem;
+    margin: 12px 0 20px 0;
+}
+ 
+.resumen-iva {
+    font-size: 0.75rem;
+    color: #8d8d8d;
+}
+ 
+.resumen-total-monto {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #7B4B2A;
+}
+ 
+.btn-confirmar-pedido {
+    width: 100%;
+    background-color: #8B4513;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: background-color 0.2s ease;
+}
+ 
+.btn-confirmar-pedido:hover {
+    background-color: #6b3410;
+}
+ 
+.texto-seguridad {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #8d8d8d;
+    margin-top: 14px;
+    margin-bottom: 0;
+}
+ 
