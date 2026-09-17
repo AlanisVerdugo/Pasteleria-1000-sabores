@@ -211,47 +211,57 @@
             <!-- GRILLA DE CARDS: 1 columna en mobile, 2 en tablet (md), 3 en pantallas extra grandes (xl); g-4 = espacio entre cards -->
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
               <!-- Columna de Bootstrap: "col" reparte el ancho disponible según row-cols-1/md-2/xl-3 definido en el row -->
-              <div class="col">
-                <!-- card: componente de Bootstrap para tarjetas. producto-card: nuestras reglas personalizadas (bordes, sombra, hover). h-100: fuerza que todas las tarjetas midan lo mismo de alto aunque el texto varíe -->
+              <div class="col" data-categoria="tortas-cuadradas">
                 <div class="card producto-card h-100">
 
-                  <!-- Contenedor de la imagen. producto-imagen-wrap: la clase que definimos con position:relative, necesaria para que la etiqueta flote encima -->
-                  <div class="producto-imagen-wrap">
-                    <!-- La foto del producto. card-img-top: clase de Bootstrap para que ocupe todo el ancho arriba de la tarjeta. alt: texto alternativo por accesibilidad -->
-                    <img src="img/Torta cuadrada de chocolate.jpg" class="card-img-top" alt="Torta Cuadrada de Chocolate">
-                    <!-- La etiqueta flotante. badge-producto: forma y posición. badge-tradicional: el color específico para esta categoría -->
-                    <span class="badge-producto badge-tradicional">Tradicional</span>
-                  </div>
+                  <!-- Antes esta línea era solo <div class="producto-imagen-wrap">.
+                      La cambiamos por un <a> para que TODO lo que está adentro
+                      (la foto y la etiqueta) se pueda hacer clic y funcione como link.
+                      href="detalle-producto.html": a qué página te lleva al hacer clic.
+                      class="producto-imagen-wrap": mantenemos la MISMA clase que ya tenía
+                      el div, para no perder ningún estilo (position:relative, bordes, etc.) -->
+                  <a href="detalle-producto.html" class="producto-imagen-wrap">
 
-                  <!-- card-body: clase de Bootstrap para el área de texto de la tarjeta. d-flex flex-column: para poder empujar precio/botón hacia abajo con mt-auto -->
+                    <!-- La imagen del producto, sin ningún cambio -->
+                    <img src="img/Torta cuadrada de chocolate.jpg" class="card-img-top" alt="Torta Cuadrada de Chocolate">
+
+                    <!-- La etiqueta "Tradicional" flotando sobre la imagen, sin ningún cambio -->
+                    <span class="badge-producto badge-tradicional">Tradicional</span>
+
+                  <!-- Cerramos el <a> que abrimos arriba. OJO: como cambiamos el div de apertura
+                      por un <a>, el cierre también tiene que cambiar de </div> a </a>,
+                      si no, el navegador se confunde con las etiquetas -->
+                  </a>
+
                   <div class="card-body d-flex flex-column">
 
-                    <!-- Nombre del producto. producto-titulo: nuestra clase para el color café y negrita -->
-                    <h3 class="producto-titulo">Torta Cuadrada de Chocolate</h3>
+                    <!-- Nuevo <a> que envuelve SOLO el título (el h3), para que el nombre
+                        del producto también sea clickeable y lleve al mismo detalle.
+                        class="producto-titulo-link": una clase nueva que creamos para
+                        poder pisarle el estilo de "link azul subrayado" en el CSS -->
+                    <a href="detalle-producto.html" class="producto-titulo-link">
+                      <h3 class="producto-titulo">Torta Cuadrada de Chocolate</h3>
+                    </a>
 
-                    <!-- Detalle del producto (personas + descripción corta). producto-detalle: texto gris chico -->
                     <p class="producto-detalle">20 Personas &bull; Bizcocho húmedo</p>
 
-                    <!-- mt-auto empuja este bloque hasta el fondo de la tarjeta (por el flex-column de arriba). d-flex justify-content-between: precio a la izq, botón a la derecha -->
                     <div class="mt-auto d-flex justify-content-between align-items-center">
-                      <!-- Precio del producto. producto-precio: nuestra clase para tamaño grande y negrita -->
                       <span class="producto-precio">$45.000</span>
-                      <!-- Botón circular del carrito. btn-carrito: nuestra clase. El ícono viene de Bootstrap Icons (bi bi-cart-fill) -->
+
+                      <!-- Este botón NO lo tocamos: queda exactamente igual que antes,
+                          fuera de cualquier <a>, para que no genere conflicto
+                          (un botón no puede ir DENTRO de un link) -->
                       <button class="btn-carrito" type="button"><i class="bi bi-cart-fill"></i></button>
                     </div>
 
-                    <!-- Fila inferior: comentarios a la izq, compartir a la derecha. producto-footer: solo para separar el margen de los íconos -->
+                    <!-- El resto de la tarjeta (comentarios, compartir) sigue igual, sin cambios -->
                     <div class="d-flex justify-content-between align-items-center producto-footer mt-2">
-                      <!-- Ícono de comentario (bi-chat) + número de comentarios -->
                       <span class="text-muted small"><i class="bi bi-chat"></i> 12</span>
-                      <!-- Link de compartir con su ícono (bi-share) -->
                       <a href="#" class="text-muted small text-decoration-none"><i class="bi bi-share"></i> Compartir</a>
                     </div>
 
                   </div>
-                  <!-- Cierra card-body -->
                 </div>
-                <!-- Cierra card producto-card -->
               </div>
               <!-- Cierra col -->
 
