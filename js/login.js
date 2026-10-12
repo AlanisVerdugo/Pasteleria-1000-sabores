@@ -10,12 +10,19 @@ function iniciarSesion() {
     const email = document.getElementById('email');
     const password = document.getElementById('password');
     const recordarme = document.getElementById('remember');
+    const edad = document.getElementById('edad')
 
     // Validación: correo obligatorio
     if (email.value.trim() === '') {
         document.getElementById('errEmail').textContent = 'El correo es obligatorio.';
         esValido = false;
     }
+
+    if (edad.value < 18) {
+        document.getElementById('errEdad').textContent = 'No es mayor de edad';
+        esValido = false;
+    }
+
 
     // Validación: contraseña obligatoria
     if (password.value === '') {
