@@ -8,7 +8,7 @@ function Cabecera() {
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
                         <a className="navbar-brand d-flex align-items-center gap-2" href="home.html"> Pastelería 1000 Sabores
-                            <img src="img/logo-pasteleria-1000-sabores.png" alt="Logo pasteleria 1000 sabores" className="logo-header"/>
+                            <img src="/img/logo-pasteleria-1000-sabores.png" alt="Logo pasteleria 1000 sabores" className="logo-header"/>
                         </a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                             <span className="navbar-toggler-icon"></span>
