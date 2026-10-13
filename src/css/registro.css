@@ -1,5 +1,5 @@
 /*gama de colores página en general*/
-:root {
+.pagina-registro {
     --bg-color: #fdf5eb;
     --text-primary: #5c4331;
     --text-secondary: #7a6658;
@@ -14,7 +14,7 @@
     --icon-red: #a84f4f;
 }
 
-body.pagina-registro {
+.pagina-registro {
     background-color: var(--bg-color); 
     font-family: 'quicksand', sans-serif; /*tipografía principal*/
     color: var(--text-primary);
