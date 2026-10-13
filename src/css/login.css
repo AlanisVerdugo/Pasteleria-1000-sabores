@@ -32,7 +32,7 @@
 }
 
 /* Envoltura para mantener todos los bloques apilados al centro */
-.login-wrapper {
+.login-page .login-wrapper {
     width: 100%;
     max-width: 480px; /* Limita el ancho para que no se estire en pantallas de PC */
     display: flex;
@@ -43,7 +43,7 @@
 
 /* Etiquetas pie de pagina*/
 /* Estilos compartidos para la etiqueta superior y la pequeña de 50 años */
-.top-badge, .badge-50 {
+.login-page .top-badge, .login-page .badge-50 {
     background-color: var(--pink-badge);
     color: var(--primary-brown);
     padding: 0.5rem 1rem;
@@ -55,7 +55,7 @@
     gap: 0.5rem; /* Espacio entre el ícono y el texto */
 }
 
-.footer-text {
+.login-page .footer-text {
     font-size: 0.85rem;
     color: #9AA0A6;
     font-weight: 600;
@@ -64,7 +64,7 @@
 }
 
 /*boton para regresar a registro*/
-.btn-back {
+.login-page .btn-back {
     position: absolute;
     top: 30px; /* Distancia desde arriba */
     left: 40px; /* Distancia desde la izquierda */
@@ -80,13 +80,13 @@
 }
 
 /* Efecto al pasar el mouse por encima */
-.btn-back:hover {
+.login-page .btn-back:hover {
     color: var(--btn-hover); /* Se oscurece un poco */
     transform: translateX(-5px); /* Pequeño salto hacia la izquierda para invitar a hacer clic */
 }
 
 /* tarjeta principal (La blanca) */
-.login-card {
+.login-page .login-card {
     background: var(--card-bg);
     width: 100%;
     border-radius: 20px;
@@ -96,7 +96,7 @@
 }
 
 /* El círculo decorativo abstracto en la esquina superior derecha de la tarjeta blanca */
-.login-card::before {
+.login-page .login-card::before {
     content: '';
     position: absolute;
     top: -50px;
@@ -110,17 +110,17 @@
 }
 
 /* Asegura que el texto quede por encima del círculo decorativo */
-.card-header, form {
+.login-page .card-header, .login-page form {
     position: relative;
     z-index: 1; 
 }
 
-.card-header {
+.login-page .card-header {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.card-header h1 {
+.login-page .card-header h1 {
     font-family: var(--font-title);
     color: var(--primary-brown);
     font-size: 2rem;
@@ -129,46 +129,50 @@
 }
 
 /* Cajas de texto */
-.input-group {
+.login-page .input-group {
     margin-bottom: 1.5rem;
+    /* Bootstrap también tiene una clase .input-group que pone todo en fila;
+       con esto el texto queda arriba y la caja abajo */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Alinea el "Correo" a la izquierda */
-.label-row {
+.login-page .label-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 0.5rem;
 }
 
-.label-hint {
+.login-page .label-hint {
     font-size: 0.8rem;
     color: #9AA0A6;
 }
 
 /* Contenedor relativo para poder meter los íconos (absolutos) dentro del input */
-.input-wrapper {
+.login-page .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
 }
 
 /*carta, candado y ojo*/
-.input-wrapper i {
+.login-page .input-wrapper i {
     position: absolute;
     color: #8C7C73;
 }
 
-.input-wrapper .icon-left {
+.login-page .input-wrapper .icon-left {
     left: 1rem; /* Posiciona el ícono de carta/candado */
 }
 
-.input-wrapper .icon-right {
+.login-page .input-wrapper .icon-right {
     right: 1rem; /* Posiciona el ícono del ojo */
 }
 
 /* Estilos de la caja donde escribe el usuario */
-.input-wrapper input {
+.login-page .input-wrapper input {
     width: 100%;
     padding: 1rem 1rem 1rem 2.8rem; 
     background-color: var(--input-bg);
@@ -179,27 +183,27 @@
 }
 
 /* Efecto cuando haces clic en la caja de texto (Focus) */
-.input-wrapper input:focus {
+.login-page .input-wrapper input:focus {
     outline: none;
     border-color: var(--pink-badge); /* Borde rosado */
 }
 
 /* checkbox recordarme */
-.options-row {
+.login-page .options-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
 }
 
-.checkbox-container {
+.login-page .checkbox-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
 /* Cambia el cuadro por defecto del navegador */
-.checkbox-container input[type="checkbox"] {
+.login-page .checkbox-container input[type="checkbox"] {
     appearance: none;
     width: 18px;
     height: 18px;
@@ -210,7 +214,7 @@
 }
 
 /* Cuando el usuario hace click se pone un ticket usando FontAwesome */
-.checkbox-container input[type="checkbox"]:checked::after {
+.login-page .checkbox-container input[type="checkbox"]:checked::after {
     content: '\f00c'; /* Código del ícono de Check */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
@@ -222,7 +226,7 @@
     transform: translate(-50%, -50%); /* Centra el ticket perfectamente */
 }
 
-.forgot-link {
+.login-page .forgot-link {
     font-size: 0.9rem;
     color: var(--primary-brown);
     font-weight: 700;
@@ -230,7 +234,7 @@
 }
 
 /* boton principal de iniciar sesion*/
-.btn-primary {
+.login-page .btn-primary {
     width: 100%;
     padding: 1rem;
     background-color: var(--primary-brown);
@@ -245,27 +249,27 @@
     transition: background-color 0.3s; /* Hace que el cambio de color al pasar el mouse sea suave */
 }
 
-.btn-primary:hover {
+.login-page .btn-primary:hover {
     background-color: var(--primary-brown-hover); /* Oscurece el botón al pasar el mouse */
 }
 
-.register-link {
+.login-page .register-link {
     text-align: center;
     font-size: 0.95rem;
 }
 
-.register-link a {
+.login-page .register-link a {
     color: var(--primary-brown);
     font-weight: 700;
     text-decoration: none;
 }
 
-.register-link a:hover {
+.login-page .register-link a:hover {
     text-decoration: underline; /* Le agrega la línea cuando se pasa el mouse */
 }
 
 /* tarjeta de beneficios (la amarilla inferior) */
-.benefits-card {
+.login-page .benefits-card {
     background-color: var(--benefit-bg);
     width: 100%;
     border-radius: 15px;
@@ -275,7 +279,7 @@
     align-items: flex-start; /* Alinea los elementos arriba */
 }
 
-.benefit-icon {
+.login-page .benefit-icon {
     background-color: var(--pink-badge);
     color: var(--primary-brown);
     width: 100px;
@@ -287,35 +291,35 @@
     font-size: 1.2rem;
 }
 
-.benefit-header {
+.login-page .benefit-header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-.benefit-header h3 {
+.login-page .benefit-header h3 {
     color: var(--primary-brown);
     font-size: 1.1rem;
 }
 
 /* Modifica el cuadro del regalo */
-.regalo-box {
+.login-page .regalo-box {
     background-color: #FFD6DC;
     /*color:*/
 }
 
 /* Modifica cuadro de Tradición & Sabor Chileno */
-.badge-tradicion {
+.login-page .badge-tradicion {
     background-color: #FFD6DC;
 }
 
 /* Modifica cuadro de 50 Años */
-.badge-anios {
+.login-page .badge-anios {
     background-color: #FFD6DC;
 }
 
-.error-mensaje {
+.login-page .error-mensaje {
     display: block;
     color: #c0392b;
     font-size: 0.8rem;
