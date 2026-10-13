@@ -1,5 +1,5 @@
 /*gama de colores página en general*/
-:root {
+.login-page {
     --bg-color: #FEF7F2; /* Fondo de toda la pantalla (crema) */
     --card-bg: #FFFFFF; /* Fondo de la tarjeta principal (blanco) */
     --text-main: #4A3C31; /* Color del texto de los párrafos (gris oscuro/café) */
@@ -13,16 +13,11 @@
     --btn-back: var(--primary-brown);
 }
 
-/* reseteo que limpia los márgenes que el navegador trae por defecto*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /*Evita que el padding haga más anchos los elementos*/
-}
+/* el reseteo (* { margin: 0 ... }) ya está en estilos.css, que se carga para toda la app */
 
 
 /* estilos de fondo y centrado */
-body.login-page {
+.login-page {
     font-family: var(--font-text);
     background-color: var(--bg-color);
     color: var(--text-main);
@@ -33,6 +28,7 @@ body.login-page {
     align-items: center;
     min-height: 100vh; /* Ocupa al menos el 100% del alto de la pantalla */
     padding: 2rem 1rem;
+    position: relative; /* para que el botón "Regresar" se ubique dentro de esta página */
 }
 
 /* Envoltura para mantener todos los bloques apilados al centro */
