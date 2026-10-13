@@ -15,10 +15,10 @@ function Cabecera() {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
-                                <li className="nav-item"><a className="nav-link active" href="home.html">Home</a></li>
-                                <li className="nav-item"><a className="nav-link" href="catalogo.html">Catálogo</a></li>
-                                <li className="nav-item"><a className="nav-link" href="blog.html">Blog</a></li>
-                                <li className="nav-item"><a className="nav-link" href="quienes_somos.html">Quiénes Somos</a></li>
+                                <li className="nav-item"><a className="nav-link active" href="/">Home</a></li>
+                                <li className="nav-item"><a className="nav-link" href="/catalogo">Catálogo</a></li>
+                                <li className="nav-item"><a className="nav-link" href="/blog">Blog</a></li>
+                                <li className="nav-item"><a className="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
                             </ul>
 
 
@@ -32,7 +32,7 @@ function Cabecera() {
 
                                     </ul>
                                 </div>
-                                <a href="carrito.html" className="icono-header"><i className="bi bi-cart"></i></a>
+                                <a href="/carrito" className="icono-header"><i className="bi bi-cart"></i></a>
                             </div>
                         </div>
                     </div>
