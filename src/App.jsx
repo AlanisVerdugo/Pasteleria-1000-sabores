@@ -7,6 +7,10 @@ import Cabecera from './components/Cabecera';
 //paginas
 import Home from './pages/Home';
 import Boletas from './pages/Boletas';
+import Blog from './pages/Blog';
+import Carrito from './pages/Carrito';
+import Catalogo from './pages/Catalogo';
+import DetalleProducto from './pages/DetalleProducto';
 import Login from './pages/Login';
 import Pedidos from './pages/Pedidos';
 import QuienesSomos from './pages/QuienesSomos';
@@ -21,15 +25,15 @@ function App() {
       <Cabecera/>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/catalogo" element={<Home/>} />
-        <Route path="/blog" element={<Home/>} />
-        <Route path="/quienes-somos" element={<QuienesSomos/>} />
-        <Route path="/carrito" element={<Home/>} />
+        <Route path="/catalogo" element={<Catalogo/>} />
+        <Route path="/blog" element={<Blog/>} />
+        <Route path="/quienes-somos" element={<Home/>} />
+        <Route path="/carrito" element={<Carrito/>} />
         <Route path="/boletas" element={<Boletas/>} />
-        <Route path="/detalle-producto" element={<Home/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/pedidos" element={<Pedidos/>} />
-        <Route path="/registro" element={<Registro/>} />
+        <Route path="/detalle-producto" element={<DetalleProducto/>} />
+        <Route path="/login" element={<Home/>} />
+        <Route path="/pedidos" element={<Home/>} />
+        <Route path="/registro" element={<Home/>} />
       </Routes>  
 
       <Pie/>
