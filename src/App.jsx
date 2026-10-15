@@ -11,6 +11,10 @@ import Blog from './pages/Blog';
 import Carrito from './pages/Carrito';
 import Catalogo from './pages/Catalogo';
 import DetalleProducto from './pages/DetalleProducto';
+import Login from './pages/Login';
+import Pedidos from './pages/Pedidos';
+import QuienesSomos from './pages/QuienesSomos';
+import Registro from './pages/Registro';
 
 import { Routes, Route } from 'react-router-dom';
 
