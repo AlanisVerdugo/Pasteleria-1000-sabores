@@ -1,5 +1,5 @@
 /*gama de colores página en general*/
-:root {
+.pagina-registro {
     --bg-color: #fdf5eb;
     --text-primary: #5c4331;
     --text-secondary: #7a6658;
@@ -14,7 +14,7 @@
     --icon-red: #a84f4f;
 }
 
-body.pagina-registro {
+.pagina-registro {
     background-color: var(--bg-color); 
     font-family: 'quicksand', sans-serif; /*tipografía principal*/
     color: var(--text-primary);
@@ -28,21 +28,21 @@ body.pagina-registro {
 }
 
 /* Iconos de fondo decorativos */
-.bg-decor {
+.pagina-registro .bg-decor {
     position: absolute; /* Los saca del flujo normal para dejarlos libres en el fondo */
     opacity: 0.15; /* Los hace más opacos*/
     z-index: -1; /* Los envía al fondo de la página */
     color: var(--title-color);
 }
 /*pancito*/
-.bg-top-left {
+.pagina-registro .bg-top-left {
     top: 60px;
     left: 50px;
     font-size: 150px; /*tamaño*/
     transform: rotate(15deg);
 }
 /*pastel*/
-.bg-bottom-right {
+.pagina-registro .bg-bottom-right {
     bottom: 40px;
     right: 50px;
     font-size: 150px; /*tamaño*/
@@ -50,7 +50,7 @@ body.pagina-registro {
 }
 
 /*boton para regresar a home*/
-.btn-back {
+.pagina-registro .btn-back {
     position: absolute;
     top: 30px; /* Distancia desde arriba */
     left: 40px; /* Distancia desde la izquierda */
@@ -67,19 +67,19 @@ body.pagina-registro {
 }
 
 /* Efecto al pasar el mouse por encima */
-.btn-back:hover {
+.pagina-registro .btn-back:hover {
     color: var(--btn-hover);      /* Se oscurece un poco */
     transform: translateX(-5px);  /* Pequeño salto hacia la izquierda para invitar a hacer clic */
 }
 
 /* Cabecera */
-.header-container {
+.pagina-registro .header-container {
     text-align: center;
     max-width: 750px;
     margin-bottom: 2.5rem; /* Separación entre el texto y el panel de abajo */
 }
 
-.header-container h1 {
+.pagina-registro .header-container h1 {
     font-size: 2.2 rem; /*cambia el tamaño de "únete a la familia*/
     font-weight: 400; /*cambia el grosor de "únete a la familia*/
     margin-bottom: 0.8rem; /* Separación con el párrafo inferior */
@@ -87,7 +87,7 @@ body.pagina-registro {
     font-family: 'Pacifico', cursive;
 }
 
-.header-container p {
+.pagina-registro .header-container p {
     font-size: 1.15rem; /*cambia el texto debajo del titulo*/
     color: var(--text-secondary);
     line-height: 1.6; /* Altura o separación entre líneas de texto */
@@ -98,6 +98,8 @@ body.pagina-registro {
 /* Tarjeta Principal — scoped para no pisar .card de Bootstrap en otras páginas */
 .pagina-registro .card {
     display: flex; /* Coloca el panel izquierdo y derecho uno al lado del otro */
+    flex-direction: row; /* Bootstrap tiene su propia clase .card que los pone uno debajo del otro */
+    border: none; /* quita el borde que le agrega Bootstrap a .card */
     background: var(--panel-right-bg);
     border-radius: 12px; /* Redondea las esquinas*/
     box-shadow: 0 15px 35px rgba(138, 72, 28, 0.08); /* Aplica la sombra suave */
@@ -111,13 +113,13 @@ body.pagina-registro {
 }
 
 /* Panel Izquierdo (Beneficios) */
-.benefits-panel {
+.pagina-registro .benefits-panel {
     background-color: var(--panel-left-bg);
     padding: 3rem 2.5rem; /* espaciado interno (arriba/abajo y los lados) */
     width: 35%;
 }
 
-.benefits-panel h2 {
+.pagina-registro .benefits-panel h2 {
     color: var(--title-color);
     font-size: 1.1rem;
     font-weight: 600;
@@ -125,13 +127,13 @@ body.pagina-registro {
 }
 
 /* Cada bloque individual de beneficio */
-.benefit-item {
+.pagina-registro .benefit-item {
     display: flex;
     margin-bottom: 1.8rem;
     align-items: flex-start;
 }
 
-.benefit-icon {
+.pagina-registro .benefit-icon {
     background-color: var(--icon-bg);
     color: var(--icon-red);
     border-radius: 50%; /* lo hace redondo */
@@ -145,14 +147,14 @@ body.pagina-registro {
     font-size: 0.85rem;
 }
 
-.benefit-text h3 {
+.pagina-registro .benefit-text h3 {
     margin: 0 0 0.4rem 0;
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
-.benefit-text p {
+.pagina-registro .benefit-text p {
     margin: 0;
     font-size: 0.85rem;
     color: var(--text-secondary);
@@ -161,20 +163,20 @@ body.pagina-registro {
 }
 
 /* Texto destacado (ej. código FELICES50) */
-.highlight-text {
+.pagina-registro .highlight-text {
     color: var(--title-color);
     font-weight: 700; /* Texto en negrita */
 }
 
 /* Panel Derecho (Formulario) */
-.form-panel {
+.pagina-registro .form-panel {
     padding: 3rem;
     width: 65%;
     background-color: var(--panel-right-bg);
 }
 
 /* Contenedor que agrupa los inputs de dos en dos */
-.form-grid {
+.pagina-registro .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem; /* Espacio de separación entre las cajas de texto */
@@ -195,14 +197,14 @@ body.pagina-registro {
 }
 
 /* Envoltura que contiene el ícono y la caja de texto */
-.input-wrapper {
+.pagina-registro .input-wrapper {
     position: relative; /* Permite colocar el ícono flotando encima del input */
     display: flex;
     align-items: center;
 }
 
 /* Los íconos dentro de las cajas de texto */
-.input-wrapper i {
+.pagina-registro .input-wrapper i {
     position: absolute; 
     left: 14px; /* Distancia desde la izquierda de la caja */
     color: var(--icon-color);
@@ -210,7 +212,7 @@ body.pagina-registro {
 }
 
 /* Las cajas de texto */
-.input-wrapper input {
+.pagina-registro .input-wrapper input {
     width: 100%;
     padding: 12px 12px 12px 40px; /* el 40px da espacio para que el ícono no tape el texto */
     border: 1px solid var(--input-border);
@@ -223,29 +225,29 @@ body.pagina-registro {
 }
 
 /* Estilo cuando el usuario hace clic dentro de la caja de texto */
-.input-wrapper input:focus {
+.pagina-registro .input-wrapper input:focus {
     border-color: var(--btn-color);
 }
 
 /* Texto de ayuda dentro de las cajas */
-.input-wrapper input::placeholder {
+.pagina-registro .input-wrapper input::placeholder {
     color: #b5a59a;
 }
 
 /* oculta/modifica el ícono por defecto del calendario en inputs type date */
-input[type="date"]::-webkit-calendar-picker-indicator {
+.pagina-registro input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     opacity: 0.6;
 }
 
 /* Sección de términos y condiciones */
-.checkbox-group {
+.pagina-registro .checkbox-group {
     display: flex;
     align-items: center;
     margin-top: 1rem;
 }
 
-.checkbox-group input[type="checkbox"] {
+.pagina-registro .checkbox-group input[type="checkbox"] {
     margin-right: 12px; /* Separación del cuadro con el texto */
     width: 16px;
     height: 16px;
@@ -253,19 +255,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.checkbox-group label {
+.pagina-registro .checkbox-group label {
     font-size: 0.9rem;
     color: var(--text-primary);
     font-weight: 500;
 }
 
 /* Ajusta la separación del mensaje de error del checkbox */
-#errTerminos {
+.pagina-registro #errTerminos {
     margin-bottom: 2rem; 
 }
 
 /* Botón de Enviar Formulario */
-.btn-submit {
+.pagina-registro .btn-submit {
     width: 100%;
     padding: 14px;
     background-color: var(--btn-color);
@@ -284,12 +286,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* Efecto hover del botón */
-.btn-submit:hover {
+.pagina-registro .btn-submit:hover {
     background-color: var(--btn-hover); /* Se oscurece al pasar el mouse */
 }
 
 /* Enlace inferior de "¿Ya tienes una cuenta?" */
-.login-link {
+.pagina-registro .login-link {
     text-align: center;
     margin-top: 2rem;
     font-size: 0.95rem;
@@ -297,18 +299,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 500;
 }
 
-.login-link a {
+.pagina-registro .login-link a {
     color: var(--title-color);
     text-decoration: none; /* Le quita la línea inferior por defecto al enlace */
     font-weight: 600;
 }
 
-.login-link a:hover {
+.pagina-registro .login-link a:hover {
     text-decoration: underline; /* Le agrega la línea cuando se pasa el mouse */
 }
 
 /* Mensajes de error debajo de cada campo */    
-.error-mensaje {
+.pagina-registro .error-mensaje {
     display: block;
     color: #c0392b;
     font-size: 0.8rem;
@@ -323,14 +325,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .pagina-registro .card {
         flex-direction: column; /* Apila los paneles uno debajo de otro en vez de al lado */
     }
-    .benefits-panel, .form-panel {
+    .pagina-registro .benefits-panel, .pagina-registro .form-panel {
         width: 100%;
         padding: 3rem;
     }
-    .form-grid {
+    .pagina-registro .form-grid {
         grid-template-columns: 1fr;
     }
-    .bg-decor {
+    .pagina-registro .bg-decor {
         display: none;
     }
 }
