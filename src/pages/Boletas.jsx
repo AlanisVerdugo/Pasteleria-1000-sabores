@@ -1,4 +1,4 @@
-import '../css/Boletas.css';
+import '../css/boletas.css';
 
 function Boletas() {
 
