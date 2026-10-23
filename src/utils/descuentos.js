@@ -28,10 +28,10 @@ export function calcularDescuento(usuario, codigo, hoy = new Date()) {
   if (!usuario) return ninguno
   const candidatos = [ninguno]
   if (usuario.fechaNacimiento && calcularEdad(usuario.fechaNacimiento, hoy) > 50) {
-    candidatos.push({ porcentaje: 50, motivo: 'Mayor de 50 años (50%)' })
+    candidatos.push({ porcentaje: 50, motivo: 'Mayor de 50 años' })
   }
   if (codigo === CODIGO_FELICES) {
-    candidatos.push({ porcentaje: 10, motivo: 'Código FELICES50 (10%)' })
+    candidatos.push({ porcentaje: 10, motivo: 'Código FELICES50' })
   }
   return candidatos.reduce((mayor, c) => (c.porcentaje > mayor.porcentaje ? c : mayor))
 }

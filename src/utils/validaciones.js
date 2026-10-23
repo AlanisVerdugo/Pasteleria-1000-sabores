@@ -1,3 +1,6 @@
+import { CODIGO_FELICES } from './constantes'
+
+
 export const requerido = (valor) => String(valor ?? '').trim() !== ''
 
 export const validarEmail = (email = '') => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -27,5 +30,24 @@ export function validarLogin({ email, password }) {
   else if (!validarEmail(email)) errores.email = 'El correo no es válido'
   if (!requerido(password)) errores.password = 'Ingresa tu contraseña'
   else if (!validarPassword(password)) errores.password = 'Debe tener entre 4 y 10 caracteres'
+  return errores
+}
+
+export function validarRegistro(v) {
+  const errores = {}
+  if (!requerido(v.run)) errores.run = 'Ingresa tu RUN'
+  else if (!validarRun(v.run)) errores.run = 'El RUN no es válido'
+  if (!requerido(v.nombre)) errores.nombre = 'Ingresa tu nombre'
+  if (!requerido(v.apellidos)) errores.apellidos = 'Ingresa tus apellidos'
+  if (!requerido(v.email)) errores.email = 'Ingresa tu correo'
+  else if (!validarEmail(v.email)) errores.email = 'El correo no es válido'
+  if (!requerido(v.fechaNacimiento)) errores.fechaNacimiento = 'Ingresa tu fecha de nacimiento'
+  else if (new Date(v.fechaNacimiento) > new Date()) errores.fechaNacimiento = 'La fecha no puede ser futura'
+  if (!requerido(v.password)) errores.password = 'Ingresa una contraseña'
+  else if (!validarPassword(v.password)) errores.password = 'Debe tener entre 4 y 10 caracteres'
+  if (v.confirmar !== v.password) errores.confirmar = 'Las contraseñas no coinciden'
+  if (requerido(v.codigo) && v.codigo.trim().toUpperCase() !== CODIGO_FELICES)
+    errores.codigo = 'Código no válido'
+  if (!v.terminos) errores.terminos = 'Debes aceptar los términos'
   return errores
 }
