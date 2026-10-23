@@ -1,0 +1,6 @@
+export { productosService } from './productosService'
+export { categoriasService } from './categoriasService'
+export { usuariosService } from './usuariosService'
+export { ordenesService } from './ordenesService'
+export { blogService, contactoService, pagosService } from './otrosService'
+export { authService } from './authService'
