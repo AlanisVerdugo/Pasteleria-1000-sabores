@@ -19,3 +19,13 @@ export function validarRun(run = '') {
   const esperado = resto === 11 ? '0' : resto === 10 ? 'K' : String(resto)
   return limpio.slice(-1) === esperado
 }
+
+// devuelve un objeto con los errores 
+export function validarLogin({ email, password }) {
+  const errores = {}
+  if (!requerido(email)) errores.email = 'Ingresa tu correo'
+  else if (!validarEmail(email)) errores.email = 'El correo no es válido'
+  if (!requerido(password)) errores.password = 'Ingresa tu contraseña'
+  else if (!validarPassword(password)) errores.password = 'Debe tener entre 4 y 10 caracteres'
+  return errores
+}
