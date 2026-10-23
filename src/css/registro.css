@@ -16,15 +16,15 @@
 
 .pagina-registro {
     background-color: var(--bg-color); 
-    font-family: 'quicksand', sans-serif; /*tipografía principal*/
+    font-family: 'quicksand', sans-serif; 
     color: var(--text-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem 1rem; /* Da un margen interno (arriba/abajo y lados) */
+    padding: 3rem 1rem; 
     min-height: 100vh;
-    position: relative; /* Necesario para posicionar los íconos de fondo */
-    overflow-x: hidden; /* Evita que aparezca una barra de desplazamiento horizontal */
+    position: relative; 
+    overflow-x: clip; 
 }
 
 /* Iconos de fondo decorativos */
@@ -318,12 +318,51 @@
     min-height: 1rem;
 }
 
+/* Recuadro "Tus beneficios" */
+.pagina-registro .mis-beneficios {
+    background: #fdcccc;
+    border: 2px dashed var(--icon-bg);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-top: 1rem;
+}
+.pagina-registro .mis-beneficios h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--title-color);
+    margin-bottom: 0.6rem;
+}
+.pagina-registro .mis-beneficios ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.pagina-registro .mis-beneficios li {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0.35rem 0;
+    animation: aparecer 0.3s ease;
+}
+.pagina-registro .mis-beneficios li i {
+    color: var(--icon-red);
+    width: 18px;
+}
+.pagina-registro .sin-beneficios {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 
 /* Responsividad */
 @media (max-width: 850px) {
     .pagina-registro .card {
-        flex-direction: column; /* Apila los paneles uno debajo de otro en vez de al lado */
+        flex-direction: column; 
     }
     .pagina-registro .benefits-panel, .pagina-registro .form-panel {
         width: 100%;
