@@ -1,46 +1,83 @@
-import '../css/cabecera.css';
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Navbar, Nav, NavDropdown, Container, Badge } from 'react-bootstrap'
+import { useAuth } from '../context/AuthContext'
+import { useCarrito } from '../context/CarritoContext'
+import '../css/cabecera.css'
 
 function Cabecera() {
+  const { usuario, esAdmin, logout } = useAuth()
+  const { cantidadItems } = useCarrito()
+  const navigate = useNavigate()
 
-    return (
-        <>
-            <header className="header-navbar">
-                <nav className="navbar navbar-expand-lg">
-                    <div className="container">
-                        <a className="navbar-brand d-flex align-items-center gap-2" href="home.html"> Pastelería 1000 Sabores
-                            <img src="/img/logo-pasteleria-1000-sabores.png" alt="Logo pasteleria 1000 sabores" className="logo-header"/>
-                        </a>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarNav">
-                            <ul className="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
-                                <li className="nav-item"><a className="nav-link active" href="/">Home</a></li>
-                                <li className="nav-item"><a className="nav-link" href="/catalogo">Catálogo</a></li>
-                                <li className="nav-item"><a className="nav-link" href="/blog">Blog</a></li>
-                                <li className="nav-item"><a className="nav-link" href="/quienes-somos">Quiénes Somos</a></li>
-                            </ul>
+  const cerrarSesion = () => {
+    logout()
+    navigate('/')
+  }
 
+  return (
+    <header className="header-navbar">
+      <Navbar expand="lg" collapseOnSelect>
+        <Container fluid className="px-4 px-lg-5">
+          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2">
+            Pastelería 1000 Sabores
+            <img src="/img/logo-pasteleria-1000-sabores.png" alt="Logo pastelería 1000 sabores" className="logo-header" />
+          </Navbar.Brand>
 
-                            <div className="d-flex gap-3 align-items-center">
+          <Navbar.Toggle aria-controls="menu-principal" />
 
-                                <div className="dropdown">
-                                    <a href="#" className="icono-header" id="menuUsuario" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i className="bi bi-person"></i>
-                                    </a>
-                                    <ul className="dropdown-menu dropdown-menu-end" id="dropdownUsuario">
+          <Navbar.Collapse id="menu-principal">
+            <Nav className="nav-underline mx-auto mb-2 mb-lg-0">
+              <Nav.Link as={NavLink} to="/" end>Home</Nav.Link>
+              <Nav.Link as={NavLink} to="/productos">Productos</Nav.Link>
+              <Nav.Link as={NavLink} to="/categorias">Categorías</Nav.Link>
+              <Nav.Link as={NavLink} to="/ofertas">Ofertas</Nav.Link>
+              <Nav.Link as={NavLink} to="/blog">Blog</Nav.Link>
+              <Nav.Link as={NavLink} to="/nosotros">Nosotros</Nav.Link>
+              <Nav.Link as={NavLink} to="/contacto">Contacto</Nav.Link>
+            </Nav>
 
-                                    </ul>
-                                </div>
-                                <a href="/carrito" className="icono-header"><i className="bi bi-cart"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </header>
-        </>
-    );
+            <Nav className="d-flex gap-3 align-items-center ms-lg-5">
+              <NavDropdown
+                align="end"
+                id="menu-usuario"
+                title={
+                  <span className="icono-header">
+                    <i className="bi bi-person"></i>
+                    {usuario && <span className="ms-1 fs-6">{usuario.nombre}</span>}
+                  </span>
+                }
+              >
+                {usuario ? (
+                  <>
+                    <NavDropdown.Item as={Link} to="/perfil">Mi perfil</NavDropdown.Item>
+                    {esAdmin && (
+                      <NavDropdown.Item as={Link} to="/admin">Panel admin</NavDropdown.Item>
+                    )}
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={cerrarSesion}>Cerrar sesión</NavDropdown.Item>
+                  </>
+                ) : (
+                  <>
+                    <NavDropdown.Item as={Link} to="/login">Iniciar sesión</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/registro">Registrarse</NavDropdown.Item>
+                  </>
+                )}
+              </NavDropdown>
+
+              <Link to="/carrito" className="icono-header position-relative" aria-label="Carrito">
+                <i className="bi bi-cart"></i>
+                {cantidadItems > 0 && (
+                  <Badge bg="danger" pill className="position-absolute top-0 start-100 translate-middle">
+                    {cantidadItems}
+                  </Badge>
+                )}
+              </Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </header>
+  )
 }
 
-export default Cabecera;
-//para que se pueda exportar y usar en otros archivos.
+export default Cabecera

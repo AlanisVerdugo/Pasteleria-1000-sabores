@@ -34,7 +34,7 @@
 }
 /* nav-underline es una clase de Bootstrap; acá solo le cambiamos sus valores por defecto */
 .nav-underline {
-    --bs-nav-underline-gap: 30px;
+    --bs-nav-underline-gap: 16px;
     --bs-nav-underline-border-width: 2px;
     --bs-nav-underline-link-active-color: #8B4513;
 }
@@ -79,6 +79,16 @@
 .dropdown-item-texto strong {
     display: block;
     color: #8B4513;
+}
+
+#menu-usuario {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+#menu-usuario::after {
+    display: none;
 }
 
 
