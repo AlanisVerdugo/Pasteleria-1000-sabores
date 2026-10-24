@@ -154,3 +154,50 @@
     .pagina-perfil .perfil-lateral,
     .pagina-perfil .perfil-form { width: 100%; }
 }
+
+/* Foto de perfil */
+.perfil-avatar-wrap {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+.perfil-avatar {
+  overflow: hidden; /* recorta la foto en círculo */
+}
+.perfil-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.perfil-avatar-btn {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e75480;
+  color: #fff;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .2s;
+}
+.perfil-avatar-btn:hover {
+  transform: scale(1.1);
+}
+.perfil-quitar-foto {
+  background: none;
+  border: none;
+  color: #e75480;
+  font-size: .85rem;
+  text-decoration: underline;
+  margin-top: .4rem;
+}
+.perfil-error-foto {
+  color: #dc3545;
+  font-size: .85rem;
+  margin: .4rem 0 0;
+}
