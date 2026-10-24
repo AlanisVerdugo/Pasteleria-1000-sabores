@@ -49,17 +49,30 @@ function Cabecera() {
               >
                 {usuario ? (
                   <>
-                    <NavDropdown.Item as={Link} to="/perfil">Mi perfil</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/perfil">
+                      <i className="bi bi-person-gear me-2"></i>Mi perfil
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/mis-pedidos">
+                      <i className="bi bi-bag me-2"></i>Mis pedidos
+                    </NavDropdown.Item>
                     {esAdmin && (
-                      <NavDropdown.Item as={Link} to="/admin">Panel admin</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to="/admin">
+                        <i className="bi bi-speedometer2 me-2"></i>Panel admin
+                      </NavDropdown.Item>
                     )}
                     <NavDropdown.Divider />
-                    <NavDropdown.Item onClick={cerrarSesion}>Cerrar sesión</NavDropdown.Item>
+                    <NavDropdown.Item onClick={cerrarSesion}>
+                      <i className="bi bi-box-arrow-right me-2"></i>Cerrar sesión
+                    </NavDropdown.Item>
                   </>
                 ) : (
                   <>
-                    <NavDropdown.Item as={Link} to="/login">Iniciar sesión</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/registro">Registrarse</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/login">
+                      <i className="bi bi-box-arrow-in-right me-2"></i>Iniciar sesión
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/registro">
+                      <i className="bi bi-person-plus me-2"></i>Registrarse
+                    </NavDropdown.Item>
                   </>
                 )}
               </NavDropdown>

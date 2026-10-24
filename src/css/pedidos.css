@@ -282,3 +282,15 @@
     padding: 40px 0;
 }
 
+.ped-seccion .ped-titulo {
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+}
+
+@keyframes pedidoEntra {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.ped-card {
+    animation: pedidoEntra 0.35s ease both;
+}

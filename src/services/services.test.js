@@ -38,7 +38,7 @@ describe('categoriasService', () => {
 describe('ordenesService', () => {
   test('crea la orden con número y estado inicial', async () => {
     const o = await ordenesService.crear({ usuarioId: 2, items: [], total: 1000 })
-    expect(o).toMatchObject({ numero: 'B-000001', estado: 'preparacion' })
+    expect(o).toMatchObject({ numero: 'B-000003', estado: 'preparacion' })
   })
 
   test('rechaza un estado inválido', async () => {

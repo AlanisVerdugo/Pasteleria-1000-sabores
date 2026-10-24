@@ -14,6 +14,8 @@ import Registro from './pages/Registro'
 import Blog from './pages/Blog'
 import QuienesSomos from './pages/QuienesSomos'
 import Boletas from './pages/Boletas'
+import Perfil from './pages/Perfil'
+import Pedidos from './pages/Pedidos'
 import NoEncontrado from './pages/NoEncontrado'
 
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
@@ -35,7 +37,8 @@ function App() {
         <Route path="/pago/error" element={enConstruccion('Pago con error')} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
-        <Route path="/perfil" element={<RutaProtegida>{enConstruccion('Mi perfil')}</RutaProtegida>} />
+        <Route path="/perfil" element={<RutaProtegida><Perfil /></RutaProtegida>} />
+        <Route path="/mis-pedidos" element={<RutaProtegida><Pedidos /></RutaProtegida>} />
         <Route path="/nosotros" element={<QuienesSomos />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={enConstruccion('Detalle del blog')} />
@@ -43,7 +46,7 @@ function App() {
         <Route path="*" element={<NoEncontrado />} />
       </Route>
 
-      {/* ADMIN (todas protegidas por RutaAdmin) */}
+      {/* ADMIN */}
       <Route path="/admin" element={<RutaAdmin><AdminLayout /></RutaAdmin>}>
         <Route index element={enConstruccion('Dashboard')} />
         <Route path="productos" element={enConstruccion('Productos')} />
