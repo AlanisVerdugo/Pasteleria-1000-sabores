@@ -1,0 +1,156 @@
+
+.pagina-perfil {
+    --cafe: #8a481c;
+    --cafe-hover: #6d3916;
+    --texto: #5c4331;
+    --texto-sec: #7a6658;
+    --rosado: #faeaeb;
+    --rosado-fuerte: #f3d6d6;
+    --borde: #dcd0c7;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--texto);
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 3rem 1rem 5rem;
+}
+
+.pagina-perfil .perfil-cabecera {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+.pagina-perfil .perfil-cabecera h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--cafe);
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+}
+.pagina-perfil .perfil-cabecera p {
+    color: var(--texto-sec);
+    font-weight: 500;
+}
+
+/* Tarjeta con los dos paneles */
+.pagina-perfil .perfil-card {
+    display: flex;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(138, 72, 28, 0.08);
+    overflow: hidden;
+}
+
+/* Panel izquierdo */
+.pagina-perfil .perfil-lateral {
+    background: var(--rosado);
+    width: 35%;
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+.pagina-perfil .perfil-avatar {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: var(--cafe);
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 3px var(--rosado-fuerte);
+}
+.pagina-perfil .perfil-lateral h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+.pagina-perfil .perfil-email {
+    color: var(--texto-sec);
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+}
+.pagina-perfil .perfil-chip {
+    display: inline-block;
+    background: var(--cafe);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+.pagina-perfil .perfil-beneficios {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    text-align: left;
+}
+.pagina-perfil .perfil-beneficios h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--cafe);
+    margin-bottom: 0.5rem;
+}
+.pagina-perfil .perfil-beneficios p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0.3rem 0;
+}
+.pagina-perfil .perfil-beneficios i {
+    color: #a84f4f;
+    width: 18px;
+}
+.pagina-perfil .perfil-sin {
+    color: var(--texto-sec);
+    font-weight: 500 !important;
+}
+
+/* Panel derecho */
+.pagina-perfil .perfil-form {
+    width: 65%;
+    padding: 2.5rem;
+}
+.pagina-perfil .perfil-form h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cafe);
+    margin-bottom: 1.5rem;
+}
+.pagina-perfil .form-label {
+    color: var(--texto-sec);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.pagina-perfil .form-control {
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+.pagina-perfil .form-control:focus {
+    border-color: var(--cafe);
+    box-shadow: none;
+}
+.pagina-perfil .perfil-btn {
+    margin-top: 1.5rem;
+    background: var(--cafe);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+.pagina-perfil .perfil-btn:hover {
+    background: var(--cafe-hover);
+}
+
+/* pantallas chicas */
+@media (max-width: 850px) {
+    .pagina-perfil .perfil-card { flex-direction: column; }
+    .pagina-perfil .perfil-lateral,
+    .pagina-perfil .perfil-form { width: 100%; }
+}
