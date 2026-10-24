@@ -4,10 +4,12 @@ import { useFormulario } from '../hooks/useFormulario'
 import { validarPerfil } from '../utils/validaciones'
 import '../css/perfil.css'
 import { calcularDescuento } from '../utils/descuentos'
+import { achicarImagen } from '../utils/imagen'
 
 function Perfil() {
   const { usuario, actualizarPerfil } = useAuth()
   const [mensaje, setMensaje] = useState('')
+  const [errorFoto, setErrorFoto] = useState('')
 
   const { valores, errores, manejarCambio, manejarEnvio } = useFormulario(
     {
@@ -36,6 +38,25 @@ function Perfil() {
     setMensaje('Tus datos se guardaron correctamente')
   }
 
+  const cambiarFoto = async (e) => {
+    const archivo = e.target.files[0]
+    e.target.value = '' 
+    if (!archivo) return
+    try {
+      const foto = await achicarImagen(archivo)
+      await actualizarPerfil({ foto })
+      setErrorFoto('')
+      setMensaje('Tu foto se actualizó')
+    } catch (err) {
+      setErrorFoto(err.message)
+    }
+  }
+
+  const quitarFoto = async () => {
+    await actualizarPerfil({ foto: null })
+    setMensaje('Quitaste tu foto')
+  }
+
   const campo = (id, label, tipo = 'text') => (
     <div className="col-md-6">
       <label htmlFor={id} className="form-label">{label}</label>
@@ -58,9 +79,22 @@ function Perfil() {
 
       <div className="perfil-card">
         <aside className="perfil-lateral">
-          <div className="perfil-avatar" aria-hidden="true">
-            {usuario.nombre?.charAt(0).toUpperCase()}
+          <div className="perfil-avatar-wrap">
+            <div className="perfil-avatar">
+              {usuario.foto
+                ? <img src={usuario.foto} alt={`Foto de ${usuario.nombre}`} />
+                : <span aria-hidden="true">{usuario.nombre?.charAt(0).toUpperCase()}</span>}
+            </div>
+            <label htmlFor="foto" className="perfil-avatar-btn" title="Cambiar foto">
+              <i className="fa-solid fa-camera"></i>
+              <span className="visually-hidden">Cambiar foto</span>
+            </label>
+            <input id="foto" type="file" accept="image/*" className="d-none" onChange={cambiarFoto} />
           </div>
+          {usuario.foto && (
+            <button type="button" className="perfil-quitar-foto" onClick={quitarFoto}>Quitar foto</button>
+          )}
+          {errorFoto && <p className="perfil-error-foto" role="alert">{errorFoto}</p>}
           <h2>{usuario.nombre} {usuario.apellidos}</h2>
           <p className="perfil-email">{usuario.email}</p>
           {usuario.esDuoc && <span className="perfil-chip">Duoc UC</span>}
