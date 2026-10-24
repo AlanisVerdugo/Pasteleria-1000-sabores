@@ -237,6 +237,49 @@
     transform: translateY(-6px);
     box-shadow: 0 12px 28px rgba(139, 69, 19, 0.15);
 }
-/* lista de selectores separados por coma */
 
+/* Secciones de productos del Home */
+.home-productos {
+  padding: 3rem 0 1rem;
+}
+.home-productos-cabecera {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.home-productos-titulo {
+  font-family: 'Caveat', cursive;
+  color: #7B4B2A;
+  font-size: 2.4rem;
+  margin: 0;
+  line-height: 1.1;
+}
+.home-productos-sub {
+  color: #8a7a70;
+  margin: 0;
+}
+.home-ver-mas {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .5rem 1.3rem;
+  border: 2px solid #e75480;
+  border-radius: 999px;
+  color: #e75480;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.home-ver-mas:hover {
+  background: #e75480;
+  color: #fff;
+}
+
+.item-especial a {
+  color: #e75480;
+  font-weight: 600;
+  text-decoration: none;
+}
+.item-especial a:hover {
+  text-decoration: underline;
+}
 

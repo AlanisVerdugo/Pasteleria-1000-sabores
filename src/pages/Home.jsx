@@ -1,6 +1,39 @@
-import '../css/home.css';
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import '../css/home.css'
+import '../css/catalogo.css'
+import TarjetaProducto from '../components/TarjetaProducto'
+import { productosService } from '../services/productosService'
+
+
+function SeccionProductos({ id, titulo, subtitulo, productos, verMas, vitrina }) {
+  if (productos.length === 0) return null
+  return (
+    <section className={`container home-productos home-${id}`} aria-labelledby={`titulo-${id}`}>
+      <div className="home-productos-cabecera">
+        <h2 id={`titulo-${id}`} className="home-productos-titulo">{titulo}</h2>
+        <p className="home-productos-sub">{subtitulo}</p>
+      </div>
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 justify-content-center">
+        {productos.map((p) => <TarjetaProducto key={p.codigo} producto={p} vitrina={vitrina} />)}
+      </div>
+      {verMas && (
+        <div className="text-center mt-4">
+          <Link to={verMas.ruta} className="home-ver-mas">{verMas.texto} <i className="bi bi-arrow-right"></i></Link>
+        </div>
+      )}
+    </section>
+  )
+}
 
 function Home() {
+    const [destacados, setDestacados] = useState([])
+    const [ofertas, setOfertas] = useState([])
+
+    useEffect(() => {
+        productosService.listarDestacados().then(setDestacados)
+        productosService.listarOfertas().then(setOfertas)
+    }, [])
 
     return (
 
@@ -19,10 +52,18 @@ function Home() {
                             Desde nuestro pequeño horno de barro en 1974 hasta el Récord Guinness de 1995
                             por el pastel más grande del mundo. Una tradición familiar que sigue endulzando tu vida.
                         </p>
-                        <a href="catalogo.html" className="btn-cafe">Ver Catálogo</a>
+                        <Link to="/categorias" className="btn-cafe">Explorar Categorías</Link>
                     </div>
                 </section>
 
+                <SeccionProductos
+                    id="destacados"
+                    vitrina
+                    titulo="Nuestros favoritos"
+                    subtitulo="Las tortas que más nos piden"
+                    productos={destacados}
+                    verMas={{ ruta: '/productos', texto: 'Ver todo el catálogo' }}
+                />
                 
                 <section className="container seccion-superior">
                     <div className="row g-4">
@@ -45,7 +86,7 @@ function Home() {
                         
                         <div className="col-lg-4">
                             <div className="tarjeta-vision h-100 position-relative overflow-hidden">
-                                <i className="bi bi journal-bookmark icono-decorativo"></i>
+                                <i className="bi bi-journal-bookmark icono-decorativo"></i>
                                 <h3 className="titulo-tarjeta-sm">Visión</h3>
                                 <p className="texto-tarjeta fst-italic">
                                     Convertirnos en la tienda online líder de productos de repostería en Chile, conocida por
@@ -57,6 +98,13 @@ function Home() {
                     </div>
                 </section>
 
+                <SeccionProductos
+                    id="ofertas"
+                    titulo="Ofertas de aniversario"
+                    subtitulo="Precios especiales por tiempo limitado"
+                    productos={ofertas}
+                    verMas={{ ruta: '/ofertas', texto: 'Ver todas las ofertas' }}
+                />
                 
                 <section className="container seccion-inferior">
                     <div className="row g-4">
@@ -98,8 +146,8 @@ function Home() {
                                     <li className="item-especial item-especial-destacado">
                                         <i className="bi bi-cake2-fill"></i>
                                         <div>
-                                            <strong>¡Pastel Gratis!</strong>
-                                            <span>Para estudiantes de Duoc UC al presentar credencial.</span>
+                                            <strong>¡Torta gratis en tu cumpleaños!</strong>
+                                            <span>Para estudiantes Duoc UC registrados con su correo @duocuc.cl. <Link to="/registro">Regístrate aquí</Link></span>
                                         </div>
                                     </li>
                                 </ul>
