@@ -258,3 +258,13 @@
     width: auto;
     flex-shrink: 0;
 }
+
+/* Tarjeta: oferta y agotado */
+.badge-oferta { background: #e75480; color: #fff; }
+.badge-agotado { background: #6c757d; color: #fff; left: auto; right: 12px; }
+.producto-precio-antes {
+  display: block;
+  font-size: .85rem;
+  color: #999;
+  text-decoration: line-through;
+}
