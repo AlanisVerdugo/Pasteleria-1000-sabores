@@ -79,4 +79,12 @@ describe('pagosService', () => {
   })
 })
 
+describe('productosService.listarDestacados', () => {
+  test('devuelve solo los productos destacados', async () => {
+    const destacados = await productosService.listarDestacados()
+    expect(destacados).toHaveLength(4)
+    expect(destacados.every((p) => p.destacado)).toBe(true)
+  })
+})
+
 
