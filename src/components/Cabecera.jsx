@@ -42,7 +42,9 @@ function Cabecera() {
                 id="menu-usuario"
                 title={
                   <span className="icono-header">
-                    <i className="bi bi-person"></i>
+                    {usuario?.foto
+                      ? <img src={usuario.foto} alt="" className="cabecera-foto" />
+                      : <i className="bi bi-person"></i>}
                     {usuario && <span className="ms-1 fs-6">{usuario.nombre}</span>}
                   </span>
                 }
