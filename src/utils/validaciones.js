@@ -51,3 +51,13 @@ export function validarRegistro(v) {
   if (!v.terminos) errores.terminos = 'Debes aceptar los términos'
   return errores
 }
+
+export function validarPerfil(v) {
+  const errores = {}
+  if (!requerido(v.nombre)) errores.nombre = 'Ingresa tu nombre'
+  if (!requerido(v.apellidos)) errores.apellidos = 'Ingresa tus apellidos'
+  if (v.telefono && !/^\+?\d{8,12}$/.test(v.telefono.replace(/\s/g, ''))) {
+    errores.telefono = 'Teléfono no válido'
+  }
+  return errores
+}
