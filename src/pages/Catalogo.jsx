@@ -1,29 +1,32 @@
-import '../css/catalogo.css';
-
-// componentes
-import TarjetaProducto from '../components/TarjetaProducto';
+import { useEffect, useState } from 'react'
+import '../css/catalogo.css'
+import TarjetaProducto from '../components/TarjetaProducto'
+import { productosService } from '../services/productosService'
 
 function Catalogo() {
+    const [productos, setProductos] = useState([])
+
+    useEffect(() => {
+        productosService.listar().then(setProductos)
+    }, [])
 
     return (
         <>
             <main>
                 <section className="container py-5">
 
-                    {/* Título a la izquierda y buscador a la derecha */}
                     <div className="d-flex flex-wrap justify-content-between align-items-start mb-4">
                         <div>
                             <h1 style={{ fontFamily: "'Caveat',cursive", color: '#7B4B2A' }}>Nuestro Catálogo</h1>
                             <p className="text-muted">Descubre la tradición en cada bocado.</p>
                         </div>
-                        {/* BUSCADOR */}
+                        
                         <div className="input-group catalogo-buscador">
                             <span className="input-group-text bg-white"><i className="bi bi-search"></i></span>
                             <input type="text" className="form-control" id="inputBuscarProducto" placeholder="Buscar productos..." />
                         </div>
                     </div>
 
-                    {/* FILTROS Y GRILLA DE PRODUCTOS */}
                     <div className="row">
 
                         {/* Columna izquierda: panel de filtros */}
@@ -38,7 +41,6 @@ function Catalogo() {
 
                                 <p className="text-uppercase small text-muted mb-2">Categorías</p>
 
-                                {/* En React "for" se escribe "htmlFor" */}
                                 <div className="form-check mb-2">
                                     <input className="form-check-input" type="checkbox" id="catPostres" />
                                     <label className="form-check-label" htmlFor="catPostres">Postres Individuales</label>
@@ -87,7 +89,7 @@ function Catalogo() {
                         <div className="col-lg-9">
                             <div className="d-flex justify-content-between align-items-center bg-white rounded-4 p-3 mb-4 shadow-sm">
 
-                                <span>Mostrando <strong id="contadorProductos">6</strong> productos</span>
+                                <span>Mostrando <strong id="contadorProductos">{productos.length}</strong> productos</span>
 
                                 <div className="d-flex align-items-center gap-2 catalogo-ordenar">
                                     <span className="text-muted small">Ordenar por:</span>
@@ -99,65 +101,12 @@ function Catalogo() {
                                 </div>
                             </div>
 
-                            {/* GRILLA DE CARDS: cada tarjeta es el componente TarjetaProducto */}
+                            {/* GRILLA DE CARDS */}
                             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" id="grillaProductos">
 
-                                <TarjetaProducto
-                                    imagen="/img/Torta cuadrada de chocolate.jpg"
-                                    nombre="Torta Cuadrada de Chocolate"
-                                    detalle="20 Personas • Bizcocho húmedo"
-                                    precio="$45.000"
-                                    comentarios={12}
-                                    badge="Tradicional"
-                                    badgeClase="badge-tradicional"
-                                />
-
-                                <TarjetaProducto
-                                    imagen="/img/Torta circular manjar.jpg"
-                                    nombre="Torta Circular de Manjar"
-                                    detalle="15 Personas • Clásica chilena"
-                                    precio="$42.000"
-                                    comentarios={8}
-                                />
-
-                                <TarjetaProducto
-                                    imagen="/img/Tiramisu clasico.jpg"
-                                    nombre="Tiramisú Clásico"
-                                    detalle="1 Persona • Postre"
-                                    precio="$5.500"
-                                    comentarios={24}
-                                    badge="Individual"
-                                    badgeClase="badge-individual"
-                                />
-
-                                <TarjetaProducto
-                                    imagen="/img/Torta sin azucar de naranja.jpg"
-                                    nombre="Torta Sin Azúcar de Naranja"
-                                    detalle="15 Personas • Endulzada con Alulosa"
-                                    precio="$48.000"
-                                    comentarios={5}
-                                    badge={<><i className="bi bi-shield-check"></i> Sin Azúcar</>}
-                                    badgeClase="badge-sinazucar"
-                                />
-
-                                <TarjetaProducto
-                                    imagen="/img/Empanada de manzana.jpg"
-                                    nombre="Empanada de Manzana"
-                                    detalle="1 Persona • Masa integral"
-                                    precio="$3.000"
-                                    comentarios={42}
-                                    badge={<><i className="bi bi-flower1"></i> Vegana</>}
-                                    badgeClase="badge-vegana"
-                                />
-
-                                <TarjetaProducto
-                                    imagen="/img/Tartaleta-frutos-rojos.jpg"
-                                    nombre="Tartaleta frutos rojos"
-                                    detalle="8 Personas • Sureño"
-                                    precio="$12.000"
-                                    comentarios={8}
-                                />
-
+                                {productos.map((p) => (
+                                    <TarjetaProducto key={p.codigo} producto={p} />
+                                ))}
                             </div>
 
                             <p className="text-center text-muted mt-4 d-none" id="mensajeSinProductos">
