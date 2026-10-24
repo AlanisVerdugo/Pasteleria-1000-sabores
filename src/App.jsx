@@ -13,6 +13,7 @@ import Carrito from './pages/Carrito'
 import Login from './pages/Login'
 import Registro from './pages/Registro'
 import Blog from './pages/Blog'
+import DetalleBlog from './pages/DetalleBlog'
 import QuienesSomos from './pages/QuienesSomos'
 import Boletas from './pages/Boletas'
 import Perfil from './pages/Perfil'
@@ -44,7 +45,7 @@ function App() {
           <Route path="/mis-pedidos" element={<RutaProtegida><Pedidos /></RutaProtegida>} />
           <Route path="/nosotros" element={<QuienesSomos />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={enConstruccion('Detalle del blog')} />
+          <Route path="/blog/:id" element={<DetalleBlog />} />
           <Route path="/contacto" element={enConstruccion('Contacto')} />
           <Route path="*" element={<NoEncontrado />} />
         </Route>
