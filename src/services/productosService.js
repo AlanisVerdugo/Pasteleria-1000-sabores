@@ -34,6 +34,10 @@ export const productosService = {
       (!precioMax || p.precio <= Number(precioMax))
     )
   },
+  async listarDestacados() {
+    const productos = await productosService.listar()
+    return productos.filter((p) => p.destacado)
+  },
   async listarOfertas() {
     const productos = await productosService.listar()
     return productos.filter((p) => p.oferta > 0)
