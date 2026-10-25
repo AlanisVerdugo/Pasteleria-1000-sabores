@@ -6,9 +6,9 @@ export const blogService = {
 }
 
 export const contactoService = {
-  async enviar({ nombre, email, mensaje }) {
-    if (!nombre || !email || !mensaje) throw new Error('Completa todos los campos')
-    return mensajesRepo.agregar({ nombre, email, mensaje, fecha: new Date().toISOString() })
+  async enviar({ tipo, nombre, email, mensaje, usuarioId = null }) {
+    if (!tipo || !nombre || !email || !mensaje) throw new Error('Completa todos los campos')
+    return mensajesRepo.agregar({ tipo, nombre, email, mensaje, usuarioId, fecha: new Date().toISOString() })
   },
   async listar() { return mensajesRepo.listar() },
 }

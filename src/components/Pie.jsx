@@ -1,4 +1,5 @@
 import '../css/pie.css';
+import { Link } from 'react-router-dom';
 
 function Pie() {
 
@@ -12,8 +13,8 @@ function Pie() {
                             Orgullosamente Chilenos. Beneficios exclusivos Duoc UC.</p>
                     </div>
                     <ul className="list-unstyled footer-nav">
-                        <li><a href="#" className="footer-link">Sobre Nosotros</a></li>
-                        <li><a href="#" className="footer-link">Contacto</a></li>
+                        <li><Link to="/nosotros" className="footer-link">Sobre Nosotros</Link></li>
+                        <li><Link to="/contacto" className="footer-link">Contacto</Link></li>
                         <li><a href="#" className="footer-link">Términos</a></li>
                         <li><a href="#" className="footer-link">Preguntas Frecuentes</a></li>
                     </ul>
