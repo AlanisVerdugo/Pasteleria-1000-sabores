@@ -1,0 +1,292 @@
+
+.pagina-contacto {
+    background-color: #fdf3e5;
+    min-height: 80vh;
+    padding: 4rem 1rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.contacto-card {
+    max-width: 920px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-top: 6px solid #e75480; 
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(92, 58, 33, 0.08);
+    padding: 2.5rem;
+}
+
+.contacto-card h1 {
+    font-family: 'Pacifico', cursive;
+    color: #5C3A21;
+    font-weight: 400;
+    text-align: center;
+}
+
+.contacto-intro {
+    color: #555555;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.contacto-campo {
+    margin-bottom: 1.2rem;
+}
+
+.contacto-campo label {
+    display: block;
+    font-weight: 700;
+    color: #5C3A21;
+    margin-bottom: 0.4rem;
+}
+
+
+.contacto-input {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background-color: #fff8f0;
+    border: 2px solid #f3dcc4;
+    border-radius: 12px;
+    padding: 0.65rem 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.contacto-input i {
+    color: #c9a27e;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+
+.contacto-input:focus-within {
+    background-color: #ffffff;
+    border-color: #e75480;
+    box-shadow: 0 0 0 0.2rem rgba(231, 84, 128, 0.15);
+}
+
+.contacto-input:focus-within i {
+    color: #e75480;
+}
+
+.contacto-input input,
+.contacto-input select,
+.contacto-input textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    color: #5C3A21;
+}
+
+.contacto-input select {
+    cursor: pointer;
+}
+
+
+.contacto-input.area {
+    align-items: flex-start;
+}
+
+.contacto-input.area i {
+    margin-top: 0.2rem;
+}
+
+.contacto-input textarea {
+    resize: vertical;
+}
+
+.contacto-input.con-error {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+}
+
+.contacto-input.bloqueado {
+    background-color: #f5efe8;
+    border-style: dashed;
+}
+
+.contacto-mis-datos {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: #fde8ef;
+    color: #a8325a;
+    font-weight: 600;
+    padding: 0.7rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
+    cursor: pointer;
+}
+
+.contacto-mis-datos:hover {
+    background-color: #fbd5e2;
+}
+
+/* quita el check del navegador */
+.contacto-mis-datos input {
+    appearance: none;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e75480;
+    border-radius: 6px;
+    background-color: #ffffff;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.contacto-mis-datos input::before {
+    content: '';
+    width: 11px;
+    height: 11px;
+    background-color: #ffffff;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transition: transform 0.15s ease;
+}
+
+.contacto-mis-datos input:checked {
+    background-color: #e75480;
+}
+
+.contacto-mis-datos input:checked::before {
+    transform: scale(1);
+}
+
+.contacto-mis-datos input:focus-visible {
+    outline: 3px solid rgba(231, 84, 128, 0.35);
+    outline-offset: 2px;
+}
+
+.contacto-pie-campo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.3rem;
+}
+
+.contacto-campo .error-mensaje {
+    color: #dc3545;
+    font-size: 0.85rem;
+}
+
+.contador {
+    color: #888888;
+    font-size: 0.85rem;
+    margin-left: auto;
+}
+
+.contador.excedido {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+.btn-contacto {
+    width: 100%;
+    background-color: #e75480;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 0.75rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-contacto:hover {
+    background-color: #c9426a;
+    transform: translateY(-2px);
+}
+
+
+/* TIPO DE CONSULTA: radios con forma de chip */
+fieldset.contacto-campo {
+    border: none;
+    padding: 0;
+}
+
+fieldset.contacto-campo legend {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #5C3A21;
+    margin-bottom: 0.5rem;
+}
+
+.contacto-tipos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.contacto-campo .chip-tipo {
+    display: inline-flex;
+    margin-bottom: 0;
+    padding: 0.45rem 1rem;
+    background-color: #fff8f0;
+    border: 2px solid #f3dcc4;
+    border-radius: 20px;
+    color: #5C3A21;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.contacto-campo .chip-tipo:hover {
+    border-color: #e75480;
+}
+
+.contacto-campo .chip-tipo.activo {
+    background-color: #e75480;
+    border-color: #e75480;
+    color: #ffffff;
+}
+
+.chip-tipo input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.chip-tipo:focus-within {
+    outline: 3px solid rgba(231, 84, 128, 0.35);
+    outline-offset: 2px;
+}
+
+/* DOS COLUMNAS */
+.contacto-columnas {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+}
+
+.contacto-lateral {
+    background-color: #fff8f0;
+    border: 2px solid #f3dcc4;
+    border-radius: 15px;
+    padding: 1.2rem;
+    align-self: start;
+}
+
+.contacto-lateral .contacto-tipos {
+    flex-direction: column;
+}
+
+.contacto-lateral .chip-tipo {
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+.contacto-lateral .contacto-mis-datos {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .contacto-columnas {
+        grid-template-columns: 1fr;
+    }
+}

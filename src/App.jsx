@@ -18,6 +18,7 @@ import QuienesSomos from './pages/QuienesSomos'
 import Boletas from './pages/Boletas'
 import Perfil from './pages/Perfil'
 import Pedidos from './pages/Pedidos'
+import Contacto from './pages/Contacto'
 import NoEncontrado from './pages/NoEncontrado'
 
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
@@ -46,7 +47,7 @@ function App() {
           <Route path="/nosotros" element={<QuienesSomos />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<DetalleBlog />} />
-          <Route path="/contacto" element={enConstruccion('Contacto')} />
+          <Route path="/contacto" element={<Contacto />} />
           <Route path="*" element={<NoEncontrado />} />
         </Route>
 
