@@ -1,0 +1,42 @@
+.compartir {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 2px dashed #f3c1d3;
+}
+
+.compartir-titulo {
+  font-weight: 600;
+  color: #5C3A21;
+}
+
+.btn-compartir {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #e75480;
+  background: #fff;
+  color: #e75480;
+  font-size: 1.15rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.btn-compartir:hover,
+.btn-compartir:focus-visible {
+  background: #e75480;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.compartir-aviso {
+  color: #5C3A21;
+  font-size: 0.9rem;
+}
