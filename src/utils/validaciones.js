@@ -1,4 +1,5 @@
-import { CODIGO_FELICES } from './constantes'
+import { CODIGO_FELICES, TIPOS_CONSULTA } from './constantes'
+
 
 
 export const requerido = (valor) => String(valor ?? '').trim() !== ''
@@ -59,5 +60,19 @@ export function validarPerfil(v) {
   if (v.telefono && !/^\+?\d{8,12}$/.test(v.telefono.replace(/\s/g, ''))) {
     errores.telefono = 'Teléfono no válido'
   }
+  return errores
+}
+
+export const MAX_MENSAJE = 500
+
+export function validarContacto(v) {
+  const errores = {}
+  if (!TIPOS_CONSULTA.includes(v.tipo)) errores.tipo = 'Elige el tipo de consulta'
+  if (!requerido(v.nombre)) errores.nombre = 'Ingresa tu nombre'
+  else if (v.nombre.trim().length > 100) errores.nombre = 'Máximo 100 caracteres'
+  if (!requerido(v.email)) errores.email = 'Ingresa tu correo'
+  else if (!validarEmail(v.email)) errores.email = 'El correo no es válido'
+  if (!requerido(v.mensaje)) errores.mensaje = 'Escribe tu mensaje'
+  else if (v.mensaje.trim().length > MAX_MENSAJE) errores.mensaje = `Máximo ${MAX_MENSAJE} caracteres`
   return errores
 }

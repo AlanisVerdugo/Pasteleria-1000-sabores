@@ -33,7 +33,6 @@ function Cabecera() {
               <Nav.Link as={NavLink} to="/ofertas">Ofertas</Nav.Link>
               <Nav.Link as={NavLink} to="/blog">Blog</Nav.Link>
               <Nav.Link as={NavLink} to="/nosotros">Nosotros</Nav.Link>
-              <Nav.Link as={NavLink} to="/contacto">Contacto</Nav.Link>
             </Nav>
 
             <Nav className="d-flex gap-3 align-items-center ms-lg-5">
