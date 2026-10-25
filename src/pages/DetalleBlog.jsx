@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import '../css/blog.css'
 import { blogService } from '../services/otrosService'
 import { formatearFecha } from '../utils/formato'
+import BotonesCompartir from '../components/BotonesCompartir'
 
 function DetalleBlog() {
   const { id } = useParams() 
@@ -52,7 +53,7 @@ function DetalleBlog() {
           ))}
         </div>
 
-        {/* Aquí irán los BotonesCompartir */}
+        <BotonesCompartir titulo={titulo} />
       </article>
     </main>
   )
