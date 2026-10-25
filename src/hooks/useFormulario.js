@@ -25,6 +25,16 @@ export function useFormulario(valoresIniciales, validar) {
     setErrores({})
   }
 
-  return { valores, errores, manejarCambio, manejarEnvio, reiniciar }
+    // Cambia varios campos a la vez (autocompletar)
+  const establecer = (campos) => {
+    setValores((v) => ({ ...v, ...campos }))
+    setErrores((er) => {
+      const copia = { ...er }
+      Object.keys(campos).forEach((campo) => delete copia[campo])
+      return copia
+    })
+  }
+
+  return { valores, errores, manejarCambio, manejarEnvio, reiniciar, establecer }
 }
 
