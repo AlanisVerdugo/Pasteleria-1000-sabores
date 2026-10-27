@@ -1,0 +1,101 @@
+.no-encontrado {
+    min-height: 60vh;
+    padding: 60px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* El "4 0 4" gigante */
+.ne-codigo {
+    font-family: 'Pacifico', cursive;
+    font-size: 7rem;
+    line-height: 1;
+    color: #e75480;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* reemplaza 0 */
+.ne-torta {
+    display: inline-block;
+    font-size: 5.5rem;
+    color: #8B4513;
+    animation: ne-flotar 2.5s ease-in-out infinite;
+}
+
+@keyframes ne-flotar {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%      { transform: translateY(-14px) rotate(4deg); }
+}
+
+.ne-titulo {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.ne-texto {
+    color: #5D4037;
+    max-width: 480px;
+    margin-bottom: 32px;
+}
+
+.ne-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.ne-boton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid #e75480;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.ne-boton-principal {
+    background: #e75480;
+    color: #fff;
+}
+
+.ne-boton-principal:hover {
+    background: #c93d68;
+    border-color: #c93d68;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.ne-boton-secundario {
+    background: transparent;
+    color: #e75480;
+}
+
+.ne-boton-secundario:hover {
+    background: #FFF1ED;
+    color: #c93d68;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 576px) {
+    .ne-codigo { font-size: 5rem; }
+    .ne-torta  { font-size: 4rem; }
+    .ne-titulo { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ne-torta  { animation: none; }
+    .ne-boton  { transition: none; }
+}
+
