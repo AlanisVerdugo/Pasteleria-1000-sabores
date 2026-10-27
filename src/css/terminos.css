@@ -1,0 +1,144 @@
+
+/* ===== TÉRMINOS: contenedor y encabezado ===== */
+.tc {
+    padding: 50px 12px;
+}
+
+.tc-encabezado {
+    margin-bottom: 56px;
+}
+
+.tc-eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #81515A;
+    margin-bottom: 8px;
+}
+
+.tc-titulo {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+}
+
+/* Fecha */
+.tc-actualizacion {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: #FFF1ED;
+    color: #81515A;
+    font-size: 0.9rem;
+}
+
+/* ===== LISTA DE SECCIONES ===== */
+.tc-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 820px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.tc-seccion {
+    background: #fff;
+    border: 2px solid rgba(218, 194, 182, 0.5);
+    border-radius: 16px;
+    padding: 24px 28px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.tc-titulo-seccion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #8B4513;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+/* Número en círculo */
+.tc-numero {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid #e75480;
+    color: #e75480;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.tc-texto {
+    color: #5D4037;
+    line-height: 1.65;
+    margin: 0 0 8px 48px;      
+}
+
+.tc-texto:last-child {
+    margin-bottom: 0;
+}
+
+.tc-seccion:hover {
+    border-color: #e75480;
+    transform: translateX(6px);
+}
+
+.tc-seccion:hover .tc-numero {
+    background-color: #e75480;
+    color: #fff;
+    transform: scale(1.12);
+}
+
+/* ===== PIE DE LA PÁGINA ===== */
+.tc-pie {
+    max-width: 820px;
+    margin: 40px auto 0;
+    color: #5D4037;
+}
+
+.tc-pie a {
+    color: #e75480;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.tc-pie a:hover {
+    border-bottom-color: #e75480;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 576px) {
+    .tc-seccion {
+        padding: 20px;
+    }
+    .tc-texto {
+        margin-left: 0;        
+    }
+}
+
+/* ===== ACCESIBILIDAD: menos movimiento ===== */
+@media (prefers-reduced-motion: reduce) {
+    .tc-seccion,
+    .tc-numero,
+    .tc-pie a {
+        transition: none;
+    }
+}
+
+
+
+
