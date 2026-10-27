@@ -101,3 +101,11 @@ footer {
     transform: translateY(-3px);
 }
 
+/* Columna de redes:*/
+.footer-redes {
+    text-align: center;
+}
+
+.footer-redes-iconos {
+    justify-content: center;
+}

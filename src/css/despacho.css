@@ -1,0 +1,332 @@
+/* ===== DESPACHO: contenedor y encabezado ===== */
+.despacho {
+    padding: 50px 12px;
+}
+
+.despacho-eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #81515A;
+    margin-bottom: 8px;
+}
+
+.despacho-encabezado {
+    margin-bottom: 72px;          
+}
+
+.despacho-titulo {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 2.4rem;
+    margin-bottom: 20px;          
+}
+
+/* Subtítulo destacado: */
+.despacho-subtitulo {
+    display: inline-block;
+    max-width: 560px;
+    margin: 0;
+    padding: 14px 22px;
+    background: #FFF1ED;
+    border-left: 5px solid #e75480;
+    border-bottom: 5px solid #e75480;
+    border-radius: 0 12px 12px 0;
+    color: #5D4037;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 14px rgba(231, 84, 128, 0.08);
+}
+
+.despacho-seccion {
+    margin-bottom: 56px;
+}
+
+.despacho-titulo-seccion {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+/* ===== RECORRIDO EN 4 PASOS ===== */
+.despacho-pasos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+}
+
+.despacho-pasos::before {
+    content: '';
+    position: absolute;
+    top: 36px;                 
+    left: 12.5%;
+    right: 12.5%;
+    border-top: 3px dashed #f3c1d3;
+    z-index: 0;
+}
+
+.paso-despacho {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.paso-icono {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: #FFF5E1;
+    border: 3px solid #e75480;
+    color: #8B4513;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.paso-numero {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #e75480;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paso-titulo {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #8B4513;
+    margin-bottom: 6px;
+}
+
+.paso-texto {
+    color: #5D4037;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.paso-despacho:hover .paso-icono {
+    background-color: #e75480;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* ===== OPCIONES DE ENTREGA ===== */
+.despacho-opcion {
+    background: #fff;
+    border: 2px solid rgba(218, 194, 182, 0.5);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    color: #5D4037;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.despacho-opcion h3 {
+    color: #8B4513;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.despacho-opcion-icono {
+    font-size: 2.4rem;
+    color: #e75480;
+    display: inline-block;
+    margin-bottom: 8px;
+    transition: transform 0.4s ease;
+}
+
+.despacho-precio {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    color: #e75480;
+    margin-bottom: 8px;
+}
+
+.despacho-opcion:hover {
+    transform: translateY(-6px);
+    border-color: #e75480;
+    box-shadow: 0 12px 28px rgba(231, 84, 128, 0.15);
+}
+
+.despacho-opcion:hover .despacho-opcion-icono {
+    transform: translateX(8px);
+}
+
+/* ===== PLAZOS Y HORARIOS ===== */
+.despacho-info {
+    position: relative;           
+    overflow: hidden;             
+    background: #FFF1ED;
+    border-left: 5px solid #e75480;
+    border-radius: 12px;
+    padding: 24px 28px;
+    color: #5D4037;
+    transition: box-shadow 0.3s ease;
+}
+
+/* "barre" desde la izquierda */
+.despacho-info::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #FFE2DA, #FFF1ED);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+
+.despacho-info > * {
+    position: relative;
+    z-index: 1;
+}
+
+.despacho-info:hover {
+    box-shadow: insert 5px 0 0 #e75480;           
+}
+
+.despacho-info:hover::before {
+    transform: scaleX(1);
+}
+
+.despacho-info h3 {
+    color: #8B4513;
+    font-size: 1.15rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.despacho-info ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.despacho-info li {
+    margin-bottom: 6px;
+}
+
+/* ===== CUIDADOS ===== */
+.despacho-cuidados {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.despacho-cuidados li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border: 1px solid rgba(218, 194, 182, 0.5);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #5D4037;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.despacho-cuidados i {
+    font-size: 1.4rem;
+    color: #e75480;
+    flex-shrink: 0;
+}
+
+
+.despacho-cuidados li:hover {
+    transform: translateX(8px);
+    background-color: #FFF5E1;
+}
+
+/* ===== LLAMADO FINAL A CONTACTO ===== */
+.despacho-cta {
+    background: linear-gradient(135deg, #FFE2DA, #FFF5E1);
+    border-radius: 20px;
+    padding: 40px 24px;
+}
+
+.despacho-cta h2 {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 1.7rem;
+}
+
+.despacho-cta p {
+    color: #5D4037;
+}
+
+.despacho-cta-boton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 32px;
+    border-radius: 999px;
+    background: #e75480;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.despacho-cta-boton:hover {
+    background: #c93d68;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .despacho-pasos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .despacho-pasos::before {
+        display: none;         
+    }
+}
+
+@media (max-width: 576px) {
+    .despacho-pasos {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== ACCESIBILIDAD: menos movimiento ===== */
+@media (prefers-reduced-motion: reduce) {
+    .paso-icono,
+    .despacho-opcion,
+    .despacho-opcion-icono,
+    .despacho-cuidados li,
+    .despacho-info,
+    .despacho-info::before,
+    .despacho-cta-boton {
+        transition: none;
+    }
+
+}
+
+
+
+
