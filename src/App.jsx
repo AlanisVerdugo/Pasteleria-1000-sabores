@@ -14,7 +14,7 @@ import Login from './pages/Login'
 import Registro from './pages/Registro'
 import Blog from './pages/Blog'
 import DetalleBlog from './pages/DetalleBlog'
-import QuienesSomos from './pages/QuienesSomos'
+import Nosotros from './pages/Nosotros'
 import Boletas from './pages/Boletas'
 import Perfil from './pages/Perfil'
 import Pedidos from './pages/Pedidos'
@@ -44,7 +44,7 @@ function App() {
           <Route path="/registro" element={<Registro />} />
           <Route path="/perfil" element={<RutaProtegida><Perfil /></RutaProtegida>} />
           <Route path="/mis-pedidos" element={<RutaProtegida><Pedidos /></RutaProtegida>} />
-          <Route path="/nosotros" element={<QuienesSomos />} />
+          <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<DetalleBlog />} />
           <Route path="/contacto" element={<Contacto />} />

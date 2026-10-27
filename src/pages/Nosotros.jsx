@@ -1,8 +1,8 @@
-import '../css/quienes_somos.css';
+import '../css/Nosotros.css';
 
 import ValorCard from '../components/ValorCard';
 
-function QuienesSomos() {
+function Nosotros() {
 
     return (
         <>
@@ -103,7 +103,8 @@ function QuienesSomos() {
                             </div>
                         </div>
                         <div className="qs-alianza-badge">
-                            <i className="bi bi-people"></i> +140 Pasantes Egresados
+                            <i className="bi bi-people"></i>
+                            <span className="qs-alianza-numero">+140</span> Pasantes Egresados
                         </div>
                     </div>
                 </section>
@@ -113,4 +114,4 @@ function QuienesSomos() {
 
 }
 
-export default QuienesSomos;
+export default Nosotros;
