@@ -14,4 +14,12 @@ describe('Pie', () => {
     renderPie()
     expect(screen.getByRole('link', { name: 'Contacto' })).toHaveAttribute('href', '/contacto')
   })
+  test('muestra las redes sociales y abren en una pestaña nueva', () => {
+    renderPie()
+    const redes = ['Instagram', 'Facebook', 'TikTok', 'WhatsApp']
+    redes.forEach((nombre) => {
+      const enlace = screen.getByLabelText(`${nombre} de Pastelería 1000 Sabores`)
+      expect(enlace).toHaveAttribute('target', '_blank')
+    })
+  })
 })
