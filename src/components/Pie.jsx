@@ -41,7 +41,7 @@ function Pie() {
                         <ul className="list-unstyled footer-nav">
                             <li><Link to="/despacho" className="footer-link">Despacho y envíos</Link></li>
                             <li><Link to="/contacto" className="footer-link">Contacto</Link></li>
-                            <li><a href="#" className="footer-link">Términos</a></li>
+                            <li><Link to="/terminos" className="footer-link">Términos</Link></li>
                             <li><Link to="/preguntas-frecuentes" className="footer-link">Preguntas Frecuentes</Link></li>
                         </ul>
                     </div>

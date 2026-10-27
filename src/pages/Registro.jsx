@@ -138,7 +138,9 @@ function Registro() {
             <div className="checkbox-group">
               <input type="checkbox" id="terminos" name="terminos"
                 checked={valores.terminos} onChange={alCambiar} />
-              <label htmlFor="terminos">Acepto los Términos y Condiciones y la Política de Privacidad.</label>
+              <label htmlFor="terminos">
+                Acepto los <Link to="/terminos" target="_blank" rel="noopener noreferrer">Términos y Condiciones</Link>.
+              </label>
             </div>
             <span className="error-mensaje">{errores.terminos}</span>
 
