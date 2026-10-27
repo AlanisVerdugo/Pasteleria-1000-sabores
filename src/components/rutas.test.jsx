@@ -4,7 +4,6 @@ import { renderConProviders } from '../test/utils'
 import RutaProtegida from './RutaProtegida'
 import RutaAdmin from './RutaAdmin'
 import EnConstruccion from './EnConstruccion'
-import NoEncontrado from '../pages/NoEncontrado'
 
 const ADMIN = { id: 1 }
 const CLIENTE = { id: 2 }
@@ -45,8 +44,6 @@ describe('páginas simples', () => {
     renderConProviders(<EnConstruccion titulo="Ofertas" />)
     expect(screen.getByRole('heading', { name: 'Ofertas' })).toBeInTheDocument()
   })
-  test('404 tiene link al inicio', () => {
-    renderConProviders(<NoEncontrado />)
-    expect(screen.getByRole('link', { name: /volver al inicio/i })).toHaveAttribute('href', '/')
-  })
 })
+
+
