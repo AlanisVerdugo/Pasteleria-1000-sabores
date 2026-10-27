@@ -1,0 +1,316 @@
+
+/* ===== ESPACIADO GENERAL DE SECCIÓN ===== */
+.qs-seccion {
+    padding: 50px 0;
+}
+
+/* ===== ENCABEZADOS DE SECCIÓN (eyebrow + título + subtítulo) ===== */
+.qs-encabezado {
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.qs-eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #81515A;  /* mismo tono "secondary" de la referencia */
+    margin-bottom: 8px;
+}
+
+.qs-titulo-seccion {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.qs-subtitulo {
+    color: #5D4037;
+    max-width: 500px;
+}
+
+/* ===== TARJETAS DE VALORES (4 columnas) ===== */
+.qs-valor-card {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.06);
+    display: flex;
+    flex-direction: column;
+}
+
+.qs-valor-icono {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #8B4513;
+    margin-bottom: 16px;
+}
+
+/* Variantes de color de fondo para cada ícono */
+.qs-icono-crema { background-color: #FFF5E1; }
+.qs-icono-rosa { background-color: rgba(255, 192, 203, 0.5); }
+.qs-icono-durazno { background-color: #FFDBC9; }
+.qs-icono-tierra { background-color: #EBE2CE; }
+
+.qs-valor-titulo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #8B4513;
+    margin-bottom: 8px;
+}
+
+.qs-valor-texto {
+    color: #5D4037;
+    font-size: 0.9rem;
+    flex-grow: 1;
+}
+
+.qs-valor-tag {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #81515A;
+    margin-top: 8px;
+}
+
+/* ===== TARJETAS DE MISIÓN/VISIÓN (formato "propósito") ===== */
+
+.qs-proposito-icono {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #8B4513;
+    margin-bottom: 16px;
+}
+
+.qs-proposito-footer {
+    padding-top: 20px;
+    color: #8B4513;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===== BANNER ALIANZA DUOC UC ===== */
+.qs-alianza {
+    background-color: #FFF1ED;
+    border-top: 1px solid rgba(218, 194, 182, 0.4);
+    border-bottom: 1px solid rgba(218, 194, 182, 0.4);
+    padding: 40px 0;
+}
+
+.qs-alianza-icono {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background-color: #FFF5E1;
+    color: #8B4513;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+.qs-alianza-titulo {
+    color: #8B4513;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.qs-alianza-texto {
+    color: #5D4037;
+    max-width: 500px;
+}
+
+.qs-alianza-badge {
+    flex-shrink: 0;
+    background-color: #FFFFFF;
+    color: #8B4513;
+    border: 1px solid rgba(218, 194, 182, 0.4);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(139, 69, 19, 0.06);
+}
+
+
+/* ===== ANIMACIONES DE LAS TARJETAS DE VALORES ===== */
+.qs-valor-card {
+    position: relative;   
+    overflow: hidden;     
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qs-valor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(139, 69, 19, 0.15);
+}
+
+.qs-valor-icono {
+    transition: transform 0.3s ease;
+}
+.qs-valor-card:hover .qs-valor-icono {
+    transform: scale(1.15) rotate(-8deg);
+}
+
+.qs-valor-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #e75480;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+.qs-valor-card:hover::after {
+    transform: scaleX(1);
+}
+
+.qs-valor-card .qs-valor-tag {
+    align-self: flex-start;
+    padding: 2px 10px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.qs-valor-card:hover .qs-valor-tag {
+    background-color: #e75480;
+    color: #fff;
+}
+
+/* ===== ANIMACIONES DE MISIÓN / VISIÓN ===== */
+.qs-proposito-card {
+    background-color: #FFFFFF;
+    padding: 40px;
+    box-shadow: 0 4px 16px rgba(139, 69, 19, 0.08);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.qs-proposito-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.qs-proposito-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 16px 32px rgba(139, 69, 19, 0.15);
+}
+
+.qs-proposito-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #FFE2DA, #FFFFFF 70%);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+.qs-proposito-card:hover::before {
+    transform: scaleY(1);
+}
+
+@keyframes qs-saltito {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+.qs-proposito-footer i {
+    display: inline-block;
+}
+.qs-proposito-card:hover .qs-proposito-footer i {
+    animation: qs-saltito 0.6s ease infinite;
+}
+
+.qs-proposito-card .qs-proposito-icono {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    margin-bottom: 0;
+}
+
+.qs-proposito-card .titulo-tarjeta {
+    padding-right: 64px;
+}
+
+
+/* ===== INSIGNIA DE PASANTES ===== */
+.qs-alianza-badge {
+    position: relative;
+    overflow: hidden;
+    border-color: #e75480;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Brillo */
+.qs-alianza-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transform: skewX(-20deg);
+    animation: qs-brillo 4s ease-in-out infinite;
+}
+@keyframes qs-brillo {
+    0%   { left: -60%; }
+    30%  { left: 130%; }
+    100% { left: 130%; }   
+}
+
+.qs-alianza-badge:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 20px rgba(231, 84, 128, 0.25);
+}
+
+
+/*si se elige desactivar la animaciones desde el sistema */
+@media (prefers-reduced-motion: reduce) {
+    .qs-valor-card,
+    .qs-valor-icono,
+    .qs-valor-card::after,
+    .qs-proposito-card,
+    .qs-proposito-card::before,
+    .qs-proposito-icono {
+        transition: none;
+    }
+    .qs-proposito-card:hover .qs-proposito-footer i {
+        animation: none;
+    }
+    .qs-alianza-badge::after {
+        animation: none;
+        display: none;
+    }
+    .qs-alianza-badge {
+        transition: none;
+    }
+}
+
+
+

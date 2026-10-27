@@ -1,5 +1,4 @@
-// componente reutilizable: tarjeta de un valor fundamental
-// se usa en la página Quiénes Somos (4 veces)
+// tarjeta de un valor fundamental
 function ValorCard({ icono, colorIcono, titulo, texto, etiqueta }) {
 
     return (
