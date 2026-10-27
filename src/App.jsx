@@ -20,6 +20,7 @@ import Perfil from './pages/Perfil'
 import Pedidos from './pages/Pedidos'
 import Contacto from './pages/Contacto'
 import Despacho from './pages/Despacho'
+import PreguntasFrecuentes from './pages/PreguntasFrecuentes'
 import NoEncontrado from './pages/NoEncontrado'
 
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
@@ -50,6 +51,7 @@ function App() {
           <Route path="/blog/:id" element={<DetalleBlog />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/despacho" element={<Despacho />} />
+          <Route path="/preguntas-frecuentes" element={<PreguntasFrecuentes />} />
           <Route path="*" element={<NoEncontrado />} />
         </Route>
 
