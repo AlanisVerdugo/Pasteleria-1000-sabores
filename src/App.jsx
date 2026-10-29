@@ -24,6 +24,9 @@ import PreguntasFrecuentes from './pages/PreguntasFrecuentes'
 import Terminos from './pages/Terminos'
 import NoEncontrado from './pages/NoEncontrado'
 
+// admin (p3)
+import Dashboard from './pages/admin/Dashboard'
+
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
 
 function App() {
@@ -59,7 +62,7 @@ function App() {
 
         {/* ADMIN */}
         <Route path="/admin" element={<RutaAdmin><AdminLayout /></RutaAdmin>}>
-          <Route index element={enConstruccion('Dashboard')} />
+          <Route index element={<Dashboard />} />
           <Route path="productos" element={enConstruccion('Productos')} />
           <Route path="productos/nuevo" element={enConstruccion('Nuevo producto')} />
           <Route path="productos/criticos" element={enConstruccion('Productos críticos')} />
