@@ -15,7 +15,6 @@ import Registro from './pages/Registro'
 import Blog from './pages/Blog'
 import DetalleBlog from './pages/DetalleBlog'
 import Nosotros from './pages/Nosotros'
-import Boletas from './pages/Boletas'
 import Perfil from './pages/Perfil'
 import Pedidos from './pages/Pedidos'
 import Contacto from './pages/Contacto'
@@ -23,6 +22,23 @@ import Despacho from './pages/Despacho'
 import PreguntasFrecuentes from './pages/PreguntasFrecuentes'
 import Terminos from './pages/Terminos'
 import NoEncontrado from './pages/NoEncontrado'
+
+// admin (p3)
+import Dashboard from './pages/admin/Dashboard'
+import ProductosLista from './pages/admin/ProductosLista'
+import ProductoEditor from './pages/admin/ProductoEditor'
+import ProductoDetalle from './pages/admin/ProductoDetalle'
+import ProductosCriticos from './pages/admin/ProductosCriticos'
+import OrdenesLista from './pages/admin/OrdenesLista'
+import OrdenDetalle from './pages/admin/OrdenDetalle'
+import CategoriasLista from './pages/admin/CategoriasLista'
+import CategoriaEditor from './pages/admin/CategoriaEditor'
+import UsuariosLista from './pages/admin/UsuariosLista'
+import UsuarioEditor from './pages/admin/UsuarioEditor'
+import UsuarioDetalle from './pages/admin/UsuarioDetalle'
+import HistorialCompras from './pages/admin/HistorialCompras'
+import Reportes from './pages/admin/Reportes'
+import PerfilAdmin from './pages/admin/PerfilAdmin'
 
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
 
@@ -59,24 +75,24 @@ function App() {
 
         {/* ADMIN */}
         <Route path="/admin" element={<RutaAdmin><AdminLayout /></RutaAdmin>}>
-          <Route index element={enConstruccion('Dashboard')} />
-          <Route path="productos" element={enConstruccion('Productos')} />
-          <Route path="productos/nuevo" element={enConstruccion('Nuevo producto')} />
-          <Route path="productos/criticos" element={enConstruccion('Productos críticos')} />
-          <Route path="productos/:codigo" element={enConstruccion('Producto')} />
-          <Route path="productos/:codigo/editar" element={enConstruccion('Editar producto')} />
-          <Route path="categorias" element={enConstruccion('Categorías')} />
-          <Route path="categorias/nueva" element={enConstruccion('Nueva categoría')} />
-          <Route path="categorias/:id/editar" element={enConstruccion('Editar categoría')} />
-          <Route path="usuarios" element={enConstruccion('Usuarios')} />
-          <Route path="usuarios/nuevo" element={enConstruccion('Nuevo usuario')} />
-          <Route path="usuarios/:id" element={enConstruccion('Usuario')} />
-          <Route path="usuarios/:id/editar" element={enConstruccion('Editar usuario')} />
-          <Route path="usuarios/:id/compras" element={enConstruccion('Historial de compras')} />
-          <Route path="ordenes" element={<Boletas />} />
-          <Route path="ordenes/:id" element={enConstruccion('Boleta')} />
-          <Route path="reportes" element={enConstruccion('Reportes')} />
-          <Route path="perfil" element={enConstruccion('Perfil admin')} />
+          <Route index element={<Dashboard />} />
+          <Route path="productos" element={<ProductosLista />} />
+          <Route path="productos/nuevo" element={<ProductoEditor />} />
+          <Route path="productos/criticos" element={<ProductosCriticos />} />
+          <Route path="productos/:codigo" element={<ProductoDetalle />} />
+          <Route path="productos/:codigo/editar" element={<ProductoEditor />} />
+          <Route path="categorias" element={<CategoriasLista />} />
+          <Route path="categorias/nueva" element={<CategoriaEditor />} />
+          <Route path="categorias/:id/editar" element={<CategoriaEditor />} />
+          <Route path="usuarios" element={<UsuariosLista />} />
+          <Route path="usuarios/nuevo" element={<UsuarioEditor />} />
+          <Route path="usuarios/:id" element={<UsuarioDetalle />} />
+          <Route path="usuarios/:id/editar" element={<UsuarioEditor />} />
+          <Route path="usuarios/:id/compras" element={<HistorialCompras />} />
+          <Route path="ordenes" element={<OrdenesLista />} />
+          <Route path="ordenes/:id" element={<OrdenDetalle />} />
+          <Route path="reportes" element={<Reportes />} />
+          <Route path="perfil" element={<PerfilAdmin />} />
         </Route>
       </Routes>
     </>
