@@ -15,7 +15,6 @@ import Registro from './pages/Registro'
 import Blog from './pages/Blog'
 import DetalleBlog from './pages/DetalleBlog'
 import Nosotros from './pages/Nosotros'
-import Boletas from './pages/Boletas'
 import Perfil from './pages/Perfil'
 import Pedidos from './pages/Pedidos'
 import Contacto from './pages/Contacto'
@@ -23,6 +22,15 @@ import Despacho from './pages/Despacho'
 import PreguntasFrecuentes from './pages/PreguntasFrecuentes'
 import Terminos from './pages/Terminos'
 import NoEncontrado from './pages/NoEncontrado'
+
+// admin (p3)
+import Dashboard from './pages/admin/Dashboard'
+import ProductosLista from './pages/admin/ProductosLista'
+import ProductoEditor from './pages/admin/ProductoEditor'
+import ProductoDetalle from './pages/admin/ProductoDetalle'
+import ProductosCriticos from './pages/admin/ProductosCriticos'
+import OrdenesLista from './pages/admin/OrdenesLista'
+import OrdenDetalle from './pages/admin/OrdenDetalle'
 
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
 
@@ -59,12 +67,12 @@ function App() {
 
         {/* ADMIN */}
         <Route path="/admin" element={<RutaAdmin><AdminLayout /></RutaAdmin>}>
-          <Route index element={enConstruccion('Dashboard')} />
-          <Route path="productos" element={enConstruccion('Productos')} />
-          <Route path="productos/nuevo" element={enConstruccion('Nuevo producto')} />
-          <Route path="productos/criticos" element={enConstruccion('Productos críticos')} />
-          <Route path="productos/:codigo" element={enConstruccion('Producto')} />
-          <Route path="productos/:codigo/editar" element={enConstruccion('Editar producto')} />
+          <Route index element={<Dashboard />} />
+          <Route path="productos" element={<ProductosLista />} />
+          <Route path="productos/nuevo" element={<ProductoEditor />} />
+          <Route path="productos/criticos" element={<ProductosCriticos />} />
+          <Route path="productos/:codigo" element={<ProductoDetalle />} />
+          <Route path="productos/:codigo/editar" element={<ProductoEditor />} />
           <Route path="categorias" element={enConstruccion('Categorías')} />
           <Route path="categorias/nueva" element={enConstruccion('Nueva categoría')} />
           <Route path="categorias/:id/editar" element={enConstruccion('Editar categoría')} />
@@ -73,8 +81,8 @@ function App() {
           <Route path="usuarios/:id" element={enConstruccion('Usuario')} />
           <Route path="usuarios/:id/editar" element={enConstruccion('Editar usuario')} />
           <Route path="usuarios/:id/compras" element={enConstruccion('Historial de compras')} />
-          <Route path="ordenes" element={<Boletas />} />
-          <Route path="ordenes/:id" element={enConstruccion('Boleta')} />
+          <Route path="ordenes" element={<OrdenesLista />} />
+          <Route path="ordenes/:id" element={<OrdenDetalle />} />
           <Route path="reportes" element={enConstruccion('Reportes')} />
           <Route path="perfil" element={enConstruccion('Perfil admin')} />
         </Route>
