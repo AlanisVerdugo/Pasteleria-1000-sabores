@@ -24,6 +24,12 @@ import PreguntasFrecuentes from './pages/PreguntasFrecuentes'
 import Terminos from './pages/Terminos'
 import NoEncontrado from './pages/NoEncontrado'
 
+// admin (p3)
+import Dashboard from './pages/admin/Dashboard'
+import ProductosLista from './pages/admin/ProductosLista'
+import ProductoEditor from './pages/admin/ProductoEditor'
+import ProductoDetalle from './pages/admin/ProductoDetalle'
+
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
 
 function App() {
@@ -59,12 +65,12 @@ function App() {
 
         {/* ADMIN */}
         <Route path="/admin" element={<RutaAdmin><AdminLayout /></RutaAdmin>}>
-          <Route index element={enConstruccion('Dashboard')} />
-          <Route path="productos" element={enConstruccion('Productos')} />
-          <Route path="productos/nuevo" element={enConstruccion('Nuevo producto')} />
+          <Route index element={<Dashboard />} />
+          <Route path="productos" element={<ProductosLista />} />
+          <Route path="productos/nuevo" element={<ProductoEditor />} />
           <Route path="productos/criticos" element={enConstruccion('Productos críticos')} />
-          <Route path="productos/:codigo" element={enConstruccion('Producto')} />
-          <Route path="productos/:codigo/editar" element={enConstruccion('Editar producto')} />
+          <Route path="productos/:codigo" element={<ProductoDetalle />} />
+          <Route path="productos/:codigo/editar" element={<ProductoEditor />} />
           <Route path="categorias" element={enConstruccion('Categorías')} />
           <Route path="categorias/nueva" element={enConstruccion('Nueva categoría')} />
           <Route path="categorias/:id/editar" element={enConstruccion('Editar categoría')} />
