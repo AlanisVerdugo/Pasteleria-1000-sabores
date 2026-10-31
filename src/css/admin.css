@@ -271,7 +271,7 @@ a.adm-contador:hover {
     color: #1D6B3A;
 }
 
-/* Imprimir: solo la boleta, sin sidebar ni botones */
+/* Imprimir: solo la boleta */
 @media print {
     .adm-sidebar,
     .adm-no-imprimir {
@@ -280,4 +280,10 @@ a.adm-contador:hover {
     .adm-contenido {
         padding: 0;
     }
+}
+
+.adm-vista-previa {
+    display: block;
+    max-height: 120px;
+    border-radius: 12px;
 }
