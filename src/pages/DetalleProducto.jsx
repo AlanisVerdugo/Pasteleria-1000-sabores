@@ -21,12 +21,12 @@ function DetalleProducto() {
     const [categoria, setCategoria] = useState(null)
     const [tamanoId, setTamanoId] = useState(null)
     const [cantidad, setCantidad] = useState(1)
+    const [mensaje, setMensaje] = useState('')
     const [agregado, setAgregado] = useState(false)
 
     useEffect(() => {
         productosService.obtenerPorId(codigo).then((p) => {
             setProducto(p)
-            // Si el producto tiene tamaños, parte con el primero seleccionado
             if (p?.tamanos?.length > 0) setTamanoId(p.tamanos[0].id)
         })
     }, [codigo])
@@ -47,10 +47,11 @@ function DetalleProducto() {
         )
     }
 
+    const agotado = producto.stock <= 0
     const precioFinal = precioConOferta(producto, tamanoId)
 
     const handleAgregar = () => {
-        const exito = agregar(producto, { cantidad, tamano: tamanoId })
+        const exito = agregar(producto, { cantidad, tamano: tamanoId, mensaje })
         if (exito) {
             setAgregado(true)
             setTimeout(() => setAgregado(false), 2000)
@@ -62,7 +63,7 @@ function DetalleProducto() {
             <main>
                 <section className="container py-5">
 
-                    {/* Breadcrumb (izq) + etiqueta de oferta (der) */}
+                    {/* Breadcrumb (izq) + etiqueta de oferta/agotado (der) */}
                     <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb-detalle mb-0">
@@ -71,7 +72,9 @@ function DetalleProducto() {
                                 <li className="activo">{producto.nombre}</li>
                             </ol>
                         </nav>
-                        {producto.oferta > 0 && (
+                        {agotado ? (
+                            <span className="badge-producto badge-tradicional">Agotado</span>
+                        ) : producto.oferta > 0 && (
                             <span className="badge-producto badge-tradicional badge-edicion">
                                 <i className="bi bi-stars"></i> {producto.oferta}% de descuento
                             </span>
@@ -118,6 +121,21 @@ function DetalleProducto() {
                                 </>
                             )}
 
+                            {/* Mensaje personalizado: solo si el producto lo permite (ej. tortas) */}
+                            {producto.permiteMensaje && (
+                                <div className="mb-3">
+                                    <label className="form-label label-tamano">Mensaje para la torta (opcional)</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Ej: Feliz cumpleaños Ana"
+                                        maxLength={40}
+                                        value={mensaje}
+                                        onChange={(e) => setMensaje(e.target.value)}
+                                    />
+                                </div>
+                            )}
+
                             {/* Cantidad + botón de añadir al carrito */}
                             <div className="d-flex align-items-center gap-3 mb-3">
                                 <div className="cantidad-stepper">
@@ -129,8 +147,13 @@ function DetalleProducto() {
                                         <i className="bi bi-plus"></i>
                                     </button>
                                 </div>
-                                <button type="button" className="btn-carrito btn-anadir-carrito flex-grow-1" onClick={handleAgregar}>
-                                    <i className="bi bi-cart-fill"></i> {agregado ? '¡Agregado!' : 'Añadir al Carrito'}
+                                <button
+                                    type="button"
+                                    className="btn-carrito btn-anadir-carrito flex-grow-1"
+                                    onClick={handleAgregar}
+                                    disabled={agotado}
+                                >
+                                    <i className="bi bi-cart-fill"></i> {agotado ? 'Agotado' : agregado ? '¡Agregado!' : 'Añadir al Carrito'}
                                 </button>
                             </div>
 
