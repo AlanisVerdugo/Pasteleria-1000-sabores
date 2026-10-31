@@ -11,6 +11,9 @@ import Home from './pages/Home'
 import Catalogo from './pages/Catalogo'
 import DetalleProducto from './pages/DetalleProducto'
 import Carrito from './pages/Carrito'
+import Checkout from './pages/Checkout'
+import PagoExito from './pages/PagoExito'
+import PagoError from './pages/PagoError'
 import Login from './pages/Login'
 import Registro from './pages/Registro'
 import Blog from './pages/Blog'
@@ -58,9 +61,9 @@ function App() {
           <Route path="/categorias/:id" element={enConstruccion('Categoría')} />
           <Route path="/ofertas" element={enConstruccion('Ofertas')} />
           <Route path="/carrito" element={<Carrito />} />
-          <Route path="/checkout" element={enConstruccion('Checkout')} />
-          <Route path="/pago/exito/:ordenId" element={enConstruccion('Pago correcto')} />
-          <Route path="/pago/error" element={enConstruccion('Pago con error')} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/pago/exito/:ordenId" element={<PagoExito />} />
+          <Route path="/pago/error" element={<PagoError />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/perfil" element={<RutaProtegida><Perfil /></RutaProtegida>} />
