@@ -10,6 +10,8 @@ import SubirAlInicio from './components/SubirAlInicio'
 import Home from './pages/Home'
 import Catalogo from './pages/Catalogo'
 import Ofertas from './pages/Ofertas'
+import Categorias from './pages/Categorias'
+import CategoriaDetalle from './pages/CategoriaDetalle'
 import DetalleProducto from './pages/DetalleProducto'
 import Carrito from './pages/Carrito'
 import Login from './pages/Login'
@@ -55,8 +57,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/productos" element={<Catalogo />} />
           <Route path="/producto/:codigo" element={<DetalleProducto />} />
-          <Route path="/categorias" element={enConstruccion('Categorías')} />
-          <Route path="/categorias/:id" element={enConstruccion('Categoría')} />
+          <Route path="/categorias" element={<Categorias />} />
+          <Route path="/categorias/:id" element={<CategoriaDetalle />} />
           <Route path="/ofertas" element={<Ofertas />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/checkout" element={enConstruccion('Checkout')} />
