@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react'
 import { productosService } from '../services/productosService'
 
 export function useProductos({ texto, categoriaId, forma, personas }) {
-    const [productos, setProductos] = useState([])
-    const [cargando, setCargando] = useState(true)
+    const [resultado, setResultado] = useState({ productos: [], clave: null })
+    const clave = JSON.stringify({ texto, categoriaId, forma, personas })
 
     useEffect(() => {
-        setCargando(true)
-        productosService.buscar({ texto, categoriaId, forma, personas }).then((resultado) => {
-            setProductos(resultado)
-            setCargando(false)
+        productosService.buscar({ texto, categoriaId, forma, personas }).then((productos) => {
+            setResultado({ productos, clave })
         })
-    }, [texto, categoriaId, forma, personas])
+    }, [clave, texto, categoriaId, forma, personas])
 
-    return { productos, cargando }
+    const cargando = resultado.clave !== clave
+    return { productos: resultado.productos, cargando }
 }
+
