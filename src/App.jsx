@@ -6,6 +6,7 @@ import RutaAdmin from './components/RutaAdmin'
 import EnConstruccion from './components/EnConstruccion'
 import SubirAlInicio from './components/SubirAlInicio'
 
+// tienda
 import Home from './pages/Home'
 import Catalogo from './pages/Catalogo'
 import DetalleProducto from './pages/DetalleProducto'
@@ -23,7 +24,7 @@ import PreguntasFrecuentes from './pages/PreguntasFrecuentes'
 import Terminos from './pages/Terminos'
 import NoEncontrado from './pages/NoEncontrado'
 
-// admin (p3)
+// admin 
 import Dashboard from './pages/admin/Dashboard'
 import ProductosLista from './pages/admin/ProductosLista'
 import ProductoEditor from './pages/admin/ProductoEditor'
@@ -38,6 +39,7 @@ import UsuarioEditor from './pages/admin/UsuarioEditor'
 import UsuarioDetalle from './pages/admin/UsuarioDetalle'
 import HistorialCompras from './pages/admin/HistorialCompras'
 import Reportes from './pages/admin/Reportes'
+import MensajesContacto from './pages/admin/MensajesContacto'
 import PerfilAdmin from './pages/admin/PerfilAdmin'
 
 const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
@@ -92,6 +94,7 @@ function App() {
           <Route path="ordenes" element={<OrdenesLista />} />
           <Route path="ordenes/:id" element={<OrdenDetalle />} />
           <Route path="reportes" element={<Reportes />} />
+          <Route path="mensajes" element={<MensajesContacto />} />
           <Route path="perfil" element={<PerfilAdmin />} />
         </Route>
       </Routes>
