@@ -9,6 +9,7 @@ import SubirAlInicio from './components/SubirAlInicio'
 // tienda
 import Home from './pages/Home'
 import Catalogo from './pages/Catalogo'
+import Ofertas from './pages/Ofertas'
 import DetalleProducto from './pages/DetalleProducto'
 import Carrito from './pages/Carrito'
 import Login from './pages/Login'
@@ -56,7 +57,7 @@ function App() {
           <Route path="/producto/:codigo" element={<DetalleProducto />} />
           <Route path="/categorias" element={enConstruccion('Categorías')} />
           <Route path="/categorias/:id" element={enConstruccion('Categoría')} />
-          <Route path="/ofertas" element={enConstruccion('Ofertas')} />
+          <Route path="/ofertas" element={<Ofertas />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/checkout" element={enConstruccion('Checkout')} />
           <Route path="/pago/exito/:ordenId" element={enConstruccion('Pago correcto')} />
