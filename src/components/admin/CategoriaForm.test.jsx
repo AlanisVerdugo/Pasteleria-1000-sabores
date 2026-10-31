@@ -2,6 +2,10 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import CategoriaForm from './CategoriaForm'
 
+vi.mock('../../utils/imagen', () => ({
+  achicarImagen: vi.fn().mockResolvedValue('data:image/jpeg;base64,FOTO'),
+}))
+
 describe('CategoriaForm', () => {
   test('sin nombre muestra el error y no guarda', async () => {
     const onGuardar = vi.fn()
@@ -30,5 +34,15 @@ describe('CategoriaForm', () => {
     render(<CategoriaForm inicial={{ nombre: 'Tortas Cuadradas' }} onGuardar={vi.fn().mockRejectedValue(new Error('Ya existe la categoría'))} />)
     await userEvent.click(screen.getByRole('button', { name: /Crear categoría/ }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Ya existe la categoría')
+  })
+
+  test('al subir una foto muestra la vista previa y la guarda', async () => {
+    const onGuardar = vi.fn().mockResolvedValue()
+    render(<CategoriaForm inicial={{ nombre: 'Kuchenes' }} onGuardar={onGuardar} />)
+    const archivo = new File(['x'], 'foto.png', { type: 'image/png' })
+    await userEvent.upload(screen.getByLabelText('…o sube una foto'), archivo)
+    expect(await screen.findByAltText('Vista previa')).toHaveAttribute('src', 'data:image/jpeg;base64,FOTO')
+    await userEvent.click(screen.getByRole('button', { name: /Crear categoría/ }))
+    expect(onGuardar).toHaveBeenCalledWith(expect.objectContaining({ imagen: 'data:image/jpeg;base64,FOTO' }))
   })
 })
