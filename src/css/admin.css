@@ -24,8 +24,20 @@
 .adm-sidebar-marca {
     font-family: 'Pacifico', cursive;
     font-size: 1.35rem;
-    color: #FFC0CB;
+    color: #FFF5E1;
     margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.adm-sidebar-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #FFF5E1;
+    padding: 2px;
 }
 
 .adm-sidebar-sub {

@@ -26,7 +26,14 @@ function AdminLayout() {
   return (
     <div className="d-flex adm-layout">
       <nav className="adm-sidebar" aria-label="Menú del administrador">
-        <div className="adm-sidebar-marca">1000 Sabores</div>
+        <div className="adm-sidebar-marca">
+          1000 Sabores
+          <img
+            src="/img/logo-pasteleria-1000-sabores.png"
+            alt="Logo pastelería 1000 sabores"
+            className="adm-sidebar-logo"
+          />
+        </div>
         <div className="adm-sidebar-sub">Panel admin · {usuario?.nombre}</div>
 
         {MENU.map((item) => (
