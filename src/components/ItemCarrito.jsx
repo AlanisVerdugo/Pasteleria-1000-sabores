@@ -1,6 +1,5 @@
 // Componente: un producto dentro del carrito (fila con foto, nombre, precio, cantidad y boton eliminar).
-// Se repetia 3 veces en carrito.html.
-function ItemCarrito({ imagen, nombre, detalle, precio, cantidad }) {
+function ItemCarrito({ imagen, nombre, detalle, precio, cantidad, onSumar, onRestar, onEliminar }) {
 
     return (
         <>
@@ -13,11 +12,11 @@ function ItemCarrito({ imagen, nombre, detalle, precio, cantidad }) {
                         <span className="producto-precio">{precio}</span>
                     </div>
                     <div className="cantidad-stepper">
-                        <button type="button" className="btn-cantidad btn-restar"><i className="bi bi-dash"></i></button>
+                        <button type="button" className="btn-cantidad btn-restar" onClick={onRestar}><i className="bi bi-dash"></i></button>
                         <span className="cantidad-valor">{cantidad}</span>
-                        <button type="button" className="btn-cantidad btn-sumar"><i className="bi bi-plus"></i></button>
+                        <button type="button" className="btn-cantidad btn-sumar" onClick={onSumar}><i className="bi bi-plus"></i></button>
                     </div>
-                    <button type="button" className="btn-eliminar-item" aria-label="Eliminar producto">
+                    <button type="button" className="btn-eliminar-item" aria-label="Eliminar producto" onClick={onEliminar}>
                         <i className="bi bi-trash"></i>
                     </button>
                 </div>
