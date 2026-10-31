@@ -3,10 +3,9 @@ import TiendaLayout from './layouts/TiendaLayout'
 import AdminLayout from './layouts/AdminLayout'
 import RutaProtegida from './components/RutaProtegida'
 import RutaAdmin from './components/RutaAdmin'
-import EnConstruccion from './components/EnConstruccion'
 import SubirAlInicio from './components/SubirAlInicio'
 
-// tienda
+//tienda
 import Home from './pages/Home'
 import Catalogo from './pages/Catalogo'
 import Ofertas from './pages/Ofertas'
@@ -30,7 +29,7 @@ import PreguntasFrecuentes from './pages/PreguntasFrecuentes'
 import Terminos from './pages/Terminos'
 import NoEncontrado from './pages/NoEncontrado'
 
-// admin 
+//admin 
 import Dashboard from './pages/admin/Dashboard'
 import ProductosLista from './pages/admin/ProductosLista'
 import ProductoEditor from './pages/admin/ProductoEditor'
@@ -48,7 +47,6 @@ import Reportes from './pages/admin/Reportes'
 import MensajesContacto from './pages/admin/MensajesContacto'
 import PerfilAdmin from './pages/admin/PerfilAdmin'
 
-const enConstruccion = (titulo) => <EnConstruccion titulo={titulo} />
 
 function App() {
   return (

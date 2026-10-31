@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 import { renderConProviders } from '../test/utils'
 import RutaProtegida from './RutaProtegida'
 import RutaAdmin from './RutaAdmin'
-import EnConstruccion from './EnConstruccion'
 
 const ADMIN = { id: 1 }
 const CLIENTE = { id: 2 }
@@ -36,13 +35,6 @@ describe('RutaAdmin', () => {
   test('el admin sí entra', async () => {
     renderConProviders(rutas, { ruta: '/admin', usuario: ADMIN })
     expect(await screen.findByText('Panel')).toBeInTheDocument()
-  })
-})
-
-describe('páginas simples', () => {
-  test('EnConstruccion muestra su título (props)', () => {
-    renderConProviders(<EnConstruccion titulo="Ofertas" />)
-    expect(screen.getByRole('heading', { name: 'Ofertas' })).toBeInTheDocument()
   })
 })
 
