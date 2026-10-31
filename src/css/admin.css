@@ -1,0 +1,271 @@
+/* =========================================================
+   ADMIN.CSS — estilos del panel de administración (p3)
+   Todas las clases llevan el prefijo adm- para no pisar la tienda.
+   Colores del sitio: fondo #FFF5E1, rosado #FFC0CB, café #8B4513,
+   texto #5D4037, secundario #B0BEC5.
+   ========================================================= */
+
+/* ===== Layout: sidebar + contenido ===== */
+.adm-layout {
+    min-height: 100vh;
+    background-color: #FFF5E1;
+}
+
+.adm-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: #5D4037;
+    color: #FFF5E1;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.adm-sidebar-marca {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.35rem;
+    color: #FFC0CB;
+    margin-bottom: 0.25rem;
+}
+
+.adm-sidebar-sub {
+    font-size: 0.8rem;
+    color: #B0BEC5;
+    margin-bottom: 1.5rem;
+}
+
+.adm-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 10px;
+    color: #FFF5E1;
+    text-decoration: none;
+    margin-bottom: 0.2rem;
+    transition: background-color 0.2s;
+}
+
+.adm-sidebar-link:hover {
+    background-color: rgba(255, 192, 203, 0.18);
+    color: #FFF5E1;
+}
+
+.adm-sidebar-link.active {
+    background-color: #FFC0CB;
+    color: #5D4037;
+    font-weight: 700;
+}
+
+.adm-sidebar-pie {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.adm-btn-salir {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #FFC0CB;
+    color: #FFC0CB;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.adm-btn-salir:hover {
+    background-color: #FFC0CB;
+    color: #5D4037;
+}
+
+.adm-contenido {
+    flex-grow: 1;
+    padding: 2rem;
+    min-width: 0; /* deja que las tablas hagan scroll en vez de romper el layout */
+}
+
+/* En pantallas chicas el sidebar va arriba */
+@media (max-width: 767px) {
+    .adm-layout {
+        flex-direction: column;
+    }
+    .adm-sidebar {
+        width: 100%;
+    }
+    .adm-contenido {
+        padding: 1rem;
+    }
+}
+
+/* ===== Encabezado de cada página ===== */
+.adm-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.adm-titulo {
+    font-family: 'Pacifico', cursive;
+    color: #8B4513;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.adm-subtitulo {
+    color: #8d7b74;
+    margin: 0.25rem 0 0;
+}
+
+/* ===== Tarjeta contador del dashboard ===== */
+.adm-contador {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 14px rgba(93, 64, 55, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    color: #5D4037;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+a.adm-contador:hover {
+    transform: translateY(-3px);
+    color: #5D4037;
+}
+
+.adm-contador-icono {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background-color: #FFC0CB;
+    color: #8B4513;
+    flex-shrink: 0;
+}
+
+.adm-contador-alerta .adm-contador-icono {
+    background-color: #B23A55;
+    color: #fff;
+}
+
+.adm-contador-valor {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.adm-contador-titulo {
+    font-size: 0.85rem;
+    color: #8d7b74;
+}
+
+/* ===== Cajas blancas (tablas, formularios) ===== */
+.adm-caja {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 14px rgba(93, 64, 55, 0.08);
+    margin-bottom: 1.5rem;
+}
+
+.adm-caja-titulo {
+    color: #8B4513;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.adm-tabla img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.adm-tabla th {
+    color: #8B4513;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* ===== Botones ===== */
+.adm-btn-primario {
+    background-color: #8B4513;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.adm-btn-primario:hover {
+    background-color: #6f370f;
+    color: #fff;
+}
+
+.adm-btn-secundario {
+    background-color: transparent;
+    border: 1px solid #8B4513;
+    color: #8B4513;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.adm-btn-secundario:hover {
+    background-color: #FFC0CB;
+    color: #5D4037;
+}
+
+/* ===== Estados de orden (D3) ===== */
+.adm-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.adm-estado-preparacion {
+    background-color: #FFE7C2;
+    color: #8B4513;
+}
+
+.adm-estado-en_camino {
+    background-color: #D6EAF8;
+    color: #1B4F72;
+}
+
+.adm-estado-entregado {
+    background-color: #D5F5E3;
+    color: #1D6B3A;
+}
+
+/* Imprimir: solo la boleta, sin sidebar ni botones */
+@media print {
+    .adm-sidebar,
+    .adm-no-imprimir {
+        display: none !important;
+    }
+    .adm-contenido {
+        padding: 0;
+    }
+}
