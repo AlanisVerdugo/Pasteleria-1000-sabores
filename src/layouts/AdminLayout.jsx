@@ -10,6 +10,7 @@ const MENU = [
   { ruta: '/admin/categorias', texto: 'Categorías', icono: 'bi-tags' },
   { ruta: '/admin/usuarios', texto: 'Usuarios', icono: 'bi-people' },
   { ruta: '/admin/ordenes', texto: 'Órdenes', icono: 'bi-receipt' },
+  { ruta: '/admin/mensajes', texto: 'Mensajes', icono: 'bi-envelope' },
   { ruta: '/admin/reportes', texto: 'Reportes', icono: 'bi-bar-chart' },
   { ruta: '/admin/perfil', texto: 'Perfil', icono: 'bi-person-circle' },
 ]
