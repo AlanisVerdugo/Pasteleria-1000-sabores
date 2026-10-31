@@ -7,6 +7,7 @@ import { useCarrito } from '../context/CarritoContext'
 import { useAuth } from '../context/AuthContext'
 import { productosService } from '../services/productosService'
 import { ordenesService } from '../services/ordenesService'
+import { pagosService } from '../services/otrosService'
 import { formatearPrecio } from '../utils/formato'
 import { COSTO_DESPACHO } from '../utils/constantes'
 
@@ -16,8 +17,8 @@ function Checkout() {
     const navigate = useNavigate()
 
     const [nombre, setNombre] = useState(usuario?.nombre ?? '')
-    const [calle, setCalle] = useState('')
-    const [comuna, setComuna] = useState('')
+    const [calle, setCalle] = useState(usuario?.direccion?.calle ?? '')
+    const [comuna, setComuna] = useState(usuario?.direccion?.comuna ?? '')
     const [error, setError] = useState('')
     const [enviando, setEnviando] = useState(false)
 
@@ -35,8 +36,7 @@ function Checkout() {
         )
     }
 
-    const confirmarPedido = async (e) => {
-        e.preventDefault()
+    const procesarCompra = async (simularFallo) => {
         setError('')
 
         if (!nombre.trim() || !calle.trim() || !comuna.trim()) {
@@ -46,20 +46,28 @@ function Checkout() {
 
         setEnviando(true)
         try {
+            // Paso 1: procesar el pago (simulado). Si total es 0 (ej. torta gratis de cumpleaños), se omite.
+            if (totalFinal > 0) {
+                await pagosService.procesarPago({ total: totalFinal, simularFallo })
+            }
+
+            // Paso 2: descontar el stock real
             await productosService.descontarStock(
                 items.map((i) => ({ codigo: i.codigo, cantidad: i.cantidad, nombre: i.nombre }))
             )
 
+            // Paso 3: crear la orden (D19: forma del item de orden, con imagen incluida)
             const orden = await ordenesService.crear({
                 usuarioId: usuario?.id ?? null,
                 cliente: usuario ? undefined : { nombre, email: '', telefono: '' },
                 items: items.map((i) => ({
                     codigo: i.codigo,
                     nombre: i.nombre,
-                    tamano: i.tamano,
-                    mensaje: i.mensaje,
+                    imagen: i.imagen,
                     cantidad: i.cantidad,
                     precio: i.precioUnitario,
+                    tamano: i.tamano,
+                    mensaje: i.mensaje,
                 })),
                 despacho: { calle, comuna },
                 subtotal,
@@ -68,10 +76,12 @@ function Checkout() {
                 total: totalFinal,
             })
 
+            // Paso 4: vaciar el carrito y Paso 5: ir a Pago correcto
             vaciar()
             navigate(`/pago/exito/${orden.id}`)
         } catch (err) {
-            navigate('/pago/error')
+            // Si falla el pago o no hay stock: NO se crea orden, NO se vacía el carrito
+            navigate('/pago/error', { state: { mensaje: err.message } })
         } finally {
             setEnviando(false)
         }
@@ -87,7 +97,7 @@ function Checkout() {
 
                     {/* ===== COLUMNA IZQUIERDA: formulario de despacho ===== */}
                     <div className="col-lg-7">
-                        <form onSubmit={confirmarPedido} className="panel-resumen">
+                        <div className="panel-resumen">
                             <h2 className="titulo-resumen mb-3">Datos de despacho</h2>
 
                             {error && <p className="text-danger">{error}</p>}
@@ -122,10 +132,26 @@ function Checkout() {
                                 />
                             </div>
 
-                            <button type="submit" className="btn-confirmar-pedido" disabled={enviando}>
-                                {enviando ? 'Procesando...' : 'Confirmar y Pagar'} <i className="bi bi-arrow-right"></i>
-                            </button>
-                        </form>
+                            <div className="d-flex gap-2">
+                                <button
+                                    type="button"
+                                    className="btn-confirmar-pedido flex-grow-1"
+                                    disabled={enviando}
+                                    onClick={() => procesarCompra(false)}
+                                >
+                                    {enviando ? 'Procesando...' : 'Pagar'} <i className="bi bi-arrow-right"></i>
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-danger"
+                                    disabled={enviando}
+                                    onClick={() => procesarCompra(true)}
+                                    title="Solo para probar: simula que el pago es rechazado"
+                                >
+                                    Simular fallo
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     {/* ===== COLUMNA DERECHA: resumen del pedido ===== */}
