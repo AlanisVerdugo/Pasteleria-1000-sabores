@@ -2,14 +2,26 @@ import { useState } from 'react'
 import { Form, Alert } from 'react-bootstrap'
 import { useFormulario } from '../../hooks/useFormulario'
 import { validarCategoria } from './validacionesAdmin'
+import { achicarImagen } from '../../utils/imagen'
 
 // Formulario de categoría (nueva y editar). onGuardar es async y lo maneja el padre.
 function CategoriaForm({ inicial, esEdicion = false, onGuardar }) {
-  const { valores, errores, manejarCambio, manejarEnvio } = useFormulario(
+  const { valores, errores, manejarCambio, manejarEnvio, establecer } = useFormulario(
     { nombre: inicial?.nombre ?? '', descripcion: inicial?.descripcion ?? '', imagen: inicial?.imagen ?? '' },
     validarCategoria
   )
   const [errorGeneral, setErrorGeneral] = useState('')
+
+  const cambiarImagen = async (e) => {
+    const archivo = e.target.files[0]
+    if (!archivo) return
+    try {
+      establecer({ imagen: await achicarImagen(archivo, 400) })
+      setErrorGeneral('')
+    } catch (err) {
+      setErrorGeneral(err.message)
+    }
+  }
 
   const guardar = async (v) => {
     try {
@@ -37,6 +49,13 @@ function CategoriaForm({ inicial, esEdicion = false, onGuardar }) {
         <Form.Label>Ruta de la imagen (opcional)</Form.Label>
         <Form.Control name="imagen" value={valores.imagen} onChange={manejarCambio} placeholder="/img/mi-categoria.jpg" />
       </Form.Group>
+      <Form.Group className="mb-3" controlId="cat-archivo">
+        <Form.Label>…o sube una foto</Form.Label>
+        <Form.Control type="file" accept="image/*" onChange={cambiarImagen} />
+      </Form.Group>
+      {valores.imagen && (
+        <img src={valores.imagen} alt="Vista previa" className="adm-vista-previa mb-3" />
+      )}
       <button type="submit" className="adm-btn-primario">
         <i className="bi bi-check-lg" aria-hidden="true"></i> {esEdicion ? 'Guardar cambios' : 'Crear categoría'}
       </button>

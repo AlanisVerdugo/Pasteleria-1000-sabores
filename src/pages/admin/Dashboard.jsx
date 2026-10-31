@@ -61,7 +61,7 @@ function Dashboard() {
             link="/admin/productos/criticos" alerta={criticos.length > 0} />
         </div>
         <div className="col-sm-6 col-xl-4">
-          <TarjetaContador titulo="Mensajes de contacto" valor={mensajes.length} icono="bi-envelope" />
+          <TarjetaContador titulo="Mensajes de contacto" valor={mensajes.length} icono="bi-envelope" link="/admin/mensajes" />
         </div>
       </div>
 
