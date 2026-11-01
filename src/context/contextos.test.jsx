@@ -58,3 +58,4 @@ describe('contextos juntos', () => {
     expect(() => renderHook(() => useAuth())).toThrow('dentro de AuthProvider')
   })
 })
+
