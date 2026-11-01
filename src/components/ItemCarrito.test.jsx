@@ -72,4 +72,12 @@ describe('ItemCarrito', () => {
     fireEvent.click(screen.getByLabelText('Eliminar producto'))
     expect(manejarEliminar).toHaveBeenCalledTimes(1)
   })
+
+  test('el botón restar se deshabilita cuando la cantidad es 1', () => {
+    render(
+      <ItemCarrito imagen="x.jpg" nombre="Torta" detalle="" precio="$1" cantidad={1}
+        onSumar={() => {}} onRestar={() => {}} onEliminar={() => {}} />
+    )
+    expect(screen.getByRole('button', { name: 'Restar uno' })).toBeDisabled()
+  })
 })

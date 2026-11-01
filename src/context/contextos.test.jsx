@@ -19,7 +19,7 @@ describe('carritoReducer', () => {
   test('cambia cantidad, quita con 0 y vacía', () => {
     const inicial = [crearItem(torta)]
     expect(carritoReducer(inicial, { type: 'CAMBIAR_CANTIDAD', clave: inicial[0].clave, cantidad: 2 })[0].cantidad).toBe(2)
-    expect(carritoReducer(inicial, { type: 'CAMBIAR_CANTIDAD', clave: inicial[0].clave, cantidad: 0 })).toEqual([])
+       expect(carritoReducer(inicial, { type: 'CAMBIAR_CANTIDAD', clave: inicial[0].clave, cantidad: 0 })[0].cantidad).toBe(1)
     expect(carritoReducer(inicial, { type: 'QUITAR', clave: inicial[0].clave })).toEqual([])
     expect(carritoReducer(inicial, { type: 'VACIAR' })).toEqual([])
     expect(carritoReducer(inicial, { type: 'CARGAR', items: [] })).toEqual([])
