@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../css/catalogo.css';
 import '../css/carrito.css';
 
@@ -12,6 +12,7 @@ import { COSTO_DESPACHO } from '../utils/constantes'
 
 function Carrito() {
     const { items, cambiarCantidad, quitar, vaciar, subtotal, descuento, total } = useCarrito()
+    const navigate = useNavigate()
 
     const totalFinal = items.length > 0 ? total + COSTO_DESPACHO : 0
 
@@ -106,7 +107,12 @@ function Carrito() {
                                     <span className="resumen-total-monto">{formatearPrecio(totalFinal)}</span>
                                 </div>
 
-                                <button type="button" className="btn-confirmar-pedido" disabled={items.length === 0}>
+                                <button
+                                    type="button"
+                                    className="btn-confirmar-pedido"
+                                    disabled={items.length === 0}
+                                    onClick={() => navigate('/checkout')}
+                                >
                                     Confirmar Pedido <i className="bi bi-arrow-right"></i>
                                 </button>
 

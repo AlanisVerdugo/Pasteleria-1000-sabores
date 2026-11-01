@@ -17,7 +17,7 @@ function NoEncontrado() {
           <i className="bi bi-house-heart"></i> Volver al inicio
         </Link>
         <Link to="/productos" className="ne-boton ne-boton-secundario">
-          <i className="bi bi-shop"></i> Ver catálogo
+          <i className="bi bi-shop"></i> Ver Productos
         </Link>
       </div>
     </main>
