@@ -62,9 +62,9 @@ function App() {
           <Route path="/categorias/:id" element={<CategoriaDetalle />} />
           <Route path="/ofertas" element={<Ofertas />} />
           <Route path="/carrito" element={<Carrito />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/pago/exito/:ordenId" element={<PagoExito />} />
-          <Route path="/pago/error" element={<PagoError />} />
+          <Route path="/checkout" element={<RutaProtegida><Checkout /></RutaProtegida>} />
+          <Route path="/pago/exito/:ordenId" element={<RutaProtegida><PagoExito /></RutaProtegida>} />
+          <Route path="/pago/error" element={<RutaProtegida><PagoError /></RutaProtegida>} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/perfil" element={<RutaProtegida><Perfil /></RutaProtegida>} />

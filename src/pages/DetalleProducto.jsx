@@ -10,12 +10,15 @@ import OpcionTamano from '../components/OpcionTamano';
 import { productosService } from '../services/productosService'
 import { categoriasService } from '../services/categoriasService'
 import { useCarrito } from '../context/CarritoContext'
+import { useAuth } from '../context/AuthContext'
 import { precioConOferta } from '../utils/descuentos'
 import { formatearPrecio } from '../utils/formato'
 
 function DetalleProducto() {
     const { codigo } = useParams()
     const { agregar } = useCarrito()
+    const { usuario } = useAuth()
+    const [pedirSesion, setPedirSesion] = useState(false)
 
     const [producto, setProducto] = useState(null)
     const [categoria, setCategoria] = useState(null)
@@ -51,6 +54,10 @@ function DetalleProducto() {
     const precioFinal = precioConOferta(producto, tamanoId)
 
     const handleAgregar = () => {
+        if (!usuario) {
+            setPedirSesion(true)
+            return
+        }
         const exito = agregar(producto, { cantidad, tamano: tamanoId, mensaje })
         if (exito) {
             setAgregado(true)
@@ -156,6 +163,12 @@ function DetalleProducto() {
                                     <i className="bi bi-cart-fill"></i> {agotado ? 'Agotado' : agregado ? '¡Agregado!' : 'Añadir al Carrito'}
                                 </button>
                             </div>
+                            
+                            {pedirSesion && (
+                                <div className="alert alert-warning py-2" role="alert">
+                                    Debes <Link to="/login">iniciar sesión</Link> para agregar productos al carrito.
+                                </div>
+                            )}                            
 
                             <div className="info-extra-detalle d-flex flex-wrap gap-4">
                                 <span><i className="bi bi-truck"></i> Despacho refrigerado 24-48 hrs</span>
