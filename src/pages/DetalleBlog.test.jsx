@@ -26,3 +26,4 @@ describe('DetalleBlog', () => {
     expect(screen.getByRole('link', { name: /Volver al blog/ })).toBeInTheDocument()
   })
 })
+
