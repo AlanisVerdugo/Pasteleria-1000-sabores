@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from 'react'
+import { createContext, useContext, useEffect, useReducer, useState } from 'react'
 import { useAuth } from './AuthContext'
 import { calcularTotales, precioConOferta } from '../utils/descuentos'
 
@@ -51,29 +51,24 @@ export function crearItem(producto, { cantidad = 1, tamano = null, mensaje = '' 
   }
 }
 
+// Cada usuario guarda su carrito con su propia clave en localStorage
 const claveDe = (usuario) => (usuario ? `${CLAVE}_${usuario.id}` : CLAVE)
+const leerCarrito = (clave) => JSON.parse(localStorage.getItem(clave)) ?? []
 
 export function CarritoProvider({ children }) {
   const { usuario } = useAuth()
-  // crea el carrito de nuevo al cambiar de usuario
-  return (
-    <CarritoDelUsuario key={claveDe(usuario)} clave={claveDe(usuario)} usuario={usuario}>
-      {children}
-    </CarritoDelUsuario>
-  )
-}
+  const clave = claveDe(usuario)
+  const [items, dispatch] = useReducer(carritoReducer, clave, leerCarrito)
+  const [claveCargada, setClaveCargada] = useState(clave)
 
-function CarritoDelUsuario({ clave, usuario, children }) {
-  const [items, dispatch] = useReducer(
-    carritoReducer,
-    clave,
-    (c) => JSON.parse(localStorage.getItem(c)) ?? []
-  )
+  if (claveCargada !== clave) {
+    setClaveCargada(clave)
+    dispatch({ type: 'CARGAR', items: leerCarrito(clave) })
+  }
 
-  // los items, se guardan en la clave de ESTE usuario
   useEffect(() => {
-    localStorage.setItem(clave, JSON.stringify(items))
-  }, [clave, items])
+    localStorage.setItem(claveCargada, JSON.stringify(items))
+  }, [claveCargada, items])
 
   const agregar = (producto, opciones) => {
     if (producto.stock <= 0) return false
