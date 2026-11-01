@@ -23,7 +23,7 @@ describe('NoEncontrado (404)', () => {
 
     it('tiene un enlace al catálogo', () => {
         renderizar()
-        expect(screen.getByRole('link', { name: /ver catálogo/i })).toHaveAttribute('href', '/productos')
+        expect(screen.getByRole('link', { name: /ver productos/i })).toHaveAttribute('href', '/productos')
     })
 })
 
