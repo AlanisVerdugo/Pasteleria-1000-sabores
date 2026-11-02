@@ -10,7 +10,7 @@ describe('TarjetaProducto', () => {
     renderConProviders(<TarjetaProducto producto={base} />)
     expect(screen.getByRole('heading', { name: 'Torta de Prueba' })).toBeInTheDocument()
     expect(screen.getByText('$45.000')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'Ver Torta de Prueba' })).toHaveAttribute('href', '/producto/X01')
+    screen.getAllByRole('link', { name: 'Torta de Prueba' }).forEach((link) => expect(link).toHaveAttribute('href', '/producto/X01'))
   })
 
   test('con oferta muestra el % y los dos precios', () => {
@@ -32,4 +32,10 @@ describe('TarjetaProducto', () => {
     expect(screen.queryByRole('link', { name: 'Ver Torta de Prueba' })).not.toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Torta de Prueba' })).toBeInTheDocument()
   })
+
+  test('sin stock el botón del carrito está deshabilitado', () => {
+    renderConProviders(<TarjetaProducto producto={{ ...base, stock: 0 }} />)
+    expect(screen.getByRole('button', { name: 'Agregar Torta de Prueba al carrito' })).toBeDisabled()
+  })  
 })
+

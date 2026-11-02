@@ -1,11 +1,34 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { formatearPrecio } from '../utils/formato'
+import { useCarrito } from '../context/CarritoContext'
+import { useAuth } from '../context/AuthContext'
 
 // Se usa en Home (destacados y ofertas) y en el Catálogo.
 function TarjetaProducto({ producto, vitrina = false }) {
   const { codigo, nombre, descripcion, precio, oferta, imagen, stock } = producto
   const precioFinal = oferta > 0 ? Math.round(precio * (1 - oferta / 100)) : precio
   const ruta = `/producto/${codigo}`
+  const { agregar } = useCarrito()
+  const { usuario } = useAuth()
+  const navigate = useNavigate()
+  const [agregado, setAgregado] = useState(false)
+
+  // El tamaño más chico (menos personas) es el del precio que muestra la tarjeta
+  const tamanoMenor = producto.tamanos?.length
+    ? producto.tamanos.reduce((menor, t) => (t.personas < menor.personas ? t : menor)).id
+    : null
+
+  const agregarAlCarrito = () => {
+    if (!usuario) {
+      navigate('/login')
+      return
+    }
+    if (agregar(producto, { tamano: tamanoMenor })) {
+      setAgregado(true)
+      setTimeout(() => setAgregado(false), 1500)
+    }
+  }
 
   return (
     <div className="col">
@@ -28,9 +51,15 @@ function TarjetaProducto({ producto, vitrina = false }) {
                 {oferta > 0 && <span className="producto-precio-antes">{formatearPrecio(precio)}</span>}
                 <span className="producto-precio">{formatearPrecio(precioFinal)}</span>
               </div>
-              <Link to={ruta} className="btn-carrito" aria-label={`Ver ${nombre}`}>
-                <i className="bi bi-cart-fill"></i>
-              </Link>
+              <button
+                type="button"
+                className="btn-carrito"
+                aria-label={`Agregar ${nombre} al carrito`}
+                onClick={agregarAlCarrito}
+                disabled={stock === 0}
+              >
+                <i className={`bi ${agregado ? 'bi-check-lg' : 'bi-cart-fill'}`}></i>
+              </button>
             </div>
           )}
         </div>
