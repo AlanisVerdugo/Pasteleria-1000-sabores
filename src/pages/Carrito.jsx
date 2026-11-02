@@ -11,7 +11,7 @@ import { formatearPrecio, detalleItem } from '../utils/formato'
 import { COSTO_DESPACHO } from '../utils/constantes'
 
 function Carrito() {
-    const { items, cambiarCantidad, quitar, vaciar, subtotal, descuento, total } = useCarrito()
+    const { items, cambiarCantidad, quitar, vaciar, subtotal, detalledescuento, total } = useCarrito()
     const navigate = useNavigate()
 
     const totalFinal = items.length > 0 ? total + COSTO_DESPACHO : 0
@@ -88,10 +88,12 @@ function Carrito() {
                                     <span>Subtotal productos</span>
                                     <span>{formatearPrecio(subtotal)}</span>
                                 </div>
-                                <div className="d-flex justify-content-between resumen-linea resumen-descuento">
-                                    <span>Descuento aplicado</span>
-                                    <span>-{formatearPrecio(descuento)}</span>
-                                </div>
+                                {detalleDescuento.map((d) => (
+                                    <div key={d.motivo} className="d-flex justify-content-between resumen-linea resumen-descuento">
+                                        <span>{d.motivo}</span>
+                                        <span>-{formatearPrecio(d.monto)}</span>
+                                    </div>
+                                ))}
                                 <div className="d-flex justify-content-between resumen-linea">
                                     <span>Despacho</span>
                                     <span>{formatearPrecio(items.length > 0 ? COSTO_DESPACHO : 0)}</span>
