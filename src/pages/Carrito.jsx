@@ -7,7 +7,7 @@ import ItemCarrito from '../components/ItemCarrito';
 
 // servicios y utilidades
 import { useCarrito } from '../context/CarritoContext'
-import { formatearPrecio } from '../utils/formato'
+import { formatearPrecio, detalleItem } from '../utils/formato'
 import { COSTO_DESPACHO } from '../utils/constantes'
 
 function Carrito() {
@@ -57,11 +57,7 @@ function Carrito() {
                                         key={item.clave}
                                         imagen={item.imagen}
                                         nombre={item.nombre}
-                                        detalle={[
-                                            item.personas && `Para ${item.personas} personas`,
-                                            item.mensaje && `Mensaje: "${item.mensaje}"`,
-                                            `${item.cantidad} unidad(es) · ${formatearPrecio(item.precioUnitario)} c/u`,
-                                        ].filter(Boolean).join(' · ')}
+                                        detalle={detalleItem(item, item.precioUnitario)}
                                         precio={formatearPrecio(item.precioUnitario * item.cantidad)}
                                         cantidad={item.cantidad}
                                         onSumar={() => cambiarCantidad(item.clave, item.cantidad + 1)}
