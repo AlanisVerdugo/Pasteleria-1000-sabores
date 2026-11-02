@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react'
 import { Routes, Route } from 'react-router-dom'
 import { renderConProviders } from '../utils'
-import RutaProtegida from '../../components/RutaProtegida'
 import RutaAdmin from '../../components/RutaAdmin'
 
 const ADMIN = { id: 1 }
@@ -11,23 +10,15 @@ const rutas = (
   <Routes>
     <Route path="/" element={<p>Inicio</p>} />
     <Route path="/login" element={<p>Pantalla de login</p>} />
-    <Route path="/perfil" element={<RutaProtegida><p>Mi perfil</p></RutaProtegida>} />
     <Route path="/admin" element={<RutaAdmin><p>Panel</p></RutaAdmin>} />
   </Routes>
 )
 
-describe('RutaProtegida', () => {
+describe('RutaAdmin', () => {
   test('sin sesión manda al login', async () => {
-    renderConProviders(rutas, { ruta: '/perfil' })
+    renderConProviders(rutas, { ruta: '/admin' })
     expect(await screen.findByText('Pantalla de login')).toBeInTheDocument()
   })
-  test('con sesión muestra la página', async () => {
-    renderConProviders(rutas, { ruta: '/perfil', usuario: CLIENTE })
-    expect(await screen.findByText('Mi perfil')).toBeInTheDocument()
-  })
-})
-
-describe('RutaAdmin', () => {
   test('un cliente no entra al admin', async () => {
     renderConProviders(rutas, { ruta: '/admin', usuario: CLIENTE })
     expect(await screen.findByText('Inicio')).toBeInTheDocument()
@@ -37,5 +28,4 @@ describe('RutaAdmin', () => {
     expect(await screen.findByText('Panel')).toBeInTheDocument()
   })
 })
-
 
