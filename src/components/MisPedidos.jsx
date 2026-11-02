@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ordenesService } from '../services'
 import ProductoPedido from './ProductoPedido'
 import '../css/pedidos.css'
+import { detalleItem } from '../utils/formato'
 
 const ESTADOS = {
   preparacion: { texto: 'En preparación', icono: 'bi bi-fire', clase: 'ped-estado-horno' },
@@ -87,7 +88,7 @@ function MisPedidos({ usuarioId }) {
                       key={item.nombre}
                       imagen={item.imagen}
                       titulo={item.nombre}
-                      detalle={`${item.cantidad}x • ${pesos(item.precio)} c/u`}
+                      detalle={detalleItem(item, item.precio)}
                     />
                   ))}
                 </div>
