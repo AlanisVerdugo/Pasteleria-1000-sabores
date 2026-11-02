@@ -11,7 +11,7 @@ import { formatearPrecio, detalleItem } from '../utils/formato'
 import { COSTO_DESPACHO } from '../utils/constantes'
 
 function Carrito() {
-    const { items, cambiarCantidad, quitar, vaciar, subtotal, detalledescuento, total } = useCarrito()
+    const { items, cambiarCantidad, quitar, vaciar, subtotal, detalleDescuento, total } = useCarrito()
     const navigate = useNavigate()
 
     const totalFinal = items.length > 0 ? total + COSTO_DESPACHO : 0
