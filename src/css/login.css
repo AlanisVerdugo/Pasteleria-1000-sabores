@@ -15,7 +15,6 @@
 
 /* el reseteo (* { margin: 0 ... }) ya está en estilos.css, que se carga para toda la app */
 
-
 /* estilos de fondo y centrado */
 .login-page {
     font-family: var(--font-text);
@@ -145,11 +144,6 @@
     margin-bottom: 0.5rem;
 }
 
-.login-page .label-hint {
-    font-size: 0.8rem;
-    color: #9AA0A6;
-}
-
 /* Contenedor relativo para poder meter los íconos (absolutos) dentro del input */
 .login-page .input-wrapper {
     position: relative;
@@ -186,51 +180,6 @@
 .login-page .input-wrapper input:focus {
     outline: none;
     border-color: var(--pink-badge); /* Borde rosado */
-}
-
-/* checkbox recordarme */
-.login-page .options-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.login-page .checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* Cambia el cuadro por defecto del navegador */
-.login-page .checkbox-container input[type="checkbox"] {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background-color: var(--input-bg);
-    border-radius: 4px;
-    cursor: pointer;
-    position: relative;
-}
-
-/* Cuando el usuario hace click se pone un ticket usando FontAwesome */
-.login-page .checkbox-container input[type="checkbox"]:checked::after {
-    content: '\f00c'; /* Código del ícono de Check */
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    font-size: 12px;
-    color: var(--primary-brown);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centra el ticket perfectamente */
-}
-
-.login-page .forgot-link {
-    font-size: 0.9rem;
-    color: var(--primary-brown);
-    font-weight: 700;
-    text-decoration: none; /* Quita la línea debajo del link */
 }
 
 /* boton principal de iniciar sesion*/

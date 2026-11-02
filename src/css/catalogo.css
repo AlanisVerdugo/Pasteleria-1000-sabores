@@ -79,30 +79,6 @@
     color: #B23A55;
 }
 
-/* Variante de color para la etiqueta "Individual" */
-.badge-individual {
-    /* mismo tono rosado que Tradicional */
-    background-color: #FADCE0;
-    /* mismo texto vino oscuro */
-    color: #B23A55;
-}
-
-/* Variante de color para la etiqueta "Sin Azúcar" */
-.badge-sinazucar {
-    /* background-color: amarillo/durazno suave */
-    background-color: #FCE9D6;
-    /* color: texto café/naranjo oscuro */
-    color: #B5651D;
-}
-
-/* Variante de color para la etiqueta "Vegana" */
-.badge-vegana {
-    /* background-color: verde suave */
-    background-color: #DCEEDB;
-    /* color: texto verde oscuro */
-    color: #3E7A4D;
-}
-
 /* ===== TEXTO DENTRO DE LA TARJETA ===== */
 
 /* Selecciona el título del producto (ej: "Torta Cuadrada de Chocolate") */
@@ -166,14 +142,6 @@
     background-color: #6b3410;
 }
 
-/* Selecciona los íconos dentro de la fila de comentarios/compartir, al pie de la tarjeta */
-.producto-footer i {
-    /* margin-right separa el ícono del número o texto que va al lado */
-    margin-right: 4px;
-}
-
-
-
 /* ------------ PAGINACIÓN ------------ */
 
 /* Selecciona cada botón de la paginación (números y flechas) */
@@ -198,7 +166,6 @@
     /* transition suaviza el cambio de color al pasar el mouse */
     transition: background-color 0.2s ease, color 0.2s ease;
 
-
     
 }
 
@@ -209,7 +176,6 @@
     /* transparent hace que se vea el mismo color de fondo que tiene detrás (el crema de la página) */
     background-color: transparent;
 }
-
 
 /* Selecciona el botón SOLO cuando el mouse pasa por encima (y no está activo ni deshabilitado) */
 .paginacion-custom .page-item:not(.active):not(.disabled) .page-link:hover {
@@ -236,12 +202,6 @@
     text-decoration: none;
     color: inherit;
     display: block;
-}
-
-.btn-forma.active {
-    background-color: #8B4513;
-    color: #fff;
-    border-color: #8B4513;
 }
 
 /* Evita que "Ordenar por:" y el select se corten en 2 líneas */
@@ -344,4 +304,3 @@
 .aviso-cumpleanos a {
   color: #B23A55;
 }
-
