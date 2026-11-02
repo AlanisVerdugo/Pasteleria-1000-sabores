@@ -59,6 +59,7 @@ function Checkout() {
             // Paso 3: crear la orden (D19: forma del item de orden, con imagen incluida)
             const orden = await ordenesService.crear({
                 usuarioId: usuario.id,
+                cliente: { nombre: usuario.nombre, email: usuario.email },
                 items: items.map((i) => ({
                     codigo: i.codigo,
                     nombre: i.nombre,
