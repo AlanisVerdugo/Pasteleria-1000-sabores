@@ -268,3 +268,15 @@
   color: #999;
   text-decoration: line-through;
 }
+
+/* Link de volver, compartido por varias páginas */
+.link-seguir-comprando {
+  color: #8B4513;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.link-seguir-comprando:hover {
+  text-decoration: underline;
+}
+
