@@ -1,8 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import '../css/catalogo.css';
 import '../css/carrito.css';
-
-// componentes
+import AvisoCumpleanos from '../components/AvisoCumpleanos';
 import ItemCarrito from '../components/ItemCarrito';
 
 // servicios y utilidades
@@ -32,6 +31,7 @@ function Carrito() {
                         </Link>
                     </div>
 
+                    <AvisoCumpleanos conLink={false} />
                     <hr className="my-4" />
 
                     <div className="row g-4">
