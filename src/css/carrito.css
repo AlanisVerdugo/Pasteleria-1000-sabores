@@ -7,26 +7,7 @@
    a esta página en particular.
    ========================================================= */
  
-/* ===== Numerito rojo sobre el ícono del carrito en el header ===== */
-/* Nota para el equipo: si más adelante el carrito se usa en TODAS
-   las páginas (no solo acá), esta regla debería moverse a cabecera.css
-   para no repetirla en cada CSS de página. */
-   
-.badge-carrito {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background-color: #B23A55;
-    color: #fff;
-    font-size: 0.65rem;
-    font-weight: 700;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
  
 /* ===== Link "Seguir comprando" ===== */
 .link-seguir-comprando {
