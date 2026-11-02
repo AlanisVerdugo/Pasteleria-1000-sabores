@@ -20,7 +20,7 @@ function DetalleProducto() {
     const { usuario } = useAuth()
     const [pedirSesion, setPedirSesion] = useState(false)
 
-    const [producto, setProducto] = useState(null)
+    const [producto, setProducto] = useState(undefined)
     const [categoria, setCategoria] = useState(null)
     const [tamanoId, setTamanoId] = useState(null)
     const [cantidad, setCantidad] = useState(1)
@@ -29,7 +29,7 @@ function DetalleProducto() {
 
     useEffect(() => {
         productosService.obtenerPorId(codigo).then((p) => {
-            setProducto(p)
+            setProducto(p ?? null)
             if (p?.tamanos?.length > 0) setTamanoId(p.tamanos.reduce((menor, t) => (t.personas < menor.personas ? t : menor)).id)
         })
     }, [codigo])
@@ -40,11 +40,25 @@ function DetalleProducto() {
         }
     }, [producto])
 
-    if (!producto) {
+    if (producto === undefined) {
         return (
             <main>
                 <section className="container py-5 text-center">
                     <p className="text-muted">Cargando producto...</p>
+                </section>
+            </main>
+        )
+    }
+
+    if (producto === null) {
+        return (
+            <main>
+                <section className="container py-5 text-center">
+                    <h1 style={{ fontFamily: "'Caveat',cursive", color: '#7B4B2A' }}>Producto no encontrado</h1>
+                    <p className="text-muted">Puede que el producto ya no exista o que el enlace esté mal escrito.</p>
+                    <Link to="/productos" className="link-seguir-comprando">
+                        <i className="bi bi-arrow-left"></i> Ver productos
+                    </Link>
                 </section>
             </main>
         )
