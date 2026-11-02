@@ -59,6 +59,7 @@ function Carrito() {
                                         nombre={item.nombre}
                                         detalle={[
                                             item.personas && `Para ${item.personas} personas`,
+                                            item.mensaje && `Mensaje: "${item.mensaje}"`,
                                             `${item.cantidad} unidad(es) · ${formatearPrecio(item.precioUnitario)} c/u`,
                                         ].filter(Boolean).join(' · ')}
                                         precio={formatearPrecio(item.precioUnitario * item.cantidad)}
