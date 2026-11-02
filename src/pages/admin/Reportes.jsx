@@ -5,8 +5,8 @@ import { formatearPrecio } from '../../utils/formato'
 import { ESTADOS_ORDEN } from '../../utils/constantes'
 import {
   sumarTotales, ventasDelMes, ticketPromedio, ordenesPorEstado, ventasPorCategoria, topProductos,
-} from '../../components/admin/calculosAdmin'
-import { INFO_ESTADOS } from '../../components/admin/estadosOrden'
+} from '../../utils/admin/calculosAdmin'
+import { INFO_ESTADOS } from '../../utils/admin/estadosOrden'
 import EncabezadoAdmin from '../../components/admin/EncabezadoAdmin'
 import TarjetaContador from '../../components/admin/TarjetaContador'
 

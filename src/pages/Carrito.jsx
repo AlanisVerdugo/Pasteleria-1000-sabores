@@ -1,17 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../css/catalogo.css';
 import '../css/carrito.css';
-
-// componentes
+import AvisoCumpleanos from '../components/AvisoCumpleanos';
 import ItemCarrito from '../components/ItemCarrito';
 
 // servicios y utilidades
 import { useCarrito } from '../context/CarritoContext'
-import { formatearPrecio } from '../utils/formato'
+import { formatearPrecio, detalleItem } from '../utils/formato'
 import { COSTO_DESPACHO } from '../utils/constantes'
 
 function Carrito() {
-    const { items, cambiarCantidad, quitar, vaciar, subtotal, descuento, total } = useCarrito()
+    const { items, cambiarCantidad, quitar, vaciar, subtotal, detalleDescuento, total } = useCarrito()
+    const navigate = useNavigate()
 
     const totalFinal = items.length > 0 ? total + COSTO_DESPACHO : 0
 
@@ -31,6 +31,7 @@ function Carrito() {
                         </Link>
                     </div>
 
+                    <AvisoCumpleanos conLink={false} />
                     <hr className="my-4" />
 
                     <div className="row g-4">
@@ -40,7 +41,7 @@ function Carrito() {
 
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <h2 className="titulo-seccion-carrito mb-0">
-                                    Productos en tu canasta <span className="text-muted fw-normal">({items.length} artículos)</span>
+                                    Productos en tu canasta <span className="text-muted fw-normal">({items.length} {items.length === 1 ? 'producto' : 'productos'})</span>
                                 </h2>
                                 {items.length > 0 && (
                                     <a href="#" className="link-vaciar" onClick={(e) => { e.preventDefault(); vaciar() }}>
@@ -56,9 +57,10 @@ function Carrito() {
                                         key={item.clave}
                                         imagen={item.imagen}
                                         nombre={item.nombre}
-                                        detalle={`${item.cantidad} unidad(es) · ${formatearPrecio(item.precioUnitario)} c/u`}
+                                        detalle={detalleItem(item, item.precioUnitario)}
                                         precio={formatearPrecio(item.precioUnitario * item.cantidad)}
                                         cantidad={item.cantidad}
+                                        maximo={item.stock}
                                         onSumar={() => cambiarCantidad(item.clave, item.cantidad + 1)}
                                         onRestar={() => cambiarCantidad(item.clave, item.cantidad - 1)}
                                         onEliminar={() => quitar(item.clave)}
@@ -69,7 +71,9 @@ function Carrito() {
                             {/* Mensaje que aparece solo cuando el carrito queda vacío */}
                             {items.length === 0 && (
                                 <p className="text-center text-muted mt-4">
-                                    Tu carrito está vacío. <Link to="/productos">Ir al catálogo</Link>
+                                    Tu carrito está vacío. <Link to="/productos" className="link-seguir-comprando">
+                                        Ir al catálogo
+                                    </Link>
                                 </p>
                             )}
 
@@ -87,10 +91,12 @@ function Carrito() {
                                     <span>Subtotal productos</span>
                                     <span>{formatearPrecio(subtotal)}</span>
                                 </div>
-                                <div className="d-flex justify-content-between resumen-linea resumen-descuento">
-                                    <span>Descuento aplicado</span>
-                                    <span>-{formatearPrecio(descuento)}</span>
-                                </div>
+                                {detalleDescuento.map((d) => (
+                                    <div key={d.motivo} className="d-flex justify-content-between resumen-linea resumen-descuento">
+                                        <span>{d.motivo}</span>
+                                        <span>-{formatearPrecio(d.monto)}</span>
+                                    </div>
+                                ))}
                                 <div className="d-flex justify-content-between resumen-linea">
                                     <span>Despacho</span>
                                     <span>{formatearPrecio(items.length > 0 ? COSTO_DESPACHO : 0)}</span>
@@ -106,7 +112,12 @@ function Carrito() {
                                     <span className="resumen-total-monto">{formatearPrecio(totalFinal)}</span>
                                 </div>
 
-                                <button type="button" className="btn-confirmar-pedido" disabled={items.length === 0}>
+                                <button
+                                    type="button"
+                                    className="btn-confirmar-pedido"
+                                    disabled={items.length === 0}
+                                    onClick={() => navigate('/checkout')}
+                                >
                                     Confirmar Pedido <i className="bi bi-arrow-right"></i>
                                 </button>
 

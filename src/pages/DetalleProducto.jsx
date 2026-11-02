@@ -10,14 +10,17 @@ import OpcionTamano from '../components/OpcionTamano';
 import { productosService } from '../services/productosService'
 import { categoriasService } from '../services/categoriasService'
 import { useCarrito } from '../context/CarritoContext'
+import { useAuth } from '../context/AuthContext'
 import { precioConOferta } from '../utils/descuentos'
 import { formatearPrecio } from '../utils/formato'
 
 function DetalleProducto() {
     const { codigo } = useParams()
     const { agregar } = useCarrito()
+    const { usuario } = useAuth()
+    const [pedirSesion, setPedirSesion] = useState(false)
 
-    const [producto, setProducto] = useState(null)
+    const [producto, setProducto] = useState(undefined)
     const [categoria, setCategoria] = useState(null)
     const [tamanoId, setTamanoId] = useState(null)
     const [cantidad, setCantidad] = useState(1)
@@ -26,8 +29,8 @@ function DetalleProducto() {
 
     useEffect(() => {
         productosService.obtenerPorId(codigo).then((p) => {
-            setProducto(p)
-            if (p?.tamanos?.length > 0) setTamanoId(p.tamanos[0].id)
+            setProducto(p ?? null)
+            if (p?.tamanos?.length > 0) setTamanoId(p.tamanos.reduce((menor, t) => (t.personas < menor.personas ? t : menor)).id)
         })
     }, [codigo])
 
@@ -37,7 +40,7 @@ function DetalleProducto() {
         }
     }, [producto])
 
-    if (!producto) {
+    if (producto === undefined) {
         return (
             <main>
                 <section className="container py-5 text-center">
@@ -47,10 +50,28 @@ function DetalleProducto() {
         )
     }
 
+    if (producto === null) {
+        return (
+            <main>
+                <section className="container py-5 text-center">
+                    <h1 style={{ fontFamily: "'Caveat',cursive", color: '#7B4B2A' }}>Producto no encontrado</h1>
+                    <p className="text-muted">Puede que el producto ya no exista o que el enlace esté mal escrito.</p>
+                    <Link to="/productos" className="link-seguir-comprando">
+                        <i className="bi bi-arrow-left"></i> Ver productos
+                    </Link>
+                </section>
+            </main>
+        )
+    }
+
     const agotado = producto.stock <= 0
     const precioFinal = precioConOferta(producto, tamanoId)
 
     const handleAgregar = () => {
+        if (!usuario) {
+            setPedirSesion(true)
+            return
+        }
         const exito = agregar(producto, { cantidad, tamano: tamanoId, mensaje })
         if (exito) {
             setAgregado(true)
@@ -143,7 +164,7 @@ function DetalleProducto() {
                                         <i className="bi bi-dash"></i>
                                     </button>
                                     <span className="cantidad-valor">{cantidad}</span>
-                                    <button type="button" className="btn-cantidad" onClick={() => setCantidad((c) => c + 1)}>
+                                    <button type="button" className="btn-cantidad" onClick={() => setCantidad((c) => Math.min(producto.stock, c + 1))} disabled={cantidad >= producto.stock}>
                                         <i className="bi bi-plus"></i>
                                     </button>
                                 </div>
@@ -156,6 +177,19 @@ function DetalleProducto() {
                                     <i className="bi bi-cart-fill"></i> {agotado ? 'Agotado' : agregado ? '¡Agregado!' : 'Añadir al Carrito'}
                                 </button>
                             </div>
+                            
+                            {!agotado && (
+                                <p className={`texto-stock ${producto.stock <= 3 ? 'stock-bajo' : ''}`}>
+                                    <i className="bi bi-box-seam"></i>{' '}
+                                    {producto.stock <= 3 ? `¡Últimas ${producto.stock}!` : `Quedan ${producto.stock} unidades`}
+                                </p>
+                            )}
+                            
+                            {pedirSesion && (
+                                <div className="alert alert-warning py-2" role="alert">
+                                    Debes <Link to="/login">iniciar sesión</Link> para agregar productos al carrito.
+                                </div>
+                            )}                            
 
                             <div className="info-extra-detalle d-flex flex-wrap gap-4">
                                 <span><i className="bi bi-truck"></i> Despacho refrigerado 24-48 hrs</span>

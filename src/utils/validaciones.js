@@ -76,3 +76,12 @@ export function validarContacto(v) {
   else if (v.mensaje.trim().length > MAX_MENSAJE) errores.mensaje = `Máximo ${MAX_MENSAJE} caracteres`
   return errores
 }
+
+export function validarCheckout(v) {
+  const errores = {}
+  if (!requerido(v.nombre)) errores.nombre = 'Ingresa el nombre de quien recibe'
+  if (!requerido(v.calle)) errores.calle = 'Ingresa la calle y el número'
+  if (!requerido(v.comuna)) errores.comuna = 'Ingresa la comuna'
+  return errores
+}
+

@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useReducer } from 'react'
+import { createContext, useContext, useEffect, useReducer, useState } from 'react'
 import { useAuth } from './AuthContext'
-import { calcularTotales, precioConOferta } from '../utils/descuentos'
+import { calcularTotales, precioConOferta, tortaCanjeadaEsteAnio } from '../utils/descuentos'
+import { ordenesRepo } from '../data/ordenes'
 
 const CLAVE = 'pms_carrito'
 const CarritoContext = createContext(null)
@@ -21,7 +22,7 @@ export function carritoReducer(items, accion) {
     case 'QUITAR':
       return items.filter((i) => i.clave !== accion.clave)
     case 'CAMBIAR_CANTIDAD':
-      if (accion.cantidad <= 0) return items.filter((i) => i.clave !== accion.clave)
+      if (accion.cantidad < 1) return items.map((i) => (i.clave === accion.clave ? { ...i, cantidad: 1 } : i))
       return items.map((i) =>
         i.clave === accion.clave ? { ...i, cantidad: Math.min(accion.cantidad, i.stock) } : i
       )
@@ -44,6 +45,7 @@ export function crearItem(producto, { cantidad = 1, tamano = null, mensaje = '' 
     categoriaId: producto.categoriaId,
     forma: producto.forma ?? null,
     tamano,
+    personas: producto.tamanos?.find((t) => t.id === tamano)?.personas ?? null,
     mensaje,
     precioUnitario: precioConOferta(producto, tamano),
     cantidad,
@@ -51,16 +53,24 @@ export function crearItem(producto, { cantidad = 1, tamano = null, mensaje = '' 
   }
 }
 
-const cargarInicial = () => JSON.parse(localStorage.getItem(CLAVE)) ?? []
+// Cada usuario guarda su carrito con su propia clave en localStorage
+const claveDe = (usuario) => (usuario ? `${CLAVE}_${usuario.id}` : CLAVE)
+const leerCarrito = (clave) => JSON.parse(localStorage.getItem(clave)) ?? []
 
 export function CarritoProvider({ children }) {
   const { usuario } = useAuth()
-  const [items, dispatch] = useReducer(carritoReducer, [], cargarInicial)
+  const clave = claveDe(usuario)
+  const [items, dispatch] = useReducer(carritoReducer, clave, leerCarrito)
+  const [claveCargada, setClaveCargada] = useState(clave)
 
-  // Cada vez que cambian los items, se guardan
+  if (claveCargada !== clave) {
+    setClaveCargada(clave)
+    dispatch({ type: 'CARGAR', items: leerCarrito(clave) })
+  }
+
   useEffect(() => {
-    localStorage.setItem(CLAVE, JSON.stringify(items))
-  }, [items])
+    localStorage.setItem(claveCargada, JSON.stringify(items))
+  }, [claveCargada, items])
 
   const agregar = (producto, opciones) => {
     if (producto.stock <= 0) return false
@@ -71,7 +81,8 @@ export function CarritoProvider({ children }) {
   const cambiarCantidad = (clave, cantidad) => dispatch({ type: 'CAMBIAR_CANTIDAD', clave, cantidad })
   const vaciar = () => dispatch({ type: 'VACIAR' })
 
-  const totales = calcularTotales(items, usuario)
+  const tortaCanjeada = Boolean(usuario?.esDuoc) && tortaCanjeadaEsteAnio(ordenesRepo.listar(), usuario.id)
+  const totales = calcularTotales(items, usuario, new Date(), tortaCanjeada)
   const cantidadItems = items.reduce((suma, i) => suma + i.cantidad, 0)
 
   const valor = { items, agregar, quitar, cambiarCantidad, vaciar, ...totales, cantidadItems }

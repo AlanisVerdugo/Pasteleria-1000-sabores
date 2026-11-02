@@ -17,6 +17,27 @@ export function esCumpleanos(fechaNacimiento, hoy = new Date()) {
   return hoy.getMonth() + 1 === mes && hoy.getDate() === dia
 }
 
+export const MOTIVO_TORTA_CUMPLE = 'Torta gratis por cumpleaños Duoc'
+
+// próximo cumpleaños (0 = hoy)
+export function diasParaCumpleanos(fechaNacimiento, hoy = new Date()) {
+  if (!fechaNacimiento) return null
+  const [, mes, dia] = fechaNacimiento.split('-').map(Number)
+  const hoySinHora = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate())
+  let proximo = new Date(hoy.getFullYear(), mes - 1, dia)
+  if (proximo < hoySinHora) proximo = new Date(hoy.getFullYear() + 1, mes - 1, dia)
+  return Math.round((proximo - hoySinHora) / (1000 * 60 * 60 * 24))
+}
+
+// ¿alguna orden de este año usó la torta gratis?
+export function tortaCanjeadaEsteAnio(ordenes, usuarioId, hoy = new Date()) {
+  return ordenes.some((o) =>
+    o.usuarioId === usuarioId &&
+    new Date(o.fecha).getFullYear() === hoy.getFullYear() &&
+    (o.detalleDescuento ?? []).some((d) => d.motivo === MOTIVO_TORTA_CUMPLE)
+  )
+}
+
 export function precioConOferta(producto, tamanoId = null) {
   const extra = producto.tamanos?.find((t) => t.id === tamanoId)?.extra ?? 0
   return Math.round((producto.precio + extra) * (1 - (producto.oferta ?? 0) / 100))
@@ -38,16 +59,16 @@ export function calcularDescuento(usuario, codigo, hoy = new Date()) {
 
 const esTorta = (item) => Boolean(item.forma) || [1, 2, 8].includes(item.categoriaId)
 
-export function calcularTotales(items, usuario, hoy = new Date()) {
+export function calcularTotales(items, usuario, hoy = new Date(), tortaCanjeada = false) {
   const subtotal = items.reduce((suma, i) => suma + i.precioUnitario * i.cantidad, 0)
   const detalleDescuento = []
   let descuento = 0
 
   // D7: Duoc de cumpleaños => 1 unidad de la PRIMERA torta del carrito gratis
-  if (usuario?.esDuoc && esCumpleanos(usuario.fechaNacimiento, hoy)) {
+  if (usuario?.esDuoc && esCumpleanos(usuario.fechaNacimiento, hoy) && !tortaCanjeada) {
     const torta = items.find(esTorta)
     if (torta) {
-      detalleDescuento.push({ motivo: 'Torta gratis por cumpleaños Duoc', monto: torta.precioUnitario })
+      detalleDescuento.push({ motivo: MOTIVO_TORTA_CUMPLE, monto: torta.precioUnitario })
       descuento += torta.precioUnitario
     }
   }

@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap'
 import { ESTADOS_ORDEN } from '../../utils/constantes'
-import { INFO_ESTADOS } from './estadosOrden'
+import { INFO_ESTADOS } from '../../utils/admin/estadosOrden'
 
 // Desplegable para cambiar el estado de despacho de una orden (D3).
 // Las opciones salen de ESTADOS_ORDEN: nunca se escriben a mano.

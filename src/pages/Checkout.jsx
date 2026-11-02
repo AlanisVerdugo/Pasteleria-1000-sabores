@@ -10,16 +10,22 @@ import { ordenesService } from '../services/ordenesService'
 import { pagosService } from '../services/otrosService'
 import { formatearPrecio } from '../utils/formato'
 import { COSTO_DESPACHO } from '../utils/constantes'
+import { useFormulario } from '../hooks/useFormulario'
+import { validarCheckout } from '../utils/validaciones'
 
 function Checkout() {
     const { items, subtotal, descuento, detalleDescuento, total, vaciar } = useCarrito()
     const { usuario } = useAuth()
     const navigate = useNavigate()
 
-    const [nombre, setNombre] = useState(usuario?.nombre ?? '')
-    const [calle, setCalle] = useState(usuario?.direccion?.calle ?? '')
-    const [comuna, setComuna] = useState(usuario?.direccion?.comuna ?? '')
-    const [error, setError] = useState('')
+    const { valores, errores, manejarCambio, manejarEnvio } = useFormulario(
+        {
+            nombre: usuario?.nombre ?? '',
+            calle: usuario?.direccion?.calle ?? '',
+            comuna: usuario?.direccion?.comuna ?? '',
+        },
+        validarCheckout
+    )
     const [enviando, setEnviando] = useState(false)
 
     const totalFinal = total + COSTO_DESPACHO
@@ -37,12 +43,6 @@ function Checkout() {
     }
 
     const procesarCompra = async (simularFallo) => {
-        setError('')
-
-        if (!nombre.trim() || !calle.trim() || !comuna.trim()) {
-            setError('Completa tu nombre y la dirección de despacho.')
-            return
-        }
 
         setEnviando(true)
         try {
@@ -58,8 +58,8 @@ function Checkout() {
 
             // Paso 3: crear la orden (D19: forma del item de orden, con imagen incluida)
             const orden = await ordenesService.crear({
-                usuarioId: usuario?.id ?? null,
-                cliente: usuario ? undefined : { nombre, email: '', telefono: '' },
+                usuarioId: usuario.id,
+                cliente: { nombre: usuario.nombre, email: usuario.email },
                 items: items.map((i) => ({
                     codigo: i.codigo,
                     nombre: i.nombre,
@@ -67,9 +67,10 @@ function Checkout() {
                     cantidad: i.cantidad,
                     precio: i.precioUnitario,
                     tamano: i.tamano,
+                    personas: i.personas,
                     mensaje: i.mensaje,
                 })),
-                despacho: { calle, comuna },
+                despacho: { nombre: valores.nombre, calle: valores.calle, comuna: valores.comuna },
                 subtotal,
                 descuento,
                 detalleDescuento,
@@ -100,44 +101,31 @@ function Checkout() {
                         <div className="panel-resumen">
                             <h2 className="titulo-resumen mb-3">Datos de despacho</h2>
 
-                            {error && <p className="text-danger">{error}</p>}
-
-                            <div className="mb-3">
-                                <label className="form-label">Nombre completo</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={nombre}
-                                    onChange={(e) => setNombre(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="mb-3">
-                                <label className="form-label">Calle y número</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={calle}
-                                    onChange={(e) => setCalle(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="mb-3">
-                                <label className="form-label">Comuna</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={comuna}
-                                    onChange={(e) => setComuna(e.target.value)}
-                                />
-                            </div>
+                            {[
+                                { campo: 'nombre', etiqueta: 'Nombre de quien recibe' },
+                                { campo: 'calle', etiqueta: 'Calle y número' },
+                                { campo: 'comuna', etiqueta: 'Comuna' },
+                            ].map(({ campo, etiqueta }) => (
+                                <div className="mb-3" key={campo}>
+                                    <label htmlFor={campo} className="form-label">{etiqueta}</label>
+                                    <input
+                                        id={campo}
+                                        name={campo}
+                                        type="text"
+                                        className={`form-control ${errores[campo] ? 'is-invalid' : ''}`}
+                                        value={valores[campo]}
+                                        onChange={manejarCambio}
+                                    />
+                                    <div className="invalid-feedback">{errores[campo]}</div>
+                                </div>
+                            ))}
 
                             <div className="d-flex gap-2">
                                 <button
                                     type="button"
                                     className="btn-confirmar-pedido flex-grow-1"
                                     disabled={enviando}
-                                    onClick={() => procesarCompra(false)}
+                                    onClick={manejarEnvio(() => procesarCompra(false))}
                                 >
                                     {enviando ? 'Procesando...' : 'Pagar'} <i className="bi bi-arrow-right"></i>
                                 </button>
@@ -145,7 +133,7 @@ function Checkout() {
                                     type="button"
                                     className="btn btn-outline-danger"
                                     disabled={enviando}
-                                    onClick={() => procesarCompra(true)}
+                                    onClick={manejarEnvio(() => procesarCompra(true))}
                                     title="Solo para probar: simula que el pago es rechazado"
                                 >
                                     Simular fallo

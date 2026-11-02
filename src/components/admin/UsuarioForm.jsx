@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Form, Row, Col, Alert } from 'react-bootstrap'
 import { useFormulario } from '../../hooks/useFormulario'
-import { validarUsuario } from './validacionesAdmin'
+import { validarUsuario } from '../../utils/admin/validacionesAdmin'
 
 // Formulario de usuario para el admin (nuevo y editar).
 // - bloquearRol: true cuando el admin se edita a sí mismo (no puede quitarse el rol de admin)

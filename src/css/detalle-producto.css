@@ -173,3 +173,11 @@
     color: #8d8d8d;
 }
  
+.texto-stock {
+  font-size: 0.9rem;
+  color: #7B4B2A;
+}
+.texto-stock.stock-bajo {
+  color: #c0392b;
+  font-weight: 600;
+}

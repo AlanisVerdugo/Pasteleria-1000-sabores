@@ -88,7 +88,7 @@ function BoletaDetalle({ orden }) {
                   <div className="bol-dato-fuerte">{item.nombre}</div>
                   {(item.tamano || item.mensaje) && (
                     <div className="bol-dato-chico">
-                      {item.tamano && `Tamaño: ${item.tamano}`}
+                      {item.tamano && (item.personas ? `Para ${item.personas} personas` : `Tamaño: ${item.tamano}`)}
                       {item.tamano && item.mensaje && ' • '}
                       {item.mensaje && `Mensaje: "${item.mensaje}"`}
                     </div>

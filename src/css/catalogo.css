@@ -268,3 +268,80 @@
   color: #999;
   text-decoration: line-through;
 }
+
+/* Link de volver, compartido por varias páginas */
+.link-seguir-comprando {
+  color: #8B4513;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.link-seguir-comprando:hover {
+  text-decoration: underline;
+}
+
+/* ===== Ofertas: banner y filtro ===== */
+.banner-oferta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #9d4660, #B23A55);
+  color: #fff;
+}
+.banner-oferta-eyebrow {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+.banner-oferta-titulo {
+  font-family: 'Caveat', cursive;
+  font-size: 2.2rem;
+  margin: 0;
+}
+.btn-banner-oferta {
+  background: #fff;
+  color: #B23A55;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.btn-filtro-oferta {
+  border: 1px solid #e75480;
+  background: #fff;
+  color: #B23A55;
+  border-radius: 999px;
+  padding: 0.3rem 1rem;
+  font-weight: 600;
+}
+.btn-filtro-oferta.activo {
+  background: #e75480;
+  color: #fff;
+}
+
+/* Aviso de cumpleaños Duoc */
+.aviso-cumpleanos {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  background: #FFF0F5;
+  border: 1px solid #e75480;
+  color: #7B4B2A;
+  font-weight: 600;
+}
+.aviso-cumpleanos i {
+  font-size: 1.5rem;
+  color: #e75480;
+}
+.aviso-cumpleanos a {
+  color: #B23A55;
+}
+
