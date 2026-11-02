@@ -7,19 +7,33 @@ import { productosService } from '../services/productosService'
 
 function CategoriaDetalle() {
     const { id } = useParams()
-    const [categoria, setCategoria] = useState(null)
+    const [categoria, setCategoria] = useState(undefined)
     const [productos, setProductos] = useState([])
 
     useEffect(() => {
-        categoriasService.obtenerPorId(id).then(setCategoria)
+        categoriasService.obtenerPorId(id).then((c) => setCategoria(c ?? null))        
         productosService.listarPorCategoria(id).then(setProductos)
     }, [id])
 
-    if (!categoria) {
+    if (categoria === undefined) {
         return (
             <main>
                 <section className="container py-5 text-center">
                     <p className="text-muted">Cargando categoría...</p>
+                </section>
+            </main>
+        )
+    }
+
+    if (categoria === null) {
+        return (
+            <main>
+                <section className="container py-5 text-center">
+                    <h1 style={{ fontFamily: "'Caveat',cursive", color: '#7B4B2A' }}>Categoría no encontrada</h1>
+                    <p className="text-muted">Puede que la categoría ya no exista o que el enlace esté mal escrito.</p>
+                    <Link to="/categorias" className="link-seguir-comprando">
+                        <i className="bi bi-arrow-left"></i> Ver categorías
+                    </Link>
                 </section>
             </main>
         )
