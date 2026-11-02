@@ -32,7 +32,7 @@ function Home() {
 
     useEffect(() => {
         productosService.listarDestacados().then(setDestacados)
-        productosService.listarOfertas().then(setOfertas)
+        productosService.listarOfertas().then((lista) => setOfertas(lista.slice(0, 3)))
     }, [])
 
     return (
