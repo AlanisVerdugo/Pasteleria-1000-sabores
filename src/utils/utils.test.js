@@ -78,6 +78,13 @@ describe('precios y totales', () => {
     expect(r.total).toBe(45000)
     expect(r.detalleDescuento[0].motivo).toContain('FELICES50')
   })
+
+  test('la torta de cumpleaños no se aplica si ya se canjeó este año', () => {
+    const duoc = { esDuoc: true, fechaNacimiento: '2000-10-22' } 
+    const items = [{ forma: 'cuadrada', categoriaId: 1, precioUnitario: 30000, cantidad: 1 }]
+    expect(calcularTotales(items, duoc, HOY).descuento).toBe(30000)
+    expect(calcularTotales(items, duoc, HOY, true).descuento).toBe(0)
+  })  
 })
 
 describe('formato', () => {

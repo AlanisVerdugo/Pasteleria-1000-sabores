@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer, useState } from 'react'
 import { useAuth } from './AuthContext'
-import { calcularTotales, precioConOferta } from '../utils/descuentos'
+import { calcularTotales, precioConOferta, tortaCanjeadaEsteAnio } from '../utils/descuentos'
+import { ordenesRepo } from '../data/ordenes'
 
 const CLAVE = 'pms_carrito'
 const CarritoContext = createContext(null)
@@ -80,7 +81,8 @@ export function CarritoProvider({ children }) {
   const cambiarCantidad = (clave, cantidad) => dispatch({ type: 'CAMBIAR_CANTIDAD', clave, cantidad })
   const vaciar = () => dispatch({ type: 'VACIAR' })
 
-  const totales = calcularTotales(items, usuario)
+  const tortaCanjeada = Boolean(usuario?.esDuoc) && tortaCanjeadaEsteAnio(ordenesRepo.listar(), usuario.id)
+  const totales = calcularTotales(items, usuario, new Date(), tortaCanjeada)
   const cantidadItems = items.reduce((suma, i) => suma + i.cantidad, 0)
 
   const valor = { items, agregar, quitar, cambiarCantidad, vaciar, ...totales, cantidadItems }
