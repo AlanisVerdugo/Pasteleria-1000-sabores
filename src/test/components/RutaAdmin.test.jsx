@@ -17,7 +17,7 @@ const rutas = (
 describe('RutaAdmin', () => {
   test('sin sesión manda al login', async () => {
     renderConProviders(rutas, { ruta: '/admin' })
-    expect(await screen.findByText('Pantalla de login')).toBeInTheDocument()
+    expect(await screen.findByText('Inicio')).toBeInTheDocument()
   })
   test('un cliente no entra al admin', async () => {
     renderConProviders(rutas, { ruta: '/admin', usuario: CLIENTE })
