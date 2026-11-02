@@ -323,3 +323,25 @@
   background: #e75480;
   color: #fff;
 }
+
+/* Aviso de cumpleaños Duoc */
+.aviso-cumpleanos {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  background: #FFF0F5;
+  border: 1px solid #e75480;
+  color: #7B4B2A;
+  font-weight: 600;
+}
+.aviso-cumpleanos i {
+  font-size: 1.5rem;
+  color: #e75480;
+}
+.aviso-cumpleanos a {
+  color: #B23A55;
+}
+

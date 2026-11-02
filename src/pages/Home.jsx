@@ -4,6 +4,7 @@ import '../css/home.css'
 import '../css/catalogo.css'
 import TarjetaProducto from '../components/TarjetaProducto'
 import { productosService } from '../services/productosService'
+import AvisoCumpleanos from '../components/AvisoCumpleanos'
 
 
 function SeccionProductos({ id, titulo, subtitulo, productos, verMas, vitrina }) {
@@ -55,6 +56,10 @@ function Home() {
                         <Link to="/categorias" className="btn-cafe">Explorar Categorías</Link>
                     </div>
                 </section>
+                
+                <div className="container mt-4">
+                    <AvisoCumpleanos />
+                </div>
 
                 <SeccionProductos
                     id="destacados"
