@@ -30,7 +30,7 @@ function DetalleProducto() {
     useEffect(() => {
         productosService.obtenerPorId(codigo).then((p) => {
             setProducto(p)
-            if (p?.tamanos?.length > 0) setTamanoId(p.tamanos[0].id)
+            if (p?.tamanos?.length > 0) setTamanoId(p.tamanos.reduce((menor, t) => (t.personas < menor.personas ? t : menor)).id)
         })
     }, [codigo])
 
@@ -150,7 +150,7 @@ function DetalleProducto() {
                                         <i className="bi bi-dash"></i>
                                     </button>
                                     <span className="cantidad-valor">{cantidad}</span>
-                                    <button type="button" className="btn-cantidad" onClick={() => setCantidad((c) => c + 1)}>
+                                    <button type="button" className="btn-cantidad" onClick={() => setCantidad((c) => Math.min(producto.stock, c + 1))} disabled={cantidad >= producto.stock}>
                                         <i className="bi bi-plus"></i>
                                     </button>
                                 </div>
@@ -163,6 +163,13 @@ function DetalleProducto() {
                                     <i className="bi bi-cart-fill"></i> {agotado ? 'Agotado' : agregado ? '¡Agregado!' : 'Añadir al Carrito'}
                                 </button>
                             </div>
+                            
+                            {!agotado && (
+                                <p className={`texto-stock ${producto.stock <= 3 ? 'stock-bajo' : ''}`}>
+                                    <i className="bi bi-box-seam"></i>{' '}
+                                    {producto.stock <= 3 ? `¡Últimas ${producto.stock}!` : `Quedan ${producto.stock} unidades`}
+                                </p>
+                            )}
                             
                             {pedirSesion && (
                                 <div className="alert alert-warning py-2" role="alert">

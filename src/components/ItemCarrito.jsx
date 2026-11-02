@@ -1,5 +1,5 @@
 // Componente: un producto dentro del carrito (fila con foto, nombre, precio, cantidad y boton eliminar).
-function ItemCarrito({ imagen, nombre, detalle, precio, cantidad, onSumar, onRestar, onEliminar }) {
+function ItemCarrito({ imagen, nombre, detalle, precio, cantidad, maximo, onSumar, onRestar, onEliminar }) {
 
     return (
         <>
@@ -14,7 +14,7 @@ function ItemCarrito({ imagen, nombre, detalle, precio, cantidad, onSumar, onRes
                     <div className="cantidad-stepper">
                         <button type="button" className="btn-cantidad btn-restar" aria-label="Restar uno" onClick={onRestar} disabled={cantidad <= 1}><i className="bi bi-dash"></i></button>
                         <span className="cantidad-valor">{cantidad}</span>
-                        <button type="button" className="btn-cantidad btn-sumar" aria-label="Sumar uno" onClick={onSumar}><i className="bi bi-plus"></i></button>
+                        <button type="button" className="btn-cantidad btn-sumar" aria-label="Sumar uno" onClick={onSumar} disabled={cantidad >= maximo}><i className="bi bi-plus"></i></button>
                     </div>
                     <button type="button" className="btn-eliminar-item" aria-label="Eliminar producto" onClick={onEliminar}>
                         <i className="bi bi-trash"></i>
