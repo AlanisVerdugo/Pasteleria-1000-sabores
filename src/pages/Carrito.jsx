@@ -41,7 +41,7 @@ function Carrito() {
 
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <h2 className="titulo-seccion-carrito mb-0">
-                                    Productos en tu canasta <span className="text-muted fw-normal">({items.length} artículos)</span>
+                                    Productos en tu canasta <span className="text-muted fw-normal">({items.length} {items.length === 1 ? 'producto' : 'productos'})</span>
                                 </h2>
                                 {items.length > 0 && (
                                     <a href="#" className="link-vaciar" onClick={(e) => { e.preventDefault(); vaciar() }}>
