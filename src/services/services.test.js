@@ -15,9 +15,12 @@ describe('productosService', () => {
     expect(r.map((p) => p.codigo)).toEqual(['TC001', 'TC002'])
   })
 
-  test('lista solo ofertas', async () => {
+  test('lista solo ofertas, de mayor a menor descuento', async () => {
     const r = await productosService.listarOfertas()
     expect(r.every((p) => p.oferta > 0)).toBe(true)
+    for (let i = 1; i < r.length; i++) {
+      expect(r[i - 1].oferta).toBeGreaterThanOrEqual(r[i].oferta)
+    }
   })
 
   test('descuenta stock y rechaza si no alcanza', async () => {

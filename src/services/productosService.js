@@ -40,7 +40,9 @@ export const productosService = {
   },
   async listarOfertas() {
     const productos = await productosService.listar()
-    return productos.filter((p) => p.oferta > 0)
+    return productos
+    .filter((p) => p.oferta > 0)
+    .sort((a, b) => b.oferta - a.oferta)
   },
   async listarCriticos() {
     return productosRepo.listarCriticos()
