@@ -1,4 +1,4 @@
-import { calcularEdad, esCorreoDuoc, esCumpleanos, precioConOferta, calcularDescuento, calcularTotales } from './descuentos'
+import { calcularEdad, esCorreoDuoc, esCumpleanos, precioConOferta, calcularDescuento, calcularTotales, diasParaCumpleanos, tortaCanjeadaEsteAnio } from './descuentos'
 import { formatearPrecio, formatearFecha } from './formato'
 import { requerido, validarEmail, validarPassword, validarRun } from './validaciones'
 
@@ -18,6 +18,21 @@ describe('calcularEdad y cumpleaños', () => {
     expect(esCorreoDuoc('ANA@DuocUC.cl')).toBe(true)
     expect(esCorreoDuoc('ana@gmail.com')).toBe(false)
   })
+})
+
+describe('diasParaCumpleanos', () => {
+  const hoy = new Date(2026, 10, 2) 
+  test('hoy es 0', () => expect(diasParaCumpleanos('2000-11-02', hoy)).toBe(0))
+  test('mañana es 1', () => expect(diasParaCumpleanos('2000-11-03', hoy)).toBe(1))
+  test('si ya pasó, cuenta hasta el próximo año', () => expect(diasParaCumpleanos('2000-11-01', hoy)).toBe(364))
+})
+
+describe('tortaCanjeadaEsteAnio', () => {
+  const hoy = new Date(2026, 10, 2)
+  const orden = { usuarioId: 5, fecha: '2026-03-10T12:00:00', detalleDescuento: [{ motivo: 'Torta gratis por cumpleaños Duoc', monto: 1 }] }
+  test('true si este año usó la torta', () => expect(tortaCanjeadaEsteAnio([orden], 5, hoy)).toBe(true))
+  test('false si fue el año pasado', () => expect(tortaCanjeadaEsteAnio([{ ...orden, fecha: '2025-03-10T12:00:00' }], 5, hoy)).toBe(false))
+  test('false si es de otro usuario', () => expect(tortaCanjeadaEsteAnio([orden], 9, hoy)).toBe(false))
 })
 
 describe('calcularDescuento (D6: gana el mayor)', () => {

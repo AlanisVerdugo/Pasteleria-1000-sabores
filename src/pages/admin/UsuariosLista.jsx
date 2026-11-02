@@ -1,17 +1,34 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Table, Form, Badge, Alert } from 'react-bootstrap'
-import { usuariosService } from '../../services'
+import { usuariosService, ordenesService } from '../../services'
+import { calcularEdad, diasParaCumpleanos, tortaCanjeadaEsteAnio } from '../../utils/descuentos'
+import { CODIGO_FELICES } from '../../utils/constantes'
 import { useAuth } from '../../context/AuthContext'
 import { useListado } from '../../hooks/useListado'
 import EncabezadoAdmin from '../../components/admin/EncabezadoAdmin'
 import ModalConfirmar from '../../components/admin/ModalConfirmar'
 
+
+// Junta usuarios y órdenes para saber quién ya canjeó la torta de cumpleaños este año
+const cargarUsuarios = async () => {
+  const [usuarios, ordenes] = await Promise.all([usuariosService.listar(), ordenesService.listar()])
+  return usuarios.map((u) => ({ ...u, tortaCanjeada: tortaCanjeadaEsteAnio(ordenes, u.id) }))
+}
+
+const beneficiosDe = (u) => {
+  const lista = []
+  if (u.fechaNacimiento && calcularEdad(u.fechaNacimiento) >= 50) lista.push('50% mayor de 50')
+  if (u.codigoDescuento === CODIGO_FELICES) lista.push('10% FELICES50')
+  if (u.esDuoc) lista.push('Torta cumpleaños')
+  return lista
+}
+
 // Listar usuarios. usuariosService nunca devuelve el password (sinPassword).
 // El admin NO se puede eliminar a sí mismo: se compara con useAuth().usuario.id
 function UsuariosLista() {
   const { usuario: yo } = useAuth()
-  const { datos: usuarios, cargando, error, recargar } = useListado(usuariosService.listar)
+  const { datos: usuarios, cargando, error, recargar } = useListado(cargarUsuarios)
   const location = useLocation()
   const [texto, setTexto] = useState('')
   const [rol, setRol] = useState('')
@@ -70,11 +87,13 @@ function UsuariosLista() {
         ) : (
           <Table responsive hover className="adm-tabla align-middle mb-0">
             <thead>
-              <tr><th>ID</th><th>Nombre</th><th>Correo</th><th>RUN</th><th>Rol</th><th>Tipo</th><th>Acciones</th></tr>
+              <tr><th>ID</th><th>Nombre</th><th>Correo</th><th>RUN</th><th>Rol</th><th>Tipo</th><th>Edad</th><th>Beneficios</th><th>Cumpleaños</th><th>Acciones</th></tr>
             </thead>
             <tbody>
               {visibles.map((u) => {
                 const soyYo = u.id === yo?.id
+                const dias = diasParaCumpleanos(u.fechaNacimiento)
+                const beneficios = beneficiosDe(u)
                 return (
                   <tr key={u.id} data-testid="fila-usuario">
                     <td>{u.id}</td>
@@ -83,6 +102,14 @@ function UsuariosLista() {
                     <td>{u.run}</td>
                     <td>{u.rol === 'admin' ? <Badge bg="dark">Admin</Badge> : <Badge bg="secondary">Cliente</Badge>}</td>
                     <td>{u.esDuoc ? <Badge bg="warning" text="dark">Duoc UC</Badge> : 'Normal'}</td>
+                    <td>{u.fechaNacimiento ? calcularEdad(u.fechaNacimiento) : '—'}</td>
+                    <td>{beneficios.length > 0 ? beneficios.map((b) => <Badge key={b} bg="light" text="dark" className="me-1">{b}</Badge>) : '—'}</td>
+                    <td className="text-nowrap">
+                      {dias === null ? '—' : dias === 0 ? <Badge bg="danger">¡Hoy!</Badge> : `en ${dias} días`}
+                      {u.esDuoc && (
+                        <div className="small text-muted">{u.tortaCanjeada ? 'Torta canjeada este año' : 'Torta disponible'}</div>
+                      )}
+                    </td>
                     <td className="text-nowrap">
                       <Link to={`/admin/usuarios/${u.id}`} className="btn btn-sm btn-outline-secondary me-1"
                         aria-label={`Ver ${u.nombre}`}><i className="bi bi-eye"></i></Link>
