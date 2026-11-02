@@ -66,6 +66,7 @@ function Checkout() {
                     cantidad: i.cantidad,
                     precio: i.precioUnitario,
                     tamano: i.tamano,
+                    personas: i.personas,
                     mensaje: i.mensaje,
                 })),
                 despacho: { nombre: valores.nombre, calle: valores.calle, comuna: valores.comuna },

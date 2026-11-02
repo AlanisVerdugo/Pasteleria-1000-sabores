@@ -57,7 +57,10 @@ function Carrito() {
                                         key={item.clave}
                                         imagen={item.imagen}
                                         nombre={item.nombre}
-                                        detalle={`${item.cantidad} unidad(es) · ${formatearPrecio(item.precioUnitario)} c/u`}
+                                        detalle={[
+                                            item.personas && `Para ${item.personas} personas`,
+                                            `${item.cantidad} unidad(es) · ${formatearPrecio(item.precioUnitario)} c/u`,
+                                        ].filter(Boolean).join(' · ')}
                                         precio={formatearPrecio(item.precioUnitario * item.cantidad)}
                                         cantidad={item.cantidad}
                                         onSumar={() => cambiarCantidad(item.clave, item.cantidad + 1)}

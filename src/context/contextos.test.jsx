@@ -25,6 +25,11 @@ describe('carritoReducer', () => {
     expect(carritoReducer(inicial, { type: 'CARGAR', items: [] })).toEqual([])
     expect(carritoReducer(inicial, { type: 'OTRA' })).toBe(inicial)
   })
+
+  test('crearItem guarda las personas del tamaño elegido', () => {
+    const producto = { codigo: 'X1', nombre: 'Torta', precio: 10000, stock: 5, tamanos: [{ id: 'chica', personas: 8, extra: 0 }] }
+    expect(crearItem(producto, { tamano: 'chica' }).personas).toBe(8)
+  })
 })
 
 const envoltorio = ({ children }) => (
