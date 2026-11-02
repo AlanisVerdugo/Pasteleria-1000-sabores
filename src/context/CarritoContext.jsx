@@ -21,7 +21,7 @@ export function carritoReducer(items, accion) {
     case 'QUITAR':
       return items.filter((i) => i.clave !== accion.clave)
     case 'CAMBIAR_CANTIDAD':
-      if (accion.cantidad < 1) return items.filter((i) => (i.clave === accion.clave ? { ...i, cantidad: 1 } : i))
+      if (accion.cantidad < 1) return items.map((i) => (i.clave === accion.clave ? { ...i, cantidad: 1 } : i))
       return items.map((i) =>
         i.clave === accion.clave ? { ...i, cantidad: Math.min(accion.cantidad, i.stock) } : i
       )
@@ -44,6 +44,7 @@ export function crearItem(producto, { cantidad = 1, tamano = null, mensaje = '' 
     categoriaId: producto.categoriaId,
     forma: producto.forma ?? null,
     tamano,
+    personas: producto.tamanos?.find((t) => t.id === tamano)?.personas ?? null,
     mensaje,
     precioUnitario: precioConOferta(producto, tamano),
     cantidad,
