@@ -44,7 +44,7 @@ function CategoriaDetalle() {
             <section className="container py-5">
 
                 <nav aria-label="breadcrumb" className="mb-3">
-                    <Link to="/categorias" className="text-decoration-none">
+                    <Link to="/categorias" className="link-seguir-comprando">
                         <i className="bi bi-arrow-left"></i> Volver a Categorías
                     </Link>
                 </nav>

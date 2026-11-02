@@ -71,7 +71,9 @@ function Carrito() {
                             {/* Mensaje que aparece solo cuando el carrito queda vacío */}
                             {items.length === 0 && (
                                 <p className="text-center text-muted mt-4">
-                                    Tu carrito está vacío. <Link to="/productos">Ir al catálogo</Link>
+                                    Tu carrito está vacío. <Link to="/productos" className="link-seguir-comprando">
+                                        Ir al catálogo
+                                    </Link>
                                 </p>
                             )}
 
