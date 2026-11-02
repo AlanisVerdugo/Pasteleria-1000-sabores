@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Form, Row, Col, Alert } from 'react-bootstrap'
 import { useFormulario } from '../../hooks/useFormulario'
-import { validarProducto } from './validacionesAdmin'
+import { validarProducto } from '../../utils/admin/validacionesAdmin'
 import { achicarImagen } from '../../utils/imagen'
 
 const IMAGEN_POR_DEFECTO = '/img/logo-pasteleria-1000-sabores.png'

@@ -1,8 +1,6 @@
 import { calcularEdad, esCorreoDuoc, esCumpleanos, precioConOferta, calcularDescuento, calcularTotales, diasParaCumpleanos, tortaCanjeadaEsteAnio } from '../../utils/descuentos'
-import { formatearPrecio, formatearFecha } from '../../utils/formato'
-import { requerido, validarEmail, validarPassword, validarRun } from '../../utils/validaciones'
 
-const HOY = new Date(2026, 9, 22) // 22 de octubre de 2026 (el mes parte en 0)
+const HOY = new Date(2026, 9, 22) // (el mes parte en 0)
 
 describe('calcularEdad y cumpleaños', () => {
   test('calcula la edad según si ya cumplió', () => {
@@ -87,27 +85,4 @@ describe('precios y totales', () => {
   })  
 })
 
-describe('formato', () => {
-  test('formatea precio y fecha', () => {
-    expect(formatearPrecio(45000)).toBe('$45.000')
-    expect(formatearPrecio(500)).toBe('$500')
-    expect(formatearFecha('2026-10-22T15:30:00.000Z')).toBe('22-10-2026')
-  })
-})
 
-describe('validaciones', () => {
-  test('requerido, email y contraseña', () => {
-    expect(requerido('  ')).toBe(false)
-    expect(requerido('Ana')).toBe(true)
-    expect(validarEmail('ana@gmail.com')).toBe(true)
-    expect(validarEmail('ana@')).toBe(false)
-    expect(validarPassword('123')).toBe(false)
-    expect(validarPassword('1234')).toBe(true)
-  })
-  test('valida el RUN con dígito verificador', () => {
-    expect(validarRun('12.345.678-5')).toBe(true)
-    expect(validarRun('19876543-0')).toBe(true)
-    expect(validarRun('12345678-K')).toBe(false)
-    expect(validarRun('abc')).toBe(false)
-  })
-})

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Form, Alert } from 'react-bootstrap'
 import { useFormulario } from '../../hooks/useFormulario'
-import { validarCategoria } from './validacionesAdmin'
+import { validarCategoria } from '../../utils/admin/validacionesAdmin'
 import { achicarImagen } from '../../utils/imagen'
 
 // Formulario de categoría (nueva y editar). onGuardar es async y lo maneja el padre.
