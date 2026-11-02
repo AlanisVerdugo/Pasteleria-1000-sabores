@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, userEvent } from '@testing-library/react'
 import Ofertas from './Ofertas'
 import { renderConProviders } from '../test/utils'
 import { productosService } from '../services/productosService'
@@ -31,4 +31,16 @@ describe('Ofertas', () => {
     const tarjetas = await screen.findAllByTestId('tarjeta-producto')
     expect(tarjetas).toHaveLength(1)
   })
+
+  test('el banner muestra la mejor oferta', async () => {
+    renderConProviders(<Ofertas />)
+    expect(await screen.findByRole('heading', { name: '¡Hasta 20% de descuento!' })).toBeInTheDocument()
+  })
+
+  test('el filtro deja solo las ofertas desde ese porcentaje', async () => {
+    renderConProviders(<Ofertas />)
+    await screen.findAllByTestId('tarjeta-producto')
+    await userEvent.click(screen.getByRole('button', { name: '20% o más' }))
+    expect(screen.getAllByTestId('tarjeta-producto')).toHaveLength(1)
+  })  
 })
