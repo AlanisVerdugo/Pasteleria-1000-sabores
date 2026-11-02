@@ -1,4 +1,4 @@
-import { INFO_ESTADOS } from './estadosOrden'
+import { INFO_ESTADOS } from '../../utils/admin/estadosOrden'
 import '../../css/admin.css'
 
 // Etiqueta de color con el estado de una orden

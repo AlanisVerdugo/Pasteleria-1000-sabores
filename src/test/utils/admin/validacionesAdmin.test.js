@@ -1,4 +1,4 @@
-import { validarProducto, validarCategoria, validarUsuario } from '../../../components/admin/validacionesAdmin'
+import { validarProducto, validarCategoria, validarUsuario } from '../../../utils/admin/validacionesAdmin'
 
 const PRODUCTO_OK = { codigo: 'TC003', nombre: 'Torta de Lúcuma', categoriaId: '1', precio: '42000', stock: '5', oferta: '0', descripcion: '' }
 

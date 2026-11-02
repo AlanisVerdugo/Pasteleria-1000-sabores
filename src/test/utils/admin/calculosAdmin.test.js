@@ -1,7 +1,7 @@
 import {
   esDelMes, sumarTotales, ventasDelMes, ultimasOrdenes, nombreCliente,
   ticketPromedio, ordenesPorEstado, ventasPorCategoria, topProductos,
-} from '../../../components/admin/calculosAdmin'
+} from '../../../utils/admin/calculosAdmin'
 
 const ORDENES = [
   { id: 1, fecha: '2026-09-30T10:00:00.000Z', total: 10000 },

@@ -5,7 +5,7 @@ import {
 } from '../../services'
 import { useListado } from '../../hooks/useListado'
 import { formatearPrecio, formatearFecha } from '../../utils/formato'
-import { ventasDelMes, ultimasOrdenes } from '../../components/admin/calculosAdmin'
+import { ventasDelMes, ultimasOrdenes } from '../../utils/admin/calculosAdmin'
 import EncabezadoAdmin from '../../components/admin/EncabezadoAdmin'
 import TarjetaContador from '../../components/admin/TarjetaContador'
 import EstadoOrden from '../../components/admin/EstadoOrden'

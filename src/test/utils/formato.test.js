@@ -1,5 +1,4 @@
-import { describe, test, expect } from 'vitest'
-import { detalleItem } from '../../utils/formato'
+import { detalleItem, formatearPrecio, formatearFecha } from '../../utils/formato'
 
 describe('detalleItem', () => {
   test('incluye personas y mensaje cuando existen', () => {
@@ -10,6 +9,14 @@ describe('detalleItem', () => {
   })
   test('sin personas ni mensaje muestra solo la cantidad', () => {
     expect(detalleItem({ cantidad: 1 }, 5000)).not.toContain('personas')
+  })
+})
+
+describe('formato', () => {
+  test('formatea precio y fecha', () => {
+    expect(formatearPrecio(45000)).toBe('$45.000')
+    expect(formatearPrecio(500)).toBe('$500')
+    expect(formatearFecha('2026-10-22T15:30:00.000Z')).toBe('22-10-2026')
   })
 })
 

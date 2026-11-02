@@ -1,4 +1,4 @@
-import { validarContacto, MAX_MENSAJE } from '../../utils/validaciones'
+import { validarContacto, MAX_MENSAJE, requerido, validarEmail, validarPassword, validarRun } from '../../utils/validaciones'
 
 const valido = {
   tipo: 'Reclamo',
@@ -29,6 +29,23 @@ describe('validarContacto', () => {
       email: 'El correo no es válido',
       mensaje: `Máximo ${MAX_MENSAJE} caracteres`,
     })
+  })
+})
+
+describe('validaciones', () => {
+  test('requerido, email y contraseña', () => {
+    expect(requerido('  ')).toBe(false)
+    expect(requerido('Ana')).toBe(true)
+    expect(validarEmail('ana@gmail.com')).toBe(true)
+    expect(validarEmail('ana@')).toBe(false)
+    expect(validarPassword('123')).toBe(false)
+    expect(validarPassword('1234')).toBe(true)
+  })
+  test('valida el RUN con dígito verificador', () => {
+    expect(validarRun('12.345.678-5')).toBe(true)
+    expect(validarRun('19876543-0')).toBe(true)
+    expect(validarRun('12345678-K')).toBe(false)
+    expect(validarRun('abc')).toBe(false)
   })
 })
 
