@@ -60,6 +60,7 @@ function Carrito() {
                                         detalle={detalleItem(item, item.precioUnitario)}
                                         precio={formatearPrecio(item.precioUnitario * item.cantidad)}
                                         cantidad={item.cantidad}
+                                        maximo={item.stock}
                                         onSumar={() => cambiarCantidad(item.clave, item.cantidad + 1)}
                                         onRestar={() => cambiarCantidad(item.clave, item.cantidad - 1)}
                                         onEliminar={() => quitar(item.clave)}

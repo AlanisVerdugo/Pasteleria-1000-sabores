@@ -80,4 +80,9 @@ describe('ItemCarrito', () => {
     )
     expect(screen.getByRole('button', { name: 'Restar uno' })).toBeDisabled()
   })
+
+  test('el botón sumar se deshabilita al llegar al stock', () => {
+    render(<ItemCarrito imagen="/x.jpg" nombre="Torta" detalle="" precio="$1" cantidad={3} maximo={3} onSumar={() => {}} onRestar={() => {}} onEliminar={() => {}} />)
+    expect(screen.getByRole('button', { name: 'Sumar uno' })).toBeDisabled()
+  })
 })
