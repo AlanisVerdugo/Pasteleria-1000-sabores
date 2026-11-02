@@ -10,7 +10,7 @@ Tienda web de la Pastelería 1000 Sabores hecha con React y Vite (Evaluación 2,
 
 ## Requisitos
 
-- Node.js 18 o superior
+- Node.js 22.12 o superior
 - npm
 
 ## Instalación y uso
@@ -70,5 +70,9 @@ src/
 ```
 
 ## Pruebas
+
+npm run test            # modo observador: repite las pruebas al guardar; se sale con q
+npx vitest run          # ejecuta todas las pruebas una vez y termina
+npm run test:coverage   # pruebas + cobertura; el reporte queda en coverage/index.html
 
 359 pruebas en 78 archivos, con 94,95 % de cobertura de líneas. Los umbrales mínimos están en `vite.config.js` (80 % líneas, 80 % funciones, 75 % ramas, 80 % sentencias).
