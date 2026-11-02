@@ -18,7 +18,7 @@ const cargarUsuarios = async () => {
 
 const beneficiosDe = (u) => {
   const lista = []
-  if (u.fechaNacimiento && calcularEdad(u.fechaNacimiento) >= 50) lista.push('50% mayor de 50')
+  if (u.fechaNacimiento && calcularEdad(u.fechaNacimiento) > 50) lista.push('50% mayor de 50')
   if (u.codigoDescuento === CODIGO_FELICES) lista.push('10% FELICES50')
   if (u.esDuoc) lista.push('Torta cumpleaños')
   return lista

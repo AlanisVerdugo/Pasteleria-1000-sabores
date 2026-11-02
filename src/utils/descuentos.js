@@ -59,13 +59,13 @@ export function calcularDescuento(usuario, codigo, hoy = new Date()) {
 
 const esTorta = (item) => Boolean(item.forma) || [1, 2, 8].includes(item.categoriaId)
 
-export function calcularTotales(items, usuario, hoy = new Date()) {
+export function calcularTotales(items, usuario, hoy = new Date(), tortaCanjeada = false) {
   const subtotal = items.reduce((suma, i) => suma + i.precioUnitario * i.cantidad, 0)
   const detalleDescuento = []
   let descuento = 0
 
   // D7: Duoc de cumpleaños => 1 unidad de la PRIMERA torta del carrito gratis
-  if (usuario?.esDuoc && esCumpleanos(usuario.fechaNacimiento, hoy)) {
+  if (usuario?.esDuoc && esCumpleanos(usuario.fechaNacimiento, hoy) && !tortaCanjeada) {
     const torta = items.find(esTorta)
     if (torta) {
       detalleDescuento.push({ motivo: MOTIVO_TORTA_CUMPLE, monto: torta.precioUnitario })
