@@ -81,7 +81,7 @@ function Cabecera() {
               <Link to="/carrito" className="icono-header position-relative" aria-label="Carrito">
                 <i className="bi bi-cart"></i>
                 {cantidadItems > 0 && (
-                  <Badge bg="danger" pill className="position-absolute top-0 start-100 translate-middle">
+                  <Badge bg="danger" pill className="badge-carrito">
                     {cantidadItems}
                   </Badge>
                 )}
