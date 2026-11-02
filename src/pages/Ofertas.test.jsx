@@ -1,7 +1,8 @@
-import { screen, userEvent } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import Ofertas from './Ofertas'
 import { renderConProviders } from '../test/utils'
 import { productosService } from '../services/productosService'
+import userEvent from '@testing-library/user-event'
 
 afterEach(() => vi.restoreAllMocks())
 
