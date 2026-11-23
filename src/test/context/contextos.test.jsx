@@ -1,11 +1,7 @@
 import { renderHook, act, waitFor } from '@testing-library/react'
 import { AuthProvider, useAuth } from '../../context/AuthContext'
 import { CarritoProvider, useCarrito, carritoReducer, crearItem } from '../../context/CarritoContext'
-import { usuariosRepo } from '../../data/usuarios'
-
 const torta = { codigo: 'TT001', nombre: 'Torta', categoriaId: 2, forma: 'circular', precio: 40000, stock: 3, oferta: 0, tamanos: [] }
-
-beforeEach(() => usuariosRepo.reiniciar())
 
 describe('carritoReducer', () => {
   test('agrega, suma si se repite y respeta el stock', () => {

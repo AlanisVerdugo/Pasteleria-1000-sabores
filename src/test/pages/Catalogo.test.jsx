@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Catalogo from '../../pages/Catalogo'
 import { renderConProviders } from '../utils'
@@ -6,11 +6,13 @@ import { renderConProviders } from '../utils'
 const cantidadMostrada = () => screen.getByText(/mostrando/i).querySelector('strong').textContent
 
 describe('Catalogo', () => {
-  beforeEach(() => localStorage.clear())
-
   test('carga productos y pagina de a 6', async () => {
     renderConProviders(<Catalogo />, { ruta: '/productos' })
-    expect((await screen.findAllByText('Torta Cuadrada de Chocolate')).length).toBeGreaterThan(0)
+    await waitFor(() => {
+      expect(screen.getByText(/mostrando/i).querySelector('strong').textContent).toBe('16')
+    })
+    // La API ordena por código; la primera página empieza en PG001, no en TC001.
+    expect(screen.getByRole('heading', { level: 3, name: 'Brownie Sin Gluten' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: '2' })).toBeInTheDocument()
   })
 

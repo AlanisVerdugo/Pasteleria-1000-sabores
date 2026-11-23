@@ -1,7 +1,9 @@
 import { screen } from '@testing-library/react'
 import { Routes, Route } from 'react-router-dom'
 import HistorialCompras from '../../../pages/admin/HistorialCompras'
-import { renderConProviders } from '../../utils'
+import { renderConProviders, ADMIN } from '../../utils'
+
+const conAdmin = (ruta) => ({ ruta, usuario: ADMIN })
 import { ordenesService } from '../../../services'
 
 afterEach(() => vi.restoreAllMocks())
@@ -16,7 +18,7 @@ const contador = (titulo) => screen.getByText(titulo).closest('[data-testid="con
 
 describe('HistorialCompras', () => {
   test('muestra el resumen y los pedidos de Camila (reutiliza MisPedidos)', async () => {
-    renderConProviders(rutas, { ruta: '/admin/usuarios/4/compras' })
+    renderConProviders(rutas, conAdmin('/admin/usuarios/4/compras'))
     expect(await screen.findByText(/Camila Pérez Soto/)).toBeInTheDocument()
     expect(contador('Compras')).toHaveTextContent('2')
     expect(contador('Total gastado')).toHaveTextContent('$105.000')
@@ -25,7 +27,7 @@ describe('HistorialCompras', () => {
   })
 
   test('un usuario sin compras', async () => {
-    renderConProviders(rutas, { ruta: '/admin/usuarios/3/compras' })
+    renderConProviders(rutas, conAdmin('/admin/usuarios/3/compras'))
     expect(await screen.findByText(/Pedro Soto Rojas/)).toBeInTheDocument()
     expect(contador('Compras')).toHaveTextContent('0')
     expect(contador('Última compra')).toHaveTextContent('—')
@@ -33,13 +35,13 @@ describe('HistorialCompras', () => {
   })
 
   test('si el usuario no existe, avisa', async () => {
-    renderConProviders(rutas, { ruta: '/admin/usuarios/99/compras' })
+    renderConProviders(rutas, conAdmin('/admin/usuarios/99/compras'))
     expect(await screen.findByText(/No existe el usuario 99/)).toBeInTheDocument()
   })
 
   test('si el service falla, muestra el error', async () => {
     vi.spyOn(ordenesService, 'listarPorUsuario').mockRejectedValue(new Error('Error de red'))
-    renderConProviders(rutas, { ruta: '/admin/usuarios/4/compras' })
+    renderConProviders(rutas, conAdmin('/admin/usuarios/4/compras'))
     expect(await screen.findByRole('alert')).toHaveTextContent('Error de red')
   })
 })

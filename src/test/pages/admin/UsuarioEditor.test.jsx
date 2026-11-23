@@ -3,16 +3,10 @@ import userEvent from '@testing-library/user-event'
 import { Routes, Route } from 'react-router-dom'
 import UsuarioEditor from '../../../pages/admin/UsuarioEditor'
 import UsuariosLista from '../../../pages/admin/UsuariosLista'
-import { renderConProviders } from '../../utils'
+import { renderConProviders, ADMIN } from '../../utils'
 import { usuariosService } from '../../../services'
-import { usuariosRepo } from '../../../data/usuarios'
 
-const ADMIN = { id: 1 }
-
-afterEach(() => {
-  vi.restoreAllMocks()
-  usuariosRepo.reiniciar()
-})
+afterEach(() => vi.restoreAllMocks())
 
 const rutas = (
   <Routes>

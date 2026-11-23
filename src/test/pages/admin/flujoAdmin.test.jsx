@@ -2,17 +2,10 @@ import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from '../../../App'
 import { renderConProviders } from '../../utils'
-import { ordenesRepo } from '../../../data/ordenes'
-import { productosRepo } from '../../../data/productos'
-
 // Prueba de integración del panel: la App completa con sus rutas reales,
 // RutaAdmin y AdminLayout. Se navega con el sidebar como lo haría el admin.
 beforeEach(() => vi.spyOn(window, 'scrollTo').mockImplementation(() => {}))
-afterEach(() => {
-  vi.restoreAllMocks()
-  ordenesRepo.reiniciar()
-  productosRepo.reiniciar()
-})
+afterEach(() => vi.restoreAllMocks())
 
 const ADMIN = { id: 1 }
 

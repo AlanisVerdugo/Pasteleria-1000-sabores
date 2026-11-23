@@ -3,14 +3,12 @@ import userEvent from '@testing-library/user-event'
 import { Routes, Route } from 'react-router-dom'
 import ProductoEditor from '../../../pages/admin/ProductoEditor'
 import ProductosLista from '../../../pages/admin/ProductosLista'
-import { renderConProviders } from '../../utils'
+import { renderConProviders, ADMIN } from '../../utils'
 import { productosService } from '../../../services'
-import { productosRepo } from '../../../data/productos'
 
-afterEach(() => {
-  vi.restoreAllMocks()
-  productosRepo.reiniciar()
-})
+afterEach(() => vi.restoreAllMocks())
+
+const conAdmin = (ruta) => ({ ruta, usuario: ADMIN })
 
 const rutas = (
   <Routes>
@@ -30,7 +28,7 @@ async function llenarNuevo(codigo) {
 
 describe('ProductoEditor', () => {
   test('nuevo: crea el producto y vuelve a la lista con un aviso', async () => {
-    renderConProviders(rutas, { ruta: '/admin/productos/nuevo' })
+    renderConProviders(rutas, conAdmin('/admin/productos/nuevo'))
     expect(await screen.findByRole('heading', { name: 'Nuevo producto' })).toBeInTheDocument()
     await llenarNuevo('TT003')
     await userEvent.click(screen.getByRole('button', { name: /Crear producto/ }))
@@ -40,7 +38,7 @@ describe('ProductoEditor', () => {
   })
 
   test('nuevo: un código repetido muestra el error', async () => {
-    renderConProviders(rutas, { ruta: '/admin/productos/nuevo' })
+    renderConProviders(rutas, conAdmin('/admin/productos/nuevo'))
     await llenarNuevo('TC001')
     await userEvent.click(screen.getByRole('button', { name: /Crear producto/ }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Ya existe un producto con el código TC001')
@@ -48,7 +46,7 @@ describe('ProductoEditor', () => {
 
   test('editar: precarga el producto y guarda los cambios', async () => {
     const espia = vi.spyOn(productosService, 'actualizar')
-    renderConProviders(rutas, { ruta: '/admin/productos/TC001/editar' })
+    renderConProviders(rutas, conAdmin('/admin/productos/TC001/editar'))
     expect(await screen.findByRole('heading', { name: 'Editar producto' })).toBeInTheDocument()
     const stock = screen.getByLabelText('Stock')
     expect(stock).toHaveValue(10)
@@ -61,14 +59,14 @@ describe('ProductoEditor', () => {
   })
 
   test('editar un código que no existe avisa', async () => {
-    renderConProviders(rutas, { ruta: '/admin/productos/XX999/editar' })
+    renderConProviders(rutas, conAdmin('/admin/productos/XX999/editar'))
     expect(await screen.findByText(/No existe el producto XX999/)).toBeInTheDocument()
   })
 
   test('si fallan las categorías, muestra el error', async () => {
     const { categoriasService } = await import('../../../services')
     vi.spyOn(categoriasService, 'listar').mockRejectedValue(new Error('Sin categorías'))
-    renderConProviders(rutas, { ruta: '/admin/productos/nuevo' })
+    renderConProviders(rutas, conAdmin('/admin/productos/nuevo'))
     expect(await screen.findByRole('alert')).toHaveTextContent('Sin categorías')
   })
 })

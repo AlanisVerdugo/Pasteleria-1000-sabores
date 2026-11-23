@@ -2,8 +2,7 @@ import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import PerfilAdmin from '../../../pages/admin/PerfilAdmin'
 import { renderConProviders } from '../../utils'
-import { usuariosService } from '../../../services'
-import { usuariosRepo } from '../../../data/usuarios'
+import { authService, usuariosService } from '../../../services'
 import RutaAdmin from '../../../components/RutaAdmin'
 import { achicarImagen } from '../../../utils/imagen'
 
@@ -14,10 +13,7 @@ const ADMIN = { id: 1 }
 // RutaAdmin espera a que cargue la sesión (como en la app real)
 const renderPerfil = () => renderConProviders(<RutaAdmin><PerfilAdmin /></RutaAdmin>, { usuario: ADMIN })
 
-afterEach(() => {
-  vi.restoreAllMocks()
-  usuariosRepo.reiniciar()
-})
+afterEach(() => vi.restoreAllMocks())
 
 describe('PerfilAdmin', () => {
   test('muestra los datos del admin con sesión', async () => {
@@ -64,7 +60,7 @@ describe('PerfilAdmin', () => {
   })
 
   test('si guardar falla, muestra el error', async () => {
-    vi.spyOn(usuariosService, 'actualizar').mockRejectedValue(new Error('No encontrado'))
+    vi.spyOn(authService, 'actualizarPerfil').mockRejectedValue(new Error('No encontrado'))
     renderPerfil()
     await userEvent.click(await screen.findByRole('button', { name: /Guardar cambios/ }))
     expect(await screen.findByText('No encontrado')).toBeInTheDocument()

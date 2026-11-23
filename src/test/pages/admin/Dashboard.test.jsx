@@ -1,6 +1,8 @@
 import { screen, within } from '@testing-library/react'
 import Dashboard from '../../../pages/admin/Dashboard'
-import { renderConProviders } from '../../utils'
+import { renderConProviders, ADMIN } from '../../utils'
+
+const conAdmin = { usuario: ADMIN }
 import { productosService, ordenesService } from '../../../services'
 
 afterEach(() => vi.restoreAllMocks())
@@ -10,7 +12,7 @@ const contador = (titulo) => screen.getByText(titulo).closest('[data-testid="con
 
 describe('Dashboard', () => {
   test('muestra los contadores calculados desde los services (semillas)', async () => {
-    renderConProviders(<Dashboard />)
+    renderConProviders(<Dashboard />, conAdmin)
     expect(await screen.findByRole('heading', { name: 'Dashboard' })).toBeInTheDocument()
     expect(contador('Productos')).toHaveTextContent('16')
     expect(contador('Categorías')).toHaveTextContent('8')
@@ -19,7 +21,7 @@ describe('Dashboard', () => {
   })
 
   test('los productos críticos se marcan en rojo y llevan a su vista', async () => {
-    renderConProviders(<Dashboard />)
+    renderConProviders(<Dashboard />, conAdmin)
     const criticos = (await screen.findByText('Productos críticos')).closest('a')
     expect(criticos).toHaveClass('adm-contador-alerta')
     expect(criticos).toHaveAttribute('href', '/admin/productos/criticos')
@@ -27,14 +29,14 @@ describe('Dashboard', () => {
 
   test('es dinámico: si el service cambia, el contador cambia', async () => {
     vi.spyOn(productosService, 'listarCriticos').mockResolvedValue([])
-    renderConProviders(<Dashboard />)
+    renderConProviders(<Dashboard />, conAdmin)
     const criticos = (await screen.findByText('Productos críticos')).closest('a')
     expect(criticos).toHaveTextContent('0')
     expect(criticos).not.toHaveClass('adm-contador-alerta')
   })
 
   test('lista las últimas órdenes con su estado y link a la boleta', async () => {
-    renderConProviders(<Dashboard />)
+    renderConProviders(<Dashboard />, conAdmin)
     const filas = await screen.findAllByTestId('orden-reciente')
     expect(filas).toHaveLength(2)
     expect(filas[0]).toHaveTextContent('B-000002') // la más nueva primero
@@ -44,13 +46,13 @@ describe('Dashboard', () => {
 
   test('sin órdenes muestra un aviso', async () => {
     vi.spyOn(ordenesService, 'listar').mockResolvedValue([])
-    renderConProviders(<Dashboard />)
+    renderConProviders(<Dashboard />, conAdmin)
     expect(await screen.findByText('Todavía no hay órdenes.')).toBeInTheDocument()
   })
 
   test('si un service falla, muestra el error', async () => {
     vi.spyOn(ordenesService, 'listar').mockRejectedValue(new Error('sin conexión'))
-    renderConProviders(<Dashboard />)
+    renderConProviders(<Dashboard />, conAdmin)
     expect(await screen.findByRole('alert')).toHaveTextContent('sin conexión')
   })
 })

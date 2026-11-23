@@ -1,17 +1,19 @@
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import MisPedidos from '../../components/MisPedidos'
-import { renderConProviders } from '../utils'
+import { renderConProviders, ADMIN } from '../utils'
+
+const admin = { usuario: ADMIN }
 
 describe('MisPedidos', () => {
   test('un usuario sin pedidos ve el mensaje y el link a productos', async () => {
-    renderConProviders(<MisPedidos usuarioId={3} />) // Pedro no tiene pedidos
+    renderConProviders(<MisPedidos usuarioId={3} />, admin) // Pedro no tiene pedidos
     expect(await screen.findByText('Aún no tienes pedidos.')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Ver productos' })).toBeInTheDocument()
   })
 
   test('muestra los pedidos del usuario, el más reciente primero', async () => {
-    renderConProviders(<MisPedidos usuarioId={4} />) // Camila tiene 2
+    renderConProviders(<MisPedidos usuarioId={4} />, admin) // Camila tiene 2
     const pedidos = await screen.findAllByTestId('pedido')
     expect(pedidos).toHaveLength(2)
     expect(pedidos[0]).toHaveTextContent('B-000002')
@@ -20,7 +22,7 @@ describe('MisPedidos', () => {
 
   test('el filtro Entregados muestra solo los entregados', async () => {
     const user = userEvent.setup()
-    renderConProviders(<MisPedidos usuarioId={4} />)
+    renderConProviders(<MisPedidos usuarioId={4} />, admin)
     await screen.findAllByTestId('pedido')
     await user.click(screen.getByRole('button', { name: 'Entregados' }))
     const pedidos = screen.getAllByTestId('pedido')
@@ -30,7 +32,7 @@ describe('MisPedidos', () => {
 
   test('si no hay pedidos en ese estado muestra un aviso', async () => {
     const user = userEvent.setup()
-    renderConProviders(<MisPedidos usuarioId={4} />)
+    renderConProviders(<MisPedidos usuarioId={4} />, admin)
     await screen.findAllByTestId('pedido')
     await user.click(screen.getByRole('button', { name: 'En camino' }))
     expect(screen.queryAllByTestId('pedido')).toHaveLength(0)
