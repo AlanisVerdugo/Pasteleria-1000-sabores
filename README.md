@@ -1,6 +1,6 @@
 # Pastelería 1000 Sabores
 
-Tienda web de la Pastelería 1000 Sabores con React y Vite (EV2 → EV3, Duoc UC). En la rama `p1/integracion-api` consume la API Spring Boot (`pasteleria-api`) en lugar del `localStorage` de la EV2.
+Tienda web de la Pastelería 1000 Sabores con React y Vite (EV2 → EV3, Duoc UC). En `main` consume la API Spring Boot (`pasteleria-api`) en lugar del `localStorage` de la EV2.
 
 ## Equipo
 
@@ -79,4 +79,6 @@ npm run test:coverage   # pruebas + cobertura; el reporte queda en coverage/inde
 
 359 pruebas en 78 archivos (`npx vitest run`). Los umbrales mínimos están en `vite.config.js` (80 % líneas, 80 % funciones, 75 % ramas, 80 % sentencias). `npm run test:coverage` usa `src/test/falso/apiFalsa.js`, no requiere la API en marcha.
 
-**Estado integración (EV3):** F1–F9 y F7 (checklist por rol) en la rama `p1/integracion-api`. Siguiente: PR de integración cuando lo indiques; backend Fase G (Docker). Detalle: `pasteleria-api/docs/Guia_estudio_proyecto.md`.
+**Estado EV3 (`main`):** integración API F1–F9 completada; checklist **F7** validado contra API en 8089 (2026-11-23). PR #54 fusionado. Vitest: `npx vitest run` / `npm run test:coverage` (umbrales en `vite.config.js`). Guía de estudio: `pasteleria-api/docs/Guia_estudio_proyecto.md`.
+
+**Pendiente:** entregables Fase **I** (manual, ERS, documentos con capturas de `main`).
