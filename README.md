@@ -79,4 +79,4 @@ npm run test:coverage   # pruebas + cobertura; el reporte queda en coverage/inde
 
 359 pruebas en 78 archivos (`npx vitest run`). Los umbrales mínimos están en `vite.config.js` (80 % líneas, 80 % funciones, 75 % ramas, 80 % sentencias). `npm run test:coverage` usa `src/test/falso/apiFalsa.js`, no requiere la API en marcha.
 
-**Estado integración (EV3):** F1–F6 y F9 en la rama `p1/integracion-api`. Pendiente checklist manual por rol (F7) con API en 8089. Detalle: `pasteleria-api/docs/Guia_estudio_proyecto.md`.
+**Estado integración (EV3):** F1–F9 y F7 (checklist por rol) en la rama `p1/integracion-api`. Siguiente: PR de integración cuando lo indiques; backend Fase G (Docker). Detalle: `pasteleria-api/docs/Guia_estudio_proyecto.md`.
