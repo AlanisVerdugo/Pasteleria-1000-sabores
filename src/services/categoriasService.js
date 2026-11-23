@@ -1,14 +1,19 @@
-import { categoriasRepo } from '../data/categorias'
-import { productosRepo } from '../data/productos'
+import { api, nuloSiNoExiste } from './api'
 
 export const categoriasService = {
-  async listar() { return categoriasRepo.listar() },
-  async obtenerPorId(id) { return categoriasRepo.buscarPorId(Number(id)) },
-  async crear(categoria) { return categoriasRepo.agregar(categoria) },
-  async actualizar(id, cambios) { return categoriasRepo.actualizar(Number(id), cambios) },
+  async listar() {
+    return (await api.get('/categorias')).data
+  },
+  async obtenerPorId(id) {
+    return api.get(`/categorias/${id}`).then((r) => r.data).catch(nuloSiNoExiste)
+  },
+  async crear(categoria) {
+    return (await api.post('/categorias', categoria)).data
+  },
+  async actualizar(id, cambios) {
+    return (await api.put(`/categorias/${id}`, cambios)).data
+  },
   async eliminar(id) {
-    const enUso = productosRepo.listar().some((p) => p.categoriaId === Number(id))
-    if (enUso) throw new Error('No se puede eliminar: hay productos en esta categoría')
-    return categoriasRepo.eliminar(Number(id))
+    await api.delete(`/categorias/${id}`)
   },
 }

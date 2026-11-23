@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { authService, usuariosService } from '../services'
+import { authService } from '../services'
 
 const AuthContext = createContext(null)
 
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
     return u
   }
   const actualizarPerfil = async (cambios) => {
-    const u = await usuariosService.actualizar(usuario.id, cambios)
+    const u = await authService.actualizarPerfil({ ...usuario, ...cambios })
     setUsuario(u)
     return u
   }
