@@ -26,11 +26,9 @@ describe('calculosAdmin', () => {
     expect(ultimasOrdenes(ORDENES, 2).map((o) => o.id)).toEqual([3, 2])
     expect(ORDENES[0].id).toBe(1) // no cambia el original
   })
-  test('nombreCliente usa el cliente de la orden, si no el usuario, si no "Invitado"', () => {
-    const usuarios = [{ id: 4, nombre: 'Camila', apellidos: 'Pérez Soto' }]
-    expect(nombreCliente({ cliente: { nombre: 'Rosa' }, usuarioId: 4 }, usuarios)).toBe('Rosa')
-    expect(nombreCliente({ usuarioId: 4 }, usuarios)).toBe('Camila Pérez Soto')
-    expect(nombreCliente({ usuarioId: null }, usuarios)).toBe('Invitado')
+  test('nombreCliente usa el cliente de la orden o "Invitado"', () => {
+    expect(nombreCliente({ cliente: { nombre: 'Rosa' } })).toBe('Rosa')
+    expect(nombreCliente({ usuarioId: 4 })).toBe('Invitado')
   })
 })
 

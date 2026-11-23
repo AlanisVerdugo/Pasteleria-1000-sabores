@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route } from 'react-router-dom'
+import { useAuth } from './context/AuthContext'
 import TiendaLayout from './layouts/TiendaLayout'
 import AdminLayout from './layouts/AdminLayout'
 import RutaProtegida from './components/RutaProtegida'
@@ -48,6 +49,12 @@ import MensajesContacto from './pages/admin/MensajesContacto'
 import PerfilAdmin from './pages/admin/PerfilAdmin'
 
 
+function InicioAdmin() {
+  const { esVendedor } = useAuth()
+  if (esVendedor) return <Navigate to="/admin/productos" replace />
+  return <Dashboard />
+}
+
 function App() {
   return (
     <>
@@ -80,26 +87,26 @@ function App() {
         </Route>
 
         {/* ADMIN */}
-        <Route path="/admin" element={<RutaAdmin><AdminLayout /></RutaAdmin>}>
-          <Route index element={<Dashboard />} />
+        <Route path="/admin" element={<RutaAdmin roles={['admin', 'vendedor']}><AdminLayout /></RutaAdmin>}>
+          <Route index element={<InicioAdmin />} />
           <Route path="productos" element={<ProductosLista />} />
-          <Route path="productos/nuevo" element={<ProductoEditor />} />
-          <Route path="productos/criticos" element={<ProductosCriticos />} />
+          <Route path="productos/nuevo" element={<RutaAdmin><ProductoEditor /></RutaAdmin>} />
+          <Route path="productos/criticos" element={<RutaAdmin><ProductosCriticos /></RutaAdmin>} />
           <Route path="productos/:codigo" element={<ProductoDetalle />} />
-          <Route path="productos/:codigo/editar" element={<ProductoEditor />} />
-          <Route path="categorias" element={<CategoriasLista />} />
-          <Route path="categorias/nueva" element={<CategoriaEditor />} />
-          <Route path="categorias/:id/editar" element={<CategoriaEditor />} />
-          <Route path="usuarios" element={<UsuariosLista />} />
-          <Route path="usuarios/nuevo" element={<UsuarioEditor />} />
-          <Route path="usuarios/:id" element={<UsuarioDetalle />} />
-          <Route path="usuarios/:id/editar" element={<UsuarioEditor />} />
-          <Route path="usuarios/:id/compras" element={<HistorialCompras />} />
+          <Route path="productos/:codigo/editar" element={<RutaAdmin><ProductoEditor /></RutaAdmin>} />
+          <Route path="categorias" element={<RutaAdmin><CategoriasLista /></RutaAdmin>} />
+          <Route path="categorias/nueva" element={<RutaAdmin><CategoriaEditor /></RutaAdmin>} />
+          <Route path="categorias/:id/editar" element={<RutaAdmin><CategoriaEditor /></RutaAdmin>} />
+          <Route path="usuarios" element={<RutaAdmin><UsuariosLista /></RutaAdmin>} />
+          <Route path="usuarios/nuevo" element={<RutaAdmin><UsuarioEditor /></RutaAdmin>} />
+          <Route path="usuarios/:id" element={<RutaAdmin><UsuarioDetalle /></RutaAdmin>} />
+          <Route path="usuarios/:id/editar" element={<RutaAdmin><UsuarioEditor /></RutaAdmin>} />
+          <Route path="usuarios/:id/compras" element={<RutaAdmin><HistorialCompras /></RutaAdmin>} />
           <Route path="ordenes" element={<OrdenesLista />} />
           <Route path="ordenes/:id" element={<OrdenDetalle />} />
-          <Route path="reportes" element={<Reportes />} />
-          <Route path="mensajes" element={<MensajesContacto />} />
-          <Route path="perfil" element={<PerfilAdmin />} />
+          <Route path="reportes" element={<RutaAdmin><Reportes /></RutaAdmin>} />
+          <Route path="mensajes" element={<RutaAdmin><MensajesContacto /></RutaAdmin>} />
+          <Route path="perfil" element={<RutaAdmin><PerfilAdmin /></RutaAdmin>} />
         </Route>
       </Routes>
     </>

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { Table, Form, Alert } from 'react-bootstrap'
-import { ordenesService, usuariosService } from '../../services'
+import { ordenesService } from '../../services'
 import { useListado } from '../../hooks/useListado'
 import { formatearPrecio, formatearFecha } from '../../utils/formato'
 import { ESTADOS_ORDEN } from '../../utils/constantes'
@@ -12,13 +13,13 @@ import EstadoOrden from '../../components/admin/EstadoOrden'
 import SelectorEstado from '../../components/admin/SelectorEstado'
 
 async function cargarOrdenes() {
-  const [ordenes, usuarios] = await Promise.all([ordenesService.listar(), usuariosService.listar()])
-  return { ordenes, usuarios }
+  return ordenesService.listar()
 }
 
 // Órdenes/Boletas (reemplaza al Boletas.jsx estático):
 // tabla con filtro por estado, búsqueda y cambio de estado de despacho (D3)
 function OrdenesLista() {
+  const { esAdmin } = useAuth()
   const { datos, cargando, error, recargar } = useListado(cargarOrdenes, null)
   const [filtro, setFiltro] = useState('todos')
   const [texto, setTexto] = useState('')
@@ -29,11 +30,11 @@ function OrdenesLista() {
   if (error) return <Alert variant="danger">{error}</Alert>
 
   const busqueda = texto.trim().toLowerCase()
-  const visibles = [...datos.ordenes]
+  const visibles = [...datos]
     .sort((a, b) => b.fecha.localeCompare(a.fecha)) // la más nueva primero
     .filter((o) => filtro === 'todos' || o.estado === filtro)
     .filter((o) => o.numero.toLowerCase().includes(busqueda) ||
-      nombreCliente(o, datos.usuarios).toLowerCase().includes(busqueda))
+      nombreCliente(o).toLowerCase().includes(busqueda))
 
   const cambiarEstado = async (orden, estado) => {
     try {
@@ -46,11 +47,11 @@ function OrdenesLista() {
     }
   }
 
-  const cantidadPorEstado = (estado) => datos.ordenes.filter((o) => o.estado === estado).length
+  const cantidadPorEstado = (estado) => datos.filter((o) => o.estado === estado).length
 
   return (
     <>
-      <EncabezadoAdmin titulo="Órdenes y boletas" subtitulo={`${datos.ordenes.length} órdenes en total`} />
+      <EncabezadoAdmin titulo="Órdenes y boletas" subtitulo={`${datos.length} órdenes en total`} />
 
       {mensaje && <Alert variant="success" onClose={() => setMensaje('')} dismissible>{mensaje}</Alert>}
       {errorAccion && <Alert variant="danger">{errorAccion}</Alert>}
@@ -59,7 +60,7 @@ function OrdenesLista() {
         <div className="d-flex flex-wrap gap-2 mb-3">
           <button type="button" className={filtro === 'todos' ? 'adm-btn-primario' : 'adm-btn-secundario'}
             onClick={() => setFiltro('todos')}>
-            Todas ({datos.ordenes.length})
+            Todas ({datos.length})
           </button>
           {ESTADOS_ORDEN.map((e) => (
             <button key={e} type="button" className={filtro === e ? 'adm-btn-primario' : 'adm-btn-secundario'}
@@ -76,21 +77,26 @@ function OrdenesLista() {
         ) : (
           <Table responsive hover className="adm-tabla align-middle mb-0">
             <thead>
-              <tr><th>N°</th><th>Fecha</th><th>Cliente</th><th>Productos</th><th>Total</th><th>Estado</th><th>Cambiar</th><th></th></tr>
+              <tr>
+                <th>N°</th><th>Fecha</th><th>Cliente</th><th>Productos</th><th>Total</th><th>Estado</th>
+                {esAdmin && <th>Cambiar</th>}<th></th>
+              </tr>
             </thead>
             <tbody>
               {visibles.map((o) => (
                 <tr key={o.id} data-testid="fila-orden">
                   <td>{o.numero}</td>
                   <td>{formatearFecha(o.fecha)}</td>
-                  <td>{nombreCliente(o, datos.usuarios)}</td>
+                  <td>{nombreCliente(o)}</td>
                   <td>{o.items.reduce((suma, i) => suma + i.cantidad, 0)}</td>
                   <td>{formatearPrecio(o.total)}</td>
                   <td><EstadoOrden estado={o.estado} /></td>
-                  <td>
-                    <SelectorEstado estado={o.estado} etiqueta={`Estado de ${o.numero}`}
-                      onCambiar={(estado) => cambiarEstado(o, estado)} />
-                  </td>
+                  {esAdmin && (
+                    <td>
+                      <SelectorEstado estado={o.estado} etiqueta={`Estado de ${o.numero}`}
+                        onCambiar={(estado) => cambiarEstado(o, estado)} />
+                    </td>
+                  )}
                   <td>
                     <Link to={`/admin/ordenes/${o.id}`} className="btn btn-sm btn-outline-secondary text-nowrap">
                       <i className="bi bi-receipt" aria-hidden="true"></i> Ver boleta

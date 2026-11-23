@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { Alert } from 'react-bootstrap'
 import { ordenesService } from '../../services'
 import { useListado } from '../../hooks/useListado'
@@ -11,6 +12,7 @@ import BoletaDetalle from '../../components/BoletaDetalle'
 
 // Mostrar boleta (/admin/ordenes/:id): reutiliza BoletaDetalle (el mismo que usa p2 en Pago correcto)
 function OrdenDetalle() {
+  const { esAdmin } = useAuth()
   const { id } = useParams()
   const cargar = useCallback(() => ordenesService.obtenerPorId(id), [id])
   const { datos: orden, cargando, error, recargar } = useListado(cargar, null)
@@ -44,7 +46,7 @@ function OrdenDetalle() {
         <Link to="/admin/ordenes" className="adm-btn-secundario">
           <i className="bi bi-arrow-left" aria-hidden="true"></i> Volver
         </Link>
-        {orden.usuarioId && (
+        {esAdmin && orden.usuarioId && (
           <Link to={`/admin/usuarios/${orden.usuarioId}/compras`} className="adm-btn-secundario">
             <i className="bi bi-clock-history" aria-hidden="true"></i> Historial del cliente
           </Link>
@@ -55,12 +57,14 @@ function OrdenDetalle() {
         </button>
       </EncabezadoAdmin>
 
-      <div className="adm-caja adm-no-imprimir d-flex flex-wrap align-items-center gap-3">
-        <strong>Estado de despacho:</strong>
-        <SelectorEstado estado={orden.estado} onCambiar={cambiarEstado} />
-        {mensaje && <span className="text-success" role="status">{mensaje}</span>}
-        {errorAccion && <span className="text-danger" role="alert">{errorAccion}</span>}
-      </div>
+      {esAdmin && (
+        <div className="adm-caja adm-no-imprimir d-flex flex-wrap align-items-center gap-3">
+          <strong>Estado de despacho:</strong>
+          <SelectorEstado estado={orden.estado} onCambiar={cambiarEstado} />
+          {mensaje && <span className="text-success" role="status">{mensaje}</span>}
+          {errorAccion && <span className="text-danger" role="alert">{errorAccion}</span>}
+        </div>
+      )}
 
       <BoletaDetalle orden={orden} />
     </>

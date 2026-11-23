@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { Table, Form, Badge, Alert } from 'react-bootstrap'
 import { productosService, categoriasService } from '../../services'
 import { useListado } from '../../hooks/useListado'
@@ -22,6 +23,7 @@ function BadgeStock({ stock }) {
 
 // Listar productos (admin): búsqueda, filtro por categoría y eliminar con Modal
 function ProductosLista() {
+  const { esAdmin } = useAuth()
   const { datos, cargando, error, recargar } = useListado(cargarProductos, null)
   const location = useLocation()
   const [texto, setTexto] = useState('')
@@ -56,12 +58,16 @@ function ProductosLista() {
   return (
     <>
       <EncabezadoAdmin titulo="Productos" subtitulo={`${datos.productos.length} productos en total`}>
-        <Link to="/admin/productos/criticos" className="adm-btn-secundario">
-          <i className="bi bi-exclamation-triangle" aria-hidden="true"></i> Críticos
-        </Link>
-        <Link to="/admin/productos/nuevo" className="adm-btn-primario">
-          <i className="bi bi-plus-lg" aria-hidden="true"></i> Nuevo producto
-        </Link>
+        {esAdmin && (
+          <>
+            <Link to="/admin/productos/criticos" className="adm-btn-secundario">
+              <i className="bi bi-exclamation-triangle" aria-hidden="true"></i> Críticos
+            </Link>
+            <Link to="/admin/productos/nuevo" className="adm-btn-primario">
+              <i className="bi bi-plus-lg" aria-hidden="true"></i> Nuevo producto
+            </Link>
+          </>
+        )}
       </EncabezadoAdmin>
 
       {mensaje && <Alert variant="success" onClose={() => setMensaje('')} dismissible>{mensaje}</Alert>}
@@ -105,12 +111,16 @@ function ProductosLista() {
                   <td className="text-nowrap">
                     <Link to={`/admin/productos/${p.codigo}`} className="btn btn-sm btn-outline-secondary me-1"
                       aria-label={`Ver ${p.nombre}`}><i className="bi bi-eye"></i></Link>
-                    <Link to={`/admin/productos/${p.codigo}/editar`} className="btn btn-sm btn-outline-primary me-1"
-                      aria-label={`Editar ${p.nombre}`}><i className="bi bi-pencil"></i></Link>
-                    <button type="button" className="btn btn-sm btn-outline-danger"
-                      aria-label={`Eliminar ${p.nombre}`} onClick={() => setAEliminar(p)}>
-                      <i className="bi bi-trash"></i>
-                    </button>
+                    {esAdmin && (
+                      <>
+                        <Link to={`/admin/productos/${p.codigo}/editar`} className="btn btn-sm btn-outline-primary me-1"
+                          aria-label={`Editar ${p.nombre}`}><i className="bi bi-pencil"></i></Link>
+                        <button type="button" className="btn btn-sm btn-outline-danger"
+                          aria-label={`Eliminar ${p.nombre}`} onClick={() => setAEliminar(p)}>
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))}

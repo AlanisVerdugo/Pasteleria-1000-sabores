@@ -4,15 +4,15 @@ import '../css/admin.css'
 
 // Menú lateral del admin. "end" en Dashboard hace que solo se marque en /admin exacto.
 const MENU = [
-  { ruta: '/admin', texto: 'Dashboard', icono: 'bi-speedometer2', end: true },
-  { ruta: '/admin/productos', texto: 'Productos', icono: 'bi-box-seam', end: true },
-  { ruta: '/admin/productos/criticos', texto: 'Críticos', icono: 'bi-exclamation-triangle' },
-  { ruta: '/admin/categorias', texto: 'Categorías', icono: 'bi-tags' },
-  { ruta: '/admin/usuarios', texto: 'Usuarios', icono: 'bi-people' },
-  { ruta: '/admin/ordenes', texto: 'Órdenes', icono: 'bi-receipt' },
-  { ruta: '/admin/mensajes', texto: 'Mensajes', icono: 'bi-envelope' },
-  { ruta: '/admin/reportes', texto: 'Reportes', icono: 'bi-bar-chart' },
-  { ruta: '/admin/perfil', texto: 'Perfil', icono: 'bi-person-circle' },
+  { ruta: '/admin', texto: 'Dashboard', icono: 'bi-speedometer2', end: true, roles: ['admin'] },
+  { ruta: '/admin/productos', texto: 'Productos', icono: 'bi-box-seam', end: true, roles: ['admin', 'vendedor'] },
+  { ruta: '/admin/productos/criticos', texto: 'Críticos', icono: 'bi-exclamation-triangle', roles: ['admin'] },
+  { ruta: '/admin/categorias', texto: 'Categorías', icono: 'bi-tags', roles: ['admin'] },
+  { ruta: '/admin/usuarios', texto: 'Usuarios', icono: 'bi-people', roles: ['admin'] },
+  { ruta: '/admin/ordenes', texto: 'Órdenes', icono: 'bi-receipt', roles: ['admin', 'vendedor'] },
+  { ruta: '/admin/mensajes', texto: 'Mensajes', icono: 'bi-envelope', roles: ['admin'] },
+  { ruta: '/admin/reportes', texto: 'Reportes', icono: 'bi-bar-chart', roles: ['admin'] },
+  { ruta: '/admin/perfil', texto: 'Perfil', icono: 'bi-person-circle', roles: ['admin'] },
 ]
 
 function AdminLayout() {
@@ -35,9 +35,11 @@ function AdminLayout() {
             className="adm-sidebar-logo"
           />
         </div>
-        <div className="adm-sidebar-sub">Panel admin · {usuario?.nombre}</div>
+        <div className="adm-sidebar-sub">
+          {usuario?.rol === 'vendedor' ? 'Panel vendedor' : 'Panel admin'} · {usuario?.nombre}
+        </div>
 
-        {MENU.map((item) => (
+        {MENU.filter((item) => item.roles.includes(usuario?.rol)).map((item) => (
           <NavLink key={item.ruta} to={item.ruta} end={item.end} className="adm-sidebar-link">
             <i className={`bi ${item.icono}`} aria-hidden="true"></i> {item.texto}
           </NavLink>

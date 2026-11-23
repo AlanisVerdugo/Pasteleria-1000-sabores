@@ -31,7 +31,7 @@ function Login() {
     setEnviando(true)
     try {
       const usuario = await login(email, password)
-      navigate(usuario.rol === 'admin' ? '/admin' : '/') // D8: mismo login, distinto destino
+      navigate(usuario.rol === 'cliente' ? '/' : '/admin')
     } catch (error) {
       setErrorLogin(error.message)
     } finally {

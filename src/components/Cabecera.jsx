@@ -5,7 +5,7 @@ import { useCarrito } from '../context/CarritoContext'
 import '../css/cabecera.css'
 
 function Cabecera() {
-  const { usuario, esAdmin, logout } = useAuth()
+  const { usuario, esAdmin, esPersonal, logout } = useAuth()
   const { cantidadItems } = useCarrito()
   const navigate = useNavigate()
 
@@ -56,9 +56,9 @@ function Cabecera() {
                     <NavDropdown.Item as={Link} to="/mis-pedidos">
                       <i className="bi bi-bag me-2"></i>Mis pedidos
                     </NavDropdown.Item>
-                    {esAdmin && (
+                    {esPersonal && (
                       <NavDropdown.Item as={Link} to="/admin">
-                        <i className="bi bi-speedometer2 me-2"></i>Panel admin
+                        <i className="bi bi-speedometer2 me-2"></i>{esAdmin ? 'Panel admin' : 'Panel'}
                       </NavDropdown.Item>
                     )}
                     <NavDropdown.Divider />
