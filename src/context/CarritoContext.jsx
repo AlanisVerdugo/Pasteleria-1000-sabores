@@ -72,24 +72,34 @@ export function CarritoProvider({ children }) {
     localStorage.setItem(claveCargada, JSON.stringify(items))
   }, [claveCargada, items])
 
-  const [tortaCanjeada, setTortaCanjeada] = useState(false)
+  const [tortaCanjeadaDuoc, setTortaCanjeadaDuoc] = useState(false)
+  const tortaCanjeada = usuario?.esDuoc ? tortaCanjeadaDuoc : false
 
-  const cargarCanje = useCallback(async () => {
-    if (!usuario?.esDuoc) {
-      setTortaCanjeada(false)
-      return
-    }
+  const refrescarCanje = useCallback(async () => {
+    if (!usuario?.esDuoc) return
     try {
       const boletas = await ordenesService.listarMias()
-      setTortaCanjeada(tortaCanjeadaEsteAnio(boletas, usuario.id))
+      setTortaCanjeadaDuoc(tortaCanjeadaEsteAnio(boletas, usuario.id))
     } catch {
-      setTortaCanjeada(false)
+      setTortaCanjeadaDuoc(false)
     }
   }, [usuario])
 
   useEffect(() => {
-    cargarCanje()
-  }, [cargarCanje])
+    if (!usuario?.esDuoc) return
+    let activo = true
+    ordenesService
+      .listarMias()
+      .then((boletas) => {
+        if (activo) setTortaCanjeadaDuoc(tortaCanjeadaEsteAnio(boletas, usuario.id))
+      })
+      .catch(() => {
+        if (activo) setTortaCanjeadaDuoc(false)
+      })
+    return () => {
+      activo = false
+    }
+  }, [usuario])
 
   const agregar = (producto, opciones) => {
     if (producto.stock <= 0) return false
@@ -100,7 +110,7 @@ export function CarritoProvider({ children }) {
   const cambiarCantidad = (clave, cantidad) => dispatch({ type: 'CAMBIAR_CANTIDAD', clave, cantidad })
   const vaciar = () => {
     dispatch({ type: 'VACIAR' })
-    cargarCanje()
+    refrescarCanje()
   }
 
   const totales = calcularTotales(items, usuario, new Date(), tortaCanjeada)
