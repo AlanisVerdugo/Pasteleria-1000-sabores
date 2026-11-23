@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { EVENTO_SESION_EXPIRADA } from '../services/api'
 import { authService } from '../services'
 
 const AuthContext = createContext(null)
@@ -7,9 +8,15 @@ export function AuthProvider({ children }) {
   const [usuario, setUsuario] = useState(null)
   const [cargando, setCargando] = useState(true)
 
-  // Al abrir la app, revisa si había una sesión guardada
+  // Al abrir la app, valida el token con GET /auth/me (el interceptor renueva si venció)
   useEffect(() => {
     authService.obtenerSesion().then(setUsuario).finally(() => setCargando(false))
+  }, [])
+
+  useEffect(() => {
+    const cerrar = () => setUsuario(null)
+    window.addEventListener(EVENTO_SESION_EXPIRADA, cerrar)
+    return () => window.removeEventListener(EVENTO_SESION_EXPIRADA, cerrar)
   }, [])
 
   const login = async (email, password) => {
@@ -32,7 +39,21 @@ export function AuthProvider({ children }) {
     return u
   }
 
-  const valor = { usuario, cargando, esAdmin: usuario?.rol === 'admin', login, logout, registrar, actualizarPerfil }
+  const esAdmin = usuario?.rol === 'admin'
+  const esVendedor = usuario?.rol === 'vendedor'
+  const esPersonal = esAdmin || esVendedor
+
+  const valor = {
+    usuario,
+    cargando,
+    esAdmin,
+    esVendedor,
+    esPersonal,
+    login,
+    logout,
+    registrar,
+    actualizarPerfil,
+  }
   return <AuthContext.Provider value={valor}>{children}</AuthContext.Provider>
 }
 
