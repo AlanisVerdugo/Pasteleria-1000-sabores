@@ -1,4 +1,5 @@
-import { VERSION_DATOS } from '../utils/constantes'
+// Versión de las semillas de prueba. Si cambian los datos, súbela para no reutilizar localStorage viejo.
+const VERSION_DATOS = 4
 
 export class Repositorio {
   #clave; #semilla; #campoId; #Modelo   // # = privado, solo la clase los ve

@@ -1,5 +1,5 @@
-import { Repositorio } from '../../data/Repositorio'
-import { Producto } from '../../models/Producto'
+import { Repositorio } from './Repositorio'
+import { Producto } from './Producto'
 
 const semilla = [
   { codigo: 'A1', nombre: 'Torta A', precio: 1000, stock: 3 },

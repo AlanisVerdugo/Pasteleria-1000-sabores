@@ -1,5 +1,5 @@
-// Datos iniciales de productos. Para agregar uno: suma un objeto aquí
-// y sube VERSION_DATOS en utils/constantes.js
+// Datos iniciales de productos para la API falsa (F9).
+// Si cambian, sube VERSION_DATOS en src/test/falso/Repositorio.js
 const TAMANOS = [
   { id: 'chica', personas: 8, extra: 0 },
   { id: 'mediana', personas: 15, extra: 10000 },

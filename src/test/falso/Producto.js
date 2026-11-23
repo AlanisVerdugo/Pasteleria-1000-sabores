@@ -6,8 +6,3 @@ export class Producto {
     return this.stock === 0
   }
 }
-
-
-
-
-

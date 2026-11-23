@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import '../css/blog.css'
 import TarjetaBlog from '../components/TarjetaBlog'
 import { blogService } from '../services/otrosService'
-import { CATEGORIAS_BLOG } from '../data/semillas/blog'
+import { CATEGORIAS_BLOG } from '../utils/constantes'
 
 const TODOS = 'Todos'
 
