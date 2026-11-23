@@ -22,18 +22,17 @@ const pesos = (n) => '$' + n.toLocaleString('es-CL')
 const fechaLarga = (iso) =>
   new Date(iso).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' })
 
-function MisPedidos({ usuarioId }) {
+function MisPedidos({ usuarioId, mias = false }) {
   const [pedidos, setPedidos] = useState([])
   const [cargando, setCargando] = useState(true)
   const [filtro, setFiltro] = useState('todos')
 
-  
   useEffect(() => {
-    ordenesService
-      .listarPorUsuario(usuarioId)
+    const pedido = mias ? ordenesService.listarMias() : ordenesService.listarPorUsuario(usuarioId)
+    pedido
       .then((lista) => setPedidos([...lista].sort((a, b) => b.fecha.localeCompare(a.fecha))))
       .finally(() => setCargando(false))
-  }, [usuarioId])
+  }, [usuarioId, mias])
 
   const visibles = filtro === 'todos' ? pedidos : pedidos.filter((p) => p.estado === filtro)
 

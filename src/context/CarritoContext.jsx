@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useReducer, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useReducer, useState } from 'react'
 import { useAuth } from './AuthContext'
 import { calcularTotales, precioConOferta, tortaCanjeadaEsteAnio } from '../utils/descuentos'
-import { ordenesRepo } from '../data/ordenes'
+import { ordenesService } from '../services/ordenesService'
 
 const CLAVE = 'pms_carrito'
 const CarritoContext = createContext(null)
@@ -72,6 +72,25 @@ export function CarritoProvider({ children }) {
     localStorage.setItem(claveCargada, JSON.stringify(items))
   }, [claveCargada, items])
 
+  const [tortaCanjeada, setTortaCanjeada] = useState(false)
+
+  const cargarCanje = useCallback(async () => {
+    if (!usuario?.esDuoc) {
+      setTortaCanjeada(false)
+      return
+    }
+    try {
+      const boletas = await ordenesService.listarMias()
+      setTortaCanjeada(tortaCanjeadaEsteAnio(boletas, usuario.id))
+    } catch {
+      setTortaCanjeada(false)
+    }
+  }, [usuario])
+
+  useEffect(() => {
+    cargarCanje()
+  }, [cargarCanje])
+
   const agregar = (producto, opciones) => {
     if (producto.stock <= 0) return false
     dispatch({ type: 'AGREGAR', item: crearItem(producto, opciones) })
@@ -79,9 +98,11 @@ export function CarritoProvider({ children }) {
   }
   const quitar = (clave) => dispatch({ type: 'QUITAR', clave })
   const cambiarCantidad = (clave, cantidad) => dispatch({ type: 'CAMBIAR_CANTIDAD', clave, cantidad })
-  const vaciar = () => dispatch({ type: 'VACIAR' })
+  const vaciar = () => {
+    dispatch({ type: 'VACIAR' })
+    cargarCanje()
+  }
 
-  const tortaCanjeada = Boolean(usuario?.esDuoc) && tortaCanjeadaEsteAnio(ordenesRepo.listar(), usuario.id)
   const totales = calcularTotales(items, usuario, new Date(), tortaCanjeada)
   const cantidadItems = items.reduce((suma, i) => suma + i.cantidad, 0)
 
