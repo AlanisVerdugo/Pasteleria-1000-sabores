@@ -1,17 +1,25 @@
 # Pastelería 1000 Sabores
 
-Tienda web de la Pastelería 1000 Sabores con React y Vite (EV2 → EV3, Duoc UC). En `main` consume la API Spring Boot (`pasteleria-api`) en lugar del `localStorage` de la EV2.
+Sitio web de la pastelería: catálogo, carrito, checkout, blog, contacto y panel de administración.
+El front habla con la API REST en Spring Boot; ver repositorio del backend y cómo levantarla ahí.
 
-## Equipo
-
-- p1: integración, páginas generales y revisión
-- p2: Alanis Verdugo, tienda (catálogo, carrito, checkout)
-- p3: Benja, panel de administración
+- API: <https://github.com/Nariyato/pasteleria-1000-sabores-api>
 
 ## Requisitos
 
 - Node.js 22.12 o superior
 - npm
+- API en marcha en `http://localhost:8089` (MySQL, Docker o perfil `h2` del backend)
+
+## Configuración
+
+Copia la URL base de la API en `.env.development` (plantilla en `.env.example`):
+
+```env
+VITE_API_URL=http://localhost:8089/api/v1
+```
+
+Sin API no hay login ni catálogo con datos reales. Tras cambiar el `.env`, reinicia `npm run dev`.
 
 ## Instalación y uso
 
@@ -22,63 +30,58 @@ npm install
 npm run dev
 ```
 
-Abre la dirección que muestra la consola (normalmente http://localhost:5173).
-
-**API (EV3):** levanta el backend en `http://localhost:8089` y configura `VITE_API_URL` en `.env.development` (ver `.env.example`). Sin API, login y catálogo no cargan datos reales.
+Abre la URL que muestra la consola (normalmente http://localhost:5173).
 
 ## Scripts
 
 | Comando | Qué hace |
 |---|---|
-| `npm run dev` | Levanta el sitio en modo desarrollo |
-| `npm run build` | Genera la versión de producción en `dist/` |
-| `npm run preview` | Muestra la versión de producción ya generada |
-| `npm run test` | Corre las pruebas con Vitest (modo observador) |
-| `npm run test:coverage` | Corre las pruebas una vez con reporte de cobertura (`coverage/`) |
-| `npm run lint` | Revisa el código con ESLint |
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción en `dist/` |
+| `npm run preview` | Vista previa del build |
+| `npm run test` | Vitest en modo observador |
+| `npm run test:coverage` | Vitest una vez + reporte en `coverage/` |
+| `npm run lint` | ESLint |
 
 ## Usuarios de prueba
 
-| Correo | Contraseña | Caso |
-|---|---|---|
-| admin@duoc.cl | admin123 | Administrador, acceso al panel `/admin` |
-| vendedor@pasteleria.cl | vendedor123 | Vendedor: productos y órdenes en el panel |
-| rosa@gmail.com | 1234 | Mayor de 50 años, 50 % de descuento |
-| pedro@gmail.com | 1234 | Código FELICES50, 10 % de descuento |
-| camila@duocuc.cl | 1234 | Estudiante Duoc de cumpleaños hoy, torta gratis |
+Requieren la API con datos semilla (mismos correos que en el README del backend):
 
-La sesión usa JWT en `localStorage` (`pms_token` / `pms_refresh`); el carrito sigue en `localStorage` por usuario. Productos, usuarios, órdenes, blog y mensajes vienen del backend (mismos usuarios semilla que el README de la API).
+| Correo | Contraseña | Uso |
+|---|---|---|
+| admin@duoc.cl | admin123 | Panel `/admin` completo |
+| vendedor@pasteleria.cl | vendedor123 | Panel: productos y órdenes |
+| rosa@gmail.com | 1234 | Cliente (descuento 50 %) |
+| pedro@gmail.com | 1234 | Cliente (código FELICES50) |
+| camila@duocuc.cl | 1234 | Cliente Duoc (torta cumpleaños si corresponde) |
+
+La sesión guarda JWT en `localStorage` (`pms_token`, `pms_refresh`). El carrito sigue en `localStorage` por usuario.
 
 ## Tecnologías
 
-React 19, Vite, React Router, React Bootstrap y Bootstrap 5. Pruebas con Vitest, Testing Library y jsdom.
+React 19, Vite, React Router, React Bootstrap, Bootstrap 5. Pruebas: Vitest, Testing Library, jsdom.
 
-## Estructura
+## Estructura del código
 
 ```
 src/
-  App.jsx           rutas de la aplicación
-  main.jsx          punto de entrada
-  components/       componentes reutilizables (y components/admin)
-  context/          AuthContext y CarritoContext
-  css/              hojas de estilo por sección
-  hooks/            useFormulario, useListado y useProductos
-  layouts/          TiendaLayout y AdminLayout
-  pages/            páginas de la tienda (y pages/admin)
-  services/         llamadas HTTP (`api.js`, productos, órdenes, auth, blog, contacto)
-  test/falso/       datos y API en memoria solo para Vitest (F9)
-  utils/            descuentos, formato, validaciones (y utils/admin)
-  test/             todas las pruebas, con la misma estructura de carpetas que src
+  App.jsx           rutas
+  components/       UI reutilizable (incl. admin)
+  context/          AuthContext, CarritoContext
+  layouts/          tienda y panel admin
+  pages/            pantallas (incl. admin)
+  services/         HTTP hacia la API (axios en api.js)
+  test/falso/       doble de la API solo para Vitest
+  utils/            descuentos (vista), formato, validaciones
+  test/             pruebas (misma forma de carpetas que src)
 ```
 
 ## Pruebas
 
-npm run test            # modo observador: repite las pruebas al guardar; se sale con q
-npx vitest run          # ejecuta todas las pruebas una vez y termina
-npm run test:coverage   # pruebas + cobertura; el reporte queda en coverage/index.html
+```bash
+npx vitest run
+npm run test:coverage
+npm run lint
+```
 
-359 pruebas en 78 archivos (`npx vitest run`). Los umbrales mínimos están en `vite.config.js` (80 % líneas, 80 % funciones, 75 % ramas, 80 % sentencias). `npm run test:coverage` usa `src/test/falso/apiFalsa.js`, no requiere la API en marcha.
-
-**Estado EV3 (`main`):** integración API F1–F9 completada; checklist **F7** validado contra API en 8089 (2026-11-23). PR #54 fusionado. Vitest: `npx vitest run` / `npm run test:coverage` (umbrales en `vite.config.js`). Guía de estudio: `pasteleria-api/docs/Guia_estudio_proyecto.md`.
-
-**Pendiente:** entregables Fase **I** (manual, ERS, documentos con capturas de `main`).
+`npm run test:coverage` usa `src/test/falso/apiFalsa.js` y no necesita la API levantada. Los umbrales mínimos están en `vite.config.js` (80 % líneas/funciones/sentencias, 75 % ramas).
