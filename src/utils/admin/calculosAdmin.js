@@ -18,13 +18,8 @@ export const ventasDelMes = (ordenes, hoy = new Date()) =>
 export const ultimasOrdenes = (ordenes, cantidad = 5) =>
   [...ordenes].sort((a, b) => b.fecha.localeCompare(a.fecha)).slice(0, cantidad)
 
-// Nombre del cliente de una orden: el que trae la orden (D19) o, si no viene
-// (órdenes semilla), el del usuario. Sin usuario = compra como invitado.
-export const nombreCliente = (orden, usuarios) => {
-  if (orden.cliente?.nombre) return orden.cliente.nombre
-  const u = usuarios.find((x) => x.id === orden.usuarioId)
-  return u ? `${u.nombre} ${u.apellidos}` : 'Invitado'
-}
+// El nombre viene en la boleta (cliente.nombre). El vendedor no puede listar usuarios.
+export const nombreCliente = (orden) => orden.cliente?.nombre ?? 'Invitado'
 
 // ===== Reportes =====
 

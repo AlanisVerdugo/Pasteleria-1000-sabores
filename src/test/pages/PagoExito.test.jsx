@@ -2,23 +2,21 @@ import { screen } from '@testing-library/react'
 import { Routes, Route } from 'react-router-dom'
 import PagoExito from '../../pages/PagoExito'
 import { renderConProviders } from '../utils'
-import { ordenesService } from '../../services/ordenesService'
+import { authService, ordenesService } from '../../services'
 
 describe('PagoExito', () => {
   test('muestra el éxito, la boleta y el link a mis pedidos', async () => {
+    await authService.login('pedro@gmail.com', '1234')
     const orden = await ordenesService.crear({
-      usuarioId: 3, cliente: { nombre: 'Pedro', email: 'pedro@gmail.com' },
-      items: [{ codigo: 'PT001', nombre: 'Empanada de Manzana', imagen: '', cantidad: 1, precio: 3000 }],
+      items: [{ codigo: 'PT001', cantidad: 1 }],
       despacho: { nombre: 'Pedro', calle: 'Calle 1', comuna: 'Santiago' },
-      subtotal: 3000, descuento: 0, detalleDescuento: [], total: 6000,
     })
     renderConProviders(
       <Routes><Route path="/pago/exito/:ordenId" element={<PagoExito />} /></Routes>,
-      { ruta: `/pago/exito/${orden.id}` }
+      { ruta: `/pago/exito/${orden.id}`, usuario: { id: 3 } },
     )
     expect(await screen.findByText(/pago exitoso/i)).toBeInTheDocument()
     expect(screen.getByText(orden.numero, { exact: false })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /ver mis pedidos/i })).toHaveAttribute('href', '/mis-pedidos')
   })
 })
-

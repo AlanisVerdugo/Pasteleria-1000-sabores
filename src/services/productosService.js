@@ -1,62 +1,37 @@
-import { productosRepo } from '../data/productos'
+import { api, nuloSiNoExiste } from './api'
 
 export const productosService = {
   async listar() {
-    return productosRepo.listar().filter((p) => p.activo)
+    return (await api.get('/productos')).data
   },
   async listarTodos() {
-    return productosRepo.listar()
+    return (await api.get('/productos/todos')).data
   },
   async obtenerPorId(codigo) {
-    return productosRepo.buscarPorId(codigo)
+    return api.get(`/productos/${codigo}`).then((r) => r.data).catch(nuloSiNoExiste)
   },
   async crear(producto) {
-    return productosRepo.agregar(producto)
+    return (await api.post('/productos', producto)).data
   },
   async actualizar(codigo, cambios) {
-    return productosRepo.actualizar(codigo, cambios)
+    return (await api.put(`/productos/${codigo}`, cambios)).data
   },
   async eliminar(codigo) {
-    return productosRepo.eliminar(codigo)
+    await api.delete(`/productos/${codigo}`)
   },
   async listarPorCategoria(categoriaId) {
-    const productos = await productosService.listar()
-    return productos.filter((p) => p.categoriaId === Number(categoriaId))
+    return (await api.get('/productos', { params: { categoriaId } })).data
   },
-  async buscar({ texto = '', categoriaId, forma, personas, precioMin, precioMax } = {}) {
-    const productos = await productosService.listar()
-    return productos.filter((p) =>
-      p.nombre.toLowerCase().includes(texto.toLowerCase()) &&
-      (!categoriaId || p.categoriaId === Number(categoriaId)) &&
-      (!forma || p.forma === forma) &&
-      (!personas || p.tamanos.some((t) => t.personas >= Number(personas))) &&
-      (!precioMin || p.precio >= Number(precioMin)) &&
-      (!precioMax || p.precio <= Number(precioMax))
-    )
+  async buscar(params = {}) {
+    return (await api.get('/productos', { params })).data
   },
   async listarDestacados() {
-    const productos = await productosService.listar()
-    return productos.filter((p) => p.destacado)
+    return (await api.get('/productos/destacados')).data
   },
   async listarOfertas() {
-    const productos = await productosService.listar()
-    return productos
-    .filter((p) => p.oferta > 0)
-    .sort((a, b) => b.oferta - a.oferta)
+    return (await api.get('/productos/ofertas')).data
   },
   async listarCriticos() {
-    return productosRepo.listarCriticos()
-  },
-  async descontarStock(items) {
-    // Primero revisa TODO; si algo no alcanza, no descuenta nada
-    items.forEach((item) => {
-      const p = productosRepo.buscarPorId(item.codigo)
-      if (!p || p.stock < item.cantidad) throw new Error(`No hay stock suficiente de ${item.nombre}`)
-    })
-    items.forEach((item) => {
-      const p = productosRepo.buscarPorId(item.codigo)
-      productosRepo.actualizar(item.codigo, { stock: p.stock - item.cantidad })
-    })
-    return true
+    return (await api.get('/productos/criticos')).data
   },
 }

@@ -64,6 +64,7 @@ function UsuarioForm({ inicial, esEdicion = false, bloquearRol = false, onGuarda
             <Form.Select name="rol" value={valores.rol} onChange={manejarCambio} disabled={bloquearRol}
               isInvalid={Boolean(errores.rol)}>
               <option value="cliente">Cliente</option>
+              <option value="vendedor">Vendedor</option>
               <option value="admin">Administrador</option>
             </Form.Select>
             <Form.Control.Feedback type="invalid">{errores.rol}</Form.Control.Feedback>

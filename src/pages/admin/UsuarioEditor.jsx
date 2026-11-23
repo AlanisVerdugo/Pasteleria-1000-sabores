@@ -19,12 +19,9 @@ function UsuarioEditor() {
 
   const guardar = async (datos) => {
     if (esEdicion) {
-      // el correo tiene que seguir siendo único
-      const otro = await usuariosService.obtenerPorEmail(datos.email)
-      if (otro && otro.id !== Number(id)) throw new Error('El correo ya está registrado')
       await usuariosService.actualizar(id, datos)
     } else {
-      await usuariosService.crear({ ...datos, codigoDescuento: null, fechaRegistro: new Date().toISOString().slice(0, 10) })
+      await usuariosService.crear({ ...datos, codigoDescuento: datos.codigoDescuento ?? null })
     }
     navigate('/admin/usuarios', {
       state: { mensaje: esEdicion ? `Se guardaron los cambios de ${datos.nombre}` : `Se creó el usuario ${datos.nombre}` },

@@ -1,20 +1,22 @@
-import { ordenesRepo } from '../data/ordenes'
-import { ESTADOS_ORDEN } from '../utils/constantes'
+import { api, nuloSiNoExiste } from './api'
 
 export const ordenesService = {
-  async listar() { return ordenesRepo.listar() },
-  async obtenerPorId(id) { return ordenesRepo.buscarPorId(Number(id)) },
+  async listar() {
+    return (await api.get('/boletas')).data
+  },
+  async obtenerPorId(id) {
+    return api.get(`/boletas/${id}`).then((r) => r.data).catch(nuloSiNoExiste)
+  },
   async listarPorUsuario(usuarioId) {
-    return ordenesRepo.listar().filter((o) => o.usuarioId === usuarioId)
+    return (await api.get(`/boletas/usuario/${usuarioId}`)).data
+  },
+  async listarMias() {
+    return (await api.get('/boletas/mis-boletas')).data
   },
   async crear(datos) {
-    const orden = ordenesRepo.agregar({ ...datos, estado: 'preparacion', fecha: new Date().toISOString() })
-    return ordenesRepo.actualizar(orden.id, { numero: 'B-' + String(orden.id).padStart(6, '0') })
+    return (await api.post('/boletas', datos)).data
   },
-  async actualizar(id, cambios) { return ordenesRepo.actualizar(Number(id), cambios) },
-  async eliminar(id) { return ordenesRepo.eliminar(Number(id)) },
   async cambiarEstado(id, estado) {
-    if (!ESTADOS_ORDEN.includes(estado)) throw new Error('Estado no válido')
-    return ordenesRepo.actualizar(Number(id), { estado })
+    return (await api.patch(`/boletas/${id}/estado`, { estado })).data
   },
 }

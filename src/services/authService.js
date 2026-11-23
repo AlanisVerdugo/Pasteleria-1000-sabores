@@ -1,29 +1,38 @@
-import { usuariosRepo } from '../data/usuarios'
-import { usuariosService, sinPassword } from './usuariosService'
-
-const CLAVE_SESION = 'pms_sesion'
+import { api, borrarTokens, guardarTokens, hayToken } from './api'
 
 export const authService = {
   async login(email, password) {
-    const u = usuariosRepo.listar().find(
-      (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
-    )
-    if (!u) throw new Error('Credenciales inválidas')
-    localStorage.setItem(CLAVE_SESION, JSON.stringify({ usuarioId: u.id }))
-    return sinPassword(u)
+    const { data } = await api.post('/auth/login', { email, password })
+    guardarTokens(data)
+    return data.usuario
   },
   async logout() {
-    localStorage.removeItem(CLAVE_SESION)
+    borrarTokens()
   },
   async registrar(datos) {
-    const usuario = await usuariosService.crear({
-      ...datos, rol: 'cliente', fechaRegistro: new Date().toISOString().slice(0, 10),
-    })
-    localStorage.setItem(CLAVE_SESION, JSON.stringify({ usuarioId: usuario.id }))
-    return usuario
+    const { data } = await api.post('/auth/registro', datos)
+    guardarTokens(data)
+    return data.usuario
   },
   async obtenerSesion() {
-    const sesion = JSON.parse(localStorage.getItem(CLAVE_SESION))
-    return sesion ? usuariosService.obtenerPorId(sesion.usuarioId) : null
+    if (!hayToken()) return null
+    try {
+      return (await api.get('/auth/me')).data
+    } catch {
+      borrarTokens()
+      return null
+    }
+  },
+  async actualizarPerfil(datos) {
+    const cuerpo = {
+      nombre: datos.nombre,
+      apellidos: datos.apellidos,
+      direccion: datos.direccion ?? '',
+      comuna: datos.comuna ?? '',
+      region: datos.region ?? '',
+      telefono: datos.telefono ?? '',
+      foto: datos.foto ?? null,
+    }
+    return (await api.put('/auth/perfil', cuerpo)).data
   },
 }

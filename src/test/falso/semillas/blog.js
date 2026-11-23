@@ -1,7 +1,4 @@
-// "contenido" es una lista de párrafos.
-// Subir VERSION_DATOS en utils/constantes.js
-export const CATEGORIAS_BLOG = ['Recetas tradicionales', 'Consejos de maestros', 'Aportes Duoc UC', 'Nuestra historia']
-
+// "contenido" es una lista de párrafos. Las categorías visibles están en utils/constantes.js.
 export const BLOG = [
   {
     id: 1,

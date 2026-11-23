@@ -5,7 +5,6 @@ import '../css/carrito.css'
 
 import { useCarrito } from '../context/CarritoContext'
 import { useAuth } from '../context/AuthContext'
-import { productosService } from '../services/productosService'
 import { ordenesService } from '../services/ordenesService'
 import { pagosService } from '../services/otrosService'
 import { formatearPrecio } from '../utils/formato'
@@ -14,15 +13,15 @@ import { useFormulario } from '../hooks/useFormulario'
 import { validarCheckout } from '../utils/validaciones'
 
 function Checkout() {
-    const { items, subtotal, descuento, detalleDescuento, total, vaciar } = useCarrito()
+    const { items, subtotal, descuento, total, vaciar } = useCarrito()
     const { usuario } = useAuth()
     const navigate = useNavigate()
 
     const { valores, errores, manejarCambio, manejarEnvio } = useFormulario(
         {
             nombre: usuario?.nombre ?? '',
-            calle: usuario?.direccion?.calle ?? '',
-            comuna: usuario?.direccion?.comuna ?? '',
+            calle: usuario?.direccion ?? '',
+            comuna: usuario?.comuna ?? '',
         },
         validarCheckout
     )
@@ -51,30 +50,10 @@ function Checkout() {
                 await pagosService.procesarPago({ total: totalFinal, simularFallo })
             }
 
-            // Paso 2: descontar el stock real
-            await productosService.descontarStock(
-                items.map((i) => ({ codigo: i.codigo, cantidad: i.cantidad, nombre: i.nombre }))
-            )
-
-            // Paso 3: crear la orden (D19: forma del item de orden, con imagen incluida)
+            // El stock y los totales los calcula POST /boletas. El front solo manda códigos y despacho.
             const orden = await ordenesService.crear({
-                usuarioId: usuario.id,
-                cliente: { nombre: usuario.nombre, email: usuario.email },
-                items: items.map((i) => ({
-                    codigo: i.codigo,
-                    nombre: i.nombre,
-                    imagen: i.imagen,
-                    cantidad: i.cantidad,
-                    precio: i.precioUnitario,
-                    tamano: i.tamano,
-                    personas: i.personas,
-                    mensaje: i.mensaje,
-                })),
+                items: items.map(({ codigo, cantidad, tamano, mensaje }) => ({ codigo, cantidad, tamano, mensaje })),
                 despacho: { nombre: valores.nombre, calle: valores.calle, comuna: valores.comuna },
-                subtotal,
-                descuento,
-                detalleDescuento,
-                total: totalFinal,
             })
 
             // Paso 4: vaciar el carrito y Paso 5: ir a Pago correcto

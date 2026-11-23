@@ -1,6 +1,5 @@
-import { PRODUCTOS } from '../../data/semillas/productos'
-import { CATEGORIAS } from '../../data/semillas/categorias'
-import { productosRepo } from '../../data/productos'
+import { PRODUCTOS } from './semillas/productos'
+import { CATEGORIAS } from './semillas/categorias'
 
 describe('semillas', () => {
   test('hay 16 productos y 8 categorías', () => {
@@ -19,9 +18,5 @@ describe('semillas', () => {
       expect(p).toMatchObject({ codigo: expect.any(String), nombre: expect.any(String), precio: expect.any(Number) })
       expect(ids).toContain(p.categoriaId)
     })
-  })
-
-  test('el repositorio de productos lista los críticos', () => {
-    expect(productosRepo.listarCriticos().every((p) => p.stock < 5)).toBe(true)
   })
 })

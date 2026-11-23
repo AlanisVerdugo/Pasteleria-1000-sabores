@@ -3,14 +3,12 @@ import userEvent from '@testing-library/user-event'
 import { Routes, Route } from 'react-router-dom'
 import CategoriasLista from '../../../pages/admin/CategoriasLista'
 import CategoriaEditor from '../../../pages/admin/CategoriaEditor'
-import { renderConProviders } from '../../utils'
+import { renderConProviders, ADMIN } from '../../utils'
 import { categoriasService } from '../../../services'
-import { categoriasRepo } from '../../../data/categorias'
 
-afterEach(() => {
-  vi.restoreAllMocks()
-  categoriasRepo.reiniciar()
-})
+afterEach(() => vi.restoreAllMocks())
+
+const conAdmin = (extra = {}) => ({ usuario: ADMIN, ...extra })
 
 const rutas = (
   <Routes>
@@ -22,7 +20,7 @@ const rutas = (
 
 describe('CategoriasLista', () => {
   test('lista las 8 categorías con su cantidad de productos', async () => {
-    renderConProviders(rutas, { ruta: '/admin/categorias' })
+    renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias' }))
     const filas = await screen.findAllByTestId('fila-categoria')
     expect(filas).toHaveLength(8)
     expect(filas[0]).toHaveTextContent('Tortas Cuadradas')
@@ -31,7 +29,7 @@ describe('CategoriasLista', () => {
 
   test('no deja eliminar una categoría con productos y muestra el error del service', async () => {
     const user = userEvent.setup()
-    renderConProviders(rutas, { ruta: '/admin/categorias' })
+    renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias' }))
     await screen.findAllByTestId('fila-categoria')
     await user.click(screen.getByRole('button', { name: 'Eliminar Tortas Cuadradas' }))
     await user.click(screen.getByRole('button', { name: 'Eliminar' }))
@@ -41,7 +39,7 @@ describe('CategoriasLista', () => {
 
   test('crea una categoría nueva y después la puede eliminar (no tiene productos)', async () => {
     const user = userEvent.setup()
-    renderConProviders(rutas, { ruta: '/admin/categorias/nueva' })
+    renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias/nueva' }))
     await user.type(await screen.findByLabelText('Nombre'), 'Kuchenes')
     await user.click(screen.getByRole('button', { name: /Crear categoría/ }))
     expect(await screen.findByText('Se creó la categoría "Kuchenes"')).toBeInTheDocument()
@@ -55,7 +53,7 @@ describe('CategoriasLista', () => {
 
   test('no deja crear una categoría con un nombre repetido', async () => {
     const user = userEvent.setup()
-    renderConProviders(rutas, { ruta: '/admin/categorias/nueva' })
+    renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias/nueva' }))
     await user.type(await screen.findByLabelText('Nombre'), 'tortas cuadradas')
     await user.click(screen.getByRole('button', { name: /Crear categoría/ }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Ya existe la categoría "tortas cuadradas"')
@@ -64,7 +62,7 @@ describe('CategoriasLista', () => {
   test('edita una categoría precargada', async () => {
     const espia = vi.spyOn(categoriasService, 'actualizar')
     const user = userEvent.setup()
-    renderConProviders(rutas, { ruta: '/admin/categorias/3/editar' })
+    renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias/3/editar' }))
     const nombre = await screen.findByLabelText('Nombre')
     expect(nombre).toHaveValue('Postres Individuales')
     await user.clear(nombre)
@@ -75,16 +73,16 @@ describe('CategoriasLista', () => {
   })
 
   test('editar una categoría que no existe avisa', async () => {
-    renderConProviders(rutas, { ruta: '/admin/categorias/99/editar' })
+    renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias/99/editar' }))
     expect(await screen.findByText(/No existe la categoría 99/)).toBeInTheDocument()
   })
 
   test('sin categorías muestra un aviso, y si el service falla muestra el error', async () => {
     vi.spyOn(categoriasService, 'listar').mockResolvedValueOnce([]).mockRejectedValueOnce(new Error('Falló'))
-    const { unmount } = renderConProviders(rutas, { ruta: '/admin/categorias' })
+    const { unmount } = renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias' }))
     expect(await screen.findByText('No hay categorías.')).toBeInTheDocument()
     unmount()
-    renderConProviders(rutas, { ruta: '/admin/categorias' })
+    renderConProviders(rutas, conAdmin({ ruta: '/admin/categorias' }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Falló')
   })
 })

@@ -40,6 +40,6 @@ describe('AdminLayout', () => {
     expect(await screen.findByText(/Panel admin · Admin/)).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: /Salir/ }))
     expect(await screen.findByText('Tienda')).toBeInTheDocument()
-    expect(localStorage.getItem('pms_sesion')).toBeNull()
+    expect(localStorage.getItem('pms_token')).toBeNull()
   })
 })

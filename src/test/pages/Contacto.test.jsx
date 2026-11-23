@@ -40,7 +40,6 @@ describe('Contacto', () => {
       nombre: 'Rosa',
       email: 'rosa@gmail.com',
       mensaje: 'Mi torta llegó tarde',
-      usuarioId: null,
     })
     expect(await screen.findByRole('status')).toHaveTextContent('Recibimos tu mensaje')
     expect(screen.getByLabelText('Nombre')).toHaveValue('')

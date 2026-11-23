@@ -1,16 +1,10 @@
 import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import UsuariosLista from '../../../pages/admin/UsuariosLista'
-import { renderConProviders } from '../../utils'
+import { renderConProviders, ADMIN } from '../../utils'
 import { usuariosService } from '../../../services'
-import { usuariosRepo } from '../../../data/usuarios'
 
-const ADMIN = { id: 1 }
-
-afterEach(() => {
-  vi.restoreAllMocks()
-  usuariosRepo.reiniciar()
-})
+afterEach(() => vi.restoreAllMocks())
 
 describe('UsuariosLista', () => {
   test('lista los usuarios sin mostrar contraseñas', async () => {

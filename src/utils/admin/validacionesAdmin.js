@@ -44,6 +44,6 @@ export function validarUsuario(v, esEdicion = false) {
   if (!esEdicion && !requerido(v.password)) errores.password = 'Ingresa una contraseña'
   else if (requerido(v.password) && !validarPassword(v.password)) errores.password = 'Debe tener entre 4 y 10 caracteres'
   if (v.telefono && !/^\+?\d{8,12}$/.test(v.telefono.replace(/\s/g, ''))) errores.telefono = 'Teléfono no válido'
-  if (!['cliente', 'admin'].includes(v.rol)) errores.rol = 'Elige un rol'
+  if (!['cliente', 'admin', 'vendedor'].includes(v.rol)) errores.rol = 'Elige un rol'
   return errores
 }

@@ -1,23 +1,19 @@
-import { usuariosRepo } from '../data/usuarios'
-
-// Nunca devolvemos la contraseña hacia los componentes
-export const sinPassword = (usuario) => {
-  if (!usuario) return null
-  const { password, ...resto } = usuario
-  return resto
-}
+import { api, nuloSiNoExiste } from './api'
 
 export const usuariosService = {
-  async listar() { return usuariosRepo.listar().map(sinPassword) },
-  async obtenerPorId(id) { return sinPassword(usuariosRepo.buscarPorId(Number(id))) },
-  async obtenerPorEmail(email) {
-    const u = usuariosRepo.listar().find((u) => u.email.toLowerCase() === email.toLowerCase())
-    return sinPassword(u)
+  async listar() {
+    return (await api.get('/usuarios')).data
+  },
+  async obtenerPorId(id) {
+    return api.get(`/usuarios/${id}`).then((r) => r.data).catch(nuloSiNoExiste)
   },
   async crear(datos) {
-    if (await usuariosService.obtenerPorEmail(datos.email)) throw new Error('El correo ya está registrado')
-    return sinPassword(usuariosRepo.agregar(datos))
+    return (await api.post('/usuarios', datos)).data
   },
-  async actualizar(id, cambios) { return sinPassword(usuariosRepo.actualizar(Number(id), cambios)) },
-  async eliminar(id) { return usuariosRepo.eliminar(Number(id)) },
+  async actualizar(id, cambios) {
+    return (await api.put(`/usuarios/${id}`, cambios)).data
+  },
+  async eliminar(id) {
+    await api.delete(`/usuarios/${id}`)
+  },
 }

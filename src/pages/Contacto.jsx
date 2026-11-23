@@ -40,7 +40,6 @@ function Contacto() {
         nombre: v.nombre.trim(),
         email: v.email.trim().toLowerCase(),
         mensaje: v.mensaje.trim(),
-        usuarioId: usuario?.id ?? null,
       })
       reiniciar()
       setUsarMisDatos(false)

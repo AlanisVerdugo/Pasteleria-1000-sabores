@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Checkout from '../../pages/Checkout'
 import { renderConProviders } from '../utils'
 import { pagosService } from '../../services/otrosService'
-import { ordenesRepo } from '../../data/ordenes'
+import { ordenesService } from '../../services/ordenesService'
 import RutaProtegida from '../../components/RutaProtegida'
 
 const PEDRO = { id: 3 }
@@ -69,8 +69,8 @@ describe('Checkout', () => {
     await user.click(screen.getByRole('button', { name: /pagar/i }))
 
     expect(await screen.findByText('Página de éxito')).toBeInTheDocument()
-    const orden = ordenesRepo.listar().at(-1)
-    expect(orden.cliente.nombre).toBe('Pedro')
+    const orden = (await ordenesService.listarMias()).at(-1)
+    expect(orden.cliente.nombre).toBe('Pedro Soto Rojas')
     expect(orden.despacho.comuna).toBe('Santiago')
     expect(leerCarrito()).toEqual([])
   })

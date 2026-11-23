@@ -1,29 +1,27 @@
 import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import OrdenesLista from '../../../pages/admin/OrdenesLista'
-import { renderConProviders } from '../../utils'
+import { renderConProviders, ADMIN } from '../../utils'
 import { ordenesService } from '../../../services'
-import { ordenesRepo } from '../../../data/ordenes'
 
-afterEach(() => {
-  vi.restoreAllMocks()
-  ordenesRepo.reiniciar()
-})
+afterEach(() => vi.restoreAllMocks())
+
+const opcionesAdmin = { usuario: ADMIN }
 
 describe('OrdenesLista', () => {
   test('lista las órdenes (la más nueva primero) con el nombre del cliente', async () => {
-    renderConProviders(<OrdenesLista />)
+    renderConProviders(<OrdenesLista />, opcionesAdmin)
     const filas = await screen.findAllByTestId('fila-orden')
     expect(filas).toHaveLength(2)
     expect(filas[0]).toHaveTextContent('B-000002')
-    expect(filas[0]).toHaveTextContent('Camila Pérez Soto') // la semilla no trae cliente: se busca el usuario
-    expect(within(filas[1]).getByText('5')).toBeInTheDocument() // 1 torta + 4 empanadas
+    expect(filas[0]).toHaveTextContent('Camila Pérez Soto')
+    expect(within(filas[1]).getByText('5')).toBeInTheDocument()
     expect(within(filas[0]).getByRole('link', { name: /Ver boleta/ })).toHaveAttribute('href', '/admin/ordenes/2')
   })
 
   test('filtra por estado con los botones', async () => {
     const user = userEvent.setup()
-    renderConProviders(<OrdenesLista />)
+    renderConProviders(<OrdenesLista />, opcionesAdmin)
     await screen.findAllByTestId('fila-orden')
     await user.click(screen.getByRole('button', { name: 'Entregado (1)' }))
     expect(screen.getAllByTestId('fila-orden')).toHaveLength(1)
@@ -34,7 +32,7 @@ describe('OrdenesLista', () => {
 
   test('busca por número de boleta', async () => {
     const user = userEvent.setup()
-    renderConProviders(<OrdenesLista />)
+    renderConProviders(<OrdenesLista />, opcionesAdmin)
     await screen.findAllByTestId('fila-orden')
     await user.type(screen.getByLabelText('Buscar orden'), '000001')
     expect(screen.getAllByTestId('fila-orden')).toHaveLength(1)
@@ -43,7 +41,7 @@ describe('OrdenesLista', () => {
   test('cambiar el estado llama al service y actualiza la tabla', async () => {
     const espia = vi.spyOn(ordenesService, 'cambiarEstado')
     const user = userEvent.setup()
-    renderConProviders(<OrdenesLista />)
+    renderConProviders(<OrdenesLista />, opcionesAdmin)
     await screen.findAllByTestId('fila-orden')
     await user.selectOptions(screen.getByLabelText('Estado de B-000002'), 'en_camino')
 
@@ -55,7 +53,7 @@ describe('OrdenesLista', () => {
   test('si cambiar el estado falla, muestra el error', async () => {
     vi.spyOn(ordenesService, 'cambiarEstado').mockRejectedValue(new Error('Estado no válido'))
     const user = userEvent.setup()
-    renderConProviders(<OrdenesLista />)
+    renderConProviders(<OrdenesLista />, opcionesAdmin)
     await screen.findAllByTestId('fila-orden')
     await user.selectOptions(screen.getByLabelText('Estado de B-000002'), 'entregado')
     expect(await screen.findByText('Estado no válido')).toBeInTheDocument()
@@ -63,13 +61,13 @@ describe('OrdenesLista', () => {
 
   test('si el service falla al cargar, muestra el error', async () => {
     vi.spyOn(ordenesService, 'listar').mockRejectedValue(new Error('Sin conexión'))
-    renderConProviders(<OrdenesLista />)
+    renderConProviders(<OrdenesLista />, opcionesAdmin)
     expect(await screen.findByRole('alert')).toHaveTextContent('Sin conexión')
   })
 
   test('el botón Todas vuelve a mostrar todo y el aviso se puede cerrar', async () => {
     const user = userEvent.setup()
-    renderConProviders(<OrdenesLista />)
+    renderConProviders(<OrdenesLista />, opcionesAdmin)
     await screen.findAllByTestId('fila-orden')
     await user.click(screen.getByRole('button', { name: 'Entregado (1)' }))
     await user.click(screen.getByRole('button', { name: 'Todas (2)' }))

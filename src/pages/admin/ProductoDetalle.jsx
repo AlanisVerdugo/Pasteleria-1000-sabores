@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { Alert, Badge, Table } from 'react-bootstrap'
 import { productosService, categoriasService } from '../../services'
 import { useListado } from '../../hooks/useListado'
@@ -10,6 +11,7 @@ import EncabezadoAdmin from '../../components/admin/EncabezadoAdmin'
 
 // Mostrar producto (/admin/productos/:codigo): todos sus datos, sin editar
 function ProductoDetalle() {
+  const { esAdmin } = useAuth()
   const { codigo } = useParams()
   const cargar = useCallback(async () => {
     const producto = await productosService.obtenerPorId(codigo)
@@ -35,9 +37,11 @@ function ProductoDetalle() {
         <Link to="/admin/productos" className="adm-btn-secundario">
           <i className="bi bi-arrow-left" aria-hidden="true"></i> Volver
         </Link>
-        <Link to={`/admin/productos/${producto.codigo}/editar`} className="adm-btn-primario">
-          <i className="bi bi-pencil" aria-hidden="true"></i> Editar
-        </Link>
+        {esAdmin && (
+          <Link to={`/admin/productos/${producto.codigo}/editar`} className="adm-btn-primario">
+            <i className="bi bi-pencil" aria-hidden="true"></i> Editar
+          </Link>
+        )}
       </EncabezadoAdmin>
 
       <div className="adm-caja">
