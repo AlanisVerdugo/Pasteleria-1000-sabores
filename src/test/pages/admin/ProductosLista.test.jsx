@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import ProductosLista from '../../../pages/admin/ProductosLista'
 import { renderConProviders, ADMIN } from '../../utils'
 import { productosService } from '../../../services'
+import { agregarVendedor } from '../../falso/vendedor'
 
 afterEach(() => vi.restoreAllMocks())
 
@@ -73,5 +74,16 @@ describe('ProductosLista', () => {
     await user.click(screen.getByRole('button', { name: 'Eliminar Pan Sin Gluten' }))
     await user.click(screen.getByRole('button', { name: 'Eliminar' }))
     expect(await screen.findByText('No encontrado')).toBeInTheDocument()
+  })
+
+  test('el vendedor ve la lista y puede abrir el detalle, pero sin botones de crear, editar ni eliminar', async () => {
+    const vendedor = agregarVendedor()
+    renderConProviders(<ProductosLista />, { usuario: vendedor })
+    expect(await screen.findAllByTestId('fila-producto')).toHaveLength(16)
+    expect(screen.getByRole('link', { name: 'Ver Pan Sin Gluten' })).toHaveAttribute('href', '/admin/productos/PG002')
+    expect(screen.queryByRole('link', { name: /Nuevo producto/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Críticos/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /^Editar / })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /^Eliminar / })).not.toBeInTheDocument()
   })
 })

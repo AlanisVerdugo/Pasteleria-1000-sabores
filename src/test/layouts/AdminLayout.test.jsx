@@ -1,8 +1,9 @@
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout'
 import { renderConProviders } from '../utils'
+import { agregarVendedor } from '../falso/vendedor'
 
 const ADMIN = { id: 1 }
 
@@ -41,5 +42,25 @@ describe('AdminLayout', () => {
     await user.click(screen.getByRole('button', { name: /Salir/ }))
     expect(await screen.findByText('Tienda')).toBeInTheDocument()
     expect(localStorage.getItem('pms_token')).toBeNull()
+  })
+
+  test('el admin ve los 9 enlaces del menú', async () => {
+    renderConProviders(rutas, { ruta: '/admin', usuario: ADMIN })
+    const menu = await screen.findByRole('navigation', { name: 'Menú del administrador' })
+    const enlaces = within(menu).getAllByRole('link').filter((a) => a.textContent.trim() !== 'Volver a la tienda')
+    expect(enlaces).toHaveLength(9)
+  })
+
+  test('el vendedor solo ve Productos y Órdenes, con el subtítulo "Panel vendedor"', async () => {
+    const vendedor = agregarVendedor()
+    renderConProviders(rutas, { ruta: '/admin', usuario: vendedor })
+    expect(await screen.findByText(/Panel vendedor · Vale/)).toBeInTheDocument()
+    const menu = screen.getByRole('navigation', { name: 'Menú del administrador' })
+    const textos = within(menu).getAllByRole('link').map((a) => a.textContent.trim())
+    expect(textos).toEqual(['Productos', 'Órdenes', 'Volver a la tienda'])
+    for (const oculto of ['Dashboard', 'Críticos', 'Categorías', 'Usuarios', 'Mensajes', 'Reportes', 'Perfil']) {
+      expect(within(menu).queryByRole('link', { name: oculto })).not.toBeInTheDocument()
+    }
+    expect(screen.getByRole('button', { name: /Salir/ })).toBeInTheDocument()
   })
 })

@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import OrdenDetalle from '../../../pages/admin/OrdenDetalle'
 import { renderConProviders, ADMIN } from '../../utils'
 import { ordenesService } from '../../../services'
+import { agregarVendedor } from '../../falso/vendedor'
 
 afterEach(() => vi.restoreAllMocks())
 
@@ -55,5 +56,15 @@ describe('OrdenDetalle', () => {
     vi.spyOn(ordenesService, 'obtenerPorId').mockRejectedValue(new Error('Error de red'))
     renderConProviders(rutas, conAdmin('/admin/ordenes/1'))
     expect(await screen.findByRole('alert')).toHaveTextContent('Error de red')
+  })
+
+  test('el vendedor ve la boleta pero no el cambio de estado ni el historial del cliente', async () => {
+    const vendedor = agregarVendedor()
+    renderConProviders(rutas, { ruta: '/admin/ordenes/1', usuario: vendedor })
+    expect(await screen.findByRole('heading', { name: 'Boleta B-000001' })).toBeInTheDocument()
+    expect(screen.getByTestId('boleta')).toHaveTextContent('Empanada de Manzana')
+    expect(screen.getByRole('button', { name: /Imprimir/ })).toBeInTheDocument()
+    expect(screen.queryByLabelText('Cambiar estado')).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Historial del cliente/ })).not.toBeInTheDocument()
   })
 })
