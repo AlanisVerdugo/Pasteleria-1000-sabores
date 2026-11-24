@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import OrdenesLista from '../../../pages/admin/OrdenesLista'
 import { renderConProviders, ADMIN } from '../../utils'
 import { ordenesService } from '../../../services'
+import { agregarVendedor } from '../../falso/vendedor'
 
 afterEach(() => vi.restoreAllMocks())
 
@@ -77,5 +78,16 @@ describe('OrdenesLista', () => {
     await screen.findByText('La orden B-000001 quedó "En camino"')
     await user.click(screen.getByRole('button', { name: 'Close alert' }))
     expect(screen.queryByText('La orden B-000001 quedó "En camino"')).not.toBeInTheDocument()
+  })
+
+  test('el vendedor ve las órdenes y su boleta, pero no puede cambiar el estado', async () => {
+    const vendedor = agregarVendedor()
+    renderConProviders(<OrdenesLista />, { usuario: vendedor })
+    const filas = await screen.findAllByTestId('fila-orden')
+    expect(filas).toHaveLength(2)
+    expect(within(filas[0]).getByText('En preparación')).toBeInTheDocument()
+    expect(within(filas[0]).getByRole('link', { name: /Ver boleta/ })).toHaveAttribute('href', '/admin/ordenes/2')
+    expect(screen.queryByRole('columnheader', { name: 'Cambiar' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('combobox', { name: /Estado de/ })).not.toBeInTheDocument()
   })
 })

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import ProductoDetalle from '../../../pages/admin/ProductoDetalle'
 import { renderConProviders, ADMIN } from '../../utils'
 import { productosService } from '../../../services'
+import { agregarVendedor } from '../../falso/vendedor'
 
 const conAdmin = (ruta) => ({ ruta, usuario: ADMIN })
 
@@ -47,5 +48,13 @@ describe('ProductoDetalle', () => {
     vi.spyOn(productosService, 'obtenerPorId').mockRejectedValue(new Error('Error de red'))
     renderConProviders(rutas, conAdmin('/admin/productos/TC001'))
     expect(await screen.findByRole('alert')).toHaveTextContent('Error de red')
+  })
+
+  test('el vendedor ve el detalle del producto pero no el botón Editar', async () => {
+    const vendedor = agregarVendedor()
+    renderConProviders(rutas, { ruta: '/admin/productos/TC001', usuario: vendedor })
+    expect(await screen.findByRole('heading', { name: 'Torta Cuadrada de Chocolate' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Volver/ })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Editar/ })).not.toBeInTheDocument()
   })
 })

@@ -2,6 +2,7 @@ import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from '../../../App'
 import { renderConProviders } from '../../utils'
+import { agregarVendedor } from '../../falso/vendedor'
 // Prueba de integración del panel: la App completa con sus rutas reales,
 // RutaAdmin y AdminLayout. Se navega con el sidebar como lo haría el admin.
 beforeEach(() => vi.spyOn(window, 'scrollTo').mockImplementation(() => {}))
@@ -66,5 +67,30 @@ describe('Flujo del panel admin (App completa)', () => {
     await user.click(within(menu).getByRole('link', { name: 'Dashboard' }))
     const criticos = (await screen.findByText('Productos críticos')).closest('a')
     expect(criticos).toHaveTextContent('5') // 4 de las semillas + el nuevo
+  })
+
+  test('el vendedor que entra a /admin cae en la lista de productos', async () => {
+    const vendedor = agregarVendedor()
+    renderConProviders(<App />, { ruta: '/admin', usuario: vendedor })
+    expect(await screen.findByRole('heading', { level: 1, name: 'Productos' })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Dashboard' })).not.toBeInTheDocument()
+  })
+
+  test('el vendedor que escribe /admin/usuarios en la barra es enviado a la tienda', async () => {
+    const vendedor = agregarVendedor()
+    renderConProviders(<App />, { ruta: '/admin/usuarios', usuario: vendedor })
+    expect(await screen.findByRole('heading', { name: /50 Años Horneando/ })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { level: 1, name: 'Usuarios' })).not.toBeInTheDocument()
+  })
+
+  test('el vendedor navega por sus dos secciones: productos y órdenes', async () => {
+    const user = userEvent.setup()
+    const vendedor = agregarVendedor()
+    renderConProviders(<App />, { ruta: '/admin/productos', usuario: vendedor })
+    await screen.findByRole('heading', { level: 1, name: 'Productos' })
+    const menu = screen.getByRole('navigation', { name: 'Menú del administrador' })
+    await user.click(within(menu).getByRole('link', { name: 'Órdenes' }))
+    expect(await screen.findByRole('heading', { level: 1, name: 'Órdenes y boletas' })).toBeInTheDocument()
+    expect(await screen.findAllByTestId('fila-orden')).toHaveLength(2)
   })
 })
